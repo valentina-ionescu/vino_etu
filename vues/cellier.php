@@ -14,7 +14,7 @@
                     <p class="nom">Nom : <?php echo $bouteille['nom'] ?></p>
                     <p class="quantite">Quantité : <?php echo $bouteille['quantite'] ?></p>
                     <p class="pays">Pays : <?php echo $bouteille['pays'] ?></p>
-                    <p class="type">Type : <?php echo $bouteille['type'] ?></p>
+                    <p class="type">Type : <?php echo $bouteille['vino__type_id'] ?></p>
                     <p class="millesime">Millesime : <?php echo $bouteille['millesime'] ?></p>
                     <p><a href="<?php echo $bouteille['url_saq'] ?>">Voir SAQ</a></p>
                 </div>
