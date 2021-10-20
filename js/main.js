@@ -30,7 +30,7 @@ window.addEventListener('load', function() {
                  let el = document.querySelector(`[data-js-cellier="${id}"]`);
                  el.innerHTML = '';
                  el.innerHTML = `Quantité : ${data}`;
-                               
+
               }).catch(error => {
                 console.error(error);
               });
@@ -64,7 +64,9 @@ window.addEventListener('load', function() {
         })
 
     });
-   
+
+
+
     let inputNomBouteille = document.querySelector("[name='nom_bouteille']");
     console.log(inputNomBouteille);
     let liste = document.querySelector('.listeAutoComplete');
@@ -73,30 +75,44 @@ window.addEventListener('load', function() {
       inputNomBouteille.addEventListener("keyup", function(evt){
         console.log(evt);
         let nom = inputNomBouteille.value;
+
         liste.innerHTML = "";
         if(nom){
-          let requete = new Request(BaseURL+"index.php?requete=autocompleteBouteille", {method: 'POST', body: '{"nom": "'+nom+'"}'});
+          // console.log(nom)
+
+// enleve leBaseURL+ de la Request, pour la faire fonctionner
+          let requete = new Request("index.php?requete=autocompleteBouteille", {method: 'POST', body: '{"nom": "'+nom+'"}'});
+          console.log(requete)
           fetch(requete)
+
+
               .then(response => {
+
                   if (response.status === 200) {
+
                     return response.json();
-                  } else {
+
+                  }
+                   else {
                     throw new Error('Erreur');
                   }
+
                 })
-                .then(response => {
-                  console.log(response);
-                  
-                 
-                  response.forEach(function(element){
-                    liste.innerHTML += "<li data-id='"+element.id +"'>"+element.nom+"</li>";
+                .then(data => {
+                  data.forEach(function(element){
+                    // console.log(element)
+                    // console.log(liste.innerHTML)
+
+                    liste.innerHTML += "<li data-id='"+element.id+"'>"+element.nom+"</li>";
+
                   })
-                }).catch(error => {
+                })
+                .catch(error => {
                   console.error(error);
                 });
         }
-        
-        
+
+
       });
 
       let bouteille = {
@@ -115,7 +131,7 @@ window.addEventListener('load', function() {
         if(evt.target.tagName == "LI"){
           bouteille.nom.dataset.id = evt.target.dataset.id;
           bouteille.nom.innerHTML = evt.target.innerHTML;
-          
+
           liste.innerHTML = "";
           inputNomBouteille.value = "";
 
@@ -145,15 +161,15 @@ window.addEventListener('load', function() {
                   })
                   .then(response => {
                     console.log(response);
-                  
+
                   }).catch(error => {
                     console.error(error);
                   });
-        
+
         });
-      } 
+      }
   }
-    
+
 
 });
 

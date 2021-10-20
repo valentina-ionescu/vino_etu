@@ -5,7 +5,7 @@
  html, body {
 	height: 100%;
 	margin: 0;
-	background-color: #E5E5E5;
+	/* background-color: #fff; */
 	
 	font-family: 'Roboto', 'RobotoDraft', sans-serif;
 	font-size: 95%;
@@ -26,7 +26,7 @@ body
 }
 .liste {
 	display: block;
-	border-top: 1px solid #ccc;
+	border-top: 1px solid rgb(255, 255, 255);
 	border-bottom: none;
 	/*background: #666;*/
 	/*color: #03a9f4;*/
@@ -79,7 +79,10 @@ footer p
 }
 
 
+
+
 /*  Ajoutee Par Val  -- cartes */
+
 .grid {
     display: flex;
     justify-content: center;
