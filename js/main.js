@@ -73,11 +73,15 @@ window.addEventListener('load', function() {
       inputNomBouteille.addEventListener("keyup", function(evt){
         console.log(evt);
         let nom = inputNomBouteille.value;
+        console.log(nom)
         liste.innerHTML = "";
         if(nom){
           let requete = new Request(BaseURL+"index.php?requete=autocompleteBouteille", {method: 'POST', body: '{"nom": "'+nom+'"}'});
           fetch(requete)
+        
+
               .then(response => {
+                console.log(response)
                   if (response.status === 200) {
                     return response.json();
                   } else {
