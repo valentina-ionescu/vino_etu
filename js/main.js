@@ -14,16 +14,12 @@ console.log(BaseURL);
 window.addEventListener('load', function() {
     console.log("load");
     document.querySelectorAll(".btnBoire").forEach(function(element){
-        console.log(element);
         element.addEventListener("click", function(evt){
             let id = evt.target.parentElement.dataset.id;
-            console.log(id);
             let requete = new Request("index.php?requete=boireBouteilleCellier", {method: 'POST', body: '{"id": '+id+'}'});
-          console.log(requete);
             fetch(requete)
             .then(response => {
               if (response.status === 200) {
-                  console.log(response);
                   return response.json();
                 } else {
                   throw new Error('Erreur');
@@ -46,12 +42,13 @@ window.addEventListener('load', function() {
         console.log(element);
         element.addEventListener("click", function(evt){
             let id = evt.target.parentElement.dataset.id;
-
-            let requete = new Request(BaseURL+"index.php?requete=ajouterBouteilleCellier", {method: 'POST', body: '{"id": '+id+'}'});
+            console.log(id);
+            let requete = new Request("index.php?requete=ajouterBouteilleCellier", {method: 'POST', body: '{"id": '+id+'}'});
 
             fetch(requete)
             .then(response => {
                 if (response.status === 200) {
+                  console.log(response);
                   return response.json();
                 } else {
                   throw new Error('Erreur');
