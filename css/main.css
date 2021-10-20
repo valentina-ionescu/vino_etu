@@ -128,3 +128,9 @@ align-content: baseline;
     object-fit: contain;
 }
 
+/* Ajouté par Félix - scroll pour la description*/
+
+.description {
+    background-color: red;
+    color: red;
+}
