@@ -17,17 +17,20 @@ window.addEventListener('load', function() {
         console.log(element);
         element.addEventListener("click", function(evt){
             let id = evt.target.parentElement.dataset.id;
-            let requete = new Request(BaseURL+"index.php?requete=boireBouteilleCellier", {method: 'POST', body: '{"id": '+id+'}'});
-
+            console.log(id);
+            let requete = new Request("index.php?requete=boireBouteilleCellier", {method: 'POST', body: '{"id": '+id+'}'});
+          console.log(requete);
             fetch(requete)
             .then(response => {
-                if (response.status === 200) {
+              if (response.status === 200) {
+                  console.log(response);
                   return response.json();
                 } else {
                   throw new Error('Erreur');
                 }
               })
               .then((data) => {
+                console.log(data);
                  let el = document.querySelector(`[data-js-cellier="${id}"]`);
                  el.innerHTML = '';
                  el.innerHTML = `Quantité : ${data}`;
