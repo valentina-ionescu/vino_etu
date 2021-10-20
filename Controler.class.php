@@ -80,7 +80,7 @@ class Controler
 			//var_dump($body);
 			if(!empty($body)){
 				$bte = new Bouteille();
-				//var_dump($_POST['data']);
+				var_dump($_POST['data']);
 				
 				//var_dump($data);
 				$resultat = $bte->ajouterBouteilleCellier($body);
@@ -101,6 +101,13 @@ class Controler
 			
 			$bte = new Bouteille();
 			$resultat = $bte->modifierQuantiteBouteilleCellier($body->id, -1);
+		
+
+			// $data = $bte->getListeBouteilleCellier();
+			
+			// include("vues/cellier.php");
+			// include("vues/pied.php");
+			// echo json_encode($data);
 			echo json_encode($resultat);
 		}
 
