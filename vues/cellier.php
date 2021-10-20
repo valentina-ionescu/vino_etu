@@ -12,7 +12,7 @@
                 <div class="description">
 
                     <p class="nom">Nom : <?php echo $bouteille['nom'] ?></p>
-                    <p class="quantite">Quantité : <?php echo $bouteille['quantite'] ?></p>
+                    <p class="quantite" data-js-cellier="<?php echo $bouteille['id_bouteille_cellier']?>">Quantité : <?php echo $bouteille['quantite'] ?></p>
                     <p class="pays">Pays : <?php echo $bouteille['pays'] ?></p>
                     <p class="type">Type : <?php echo $bouteille['vino__type_id'] ?></p>
                     <p class="millesime">Millesime : <?php echo $bouteille['millesime'] ?></p>
