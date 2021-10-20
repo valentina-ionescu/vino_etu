@@ -34,16 +34,15 @@ class Bouteille extends Modele {
 		
 		$rows = Array();
 		$requete ='SELECT 
-/*						c.id as id_bouteille_cellier,*/
-/*						c.id_bouteille, */
-						c.date_achat,
-						c.garde_jusqua,
-						c.notes,
-						c.prix,
+						c.nom_cellier,
+						vino__cellier_has_vino__bouteille.date_achat,
+						vino__cellier_has_vino__bouteille.garde_jusqua,
+						vino__cellier_has_vino__bouteille.notes,
+						vino__cellier_has_vino__bouteille.prix,
 						vino__cellier_has_vino__bouteille.quantite,
 						vino__cellier_has_vino__bouteille.vino__bouteille_id,
 						vino__cellier_has_vino__bouteille.vino__cellier_id,
-						c.millesime,
+						vino__cellier_has_vino__bouteille.millesime,
 						b.id,
 						b.nom,
 						b.vino__type_id,
@@ -134,10 +133,10 @@ class Bouteille extends Modele {
 	 */
 	public function ajouterBouteilleCellier($data)
 	{
-		//TODO : Valider les données.
+		/*//TODO : Valider les données.
 		//var_dump($data);	
 		
-		$requete = "INSERT INTO vino__cellier(id_bouteille,date_achat,garde_jusqua,notes,prix,quantite,millesime) VALUES (".
+		$requete = "INSERT INTO vino__cellier_has_vino__bouteille(id_bouteille,date_achat,garde_jusqua,notes,prix,quantite,millesime) VALUES (".
 		"'".$data->id_bouteille."',".
 		"'".$data->date_achat."',".
 		"'".$data->garde_jusqua."',".
@@ -145,7 +144,7 @@ class Bouteille extends Modele {
 		"'".$data->prix."',".
 		"'".$data->quantite."',".
 		"'".$data->millesime."')";
-
+*/
         $res = $this->_db->query($requete);
         
 		$req = "SELECT quantite FROM vino__cellier_has_vino__bouteille WHERE vino__bouteille_id = ". $id;
