@@ -41,6 +41,8 @@ class Bouteille extends Modele {
 						c.notes,
 						c.prix,
 						vino__cellier_has_vino__bouteille.quantite,
+						vino__cellier_has_vino__bouteille.vino__bouteille_id,
+						vino__cellier_has_vino__bouteille.vino__cellier_id,
 						c.millesime,
 						b.id,
 						b.nom,
@@ -162,16 +164,15 @@ class Bouteille extends Modele {
 	{
 		//TODO : Valider les données.
 			
-			
-		$requete = "UPDATE vino__cellier SET quantite = GREATEST(quantite + ". $nombre. ", 0) WHERE id = ". $id;
+		$requete = "UPDATE vino__cellier_has_vino__bouteille SET quantite = GREATEST(quantite + ". $nombre. ", 0) WHERE vino__bouteille_id = ". $id;
 		//echo $requete;
         $res = $this->_db->query($requete);
 
 		//retourner la qte restante - dk
-        $req = "SELECT quantite FROM vino__cellier WHERE id = ". $id;
+        $req = "SELECT quantite FROM vino__cellier_has_vino__bouteille WHERE vino__bouteille_id = ". $id;
 		$res = $this->_db->query($req);
 		$row = $res->fetch_row();
-		$valeur = $row[0] ?? false;  
+		$valeur = $row[0] ?? false;
 		return $valeur;
 	}
 }
