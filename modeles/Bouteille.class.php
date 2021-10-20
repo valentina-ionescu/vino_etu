@@ -34,26 +34,29 @@ class Bouteille extends Modele {
 		
 		$rows = Array();
 		$requete ='SELECT 
-						c.id as id_bouteille_cellier,
-						c.id_bouteille, 
-						c.date_achat, 
-						c.garde_jusqua, 
-						c.notes, 
-						c.prix, 
-						c.quantite,
-						c.millesime, 
+/*						c.id as id_bouteille_cellier,*/
+/*						c.id_bouteille, */
+						c.date_achat,
+						c.garde_jusqua,
+						c.notes,
+						c.prix,
+						vino__cellier_has_vino__bouteille.quantite,
+						vino__cellier_has_vino__bouteille.vino__bouteille_id,
+						vino__cellier_has_vino__bouteille.vino__cellier_id,
+						c.millesime,
 						b.id,
-						b.nom, 
-						b.type, 
-						b.image, 
-						b.code_saq, 
-						b.url_saq, 
-						b.pays, 
-						b.description,
-						t.type 
+						b.nom,
+						b.vino__type_id,
+						b.image,
+						b.code_saq,
+						b.url_saq,
+						b.pays,
+						b.description
+/*						t.type */
 						from vino__cellier c 
-						INNER JOIN vino__bouteille b ON c.id_bouteille = b.id
-						INNER JOIN vino__type t ON t.id = b.type
+						INNER JOIN vino__cellier_has_vino__bouteille ON c.id = vino__cellier_has_vino__bouteille.vino__cellier_id
+						INNER JOIN vino__bouteille b ON vino__cellier_has_vino__bouteille.vino__bouteille_id = b.id
+						/*INNER JOIN vino__type t ON vino__bouteille.vino__type_id = t.id*/
 						'; 
 		if(($res = $this->_db->query($requete)) ==	 true)
 		{
@@ -161,16 +164,15 @@ class Bouteille extends Modele {
 	{
 		//TODO : Valider les données.
 			
-			
-		$requete = "UPDATE vino__cellier SET quantite = GREATEST(quantite + ". $nombre. ", 0) WHERE id = ". $id;
+		$requete = "UPDATE vino__cellier_has_vino__bouteille SET quantite = GREATEST(quantite + ". $nombre. ", 0) WHERE vino__bouteille_id = ". $id;
 		//echo $requete;
         $res = $this->_db->query($requete);
 
 		//retourner la qte restante - dk
-        $req = "SELECT quantite FROM vino__cellier WHERE id = ". $id;
+        $req = "SELECT quantite FROM vino__cellier_has_vino__bouteille WHERE vino__bouteille_id = ". $id;
 		$res = $this->_db->query($req);
 		$row = $res->fetch_row();
-		$valeur = $row[0] ?? false;  
+		$valeur = $row[0] ?? false;
 		return $valeur;
 	}
 }
