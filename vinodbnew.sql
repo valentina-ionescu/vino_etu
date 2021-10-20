@@ -258,13 +258,13 @@ ALTER TABLE `vino__cellier_has_vino__bouteille`
 --
 ALTER TABLE `vino__consommation`
   ADD CONSTRAINT `fk_vino__note_vino__bouteille1` FOREIGN KEY (`bouteille_id`) REFERENCES `vino__bouteille` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_vino__note_vino__usager` FOREIGN KEY (`usager_id`) REFERENCES `mydb`.`vino__usager` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_vino__note_vino__usager` FOREIGN KEY (`usager_id`) REFERENCES `vino__usager` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Contraintes pour la table `vino__listeachat`
 --
 ALTER TABLE `vino__listeachat`
-  ADD CONSTRAINT `fk_vino__listeAchat_vino__usager1` FOREIGN KEY (`usager_id`) REFERENCES `mydb`.`vino__usager` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_vino__listeAchat_vino__usager1` FOREIGN KEY (`usager_id`) REFERENCES `vino__usager` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
