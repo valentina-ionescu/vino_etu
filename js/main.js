@@ -52,8 +52,10 @@ window.addEventListener('load', function() {
                   throw new Error('Erreur');
                 }
               })
-              .then(response => {
-                console.debug(response);
+              .then(data => {
+                let el = document.querySelector(`[data-js-cellier="${id}"]`);
+                el.innerHTML = '';
+                el.innerHTML = `Quantité : ${data}`;
               }).catch(error => {
                 console.error(error);
               });
