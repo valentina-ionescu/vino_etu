@@ -80,7 +80,7 @@ window.addEventListener('load', function() {
         if(nom){
           // console.log(nom)
 
-// enleve leBaseURL+ de la Request, pour la faire fonctionner
+// enleve le BaseURL+ de la Request, pour la faire fonctionner
           let requete = new Request("index.php?requete=autocompleteBouteille", {method: 'POST', body: '{"nom": "'+nom+'"}'});
           console.log(requete)
           fetch(requete)
