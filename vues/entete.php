@@ -25,7 +25,7 @@
 				<ul>
 					<li><a href="?requete=accueil">Mon cellier</a></li>
 					<li><a href="?requete=ajouterNouvelleBouteilleCellier">Ajouter une bouteille au cellier</a></li>
-					<li ><a class="btn" href="updateSAQ.php">Importation du SAQ</a> (admin) </li>
+					<li ><a class="btn" href="./updateSAQ.php">Importation du SAQ</a> (admin) </li>
 				</ul>
 			</nav>
 		</header>
