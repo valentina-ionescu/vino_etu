@@ -133,7 +133,7 @@ class Bouteille extends Modele {
 	 */
 	public function ajouterBouteilleCellier($data)
 	{
-		/*//TODO : Valider les données.
+		//TODO : Valider les données.
 		//var_dump($data);	
 		
 		$requete = "INSERT INTO vino__cellier_has_vino__bouteille(id_bouteille,date_achat,garde_jusqua,notes,prix,quantite,millesime) VALUES (".
@@ -144,7 +144,7 @@ class Bouteille extends Modele {
 		"'".$data->prix."',".
 		"'".$data->quantite."',".
 		"'".$data->millesime."')";
-*/
+
         $res = $this->_db->query($requete);
         
 		$req = "SELECT quantite FROM vino__cellier_has_vino__bouteille WHERE vino__bouteille_id = ". $id;
@@ -178,6 +178,29 @@ class Bouteille extends Modele {
         $res = $this->getQuantiteBouteilleCellier($id);
 		return $res;
 	}
+
+
+	/**
+	 * Cette méthode change la quantité d'une bouteille en particulier dans le cellier
+	 * 
+	 * @param int $id id de la bouteille
+	 * @param int $nombre Nombre de bouteille a ajouter ou retirer
+	 * 
+	 * @return Boolean Succès ou échec de l'ajout.
+	 */
+	public function modifierBouteilleCellier($data, $id = 1)
+	{
+
+		//TODO : Valider les données.
+		$requete = "UPDATE vino__cellier_has_vino__bouteille SET millesime = '".$data->millesime."', date_achat = '".$data->date_achat."', prix = '".$data->prix."', garde_jusqua = '".$data->garde_jusqua."', notes = '".$data->notes."' WHERE vino__bouteille_id = ". $id ."";
+		//echo $requete;
+        $res = $this->_db->query($requete);
+
+		//retourner la qte restante
+		return $res;
+	}
+
+
 	/**
 	 * Cette méthode recupère quantité d'une bouteille en particulier dans le cellier
 	 * 
@@ -195,6 +218,9 @@ class Bouteille extends Modele {
 		$valeur = $row[0] ?? false;
 		return $valeur;
 	}
+
+
+
 }
 
 

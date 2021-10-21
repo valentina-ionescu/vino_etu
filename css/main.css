@@ -16,6 +16,7 @@
 
 .description {
     overflow-y: scroll;
+    height: 17em;
 }
 
 body

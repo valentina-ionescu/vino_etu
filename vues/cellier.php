@@ -16,10 +16,14 @@
                     <p class="pays">Pays : <?php echo $bouteille['pays'] ?></p>
                     <p class="type">Type : <?php echo $bouteille['vino__type_id'] ?></p>
                     <p class="millesime">Millesime : <?php echo $bouteille['millesime'] ?></p>
+                    <p class="prix">Prix : <?php echo $bouteille['prix'] ?></p>
+                    <p class="date_achat">Date d'achat : <?php echo $bouteille['date_achat'] ?></p>
+                    <p class="garde_jusqua">Garde : <?php echo $bouteille['garde_jusqua'] ?></p>
+                    <p class="notes">Notes : <?php echo $bouteille['notes'] ?></p>
                     <p><a href="<?php echo $bouteille['url_saq'] ?>">Voir SAQ</a></p>
                 </div>
                 <div class="options bottom50" data-id="<?php echo $bouteille['vino__bouteille_id'] ?>">
-                    <button class="card__button">Modifier</button>
+                    <form action="?requete=modifierBouteilleCellier" method="POST"><button name="id" value="<?php echo $bouteille['id']; ?>" type="submit">Modifier</button></form>
                     <button class='btnAjouter'>Ajouter</button>
                     <button class='btnBoire'>Boire</button>
 
