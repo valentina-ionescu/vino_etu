@@ -147,12 +147,7 @@ class Bouteille extends Modele {
 */
         $res = $this->_db->query($requete);
         
-		// $req = "SELECT quantite FROM vino__cellier_has_vino__bouteille WHERE vino__bouteille_id = ". $id;
-		// $res = $this->_db->query($req);
-		// $row = $res->fetch_row();
-		// $valeur = $row[0] ?? false;
-		// return $valeur;
-
+	
 		$res = $this->getQuantiteBouteilleCellier($id);
 		return $res;
 	}
@@ -184,7 +179,7 @@ class Bouteille extends Modele {
 	 * @param int $id id de la bouteille
 	 * 
 	 *  
-	 * @return int quantité.
+	 * @return int $quantité la quantité pour une bouteille($id) dans un cellier
 	 */
 	public function getQuantiteBouteilleCellier($id)
 	{
