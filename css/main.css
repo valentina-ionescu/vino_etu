@@ -142,3 +142,11 @@ align-content: baseline;
     height: 100%;
     object-fit: contain;
 }
+
+/* -------------ajout par Djaouida ------ */
+/* -----------View ajouter Bouteille */
+
+.ajouter {
+    width: 50vw;
+    margin: 0 auto;
+}

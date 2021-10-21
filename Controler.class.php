@@ -81,7 +81,7 @@ class Controler
 		private function ajouterNouvelleBouteilleCellier()
 		{
 			$body = json_decode(file_get_contents('php://input'));
-			var_dump($body);
+			// var_dump($body);
 			if(!empty($body)){
 				$bte = new Bouteille();
 				// var_dump($_POST['data']);
@@ -106,7 +106,7 @@ class Controler
 			if(!empty($body)){
 
 				$bte = new Bouteille();
-				var_dump($_POST['data']);
+				// var_dump($_POST['data']);
 
 				$id = $body->id;
 				$resultat = $bte->modifierBouteilleCellier($body, $id);

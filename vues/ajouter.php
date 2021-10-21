@@ -6,7 +6,7 @@
 // remove everything except numbers and dot "."
 $prix = preg_replace("/[^0-9\.]/", "", str_replace(',', '.', trim("28,95 $")));
 $prix = floatval($prix);
-var_dump($prix); 
+
 // var_dump($result);
 // var_dump($myprix);
 // 
@@ -23,7 +23,7 @@ var_dump($prix);
                 <p>Millesime : <input name="millesime"></p>
                 <p>Quantite : <input name="quantite" value="1"></p>
                 <p>Date achat : <input name="date_achat"></p>
-                <p>Prix : <input name="prix">28,95 $</p>
+                <p>Prix : <input name="prix"></p>
                 <p>Garde : <input name="garde_jusqua"></p>
                 <p>Notes <input name="notes"></p>
             </div>

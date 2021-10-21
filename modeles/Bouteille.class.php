@@ -138,10 +138,11 @@ class Bouteille extends Modele {
 	public function ajouterBouteilleCellier($data)
 	{
 		/*//TODO : Valider les données.*/
-		var_dump($data);	
+
 		
 		$requete = "INSERT INTO vino__cellier_has_vino__bouteille(
-			id_bouteille,
+			-- id_bouteille,
+			vino__bouteille_id,
 			date_achat,
 			garde_jusqua,
 			notes,
@@ -149,7 +150,7 @@ class Bouteille extends Modele {
 			quantite,
 			millesime) 
 		VALUES (".
-		"'".$data->id_bouteille."',".
+		"'".$data->vino__bouteille_id."',".
 		"'".$data->date_achat."',".
 		"'".$data->garde_jusqua."',".
 		"'".$data->notes."',".
@@ -159,8 +160,11 @@ class Bouteille extends Modele {
 
         $res = $this->_db->query($requete);
         
-	    
-		$res = $this->getQuantiteBouteilleCellier($id);
+	
+		// if ($id) {
+		// 	$res = $this->getQuantiteBouteilleCellier($id);
+		// }
+
 		return $res;
 	}
 	
