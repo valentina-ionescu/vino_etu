@@ -6,7 +6,7 @@
                     <h1 data-id="<?php echo $_POST['id'] ?>"><?php echo $row['nom']; ?></h1>
                     <p>Millesime : <input type="number" name="millesime" value="<?php echo $row['millesime']; ?>"></p>
                     <p>Date achat : <input type="date" name="date_achat" value="<?php echo $row['date_achat']; ?>"></p>
-                    <p>Prix : <input type="number" step=".01" name="prix" value="<?php echo $row['prix']; ?>"></p>
+                    <p>Prix : <input type="number" step="any" name="prix" value="<?php echo $row['prix']; ?>"></p>
                     <p>Garde : <input type="date" name="garde_jusqua" value="<?php echo $row['garde_jusqua']; ?>"></p>
                     <p>Notes <textarea name="notes"><?php echo $row['notes']; ?></textarea></p>
                 </div>
