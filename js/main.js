@@ -9,6 +9,11 @@
  */
 
 //const BaseURL = "https://jmartel.webdev.cmaisonneuve.qc.ca/n61/vino/";
+
+    //////////////////////////////////////////////
+    //Fonction boire bouteille                  //
+    //////////////////////////////////////////////
+
 const BaseURL = document.baseURI;
 console.log(BaseURL);
 window.addEventListener('load', function() {
@@ -38,6 +43,10 @@ window.addEventListener('load', function() {
 
     });
 
+    //////////////////////////////////////////////
+    //Fonction ajouter bouteille unité          //
+    //////////////////////////////////////////////
+
     document.querySelectorAll(".btnAjouter").forEach(function(element){
         console.log(element);
         element.addEventListener("click", function(evt){
@@ -65,7 +74,54 @@ window.addEventListener('load', function() {
 
     });
 
+    //////////////////////////////////////////////
+    //Fonction modifier                         //
+    //////////////////////////////////////////////
+    let modifBouteille = {
+      millesime : document.querySelector("[name='millesime']"),
+      date_achat : document.querySelector("[name='date_achat']"),
+      prix : document.querySelector("[name='prix']"),
+      garde_jusqua : document.querySelector("[name='garde_jusqua']"),
+      notes : document.querySelector("[name='notes']"),
+    };
 
+    document.querySelectorAll(".btnModifier").forEach(function(element){
+      console.log(element);
+      element.addEventListener("click", function(evt){
+
+        let id = document.querySelector('[data-id]').dataset.id;
+
+        var param = {
+          "id":id,
+          "millesime":modifBouteille.millesime.value,
+          "date_achat":modifBouteille.date_achat.value,
+          "garde_jusqua":modifBouteille.garde_jusqua.value,
+          "notes":modifBouteille.notes.value,
+          "prix":modifBouteille.prix.value,
+        };
+        let requete = new Request("index.php?requete=modifierBouteilleCellier", {method: 'PUT', body: JSON.stringify(param)});
+        console.log(requete);
+        fetch(requete)
+        .then(response => {
+          if (response.status === 200) {
+            console.log(response);
+            return response.json();
+          } else {
+            throw new Error('Erreur');
+          }
+        })
+        .then(response => {
+          console.log(response);
+
+        }).catch(error => {
+          console.error(error);
+        });
+      });
+    });
+
+    //////////////////////////////////////////////
+    //Fonction autoComplete                     //
+    //////////////////////////////////////////////
 
     let inputNomBouteille = document.querySelector("[name='nom_bouteille']");
     console.log(inputNomBouteille);
@@ -150,9 +206,10 @@ window.addEventListener('load', function() {
             "quantite":bouteille.quantite.value,
             "millesime":bouteille.millesime.value,
           };
-          let requete = new Request(BaseURL+"index.php?requete=ajouterNouvelleBouteilleCellier", {method: 'POST', body: JSON.stringify(param)});
+          let requete = new Request("index.php?requete=ajouterNouvelleBouteilleCellier", {method: 'POST', body: JSON.stringify(param)});
             fetch(requete)
                 .then(response => {
+                  console.log(response);
                     if (response.status === 200) {
                       return response.json();
                     } else {
