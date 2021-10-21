@@ -136,7 +136,7 @@ window.addEventListener('load', function() {
         if(nom){
           // console.log(nom)
 
-// enleve leBaseURL+ de la Request, pour la faire fonctionner
+// enleve le BaseURL+ de la Request, pour la faire fonctionner
           let requete = new Request("index.php?requete=autocompleteBouteille", {method: 'POST', body: '{"nom": "'+nom+'"}'});
           console.log(requete)
           fetch(requete)
@@ -206,9 +206,10 @@ window.addEventListener('load', function() {
             "quantite":bouteille.quantite.value,
             "millesime":bouteille.millesime.value,
           };
-          let requete = new Request(BaseURL+"index.php?requete=ajouterNouvelleBouteilleCellier", {method: 'POST', body: JSON.stringify(param)});
+          let requete = new Request("index.php?requete=ajouterNouvelleBouteilleCellier", {method: 'POST', body: JSON.stringify(param)});
             fetch(requete)
                 .then(response => {
+                  console.log(response);
                     if (response.status === 200) {
                       return response.json();
                     } else {
