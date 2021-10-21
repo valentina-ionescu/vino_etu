@@ -86,7 +86,7 @@ footer p
 
 
 
-/*  Ajoutee Par Val  -- cartes */
+/* -- solution temporaire d'affichage --  Ajoutee Par Valentina  -- cartes */
 
 .grid {
     display: flex;
@@ -143,10 +143,31 @@ align-content: baseline;
     object-fit: contain;
 }
 
+<<<<<<< HEAD
 /* -------------ajout par Djaouida ------ */
 /* -----------View ajouter Bouteille */
 
 .ajouter {
     width: 50vw;
     margin: 0 auto;
+=======
+
+
+li .btn{
+    list-style: none;
+}
+  a.btn{
+    text-decoration: none;
+    display: inline-block;
+}
+.btn {
+    padding: 5px 15px;
+    background-color: #18182e;
+    color: rgb(228, 227, 227);
+}
+.btn:hover{
+    background-color: #07071b;
+    color: rgb(255, 255, 255);
+
+>>>>>>> 81796b9627047c41ee60b89ac13d1adcc53544b1
 }

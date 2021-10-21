@@ -1,16 +1,4 @@
-<?php 
 
-// $prix = trim("28,95 $");
-//$result=// convert "," to "."
-// $prix = str_replace(',', '.', trim("28,95 $"));
-// remove everything except numbers and dot "."
-$prix = preg_replace("/[^0-9\.]/", "", str_replace(',', '.', trim("28,95 $")));
-$prix = floatval($prix);
-
-// var_dump($result);
-// var_dump($myprix);
-// 
-				  ?>
 <div class="ajouter">
 
     <div class="nouvelleBouteille" vertical layout>
