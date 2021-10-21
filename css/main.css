@@ -16,6 +16,11 @@
 
 .description {
     overflow-y: scroll;
+    height: 17em;
+}
+
+.btnCellierModif {
+    width: 100%;
 }
 
 body
