@@ -198,7 +198,7 @@ class Bouteille extends Modele {
 	 * 
 	 * @return Boolean Succès ou échec de l'ajout.
 	 */
-	public function modifierBouteilleCellier($data, $id = 1)
+	public function modifierBouteilleCellier($data, $id)
 	{
 
 		str_replace($data->prix, ",", ".");
