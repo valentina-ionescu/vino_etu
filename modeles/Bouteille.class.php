@@ -138,7 +138,10 @@ class Bouteille extends Modele {
 	public function ajouterBouteilleCellier($data)
 	{
 		/*//TODO : Valider les données.*/
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6aaa13d6b09475c3566d2c8561739b696b4e142d
 		
 		$requete = "INSERT INTO vino__cellier_has_vino__bouteille(
 			-- id_bouteille,
@@ -202,6 +205,7 @@ class Bouteille extends Modele {
 	public function modifierBouteilleCellier($data, $id = 1)
 	{
 
+		str_replace($data->prix, ",", ".");
 		//TODO : Valider les données.
 		$requete = "UPDATE vino__cellier_has_vino__bouteille SET millesime = '".$data->millesime."', date_achat = '".$data->date_achat."', prix = '".$data->prix."', garde_jusqua = '".$data->garde_jusqua."', notes = '".$data->notes."' WHERE vino__bouteille_id = ". $id ."";
 		//echo $requete;
