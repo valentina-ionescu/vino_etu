@@ -22,7 +22,7 @@ class SAQ extends Modele {
 
 	public function __construct() {
 		parent::__construct();
-		if (!($this -> stmt = $this -> _db -> prepare("INSERT INTO vino__bouteille(nom, type, image, code_saq, pays, description, prix_saq, url_saq, url_img, format) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
+		if (!($this -> stmt = $this -> _db -> prepare("INSERT INTO vino__bouteille(nom, image, code_saq, pays, description, prix_saq, url_saq, url_img, format, vino__type_id ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
 			echo "Echec de la préparation : (" . $mysqli -> errno . ") " . $mysqli -> error;
 		}
 	}
@@ -147,18 +147,29 @@ class SAQ extends Modele {
 					$info -> desc -> code_SAQ = trim($aRes[0]);
 				}
 				
-				
-				
 			}
 		}
 
 		$aElements = $noeud -> getElementsByTagName("span");
 		foreach ($aElements as $node) {
 			if ($node -> getAttribute('class') == 'price') {
-				$info -> prix = trim($node -> textContent);
+				$info -> prix = trim($node -> textContent);//valeur "1,23 $"
+
+/******     Code a conserver si on decide de manipuler le prix pour des calculs   ***********/
+
+					// convertir la "," en "." pour conserver les decimales
+					//$info -> prix = str_replace(',', '.', $info -> prix); //valeur "1.23 $"
+
+					// enlever tout exceptee les chifres et le "."
+				//	$info -> prix = preg_replace("/[^0-9\.]/", "", $info -> prix); //valeur "1.23"
+
+					//transformer la chaine de caracteres en float pour envoyer a la DB 
+					//$info -> prix = floatval($info -> prix); //valeur 1.23
+
+
 			}
 		}
-		//var_dump($info);
+		var_dump($info);
 		return $info;
 	}
 
@@ -167,7 +178,7 @@ class SAQ extends Modele {
 		$retour -> succes = false;
 		$retour -> raison = '';
 
-		//var_dump($bte);
+		print_r($bte);
 		// Récupère le type
 		$rows = $this -> _db -> query("select id from vino__type where type = '" . $bte -> desc -> type . "'");
 		
@@ -177,11 +188,16 @@ class SAQ extends Modele {
 			$type = $type['id'];
 
 			$rows = $this -> _db -> query("select id from vino__bouteille where code_saq = '" . $bte -> desc -> code_SAQ . "'");
+			echo $bte -> desc -> code_SAQ;
 			if ($rows -> num_rows < 1) {
-				$this -> stmt -> bind_param("sissssisss", $bte -> nom, $type, $bte -> img, $bte -> desc -> code_SAQ, $bte -> desc -> pays, $bte -> desc -> texte, $bte -> prix, $bte -> url, $bte -> img, $bte -> desc -> format);
+
+				/*  la decision de garder le data-type a "s" pour le prix importee de la page SAQ est pour faciliter l'affichage du prix dans le meme format sur la page de notre application. Au besoin ce data-type poura etre change pour 'd', apres avoir transformee la donnee resu de "chaine de caracteres" en float, ou int */
+				
+				$this -> stmt -> bind_param("sissssssss", $bte -> nom,  $bte -> img, $bte -> desc -> code_SAQ, $bte -> desc -> pays, $bte -> desc -> texte, $bte -> prix, $bte -> url, $bte -> img,  $bte -> desc -> format, $type);
 				$retour -> succes = $this -> stmt -> execute();
 				$retour -> raison = self::INSERE;
 				//var_dump($this->stmt);
+
 			} else {
 				$retour -> succes = false;
 				$retour -> raison = self::DUPLICATION;

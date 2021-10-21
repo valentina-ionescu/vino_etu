@@ -133,8 +133,8 @@ class Bouteille extends Modele {
 	 */
 	public function ajouterBouteilleCellier($data)
 	{
-		/*//TODO : Valider les données.
-		//var_dump($data);	
+		/*//TODO : Valider les données.*/
+		var_dump($data);	
 		
 		$requete = "INSERT INTO vino__cellier_has_vino__bouteille(id_bouteille,date_achat,garde_jusqua,notes,prix,quantite,millesime) VALUES (".
 		"'".$data->id_bouteille."',".
@@ -144,7 +144,7 @@ class Bouteille extends Modele {
 		"'".$data->prix."',".
 		"'".$data->quantite."',".
 		"'".$data->millesime."')";
-*/
+
         $res = $this->_db->query($requete);
         
 	
