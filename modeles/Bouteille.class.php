@@ -138,9 +138,22 @@ class Bouteille extends Modele {
 	public function ajouterBouteilleCellier($data)
 	{
 		/*//TODO : Valider les données.*/
+<<<<<<< HEAD
+
+=======
+>>>>>>> 6aaa13d6b09475c3566d2c8561739b696b4e142d
 		
-		$requete = "INSERT INTO vino__cellier_has_vino__bouteille(id_bouteille,date_achat,garde_jusqua,notes,prix,quantite,millesime) VALUES (".
-		"'".$data->id_bouteille."',".
+		$requete = "INSERT INTO vino__cellier_has_vino__bouteille(
+			-- id_bouteille,
+			vino__bouteille_id,
+			date_achat,
+			garde_jusqua,
+			notes,
+			prix,
+			quantite,
+			millesime) 
+		VALUES (".
+		"'".$data->vino__bouteille_id."',".
 		"'".$data->date_achat."',".
 		"'".$data->garde_jusqua."',".
 		"'".$data->notes."',".
@@ -150,13 +163,11 @@ class Bouteille extends Modele {
 
         $res = $this->_db->query($requete);
         
-		$req = "SELECT quantite FROM vino__cellier_has_vino__bouteille WHERE vino__bouteille_id = ". $id;
-		$res = $this->_db->query($req);
-		$row = $res->fetch_row();
-		$valeur = $row[0] ?? false;
-		return $valeur;
+	
+		// if ($id) {
+		// 	$res = $this->getQuantiteBouteilleCellier($id);
+		// }
 
-		$res = $this->getQuantiteBouteilleCellier($id);
 		return $res;
 	}
 	
@@ -229,7 +240,7 @@ class Bouteille extends Modele {
 	 * @param int $id id de la bouteille
 	 * 
 	 *  
-	 * @return int quantité.
+	 * @return int $quantité la quantité pour une bouteille($id) dans un cellier
 	 */
 	public function getQuantiteBouteilleCellier($id)
 	{
