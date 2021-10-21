@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class Controler
  * Gère les requêtes HTTP
@@ -36,6 +37,9 @@ class Controler
 					break;
 				case 'boireBouteilleCellier':
 					$this->boireBouteilleCellier();
+					break;
+				case 'modifierBouteilleCellier':
+					$this->modifierBouteilleCellier();
 					break;
 				default:
 					$this->accueil();
@@ -91,8 +95,31 @@ class Controler
 				include("vues/ajouter.php");
 				include("vues/pied.php");
 			}
-			
-            
+		}
+
+		private function modifierBouteilleCellier()
+		{
+			$body = json_decode(file_get_contents('php://input'));
+
+			$idBouteille = $_POST['id'];
+
+			if(!empty($body)){
+
+				$bte = new Bouteille();
+				var_dump($_POST['data']);
+
+				$id = $body->id;
+				$resultat = $bte->modifierBouteilleCellier($body, $id);
+				echo json_encode($resultat);
+			}
+			else{
+				$bte = new Bouteille();
+				$resultat = $bte->getInfoBouteille($idBouteille);
+				$row = $resultat->fetch_assoc();
+				include("vues/entete.php");
+				include("vues/modifier.php");
+				include("vues/pied.php");
+			}
 		}
 		
 		private function boireBouteilleCellier()
@@ -112,7 +139,6 @@ class Controler
 			$resultat = $bte->modifierQuantiteBouteilleCellier($body->id, 1);
 			echo json_encode($resultat);
 		}
-		
 }
 ?>
 
