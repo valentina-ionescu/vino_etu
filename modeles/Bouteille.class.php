@@ -140,7 +140,15 @@ class Bouteille extends Modele {
 		/*//TODO : Valider les données.*/
 		var_dump($data);	
 		
-		$requete = "INSERT INTO vino__cellier_has_vino__bouteille(id_bouteille,date_achat,garde_jusqua,notes,prix,quantite,millesime) VALUES (".
+		$requete = "INSERT INTO vino__cellier_has_vino__bouteille(
+			id_bouteille,
+			date_achat,
+			garde_jusqua,
+			notes,
+			prix,
+			quantite,
+			millesime) 
+		VALUES (".
 		"'".$data->id_bouteille."',".
 		"'".$data->date_achat."',".
 		"'".$data->garde_jusqua."',".
@@ -151,7 +159,7 @@ class Bouteille extends Modele {
 
         $res = $this->_db->query($requete);
         
-	
+	    
 		$res = $this->getQuantiteBouteilleCellier($id);
 		return $res;
 	}
