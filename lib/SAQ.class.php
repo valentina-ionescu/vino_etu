@@ -34,7 +34,7 @@ class SAQ extends Modele {
 	 */
 	public function getProduits($nombre = 24, $page = 1) {
 		$s = curl_init();
-		$url = "https://www.saq.com/fr/produits/vin/vin-rouge?p=1&product_list_limit=24&product_list_order=name_asc";
+		$url = "https://www.saq.com/fr/produits/vin/vin-rouge?p=2&product_list_limit=24&product_list_order=name_asc";
 		//curl_setopt($s, CURLOPT_URL, "http://www.saq.com/webapp/wcs/stores/servlet/SearchDisplay?searchType=&orderBy=&categoryIdentifier=06&showOnly=product&langId=-2&beginIndex=".$debut."&tri=&metaData=YWRpX2YxOjA8TVRAU1A%2BYWRpX2Y5OjE%3D&pageSize=". $nombre ."&catalogId=50000&searchTerm=*&sensTri=&pageView=&facet=&categoryId=39919&storeId=20002");
 		//curl_setopt($s, CURLOPT_URL, "https://www.saq.com/webapp/wcs/stores/servlet/SearchDisplay?categoryIdentifier=06&showOnly=product&langId=-2&beginIndex=" . $debut . "&pageSize=" . $nombre . "&catalogId=50000&searchTerm=*&categoryId=39919&storeId=20002");
 		//curl_setopt($s, CURLOPT_URL, $url);
@@ -193,7 +193,7 @@ class SAQ extends Modele {
 
 				/*  la decision de garder le data-type a "s" pour le prix importee de la page SAQ est pour faciliter l'affichage du prix dans le meme format sur la page de notre application. Au besoin ce data-type poura etre change pour 'd', apres avoir transformee la donnee resu de "chaine de caracteres" en float, ou int */
 
-				$this -> stmt -> bind_param("sssssssssi", $bte -> nom,  $bte -> img, $bte -> desc -> code_SAQ, $bte -> desc -> pays, $bte -> desc -> texte, $bte -> prix, $bte -> url, $bte -> img,  $bte -> desc -> format, $type);
+				$this -> stmt -> bind_param("sssssssssi", $bte -> nom, $bte -> img, $bte -> desc -> code_SAQ, $bte -> desc -> pays, $bte -> desc -> texte, $bte -> prix, $bte -> url, $bte -> img,  $bte -> desc -> format, $type);
 				$retour -> succes = $this -> stmt -> execute();
 				$retour -> raison = self::INSERE;
 				//var_dump($this->stmt);
