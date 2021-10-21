@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class Controler
  * Gère les requêtes HTTP
@@ -100,17 +101,21 @@ class Controler
 		{
 			$body = json_decode(file_get_contents('php://input'));
 
+			$idBouteille = $_POST['id'];
+
 			if(!empty($body)){
 
 				$bte = new Bouteille();
 				var_dump($_POST['data']);
 
 				$id = $body->id;
-				//var_dump($data);
 				$resultat = $bte->modifierBouteilleCellier($body, $id);
 				echo json_encode($resultat);
 			}
 			else{
+				$bte = new Bouteille();
+				$resultat = $bte->getInfoBouteille($idBouteille);
+				$row = $resultat->fetch_assoc();
 				include("vues/entete.php");
 				include("vues/modifier.php");
 				include("vues/pied.php");

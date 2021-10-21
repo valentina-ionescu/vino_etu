@@ -1,4 +1,6 @@
 <?php
+		session_start();
+
 /**
  * Class Bouteille
  * Cette classe possède les fonctions de gestion des bouteilles dans le cellier et des bouteilles dans le catalogue complet.
@@ -35,6 +37,7 @@ class Bouteille extends Modele {
 		$rows = Array();
 		$requete ='SELECT 
 						c.nom_cellier,
+						c.id as cellier_id,
 						vino__cellier_has_vino__bouteille.date_achat,
 						vino__cellier_has_vino__bouteille.garde_jusqua,
 						vino__cellier_has_vino__bouteille.notes,
@@ -63,6 +66,7 @@ class Bouteille extends Modele {
 			{
 				while($row = $res->fetch_assoc())
 				{
+					$_SESSION['cellier_id'] = $row['cellier_id'];
 					$row['nom'] = trim(utf8_encode($row['nom']));
 					$rows[] = $row;
 				}
@@ -197,6 +201,24 @@ class Bouteille extends Modele {
         $res = $this->_db->query($requete);
 
 		//retourner la qte restante
+		return $res;
+	}
+
+	/**
+	 * Cette méthode change la quantité d'une bouteille en particulier dans le cellier
+	 * 
+	 * @param int $idBouteille id de la bouteille
+	 * @param int $idCellier id du cellier
+	 * 
+	 */
+	public function getInfoBouteille($idBouteille)
+	{
+		$idCellier = $_SESSION['cellier_id'];
+
+		$requete = "SELECT date_achat, garde_jusqua, notes, prix, millesime, vino__bouteille.nom FROM vino__cellier_has_vino__bouteille JOIN vino__bouteille ON vino__cellier_has_vino__bouteille.vino__bouteille_id = vino__bouteille.id WHERE vino__bouteille_id = ".$idBouteille." AND vino__cellier_id = ".$idCellier."";
+
+		$res = $this->_db->query($requete);
+
 		return $res;
 	}
 
