@@ -28,7 +28,6 @@
     flex-basis: calc(100% / 5 - 20px);
     min-width: 230px;
     flex-grow: 0;
-    padding: 15px;
     align-self: stretch;
     box-shadow: 0 5px 15px #00000017;
     transition: transform 0.1s linear, box-shadow 0.1s linear;
@@ -99,6 +98,7 @@
     left: 10px;
     top: 10px;
 }
+
 .btnAjouter, .btnBoire {
     padding: 3px 6px;
     border-radius: 3px;
@@ -144,6 +144,7 @@
 }
 
 .carte__description-nom {
+    font-family: var(--ff-serif);
     padding: 5px 0;
     color: var(--txt-medium);
     line-height: 1.3;
