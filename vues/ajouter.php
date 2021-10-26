@@ -8,11 +8,11 @@
                
   
 
+                 <ul class="listeAutoComplete">
+         
+                 </ul>
             </div>
        
-        <ul class="listeAutoComplete">
-
-        </ul>
             <div class="form__carte" >
                 <!-- a faire : ajouter required  - DK -->
                
