@@ -3,7 +3,8 @@
     margin-top: 20px;
 }
 
-.footer__wrapper>h2,h3 {
+.footer__wrapper>h2,
+.footer__wrapper>h3 {
     font-family: var(--ff-sans-serif);
     color: var(--bg-clair);
     background-color: var(--bg-gris-clair);
