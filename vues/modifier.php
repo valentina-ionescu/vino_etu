@@ -7,7 +7,7 @@
         
             <div class="form__carte">
                 <div class="form__image flex">
-                <img src="https:<?php echo $row['image'] ?>" alt="">
+                <img src="<?php echo $row['image'] ?>" alt="">
                 </div>
                 <form class="form__modif flex col" action="index.php?requete=accueil">
                                 <h3 data-id="<?php echo $_POST['id'] ?>"><?php echo $row['nom']; ?></h3>
@@ -31,7 +31,7 @@
                                 </div>
                                 <div class="form__label">
                                     <label>Notes </label>
-                                <textarea name="notes"><?php echo $row['notes']; ?></textarea>
+                                <textarea rows="5" name="notes"><?php echo $row['notes']; ?></textarea>
                                 </div>
                                     <button class='btnModifier'>Modifier la bouteille</button>
                 

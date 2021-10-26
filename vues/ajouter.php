@@ -1,8 +1,15 @@
 
 
 
-    <div class="form__contenant flex col" vertical layout>
-        Recherche : <input type="text" name="nom_bouteille">
+    <div class="form__contenant flex col form__ajout" vertical layout>
+            <div class="form__recherche form__recherche--clair">
+                 <!-- <label><i class="fas fa-search"></i> </label> -->
+                 <input class="form__recherche--clair"  type="text" placeholder="Taper le nom..." name="nom_bouteille"> 
+               
+  
+
+            </div>
+       
         <ul class="listeAutoComplete">
 
         </ul>

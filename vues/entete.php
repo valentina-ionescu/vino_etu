@@ -24,6 +24,7 @@
 		<link rel="stylesheet" href="css/normalize.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="css/base_h5bp.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="css/utilitaires.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="./css/forms.css">
 		<link rel="stylesheet" href="css/main.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="css/header.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="css/footer.css" type="text/css" media="screen">
@@ -32,10 +33,8 @@
 		<link rel="shortcut icon" type="image/png" href="./img/logo-verre-white-circle.png">
 
 		<link rel="stylesheet" href="./css/grilles.css" type="text/css" media="screen">
-		<link rel="stylesheet" href="./css/main.css" type="text/css" media="screen">
-		<link rel="stylesheet" href="./css/forms.css">
-		<!-- <link rel="stylesheet" href="./css/utilitaires.css"> -->
-		<link rel="stylesheet" href="./css/utilitaires.css" type="text/css" media="screen">
+		<!-- <link rel="stylesheet" href="./css/utilitaires.css">
+		<link rel="stylesheet" href="./css/utilitaires.css" type="text/css" media="screen"> -->
 
 
 		<!-- Iconnes importees  -->
