@@ -14,7 +14,7 @@
 				</div>
 			</section>
 			<section class="footer__copyright">
-				<p>@ Tous droits reservés - DFV 2021</p>
+				<p>&copy; Tous droits reservés - DFV 2021</p>
 			</section>
 		</footer>
 	</body>
