@@ -20,6 +20,7 @@
         background-color: var(--bg-primaire);
         justify-content: space-between;
         position: fixed;
+        top:0;
         width: 100%;
         z-index: 1;
     }
