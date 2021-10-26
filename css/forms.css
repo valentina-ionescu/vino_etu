@@ -47,7 +47,7 @@ main {
 .form__carte {
     align-self: center;
     flex-basis: 8%;
-    width: 80vw;
+    width: 90vw;
    
 }
 
@@ -55,6 +55,7 @@ main {
 .form__carte {
     background-color: var(--bg-clair);
     color: var(--bg-primaire-autre);
+    border-radius: 5px;
 }
 
 /* .form__modif {
@@ -68,14 +69,13 @@ main {
     font-size:  clamp(1rem, -0.875rem + 8.333333vw, 1.5rem);;
 }
 .form__image {
-    /* width: 35%; */
     width: 100%;
     height: auto;
     min-height: 10vh;
     align-self: center;
     border:1px solid  var(--bg-medium);
     padding: 1.25em;
-    /* background-color: var(--bg-medium); */
+    border-radius: 5px 5px 0 0;
 }
 .form__image img {
     width: 35%;
@@ -84,11 +84,6 @@ main {
     align-self: center;
 }
 
-/* .barre {
-    width: 100%;
-    border:1px solid  var(--bg-medium);
-    padding: 1.25em
-} */
 
    /* Style des input et label */
 
@@ -107,12 +102,9 @@ input:focus {
 button, label, input, select {
     display: block;
     font-family: inherit;
-    /* font-size: 100%; */
     margin: 0;
     box-sizing: border-box;
     width: 100%;
-    /* padding: 5px; */
-    /* height: 30px; */
   }
 
 
@@ -120,16 +112,17 @@ button, label, input, select {
 input {
        -webkit-appearance: none;
        background-color: transparent;
-      
 }
+
 input {
     border: none;
     border-bottom: 1px solid var(--bg-medium);
-    /* background-color: var(--bg-sombre); */
-    /* color: #f1f1f1; */
+ 
 }
+
 label, input {
    padding-left: 1em;
+   padding-right: 1em;
 
 }
 
@@ -140,9 +133,9 @@ label {
 }
 textarea {
     width: 95%;
-    
     margin: .5rem;
 }
+
 /* Recherche */
 
 .form__recherche--clair {
@@ -155,6 +148,7 @@ textarea {
 .form__recherche input {
  max-width: 80vw;
  background: var(--bg-input);
+ padding-left: 0;
 }
 
 .listeAutoComplete {
@@ -162,8 +156,12 @@ textarea {
     padding-left: 1.25em;
 }
 
-.form__ajout {
+.form__contenant--espacevertical {
     margin-top: 5vh;
+}
+
+.form__ajouter__label{
+    padding-top: 1.25rem;
 }
 /* Boutons */
 button {
