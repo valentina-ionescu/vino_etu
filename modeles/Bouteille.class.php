@@ -53,7 +53,8 @@ class Bouteille extends Modele {
 						b.code_saq,
 						b.url_saq,
 						b.pays,
-						b.description
+						b.description,
+						b.format
 /*						t.type */
 						from vino__cellier c 
 						INNER JOIN vino__cellier_has_vino__bouteille ON c.id = vino__cellier_has_vino__bouteille.vino__cellier_id
@@ -67,7 +68,7 @@ class Bouteille extends Modele {
 				while($row = $res->fetch_assoc())
 				{
 					$_SESSION['cellier_id'] = $row['cellier_id'];
-					$row['nom'] = trim(utf8_encode($row['nom']));
+					$row['nom'] = trim(htmlspecialchars($row['nom']));
 					$rows[] = $row;
 				}
 			}
@@ -222,7 +223,7 @@ class Bouteille extends Modele {
 	{
 		$idCellier = $_SESSION['cellier_id'];
 
-		$requete = "SELECT date_achat, garde_jusqua, notes, prix, millesime, vino__bouteille.nom FROM vino__cellier_has_vino__bouteille JOIN vino__bouteille ON vino__cellier_has_vino__bouteille.vino__bouteille_id = vino__bouteille.id WHERE vino__bouteille_id = ".$idBouteille." AND vino__cellier_id = ".$idCellier."";
+		$requete = "SELECT date_achat, garde_jusqua, notes, prix, millesime, vino__bouteille.nom, vino__bouteille.format FROM vino__cellier_has_vino__bouteille JOIN vino__bouteille ON vino__cellier_has_vino__bouteille.vino__bouteille_id = vino__bouteille.id WHERE vino__bouteille_id = ".$idBouteille." AND vino__cellier_id = ".$idCellier."";
 
 		$res = $this->_db->query($requete);
 
