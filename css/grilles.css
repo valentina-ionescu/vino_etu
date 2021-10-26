@@ -1,0 +1,223 @@
+.cellier {
+    width: 100%;
+    background: var(--bg-clair);
+}
+
+.gallerie {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 120px 0;
+}
+
+.gallerie.portail {
+    align-content: baseline;
+}
+
+.carte {
+    width: 100%;
+    background-color: #ffffff;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+    flex-basis: calc(100% / 5 - 20px);
+    min-width: 230px;
+    flex-grow: 0;
+    padding: 15px;
+    align-self: stretch;
+    box-shadow: 0 5px 15px #00000017;
+    transition: transform 0.1s linear, box-shadow 0.1s linear;
+    border-radius: 5px;
+    gap: 10px;
+}
+
+.carte:hover {
+    box-shadow: 0 2px 25px rgba(0, 0, 0, 0.1);
+}
+
+.carte__tag-top {
+    display: block;
+    height: 30px;
+    text-align: right;
+    font-weight: 600;
+}
+
+.carte__tag-top span {
+    display: block;
+    display: inline-block;
+    border-radius:  0 4px 0  4px;
+    padding: 5px;
+}
+
+.carte__tag-top .rouge {
+    background-color: var(--bg-primaire-autre);
+    color: #ffffff;
+}
+
+.carte__tag-top .blanc {
+    background-color: var(--bg-doree);
+    color: var(--bg-sombre);
+}
+
+.carte__top {
+    display: flex;
+    flex-wrap: wrap;
+    /* flex-basis: 40%; */
+    padding: 0 15px;
+    gap: 10px;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.carte__contenu {
+    flex-basis: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 0 15px;
+    padding-bottom: 15px;
+}
+
+.carte__image {
+    height: 20ch;
+    min-height: 15vh;
+    border-radius: 4px;
+}
+
+.carte__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.carte__format.absolute{
+    left: 10px;
+    top: 10px;
+}
+.btnAjouter, .btnBoire {
+    padding: 3px 6px;
+    border-radius: 3px;
+    border: none;
+    border: 2px solid var(--bg-primaire);
+    font-size: 14px;
+    cursor: pointer;
+    transition-duration: 0.3s;
+
+}
+
+.btnBoire {
+    background: var(--bg-primaire);
+    color: white;
+}
+
+.btnAjouter {
+    color: var(--bg-primaire);
+}
+
+.btnAjouter:hover, .btnBoire:hover {
+    background: var(--bg-primaire-autre);
+    border-color: var(--bg-primaire-autre);
+    color: white;
+}
+
+.btnBoire:active {
+    background: var(--bg-sombre);
+    color: white;
+}
+
+.carte__quantite {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    align-content: space-around;
+    gap: 20px;
+}
+
+.carte__description p {
+    margin: unset;
+}
+
+.carte__description-nom {
+    padding: 5px 0;
+    color: var(--txt-medium);
+    line-height: 1.3;
+    margin: unset;
+}
+
+.carte__description-pays {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--bg-primaire-autre);
+}
+
+.carte__prix {
+    font-size: 20px;
+    color: #293451;
+}
+.carte__description-prix{
+    font-size: 16px;
+
+}
+.carte__lien{
+    color: var(--bg-primaire);
+}
+
+details {
+    border-radius: 4px;
+    padding: .1em .1em 0;
+}
+
+summary {
+    color: var(--bg-primaire-autre);
+    cursor: pointer;
+    font-weight: bold;
+    margin: -.5em -.5em 0;
+    padding: .5em;
+
+}
+
+details[open] {
+    padding: .1em;
+    border: 1px solid rgb(233, 230, 230);
+}
+
+summary:hover{
+    color: var(--bg-primaire);
+
+}
+details[open] summary {
+    /* border-bottom: 1px solid #aaa; */
+    color: var(--bg-primaire);
+    margin-bottom: .5em;
+}
+
+@media all and (min-width:240px) and (max-width:420px) {
+    .carte__tag-top{
+        font-size: 1.3rem;
+        margin-bottom: 3px;
+    }
+    .carte {
+        min-width: 95vw;
+    }
+    .carte__description-nom {
+        font-size: 1.4em;
+    }
+    .btnAjouter, .btnBoire {
+
+        padding: 10px 15px;
+
+
+
+        font-size: 18px;
+
+    }
+    .quantite {
+        font-size: 16px;
+    }
+}

@@ -12,6 +12,7 @@
 
 .download__wrapper {
     display: flex;
+    justify-content: space-around   ;
 }
 
 .download__wrapper>img {
@@ -36,6 +37,7 @@
     font-size: 4vw;
     margin-top: 0;
     padding-top: 10px;
+    margin-bottom: 20px;
     color: black;
 }
 
