@@ -53,7 +53,8 @@ class Bouteille extends Modele {
 						b.code_saq,
 						b.url_saq,
 						b.pays,
-						b.description
+						b.description,
+						b.format
 /*						t.type */
 						from vino__cellier c 
 						INNER JOIN vino__cellier_has_vino__bouteille ON c.id = vino__cellier_has_vino__bouteille.vino__cellier_id
@@ -67,7 +68,7 @@ class Bouteille extends Modele {
 				while($row = $res->fetch_assoc())
 				{
 					$_SESSION['cellier_id'] = $row['cellier_id'];
-					$row['nom'] = trim(utf8_encode($row['nom']));
+					$row['nom'] = trim(htmlspecialchars($row['nom']));
 					$rows[] = $row;
 				}
 			}

@@ -35,11 +35,11 @@ class SAQ extends Modele
 	 * @param int $nombre
 	 * @param int $debut
 	 */
-	public function getProduits($nombre = 24, $page = 1)
+	public function getProduits($type="vin-blanc", $nombre = 24, $page = 1 )
 	{
 		$s = curl_init();
-		$url = "https://www.saq.com/fr/produits/vin/vin-rouge?p=2&product_list_limit=24&product_list_order=name_asc";
-		$url = "https://www.saq.com/fr/produits/vin/vin-blanc?p=2&product_list_limit=24&product_list_order=name_asc";
+		$url = "https://www.saq.com/fr/produits/vin/vin-rouge?p=1&product_list_limit=24&product_list_order=name_asc";
+		
 		//curl_setopt($s, CURLOPT_URL, "http://www.saq.com/webapp/wcs/stores/servlet/SearchDisplay?searchType=&orderBy=&categoryIdentifier=06&showOnly=product&langId=-2&beginIndex=".$debut."&tri=&metaData=YWRpX2YxOjA8TVRAU1A%2BYWRpX2Y5OjE%3D&pageSize=". $nombre ."&catalogId=50000&searchTerm=*&sensTri=&pageView=&facet=&categoryId=39919&storeId=20002");
 		//curl_setopt($s, CURLOPT_URL, "https://www.saq.com/webapp/wcs/stores/servlet/SearchDisplay?categoryIdentifier=06&showOnly=product&langId=-2&beginIndex=" . $debut . "&pageSize=" . $nombre . "&catalogId=50000&searchTerm=*&categoryId=39919&storeId=20002");
 		//curl_setopt($s, CURLOPT_URL, $url);
@@ -121,7 +121,7 @@ class SAQ extends Modele
 
 		// Nettoyer lien images option #1
 		//option #1 - enlever le https:// du debut de lien scr.
-		$info->img = preg_replace("#^[^:/.]*[:/]+#i", "", $info->img);
+		// $info->img = preg_replace("#^[^:/.]*[:/]+#i", "", $info->img);
 
 
 		$a_titre = $noeud->getElementsByTagName("a")->item(0);
