@@ -222,7 +222,7 @@ class Bouteille extends Modele {
 	{
 		$idCellier = $_SESSION['cellier_id'];
 
-		$requete = "SELECT date_achat, garde_jusqua, notes, prix, millesime, vino__bouteille.nom FROM vino__cellier_has_vino__bouteille JOIN vino__bouteille ON vino__cellier_has_vino__bouteille.vino__bouteille_id = vino__bouteille.id WHERE vino__bouteille_id = ".$idBouteille." AND vino__cellier_id = ".$idCellier."";
+		$requete = "SELECT date_achat, garde_jusqua, notes, prix, millesime, vino__bouteille.nom,vino__bouteille.image FROM vino__cellier_has_vino__bouteille JOIN vino__bouteille ON vino__cellier_has_vino__bouteille.vino__bouteille_id = vino__bouteille.id WHERE vino__bouteille_id = ".$idBouteille." AND vino__cellier_id = ".$idCellier."";
 
 		$res = $this->_db->query($requete);
 
