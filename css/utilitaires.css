@@ -1,25 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Roboto+Condensed:wght@300;400;700&display=swap');
 :root {
-    /* Increase or decrease the number 
-    to change the vertical spacing globally*/
-      
-    /* Base Vertical Spacing */
-        --space: 1.6;
-    
+    /* Famille typographiques  */
+
+    --ff-serif:'Playfair Display', serif;
+    --ff-sans-serif:'Roboto Condensed', sans-serif;
+
+    /* Increase or decrease the number
+    to change the vertical spacing globally
+    Base Vertical Spacing */
+    --space: 1.6;
     /* Espacement vertical - multiplier */
-        --vspace: calc(var(--space) * 1rem);
-        --vspace-0: calc(3 * var(--space) * 1rem);
-        --vspace-1: calc(2 * var(--space) * 1rem);
-        --vspace-2: calc(1.5 * var(--space) * 1rem);
-        --vspace-3: calc(0.5 * var(--space) * 1rem);
-
-
+    --vspace: calc(var(--space) * 1rem);
+    --vspace-0: calc(3 * var(--space) * 1rem);
+    --vspace-1: calc(2 * var(--space) * 1rem);
+    --vspace-2: calc(1.5 * var(--space) * 1rem);
+    --vspace-3: calc(0.5 * var(--space) * 1rem);
     /*  Les couleurs */
-    --bg-primaire:   #7B033D ;
-    --bg-primaire-autre: #6A0A38;
-    --bg-clair:  #F9F9F9;
+    --bg-primaire: #7B033D;
+    --bg-primaire-autre: #410623;
+    --bg-clair: #F9F9F9;
     --bg-sombre: #1E1221;
     --bg-medium: #897584;
+    --bg-gris-clair: #cccccc;
+    --bg-doree: #98813D;
+    --txt-medium: #7a476e;
 
     }
     
@@ -28,7 +32,7 @@
     body {
         font-family: 'Roboto Condensed', sans-serif;
         font-size: 0.875em;
-        max-width: calc(25 * var(--vspace));
+       /* max-width: calc(20 * var(--vspace));*/
         margin: 0 auto;
     }
     
@@ -37,7 +41,7 @@
     }
 
     p {
-        margin: var(--vspace) 0; 
+/*        margin: var(--vspace) 0;*/
         line-height: var(--vspace);
     }
     
@@ -61,6 +65,19 @@
         line-height: var(--vspace);
     }
     
+    h1 {
+        font-size: clamp(2rem, -0.875rem + 8.333333vw, 3.5rem);
+    }
+    h2 {
+        font-size: clamp(1.5rem, -0.875rem + 8.333333vw, 2.5rem);
+    }
+    h3 {
+        font-size: clamp(1rem, -0.875rem + 8.333333vw, 2rem);
+    }
+    h4 {
+        font-size: clamp(.75rem, -0.875rem + 8.333333vw, 1rem);
+    }
+
     .bigtitle, h1 {
         font-size: 5.2917em;
         word-break: break-word;
@@ -73,7 +90,7 @@
     }
     
     .subheading1, h3 {
-        font-size: 1.75em;
+        /*font-size: 1.75em;*/
         font-weight: normal;
         text-transform: uppercase;
         letter-spacing: .1em;
@@ -87,19 +104,19 @@
     }
     
     .subheading2, h4 {
-        font-size: 1.3333em;
+        /*font-size: 1.3333em;*/
         text-transform: capitalize;
     }
     
     .subheading3, h5 {
-        font-size: 1.1667em; 
+        /*font-size: 1.1667em; */
         font-weight: lighter; 
         text-transform: uppercase; 
         letter-spacing: .15em;
     }
     
     .subheading4, h6 {
-        font-size: 1em;
+        /*font-size: 1em;*/
         font-weight: normal;
         font-style: italic;
         font-family: 'Playfair Display', serif;

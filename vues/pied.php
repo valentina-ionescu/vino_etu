@@ -1,14 +1,21 @@
-
 		</main>
-		<footer>
-			<p>
-				<a href="http://www.cmaisonneuve.qc.ca/"></a>
-			</p>
-			<p>
-				Réalisé par <b>Les devs en Pyjama</b>. Sous licence DFV (2021)
-				<!--Réalisé par <a href="mailto:jmartel@cmaisonneuve.qc.ca">Jonathan Martel</a>. Sous licence Creative Commons BY-NC 4.0 (2014)-->
-			</p>
+		<footer class="footer__wrapper">
+			<section class="footer__links">
+				<div>
+					<h3>À propos</h3>
+					<p>Ceci est un projet de develloppement web</p>
+				</div>
+				<div>
+					<h3>Télecharger l'application mobile</h3>
+					<div class="download__wrapper">
+						<img src="assets/img/download-ios.svg" alt="">
+						<img src="assets/img/google-download.svg" alt="">
+					</div>
+				</div>
+			</section>
+			<section class="footer__copyright">
+				<p>@ Tous droits reservés - DFV 2021</p>
+			</section>
 		</footer>
 	</body>
-
 </html>
