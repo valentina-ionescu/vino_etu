@@ -22,6 +22,7 @@
     --bg-medium: #897584;
     --bg-doree: #98813D;
     --txt-medium: #7a476e;
+    --bg-input: rgba(30, 18, 33, 0.434);
 
 
 
@@ -34,7 +35,7 @@ html {
 body {
     font-family: var(--ff-sans-serif);
     font-size: 0.875em;
-  /*  max-width: calc(40 * var(--vspace));*/
+    /* max-width: calc(40 * var(--vspace)); */
     margin: 0 auto;
 }
 

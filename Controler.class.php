@@ -100,13 +100,14 @@ class Controler
 		private function modifierBouteilleCellier()
 		{
 			$body = json_decode(file_get_contents('php://input'));
+			
 
 			$idBouteille = $_POST['id'];
 
 			if(!empty($body)){
 
 				$bte = new Bouteille();
-				// var_dump($_POST['data']);
+				//  var_dump($_POST['data']);
 
 				$id = $body->id;
 				$resultat = $bte->modifierBouteilleCellier($body, $id);
