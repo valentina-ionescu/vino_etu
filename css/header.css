@@ -43,13 +43,13 @@
     }
 
     #menuToggle {
-    display: block;
-    left: 30px;
-    position: relative;
-    top: 40px;
-    user-select: none;
-    -webkit-user-select: none;
-    z-index: 1;
+        display: block;
+        left: 30px;
+        position: relative;
+        top: 40px;
+        user-select: none;
+        -webkit-user-select: none;
+        z-index: 1;
     }
 
     #menuToggle a {
