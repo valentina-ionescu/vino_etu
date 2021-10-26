@@ -163,7 +163,7 @@ html {
 body {
     font-family: var(--ff-sans-serif);
     font-size: 0.875em;
-    max-width: calc(40 * var(--vspace));
+  /*  max-width: calc(40 * var(--vspace));*/
     margin: 0 auto;
 }
 
@@ -284,4 +284,7 @@ sup {
     font-style: italic;
     font-weight: normal;
 }
+<<<<<<< HEAD
 >>>>>>> c2a5f9031397cf8ad5cdbe17af6fb1925a9c8265
+=======
+>>>>>>> 6b3770e9bfba6c785c3584b905142339fd43438f

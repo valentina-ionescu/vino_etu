@@ -16,14 +16,25 @@
 
 
 		<meta name="description" content="Un petit verre de vino">
-		<meta name="author" content="Jonathan Martel (jmartel@cmaisonneuve.qc.ca)">
+
+		<meta name="author" content="DFV">
+		<!-- Iconnes importees  -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+		<link rel="stylesheet" href="css/normalize.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="css/base_h5bp.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="css/utilitaires.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="css/main.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="css/header.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="css/footer.css" type="text/css" media="screen">
+
+
 		<link rel="shortcut icon" type="image/png" href="./img/logo-verre-white-circle.png">
-		<link rel="stylesheet" href="./css/normalize.css" type="text/css" media="screen">
-		<link rel="stylesheet" href="./css/base_h5bp.css" type="text/css" media="screen">
+
 		<link rel="stylesheet" href="./css/grilles.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="./css/main.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="./css/forms.css">
-		<link rel="stylesheet" href="./css/utilitaires.css">
+		<!-- <link rel="stylesheet" href="./css/utilitaires.css"> -->
 		<link rel="stylesheet" href="./css/utilitaires.css" type="text/css" media="screen">
 
 
@@ -36,14 +47,21 @@
 		<script src="./js/main.js"></script>
 	</head>
 	<body >
-		<header>
-			<h1>Un petit verre de vino ?</h1>
-			<nav>
-				<ul>
-					<li><a href="?requete=accueil">Mon cellier</a></li>
-					<li><a href="?requete=ajouterNouvelleBouteilleCellier">Ajouter une bouteille au cellier</a></li>
-					<li ><a class="btn btn-primaire solid" href="./updateSAQ.php">Importation du SAQ</a> (admin) </li>
-				</ul>
+		<header class="header__wrapper">
+			<nav class="nav__wrapper flex" role="navigation">
+				<div id="menuToggle">
+					<input type="checkbox" />
+					<span></span>
+					<span></span>
+					<span></span>
+					<ul class="header__menu__links" id="menu">
+						<li><a href="?requete=accueil">Mon cellier</a></li>
+						<li><a href="?requete=ajouterNouvelleBouteilleCellier">Ajouter une bouteille au cellier</a></li>
+						<li><a href="./updateSAQ.php">Importation du SAQ</a></li>
+					</ul>
+				</div>
+				<img class="header__logo" src="assets/img/logo.svg" alt="">
+				<i class="fa fa-user-circle header__icon__user"></i>
 			</nav>
 		</header>
 		<main>
