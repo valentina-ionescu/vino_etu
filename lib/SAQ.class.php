@@ -116,12 +116,23 @@ class SAQ extends Modele
 	{
 
 		$info = new stdClass();
-		$info->img = $noeud->getElementsByTagName("img")->item(0)->getAttribute('src');
-		//TODO : Nettoyer le lien
 
-		// Nettoyer lien images option #1
-		//option #1 - enlever le https:// du debut de lien scr.
-		// $info->img = preg_replace("#^[^:/.]*[:/]+#i", "", $info->img);
+		// $info->img = $noeud->getElementsByTagName("img")->item(0)->getAttribute('src'); // ancien code n'est pas optimal car importe  la premiere balise "img" qu'il rencontre, et parfois ce n'est pas l'image de la bouteille de vin -- c'est un medaillon ou meme de petites icones.
+
+		 $imgs = $noeud->getElementsByTagName("img");
+
+		
+//chercher la balise qui contient l'image du produit en ciblant la classe
+
+		 for($i=0;$i<$imgs->length;$i++) {
+			if($imgs->item($i)->attributes->getNamedItem('class')){
+				if($imgs->item($i)->attributes->getNamedItem('class')->nodeValue == "product-image-photo") {
+					//recuperer l'url image
+					$info->img=	$imgs->item($i)->getAttribute('src');
+				}
+			}
+		}
+
 
 
 		$a_titre = $noeud->getElementsByTagName("a")->item(0);
@@ -180,10 +191,6 @@ class SAQ extends Modele
 
 			}
 		}
-
-		// Nettoyer lien images option #2
-		//option #2 - remplacer le lien source avec in lien d'images lien src.
-	//	$info->img = "//s7d9.scene7.com/is/image/SAQ/" . $info->desc->code_SAQ . "_is?\$saq-rech-prod-gril$";  // --- fonctionne seulement sur des bouteilles anciennes
 
 		// var_dump($info);
 		return $info;
