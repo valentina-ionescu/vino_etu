@@ -17,11 +17,13 @@
                 <!-- a faire : ajouter required  - DK -->
                
                  <!-- <label>Nom </label> -->
-                    <h3 data-id="" class="nom_bouteille"></h3>
+                    <h3 data-id="" class="nom_bouteille carte__description-nom"></h3>
                
                 <div class="form__conteneur">
-
-                    <div class="form">
+                    <form class="form" action="index.php?requete=accueil">
+                   
+                        
+                    
                         <div class="form__label__aj">
                             <input type="number" name="millesime" required>
                             <label >Millesime </label>
@@ -47,9 +49,10 @@
                             <textarea name="notes" id=""  rows="5" required></textarea>
                             <label>Notes </label>
                         </div> -->
-                    </div>
+                        <button name="ajouterBouteilleCellier">Ajouter la bouteille</button>
+                </form>
+                <!-- </div> -->
                  
                 </div>
-                <button name="ajouterBouteilleCellier">Ajouter la bouteille</button>
             </div>
        

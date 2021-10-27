@@ -208,6 +208,9 @@ button {
 
 /* les label flottants */
 
+.form {
+  padding: .25em 1.25em;
+}
 
 .form__label__aj>input,
 .form__label__aj>textarea {
@@ -215,11 +218,14 @@ button {
 	margin: 1em 0;
 	border: 0;
 	outline: none;
-	background-color: transparent;
-	border-bottom: 1px solid #555;
+	border-bottom: 1px solid var(--bg-input);
 	padding: 0.5em;
 	color: black;
 	resize: none;
+}
+
+.form__label__aj:last-of-type>input{
+    border: none;
 }
 
 .form > div {
@@ -230,7 +236,7 @@ button {
 	position: absolute;
 	left: 0;
 	top: 20px;
-	color: #555;
+	color: var(--bg-sombre);
 	pointer-events: none;
 	transition: 0.5s;
 	font-size: 16px;
