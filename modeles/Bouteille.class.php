@@ -1,5 +1,4 @@
 <?php
-		session_start();
 
 /**
  * Class Bouteille
@@ -145,7 +144,7 @@ class Bouteille extends Modele {
 			vino__bouteille_id,
 			date_achat,
 			garde_jusqua,
-			notes,
+		/*notes,*/
 			prix,
 			quantite,
 			millesime) 
@@ -153,7 +152,7 @@ class Bouteille extends Modele {
 		"'".$data->vino__bouteille_id."',".
 		"'".$data->date_achat."',".
 		"'".$data->garde_jusqua."',".
-		"'".$data->notes."',".
+	/*	"'".$data->notes."',".*/
 		"'".$data->prix."',".
 		"'".$data->quantite."',".
 		"'".$data->millesime."')";

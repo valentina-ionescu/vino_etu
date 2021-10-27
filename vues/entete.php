@@ -25,6 +25,7 @@
 		<link rel="stylesheet" href="css/header.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="css/footer.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="css/tables.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="css/profile.css" type="text/css" media="screen">
 
 
 		<link rel="shortcut icon" type="image/png" href="./assets/img/logo/logo-verre-white-circle.png">
@@ -57,7 +58,7 @@
 					</ul>
 				</div>
 				<img class="header__logo" src="assets/img/logo/logo.svg" alt="">
-				<i class="fa fa-user-circle header__icon__user"></i>
+				<a href="?requete=profile"><i class="fa fa-user-circle header__icon__user"></i></a>
 			</nav>
 		</header>
 		<main class="mt-10">

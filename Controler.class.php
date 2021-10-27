@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 /**
  * Class Controler
  * Gère les requêtes HTTP
@@ -45,6 +47,9 @@ class Controler
 						$this->updateSAQ();
 						break; 
 
+				case 'profile':
+					$this->afficherProfile();
+					break;
 				default:
 					$this->accueil();
 					break;
@@ -54,17 +59,28 @@ class Controler
 		private function accueil()
 		{
 			$bte = new Bouteille();
-            $data = $bte->getListeBouteilleCellier();
-			
+			$cel = new Cellier();
+
+			$data = $bte->getListeBouteilleCellier();
+
+			$infoUser = $cel->getInfoUsager();
+			$usager = $infoUser->fetch_assoc();
+
 			include("vues/entete.php");
 			include("vues/cellier.php");
 
 			include("vues/pied.php");
-			
+		}
 
+		private function afficherProfile()
+		{
+			$bte = new Bouteille();
+            //$data = $bte->getListeBouteilleCellier();
+			include("vues/entete.php");
+			include("vues/profile.php");
+			include("vues/pied.php");
                   
 		}
-		
 
 		private function listeBouteille()
 		{

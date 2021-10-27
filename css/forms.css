@@ -35,7 +35,6 @@ main {
 .form__contenant {
     width: 100%;
     min-height: 58%;
-    margin-top: 25vh;
 }
 .form__contenant h3{
     max-width: fit-content;
@@ -47,7 +46,7 @@ main {
 .form__carte {
     align-self: center;
     flex-basis: 8%;
-    width: 80vw;
+    width: 90vw;
    
 }
 
@@ -55,6 +54,7 @@ main {
 .form__carte {
     background-color: var(--bg-clair);
     color: var(--bg-primaire-autre);
+    border-radius: 5px;
 }
 
 /* .form__modif {
@@ -68,14 +68,13 @@ main {
     font-size:  clamp(1rem, -0.875rem + 8.333333vw, 1.5rem);;
 }
 .form__image {
-    /* width: 35%; */
     width: 100%;
     height: auto;
     min-height: 10vh;
     align-self: center;
     border:1px solid  var(--bg-medium);
     padding: 1.25em;
-    /* background-color: var(--bg-medium); */
+    border-radius: 5px 5px 0 0;
 }
 .form__image img {
     width: 35%;
@@ -84,11 +83,6 @@ main {
     align-self: center;
 }
 
-/* .barre {
-    width: 100%;
-    border:1px solid  var(--bg-medium);
-    padding: 1.25em
-} */
 
    /* Style des input et label */
 
@@ -107,12 +101,9 @@ input:focus {
 button, label, input, select {
     display: block;
     font-family: inherit;
-    /* font-size: 100%; */
     margin: 0;
     box-sizing: border-box;
     width: 100%;
-    /* padding: 5px; */
-    /* height: 30px; */
   }
 
 
@@ -120,16 +111,17 @@ button, label, input, select {
 input {
        -webkit-appearance: none;
        background-color: transparent;
-      
 }
+
 input {
     border: none;
     border-bottom: 1px solid var(--bg-medium);
-    /* background-color: var(--bg-sombre); */
-    /* color: #f1f1f1; */
+ 
 }
+
 label, input {
    padding-left: 1em;
+   padding-right: 1em;
 
 }
 
@@ -140,31 +132,60 @@ label {
 }
 textarea {
     width: 95%;
-    
     margin: .5rem;
 }
-/* Recherche */
+
+/* Recherche et autocomplete */
 
 .form__recherche--clair {
     color: #F4F4F4;
 }
+
 .form__recherche {
     align-self: center;
-    margin-top: 15vh;
+    position: relative;
 }
+
 .form__recherche input {
- max-width: 80vw;
+ width: 85vw;
  background: var(--bg-input);
+ padding-left: 0;
+ border-bottom: 1px solid var(--bg-clair);
 }
 
 .listeAutoComplete {
-    color: #F4F4F4;
-    padding-left: 1.25em;
+    background: #F4F4F4;
+    color: var(--bg-primaire-autre);
+    position: absolute;
+    z-index: 99;
+    top: 100%;
+    left: 0;
+    right: 0;
+}
+.listeAutoComplete li {
+    list-style: none;
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #d4d4d4; 
 }
 
-.form__ajout {
+.listeAutoComplete li:hover {
+    background-color: var(--bg-medium); 
+  }
+
+.form__contenant--espacevertical {
     margin-top: 5vh;
 }
+
+
+/* .form__ajouter>.form__label {
+    position: relative;
+} */
+/* Label qui transitionnent vers le haut */
+.form__ajouter__label{
+    padding-top: 1.25rem;
+}
+
 /* Boutons */
 button {
     appearance: none;
@@ -181,4 +202,60 @@ button {
     .form__contenant {
         min-height: 80vh;
     }
+}
+
+/* les label flottants */
+
+
+.form__label__aj>input,
+.form__label__aj>textarea {
+	width: 100%;
+	margin: 1em 0;
+	border: 0;
+	outline: none;
+	background-color: transparent;
+	border-bottom: 1px solid #555;
+	padding: 0.5em;
+	color: black;
+	resize: none;
+}
+
+.form > div {
+	position: relative;
+}
+
+.form div label {
+	position: absolute;
+	left: 0;
+	top: 20px;
+	color: #555;
+	pointer-events: none;
+	transition: 0.5s;
+	font-size: 16px;
+}
+
+.form__label__aj>input:focus ~ label,
+.form__label__aj>textarea:focus ~ label,
+.form__label__aj>input:valid ~ label,
+.form__label__aj>textarea:valid ~ label {
+	top: 0;
+	left: 0;
+	color: var(--bg-primaire-autre);
+	font-size: 10px;
+	font-weight: bold;
+}
+
+.form__label__aj>input:focus,
+.form__label__aj>textarea:focus,
+.form__label__aj>input:valid,
+.form__label__aj>textarea:valid {
+	border-bottom: 2px solid var(--bg-medium);
+}
+
+/* enlever le 'YYYY-MM-DD' de l'input date */
+input[type=date]:required:invalid::-webkit-datetime-edit {
+    color: transparent;
+}
+input[type=date]:focus::-webkit-datetime-edit {
+    color: black !important;
 }

@@ -1,6 +1,6 @@
 .cellier {
     width: 100%;
-    background: var(--bg-clair);
+    background: var(--bg-sombre);
 }
 
 .gallerie {
@@ -10,7 +10,6 @@
     flex-direction: row;
     flex-wrap: wrap;
     gap: 20px;
-    padding: 120px 0;
 }
 
 .gallerie.portail {
@@ -218,4 +217,26 @@ details[open] summary {
     .quantite {
         font-size: 16px;
     }
+}
+
+.cellier__information {
+    background-color: var(--bg-clair);
+    min-width: 95vw;
+    border-radius: 5px;
+    padding: 20px 30px 0 30px;
+}
+
+.cellier__information__icon {
+    color: var(--bg-primaire);
+    font-size: clamp(1.5rem, -0.875rem + 8.333333vw, 2.5rem);
+}
+
+.cellier__information>div>h2 {
+    margin: 0;
+}
+
+.cellier__information__wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
 }
