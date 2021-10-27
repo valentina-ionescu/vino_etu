@@ -152,13 +152,13 @@ textarea {
  width: 85vw;
  background: var(--bg-input);
  padding-left: 0;
+ border-bottom: 1px solid var(--bg-clair);
 }
 
 .listeAutoComplete {
     background: #F4F4F4;
     color: var(--bg-primaire-autre);
     position: absolute;
-    border: 1px solid var(--bg-sombre);
     z-index: 99;
     top: 100%;
     left: 0;
@@ -172,16 +172,22 @@ textarea {
 }
 
 .listeAutoComplete li:hover {
-    background-color: #e9e9e9; 
+    background-color: var(--bg-medium); 
   }
 
 .form__contenant--espacevertical {
     margin-top: 5vh;
 }
 
+
+/* .form__ajouter>.form__label {
+    position: relative;
+} */
+/* Label qui transitionnent vers le haut */
 .form__ajouter__label{
     padding-top: 1.25rem;
 }
+
 /* Boutons */
 button {
     appearance: none;
@@ -198,4 +204,60 @@ button {
     .form__contenant {
         min-height: 80vh;
     }
+}
+
+/* les label flottants */
+
+
+.form__label__aj>input,
+.form__label__aj>textarea {
+	width: 100%;
+	margin: 1em 0;
+	border: 0;
+	outline: none;
+	background-color: transparent;
+	border-bottom: 1px solid #555;
+	padding: 0.5em;
+	color: black;
+	resize: none;
+}
+
+.form > div {
+	position: relative;
+}
+
+.form div label {
+	position: absolute;
+	left: 0;
+	top: 20px;
+	color: #555;
+	pointer-events: none;
+	transition: 0.5s;
+	font-size: 16px;
+}
+
+.form__label__aj>input:focus ~ label,
+.form__label__aj>textarea:focus ~ label,
+.form__label__aj>input:valid ~ label,
+.form__label__aj>textarea:valid ~ label {
+	top: 0;
+	left: 0;
+	color: var(--bg-primaire-autre);
+	font-size: 10px;
+	font-weight: bold;
+}
+
+.form__label__aj>input:focus,
+.form__label__aj>textarea:focus,
+.form__label__aj>input:valid,
+.form__label__aj>textarea:valid {
+	border-bottom: 2px solid var(--bg-medium);
+}
+
+/* enlever le 'YYYY-MM-DD' de l'input date */
+input[type=date]:required:invalid::-webkit-datetime-edit {
+    color: transparent;
+}
+input[type=date]:focus::-webkit-datetime-edit {
+    color: black !important;
 }

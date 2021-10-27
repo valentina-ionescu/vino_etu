@@ -19,32 +19,35 @@
                  <!-- <label>Nom </label> -->
                     <h3 data-id="" class="nom_bouteille"></h3>
                
-                <div class="form__ajouter">
-                    <div class="form__label">
-                        <label class="form__ajouter__label">Millesime </label>
-                        <input type="number" name="millesime">
-                    </div>
-                    <div class="form__label">
-                        <label>Quantité </label>
-                        <input type="number" name="quantite" value="1">
-                    </div>
-                    <div class="form__label">
-                        <label>Date d'achat </label>
-                        <input type="date" name="date_achat">
-                    </div>
-                    <div class="form__label">
-                        <label>Prix </label>
-                        <input type="number" name="prix">
-                    </div>
-                    <!-- un select ou nombre avec  min:0 max: 5 -->
-                  
-                    <div class="form__label">
-                        <label>Garde </label>
-                        <input type="text" name="garde_jusqua">
-                    </div>
-                    <div class="form__label">
-                        <label>Notes </label>
-                        <textarea name="notes" id="" cols="30" rows="5"></textarea>
+                <div class="form__conteneur">
+
+                    <div class="form">
+                        <div class="form__label__aj">
+                            <input type="number" name="millesime" required>
+                            <label >Millesime </label>
+                        </div>
+                        <div class="form__label__aj">
+                            <input type="number" name="quantite" required>
+                            <label>Quantité </label>
+                        </div>
+                        <div class="form__label__aj">
+                            <input type="date" name="date_achat" required>
+                            <label>Date d'achat </label>
+                        </div>
+                        <div class="form__label__aj">
+                            <input type="number" name="prix" required>
+                            <label>Prix </label>
+                        </div>
+                        <!-- un select ou nombre avec  min:0 max: 5 -->
+                      
+                        <div class="form__label__aj">
+                            <input type="text" name="garde_jusqua" required>
+                            <label>Garde </label>
+                        </div>
+                        <div class="form__label__aj">
+                            <textarea name="notes" id=""  rows="5" required></textarea>
+                            <label>Notes </label>
+                        </div>
                     </div>
                  
                 </div>
