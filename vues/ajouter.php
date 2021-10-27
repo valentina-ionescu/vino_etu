@@ -43,10 +43,10 @@
                             <input type="text" name="garde_jusqua" required>
                             <label>Garde </label>
                         </div>
-                        <div class="form__label__aj">
+                        <!-- <div class="form__label__aj">
                             <textarea name="notes" id=""  rows="5" required></textarea>
                             <label>Notes </label>
-                        </div>
+                        </div> -->
                     </div>
                  
                 </div>
