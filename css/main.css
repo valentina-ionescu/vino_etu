@@ -57,30 +57,7 @@ body
 }
 
 
-/*@media all and (max-width:640px)
-{
-	footer
-	{
-		display:none;
-	}
-	
-}
 
-footer
-{
-	position: fixed;;
-	bottom:0px;
-	width: 100%;
-	padding-top:3px;
-	text-align: center;
-	background-color:#FFFFFF;
-}
-footer p
-{
-	 display:inline; 
-	padding-right:auto;
-	font-size : auto;
-}*/
 
 .liste>div:hover {
     color: #000000;
@@ -171,7 +148,6 @@ a.btn {
     transition-duration: 0.3s;
     cursor: pointer;
     border-radius: 3px;
-
 }
 .btn-primaire.solid{
     background-color: var(--bg-primaire); 

@@ -1,8 +1,19 @@
 <div class="cellier">
     <div class="gallerie portail">
-        <?php
-        foreach ($data as $cle => $bouteille) {
+        
+    
+        <div class="cellier__information">
+            <div class="cellier__information__wrapper">
+                <i class="fa fa-user cellier__information__icon"></i><h2><?php echo $usager['prenom']; echo ' '.$usager['nom'];?></h2>
+            </div>
+            <div class="cellier__information__wrapper">
+                <i class="fas fa-wine-glass-alt cellier__information__icon"></i><h2><?php echo $usager['nom_cellier'];?></h2>
+            </div>
+        </div>
 
+        <?php
+            foreach ($data as $cle => $bouteille) {
+            
         ?>
             <article class="bouteille carte no_padding " data-quantite="">
 
