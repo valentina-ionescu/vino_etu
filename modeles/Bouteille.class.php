@@ -146,11 +146,7 @@ class Bouteille extends Modele {
 			vino__bouteille_id,
 			date_achat,
 			garde_jusqua,
-<<<<<<< HEAD
 			/*notes,*/
-=======
-		/*notes,*/
->>>>>>> 1b01f345f54bc611630986bf0936bb73fb42385f
 			prix,
 			quantite,
 			millesime) 
