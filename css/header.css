@@ -44,13 +44,13 @@
     }
 
     #menuToggle {
-    display: block;
-    left: 30px;
-    position: relative;
-    top: 40px;
-    user-select: none;
-    -webkit-user-select: none;
-    z-index: 1;
+        display: block;
+        left: 30px;
+        position: relative;
+        top: 40px;
+        user-select: none;
+        -webkit-user-select: none;
+        z-index: 1;
     }
 
     #menuToggle a {
@@ -117,7 +117,7 @@
 
     #menu {
         position: absolute;
-        width: 25em;
+        width: 32em;
         height: 1000px;
         margin: -100px 0 0 -50px;
         padding: 50px;
