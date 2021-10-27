@@ -110,6 +110,8 @@ class Bouteille extends Modele {
 			{
 				while($row = $res->fetch_assoc())
 				{
+					// $row['nom'] = trim(utf8_encode($row['nom']));
+				
 					$row['nom'] = trim(htmlspecialchars($row['nom']));
 					$rows[] = $row;
 					
