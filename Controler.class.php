@@ -40,7 +40,11 @@ class Controler
 					break;
 				case 'modifierBouteilleCellier':
 					$this->modifierBouteilleCellier();
-					break;
+					break; 
+				case 'updateSAQ':
+						$this->updateSAQ();
+						break; 
+
 				default:
 					$this->accueil();
 					break;
@@ -51,9 +55,13 @@ class Controler
 		{
 			$bte = new Bouteille();
             $data = $bte->getListeBouteilleCellier();
+			
 			include("vues/entete.php");
 			include("vues/cellier.php");
+
 			include("vues/pied.php");
+			
+
                   
 		}
 		
@@ -139,6 +147,19 @@ class Controler
 			$bte = new Bouteille();
 			$resultat = $bte->modifierQuantiteBouteilleCellier($body->id, 1);
 			echo json_encode($resultat);
+		}
+
+		private function updateSAQ (){
+			$saq = new SAQ;
+			include("vues/entete.php");
+			$data = $saq->getProduits();
+
+				
+			
+
+
+
+
 		}
 }
 ?>

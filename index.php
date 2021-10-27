@@ -26,6 +26,7 @@ error_reporting(E_ALL);
     /** Initialisation des variables **/
     /***************************************************/
 	require_once("./var.init.php");
+
    
    /***************************************************/
     /** Démarrage du controleur **/
