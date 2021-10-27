@@ -148,7 +148,6 @@ a.btn {
     transition-duration: 0.3s;
     cursor: pointer;
     border-radius: 3px;
-
 }
 .btn-primaire.solid{
     background-color: var(--bg-primaire); 
