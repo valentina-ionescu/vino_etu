@@ -110,7 +110,9 @@ class Bouteille extends Modele {
 			{
 				while($row = $res->fetch_assoc())
 				{
-					$row['nom'] = trim(utf8_encode($row['nom']));
+					// $row['nom'] = trim(utf8_encode($row['nom']));
+				
+					$row['nom'] = trim(htmlspecialchars($row['nom']));
 					$rows[] = $row;
 					
 				}
@@ -144,7 +146,11 @@ class Bouteille extends Modele {
 			vino__bouteille_id,
 			date_achat,
 			garde_jusqua,
+<<<<<<< HEAD
+			/*notes,*/
+=======
 		/*notes,*/
+>>>>>>> 1b01f345f54bc611630986bf0936bb73fb42385f
 			prix,
 			quantite,
 			millesime) 
