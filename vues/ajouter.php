@@ -35,11 +35,10 @@
                             <label>Date d'achat </label>
                         </div>
                         <div class="form__label__aj">
-                            <input type="number" name="prix" required>
+                            <input type="text" name="prix" required>
                             <label>Prix </label>
                         </div>
-                        <!-- un select ou nombre avec  min:0 max: 5 -->
-                      
+                                           
                         <div class="form__label__aj">
                             <input type="text" name="garde_jusqua" required>
                             <label>Garde </label>
