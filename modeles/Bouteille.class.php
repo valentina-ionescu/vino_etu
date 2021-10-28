@@ -197,7 +197,7 @@ class Bouteille extends Modele {
 	 * 
 	 * @return Boolean Succès ou échec de l'ajout.
 	 */
-	public function modifierBouteilleCellier($data, $id = 1)
+	public function modifierBouteilleCellier($data, $id)
 	{
 		$connexion = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
 		str_replace($data->prix, ",", ".");

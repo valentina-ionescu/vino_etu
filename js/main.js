@@ -100,6 +100,7 @@ window.addEventListener('load', function() {
           "notes":modifBouteille.notes.value,
           "prix":modifBouteille.prix.value,
         };
+        console.log(param);
         console.log('prix',modifBouteille.prix.value)
         let requete = new Request("index.php?requete=modifierBouteilleCellier", {method: 'PUT', body: JSON.stringify(param)});
         fetch(requete)
