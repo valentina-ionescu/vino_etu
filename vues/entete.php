@@ -57,8 +57,8 @@
 						<li><a href="?requete=updateSAQ">Importation du SAQ</a></li>
 					</ul>
 				</div>
-				<img class="header__logo" src="assets/img/logo/logo.svg" alt="">
+				<a href="?requete=accueil" class="flex"><img class="header__logo" src="assets/img/logo/logo.svg" alt=""></a>
 				<a href="?requete=profile"><i class="fa fa-user-circle header__icon__user"></i></a>
 			</nav>
 		</header>
-		<main >
+		<main >	
