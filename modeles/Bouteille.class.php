@@ -203,7 +203,7 @@ class Bouteille extends Modele {
 		str_replace($data->prix, ",", ".");
 
 
-		$requete = mysqli_prepare($connexion, "UPDATE vino__cellier_has_vino__bouteille SET millesime = ?, date_achat =? , prix =? , garde_jusqua =? , notes = ? WHERE vino__bouteille_id = ?");
+		$requete = mysqli_prepare($connexion, "UPDATE vino__cellier_has_vino__bouteille SET millesime = ?, date_achat =? , prix =? , garde_jusqua =? , notes = ? WHERE vino__bouteille_id = ?");	
 
         if($requete) 
         {
@@ -220,6 +220,9 @@ class Bouteille extends Modele {
            
         }
 
+
+
+		
 		
 	}
 
