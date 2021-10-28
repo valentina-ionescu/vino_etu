@@ -160,7 +160,10 @@ window.addEventListener('load', function() {
                     // console.log(element)
                     // console.log(liste.innerHTML)
 
-                    liste.innerHTML += "<li data-id='"+element.id+"'>"+element.nom+"</li>";
+                    //liste.innerHTML += "<li data-id='"+element.id+"'>"+element.nom+"</li>";
+                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    liste.innerHTML += "<li data-id='"+element.id+"' data-prix='"+element.prix_saq+"'>"+element.nom+"</li>";
+                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
                   })
                 })
@@ -187,6 +190,9 @@ window.addEventListener('load', function() {
         console.dir(evt.target)
         if(evt.target.tagName == "LI"){
           bouteille.nom.dataset.id = evt.target.dataset.id;
+          //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+          bouteille.prix.setAttribute('value', evt.target.dataset.prix)
+          //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
           bouteille.nom.innerHTML = evt.target.innerHTML;
 
           liste.innerHTML = "";
@@ -202,11 +208,7 @@ window.addEventListener('load', function() {
             "vino__bouteille_id":bouteille.nom.dataset.id,
             "date_achat":bouteille.date_achat.value,
             "garde_jusqua":bouteille.garde_jusqua.value,
-<<<<<<< HEAD
-            // "notes":bouteille.notes.value,
-=======
            /* "notes":bouteille.notes.value,*/
->>>>>>> 1b01f345f54bc611630986bf0936bb73fb42385f
             "prix":bouteille.prix.value,
             "quantite":bouteille.quantite.value,
             "millesime":bouteille.millesime.value,
