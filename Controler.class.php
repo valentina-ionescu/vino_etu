@@ -186,15 +186,7 @@ class Controler
 
 		 private function updateSAQ (){
 		 	$saq = new SAQ;
-		 	 // include("vues/entete.php");
-		 	//$data = $saq->getProduits();
 			require_once('updateSAQ.php');
-			// RequirePage::getView('importation');
-
-				
-			
-
-
 
 
 		 }
