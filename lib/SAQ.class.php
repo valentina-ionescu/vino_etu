@@ -35,7 +35,7 @@ class SAQ extends Modele
 	 * @param int $nombre
 	 * @param int $debut
 	 */
-	public function getProduits($type="vin-blanc", $nombre = 24, $page = 1 )
+	public function getProduits( $nombre = 24, $page = 1 )
 	{
 		$s = curl_init();
 		$url = "https://www.saq.com/fr/produits/vin/vin-rouge?p=1&product_list_limit=24&product_list_order=name_asc";
@@ -66,34 +66,53 @@ class SAQ extends Modele
 		self::$_webpage = curl_exec($s);
 		self::$_status = curl_getinfo($s, CURLINFO_HTTP_CODE);
 		curl_close($s);
-
+		
 		$doc = new DOMDocument();
 		$doc->recover = true;
 		$doc->strictErrorChecking = false;
 		@$doc->loadHTML(self::$_webpage);
 		$elements = $doc->getElementsByTagName("li");
 		$i = 0;
+		
+		// $data['page_title'] = 'Importation || Bouteilles';
+		 $msg = [];
+		$data = [];
 		foreach ($elements as $key => $noeud) {
+			
 			//var_dump($noeud -> getAttribute('class')) ;
 			//if ("resultats_product" == str$noeud -> getAttribute('class')) {
-			if (strpos($noeud->getAttribute('class'), "product-item") !== false) {
 
+			if (strpos($noeud->getAttribute('class'), "product-item") !== false) {
+			
 				//echo $this->get_inner_html($noeud);
+
 				$info = self::recupereInfo($noeud);
-				echo "<p>" . $info->nom;
-				$retour = $this->ajouteProduit($info);
-				echo "<br>Code de retour : " . $retour->raison . "<br>";
+				//echo "<p>".$info->nom;
+				$retour = $this -> ajouteProduit($info);
+			//	echo "<br>Code de retour : " . $retour -> raison . "<br>";
+				
+			 
+				
+				  // echo "<br>Code de retour : " . $retour->raison . "<br>";
+
+
 				if ($retour->succes == false) {
-					echo "<pre>";
-					var_dump($info);
-					echo "</pre>";
-					echo "<br>";
+				//	echo "<pre>";
+					//var_dump($info);
+					$msg="erreur d'importation";
+				//	echo "</pre>";
+				//	echo "<br>";
 				} else {
 					$i++;
 				}
-				echo "</p>";
+				// echo "</p>";
+
+				 array_push($data,['info'=>$info, "retour"=>$retour, "msg"=>$msg ] );// creer un array de donnees pour afficher sur la page. 
 			}
-		}
+			
+		} 
+		
+	RequirePage::getView('importation', $data);
 
 		return $i;
 	}
@@ -180,10 +199,10 @@ class SAQ extends Modele
 				/******     Code a conserver si on decide de manipuler le prix pour des calculs   *******/
 
 				// convertir la "," en "." pour conserver les decimales
-				//$info -> prix = str_replace(',', '.', $info -> prix); //valeur "1.23 $"
+				//$info -> prix = str_replace('$', '', $info -> prix); //valeur "1.23 $"
 
-				// enlever tout exceptee les chifres et le "."
-				//	$info -> prix = preg_replace("/[^0-9\.]/", "", $info -> prix); //valeur "1.23"
+				// enlever tout exceptee les chifres et le ","
+					$info -> prix = preg_replace("/[^0-9\,]/", "", $info -> prix); //valeur "1.23"
 
 				//transformer la chaine de caracteres en float pour envoyer a la DB 
 				//$info -> prix = floatval($info -> prix); //valeur 1.23
@@ -202,7 +221,7 @@ class SAQ extends Modele
 		$retour->succes = false;
 		$retour->raison = '';
 
-		print_r($bte);
+		// print_r($bte);
 		// Récupère le type
 		$rows = $this->_db->query("select id from vino__type where type = '" . $bte->desc->type . "'");
 
@@ -212,7 +231,7 @@ class SAQ extends Modele
 			$type = $type['id'];
 
 			$rows = $this->_db->query("select id from vino__bouteille where code_saq = '" . $bte->desc->code_SAQ . "'");
-			echo $bte->desc->code_SAQ;
+			// echo $bte->desc->code_SAQ;
 			if ($rows->num_rows < 1) {
 
 				/*  la decision de garder le data-type a "s" pour le prix importee de la page SAQ est pour faciliter l'affichage du prix dans le meme format sur la page de notre application. Au besoin ce data-type poura etre change pour 'd', apres avoir transformee la donnee resu de "chaine de caracteres" en float, ou int */
@@ -220,7 +239,7 @@ class SAQ extends Modele
 				$this->stmt->bind_param("sssssssssi", $bte->nom, $bte->img, $bte->desc->code_SAQ, $bte->desc->pays, $bte->desc->texte, $bte->prix, $bte->url, $bte->img,  $bte->desc->format, $type);
 				$retour->succes = $this->stmt->execute();
 				$retour->raison = self::INSERE;
-				//var_dump($this->stmt);
+				// var_dump($this->stmt);
 
 			} else {
 				$retour->succes = false;
@@ -230,6 +249,10 @@ class SAQ extends Modele
 			$retour->succes = false;
 			$retour->raison = self::ERREURDB;
 		}
+		
+		
 		return $retour;
+		
+
 	}
 }

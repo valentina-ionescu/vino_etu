@@ -197,7 +197,7 @@ details[open] summary {
     margin-bottom: .5em;
 }
 
-@media all and (min-width:240px) and (max-width:420px) {
+@media all and  (max-width:460px) {
     .carte__tag-top{
         font-size: 1.3rem;
         margin-bottom: 3px;
@@ -211,9 +211,6 @@ details[open] summary {
     .btnAjouter, .btnBoire {
 
         padding: 10px 15px;
-
-
-
         font-size: 18px;
 
     }
