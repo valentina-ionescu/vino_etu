@@ -33,7 +33,7 @@
                                     <label>Notes </label>
                                 <textarea rows="5" name="notes"><?php echo $row['notes']; ?></textarea>
                                 </div>
-                                    <button class='btnModifier'>Modifier la bouteille</button>
+                                    <button class="btn btn-accent solid" class='btnModifier'>Modifier la bouteille</button>
                 
                 </form>
             </div>
