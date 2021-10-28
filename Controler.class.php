@@ -50,6 +50,9 @@ class Controler
 				case 'profile':
 					$this->afficherProfile();
 					break;
+				case 'profileConnexion':
+					$this->gestionConnexion();
+					break;
 				default:
 					$this->accueil();
 					break;
@@ -59,12 +62,9 @@ class Controler
 		private function accueil()
 		{
 			$bte = new Bouteille();
-			$cel = new Cellier();
+			$User = new Usager();
 
 			$data = $bte->getListeBouteilleCellier();
-
-			$infoUser = $cel->getInfoUsager();
-			$usager = $infoUser->fetch_assoc();
 
 			include("vues/entete.php");
 			include("vues/cellier.php");
@@ -74,12 +74,31 @@ class Controler
 
 		private function afficherProfile()
 		{
-			$bte = new Bouteille();
-            //$data = $bte->getListeBouteilleCellier();
+			$User = new Usager();
+
 			include("vues/entete.php");
 			include("vues/profile.php");
 			include("vues/pied.php");
-                  
+			
+		}
+
+		private function gestionConnexion()
+		{
+			$User = new Usager();
+
+			if ($_POST['status'] == 'deconnexion') {
+
+				$User->deconnexion();
+
+				header('Location: index.php?requete=profile');
+
+			}elseif ($_POST['status'] == 'connexion') {
+
+				$User->connexion();
+
+				header('Location: index.php?requete=profile');
+
+			}
 		}
 
 		private function listeBouteille()

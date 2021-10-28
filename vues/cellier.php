@@ -4,10 +4,27 @@
     
         <div class="cellier__information">
             <div class="cellier__information__wrapper">
-                <i class="fa fa-user cellier__information__icon"></i><h2><?php echo $usager['prenom']; echo ' '.$usager['nom'];?></h2>
+                <i class="fa fa-user cellier__information__icon"></i><h2>
+                    <?php
+                        if (isset($_SESSION['nom'])) {
+                            echo $_SESSION['prenom']; echo ' '.$_SESSION['nom'];
+                        }else {
+                            echo 'Vous n\'ête pas connecté';
+                        }
+                    ?>
+                </h2>
             </div>
             <div class="cellier__information__wrapper">
-                <i class="fas fa-wine-glass-alt cellier__information__icon"></i><h2><?php echo $usager['nom_cellier'];?></h2>
+                <i class="fas fa-wine-glass-alt cellier__information__icon"></i>
+                <h2>
+                    <?php
+                        if (isset($_SESSION['cellier'])) {
+                            echo $_SESSION['cellier'];
+                        }else{
+                            echo 'Aucun cellier selectionné';
+                        }
+                        ?>
+                    </h2>
             </div>
         </div>
 
