@@ -199,15 +199,28 @@ class Bouteille extends Modele {
 	 */
 	public function modifierBouteilleCellier($data, $id = 1)
 	{
-
+		$connexion = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
 		str_replace($data->prix, ",", ".");
-		//TODO : Valider les données.
-		$requete = "UPDATE vino__cellier_has_vino__bouteille SET millesime = '".$data->millesime."', date_achat = '".$data->date_achat."', prix = '".$data->prix."', garde_jusqua = '".$data->garde_jusqua."', notes = '".$data->notes."' WHERE vino__bouteille_id = ". $id ."";
-		//echo $requete;
-        $res = $this->_db->query($requete);
 
-		//retourner la qte restante
-		return $res;
+
+		$requete = mysqli_prepare($connexion, "UPDATE vino__cellier_has_vino__bouteille SET millesime = ?, date_achat =? , prix =? , garde_jusqua =? , notes = ? WHERE vino__bouteille_id = ?");
+
+        if($requete) 
+        {
+            mysqli_stmt_bind_param($requete, 'issssi',$data->millesime, $data->date_achat,$data->prix, $data->garde_jusqua, $data->notes, $id);
+
+            mysqli_stmt_execute($requete);
+
+            $resultat = mysqli_stmt_get_result($requete);
+
+            if(!$resultat){
+				var_dump($resultat);
+			}
+
+           
+        }
+
+		
 	}
 
 	/**

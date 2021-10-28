@@ -61,4 +61,4 @@
 				<a href="?requete=profile"><i class="fa fa-user-circle header__icon__user"></i></a>
 			</nav>
 		</header>
-		<main class="mt-10">
+		<main >
