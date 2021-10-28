@@ -1,3 +1,26 @@
-.proile__wapper {
-    padding-top: 120px;
+.profile__wrapper__bg {
+    padding: 20px;
+}
+
+.profile__wrapper>h1 {
+    margin: 0;
+}
+
+.profile__wrapper {
+    background-color: var(--bg-clair);
+    min-width: 90vw;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.form__connexion {
+    padding: 20px;
+}
+
+.form__label__connexion {
+    margin-bottom: 10px;
+}
+
+.form__label__connexion>label {
+    padding: 0 0 10px 0;
 }

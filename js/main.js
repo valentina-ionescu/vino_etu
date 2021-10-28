@@ -160,7 +160,10 @@ window.addEventListener('load', function() {
                     // console.log(element)
                     // console.log(liste.innerHTML)
 
-                    liste.innerHTML += "<li data-id='"+element.id+"'>"+element.nom+"</li>";
+                    //liste.innerHTML += "<li data-id='"+element.id+"'>"+element.nom+"</li>";
+                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    liste.innerHTML += "<li data-id='"+element.id+"' data-prix='"+element.prix_saq+"'>"+element.nom+"</li>";
+                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
                   })
                 })
@@ -187,6 +190,9 @@ window.addEventListener('load', function() {
         console.dir(evt.target)
         if(evt.target.tagName == "LI"){
           bouteille.nom.dataset.id = evt.target.dataset.id;
+          //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+          bouteille.prix.setAttribute('value', evt.target.dataset.prix)
+          //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
           bouteille.nom.innerHTML = evt.target.innerHTML;
 
           liste.innerHTML = "";
