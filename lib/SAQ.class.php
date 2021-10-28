@@ -35,10 +35,10 @@ class SAQ extends Modele
 	 * @param int $nombre
 	 * @param int $debut
 	 */
-	public function getProduits($type="vin-blanc", $nombre = 24, $page = 1 )
+	public function getProduits( $nombre = 24, $page = 1 )
 	{
 		$s = curl_init();
-		$url = "https://www.saq.com/fr/produits/vin/vin-rouge?p=&product_list_limit=24&product_list_order=name_asc";
+		$url = "https://www.saq.com/fr/produits/vin/vin-rouge?p=1&product_list_limit=24&product_list_order=name_asc";
 		
 		//curl_setopt($s, CURLOPT_URL, "http://www.saq.com/webapp/wcs/stores/servlet/SearchDisplay?searchType=&orderBy=&categoryIdentifier=06&showOnly=product&langId=-2&beginIndex=".$debut."&tri=&metaData=YWRpX2YxOjA8TVRAU1A%2BYWRpX2Y5OjE%3D&pageSize=". $nombre ."&catalogId=50000&searchTerm=*&sensTri=&pageView=&facet=&categoryId=39919&storeId=20002");
 		//curl_setopt($s, CURLOPT_URL, "https://www.saq.com/webapp/wcs/stores/servlet/SearchDisplay?categoryIdentifier=06&showOnly=product&langId=-2&beginIndex=" . $debut . "&pageSize=" . $nombre . "&catalogId=50000&searchTerm=*&categoryId=39919&storeId=20002");
@@ -74,8 +74,8 @@ class SAQ extends Modele
 		$elements = $doc->getElementsByTagName("li");
 		$i = 0;
 		
-		$data['page_title'] = 'Importation || Bouteilles';
-		$data['msg'] = 'Importation avec succes';
+		// $data['page_title'] = 'Importation || Bouteilles';
+		 $msg = [];
 		$data = [];
 		foreach ($elements as $key => $noeud) {
 			
@@ -87,35 +87,32 @@ class SAQ extends Modele
 				//echo $this->get_inner_html($noeud);
 
 				$info = self::recupereInfo($noeud);
-
-
-				$retour = $this->ajouteProduit($info);
+				//echo "<p>".$info->nom;
+				$retour = $this -> ajouteProduit($info);
+			//	echo "<br>Code de retour : " . $retour -> raison . "<br>";
 				
-			  array_push($data,['info'=>$info, "retour"=>$retour] );// creer un array de donnees pour afficher sur la page. 
+			 
 				
 				  // echo "<br>Code de retour : " . $retour->raison . "<br>";
 
 
 				if ($retour->succes == false) {
-					// echo "<pre>";
-
-					//   var_dump($info);
-
-					// echo "</pre>";
-
-					// echo "<br>";
+				//	echo "<pre>";
+					//var_dump($info);
+					$msg="erreur d'importation";
+				//	echo "</pre>";
+				//	echo "<br>";
 				} else {
 					$i++;
-
 				}
-				//echo "</p>";
-				
+				// echo "</p>";
+
+				 array_push($data,['info'=>$info, "retour"=>$retour, "msg"=>$msg ] );// creer un array de donnees pour afficher sur la page. 
 			}
 			
 		} 
-		include_once('updateSAQ.php');
-		// include_once("vues/importation.php");
 		
+	RequirePage::getView('importation', $data);
 
 		return $i;
 	}
@@ -202,7 +199,7 @@ class SAQ extends Modele
 				/******     Code a conserver si on decide de manipuler le prix pour des calculs   *******/
 
 				// convertir la "," en "." pour conserver les decimales
-				//$info -> prix = str_replace(',', '.', $info -> prix); //valeur "1.23 $"
+				$info -> prix = str_replace(' $', '', $info -> prix); //valeur "1.23 $"
 
 				// enlever tout exceptee les chifres et le "."
 				//	$info -> prix = preg_replace("/[^0-9\.]/", "", $info -> prix); //valeur "1.23"

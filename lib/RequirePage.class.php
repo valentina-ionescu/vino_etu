@@ -19,12 +19,14 @@ class RequirePage
       include './vues/' . $path . '.php';
     }
   }
+  
   public static function getPage($path, $data = [])
   {
     extract($data, EXTR_SKIP);
     if (file_exists("./" . $path )) {
       include './' . $path ;
     }
+
   }
 
   static public function redirect($url, $data = [])// l"url complet

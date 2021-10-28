@@ -1,9 +1,9 @@
 <?php
-//Debug -  DK
-//  ini_set("default_charset",  "utf-8");
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+// //Debug -  DK
+// //  ini_set("default_charset",  "utf-8");
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
 /**
  * Fichier de lancement du MVC, Il appel le var.init et le gabarit HTML 
  * @author Jonathan Martel

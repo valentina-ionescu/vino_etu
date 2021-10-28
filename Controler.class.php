@@ -43,9 +43,9 @@ class Controler
 				case 'modifierBouteilleCellier':
 					$this->modifierBouteilleCellier();
 					break; 
-				case 'updateSAQ':
-						$this->updateSAQ();
-						break; 
+				 case 'updateSAQ':
+				 		$this->updateSAQ();
+				 		break; 
 
 				case 'profile':
 					$this->afficherProfile();
@@ -184,19 +184,20 @@ class Controler
 			echo json_encode($resultat);
 		}
 
-		private function updateSAQ (){
-			$saq = new SAQ;
-			//  include("vues/entete.php");
-			$data = $saq->getProduits();
+		 private function updateSAQ (){
+		 	$saq = new SAQ;
+		 	 // include("vues/entete.php");
+		 	//$data = $saq->getProduits();
+			require_once('updateSAQ.php');
+			// RequirePage::getView('importation');
 
-			//include_once("updateSAQ.php");
 				
 			
 
 
 
 
-		}
+		 }
 }
 ?>
 

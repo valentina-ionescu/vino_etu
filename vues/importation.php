@@ -1,5 +1,4 @@
 <div class="mt-3">
-    
     <table>
         <tr>
             <th>Nom du Vin</th>
@@ -11,6 +10,8 @@
         </tr>
         <?php 
         foreach ($data as $row) {
+            //  var_dump($data);
+
         ?>
             <tr>
 
