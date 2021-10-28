@@ -150,7 +150,7 @@ textarea {
  width: 85vw;
  background: var(--bg-input);
  padding-left: 0;
- border-bottom: 1px solid var(--bg-clair);
+ /* border-bottom: 1px solid var(--bg-clair); */
 }
 
 .listeAutoComplete {
@@ -162,15 +162,21 @@ textarea {
     left: 0;
     right: 0;
 }
+.form__contenant__liste {
+    border-left: 1px solid var(--bg-sombre);
+    border-right: 1px solid var(--bg-sombre);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
 .listeAutoComplete li {
     list-style: none;
     padding: 10px;
     cursor: pointer;
-    border-bottom: 1px solid #d4d4d4; 
+    border-bottom: 1px solid var(--bg-sombre); 
 }
 
 .listeAutoComplete li:hover {
-    background-color: var(--bg-medium); 
+    background-color: var(--bg-medium);
+    color: #f1f1f1; 
   }
 
 .form__contenant--espacevertical {
@@ -178,10 +184,6 @@ textarea {
 }
 
 
-/* .form__ajouter>.form__label {
-    position: relative;
-} */
-/* Label qui transitionnent vers le haut */
 .form__ajouter__label{
     padding-top: 1.25rem;
 }
@@ -204,7 +206,7 @@ button {
     }
 }
 
-/* les label flottants */
+/* les labels  flottants */
 
 .form {
   padding: .25em 1.25em;
