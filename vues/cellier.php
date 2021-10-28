@@ -1,36 +1,42 @@
 <div class="cellier">
-    <div class="gallerie portail">
-        
-    
-        <div class="cellier__information">
-            <div class="cellier__information__wrapper">
-                <i class="fa fa-user cellier__information__icon"></i><h2>
-                    <?php
-                        if (isset($_SESSION['nom'])) {
-                            echo $_SESSION['prenom']; echo ' '.$_SESSION['nom'];
-                        }else {
-                            echo 'Vous n\'ête pas connecté';
-                        }
-                    ?>
-                </h2>
-            </div>
-            <div class="cellier__information__wrapper">
-                <i class="fas fa-wine-glass-alt cellier__information__icon"></i>
-                <h2>
-                    <?php
-                        if (isset($_SESSION['cellier'])) {
-                            echo $_SESSION['cellier'];
-                        }else{
-                            echo 'Aucun cellier selectionné';
-                        }
-                        ?>
-                    </h2>
-            </div>
+    <div class="cellier__information">
+        <div class="cellier__information__wrapper flex row justify-start">
+            <i class="fa fa-user cellier__information__icon"></i>
+            <h2> 
+                <?php
+                if (isset($_SESSION['nom'])) {
+                    echo "Bonjour ". $_SESSION['prenom'] "!";
+                    // echo ' ' . $_SESSION['nom'];
+                } else {
+                    echo 'Vous n\'êtes pas connecté';
+                }
+                ?>
+            </h2>
         </div>
+        <div class="cellier__information__wrapper">
+            <!-- <i class="fas fa-wine-glass-alt cellier__information__icon"></i> -->
+            <span class="center">
+                <?php
+                if (isset($_SESSION['cellier'])) {
+                    echo $_SESSION['cellier'];
+                } else {
+                    // echo 'Aucun cellier selectionné';
+                    echo 'Voici les détails du cellier  <strong> Vins Préférés </strong>.';
+                }
+                ?>
+            </span>
+            <p class="center txt-primary ">Une bouteille a la fois! </p>
+
+        </div>
+    </div>
+    <div class="gallerie portail">
+
+
+
 
         <?php
-            foreach ($data as $cle => $bouteille) {
-            
+        foreach ($data as $cle => $bouteille) {
+
         ?>
             <article class="bouteille carte no_padding " data-quantite="">
 
