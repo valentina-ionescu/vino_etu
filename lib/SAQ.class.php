@@ -93,7 +93,7 @@ class SAQ extends Modele
 				
 			  array_push($data,['info'=>$info, "retour"=>$retour] );// creer un array de donnees pour afficher sur la page. 
 				
-				//   echo "<br>Code de retour : " . $retour->raison . "<br>";
+				  // echo "<br>Code de retour : " . $retour->raison . "<br>";
 
 
 				if ($retour->succes == false) {
@@ -114,7 +114,7 @@ class SAQ extends Modele
 			
 		} 
 		include_once('updateSAQ.php');
-		include_once("vues/importation.php");
+		// include_once("vues/importation.php");
 		
 
 		return $i;

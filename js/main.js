@@ -125,7 +125,7 @@ window.addEventListener('load', function() {
     //////////////////////////////////////////////
 
     let inputNomBouteille = document.querySelector("[name='nom_bouteille']");
-    console.log(inputNomBouteille);
+    // console.log(inputNomBouteille);
     let liste = document.querySelector('.listeAutoComplete');
 
     if(inputNomBouteille){
@@ -146,9 +146,10 @@ window.addEventListener('load', function() {
               .then(response => {
 
                   if (response.status === 200) {
+                    console.log(response)
 
                     return response.json();
-
+                   
                   }
                    else {
                     throw new Error('Erreur');
@@ -157,10 +158,10 @@ window.addEventListener('load', function() {
                 })
                 .then(data => {
                   data.forEach(function(element){
-                    // console.log(element)
+                     console.log(element)
                     // console.log(liste.innerHTML)
 
-                    liste.innerHTML += "<li data-id='"+element.id+"'>"+element.nom+"</li>";
+                    liste.innerHTML += "<li data-id='"+element.id+"' data-prix='"+element.prix_saq+"'>"+element.nom+"</li>";
 
                   })
                 })
@@ -188,6 +189,9 @@ window.addEventListener('load', function() {
         if(evt.target.tagName == "LI"){
           bouteille.nom.dataset.id = evt.target.dataset.id;
           bouteille.nom.innerHTML = evt.target.innerHTML;
+          // bouteille.prix.setAttribute('value', evt.target.dataset.prix)
+           bouteille.prix.setAttribute('value', evt.target.dataset.prix) 
+          console.log( evt.target.dataset.prix );
 
           liste.innerHTML = "";
           inputNomBouteille.value = "";
@@ -202,16 +206,12 @@ window.addEventListener('load', function() {
             "vino__bouteille_id":bouteille.nom.dataset.id,
             "date_achat":bouteille.date_achat.value,
             "garde_jusqua":bouteille.garde_jusqua.value,
-<<<<<<< HEAD
-            // "notes":bouteille.notes.value,
-=======
            /* "notes":bouteille.notes.value,*/
->>>>>>> 1b01f345f54bc611630986bf0936bb73fb42385f
             "prix":bouteille.prix.value,
             "quantite":bouteille.quantite.value,
             "millesime":bouteille.millesime.value,
           };
-
+console.log(param);
           let requete = new Request("index.php?requete=ajouterNouvelleBouteilleCellier", {method: 'POST', body: JSON.stringify(param)});
             fetch(requete)
                 .then(response => {

@@ -167,9 +167,10 @@ class Controler
 
 		private function updateSAQ (){
 			$saq = new SAQ;
-			include("vues/entete.php");
+			//  include("vues/entete.php");
 			$data = $saq->getProduits();
 
+			//include_once("updateSAQ.php");
 				
 			
 

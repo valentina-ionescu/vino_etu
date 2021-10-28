@@ -18,9 +18,9 @@
                
                  <!-- <label>Nom </label> -->
                     <h3 data-id="" class="nom_bouteille carte__description-nom"></h3>
-               
-                <div class="form__conteneur">
-                    <form class="form" action="index.php?requete=accueil">
+               <!-- //action="index.php?requete=accueil" -->
+                <div class="form__conteneur" >
+                    <div class="form" >
                    
                         
                     
@@ -50,7 +50,7 @@
                             <label>Notes </label>
                         </div> -->
                         <button name="ajouterBouteilleCellier">Ajouter la bouteille</button>
-                </form>
+</div>
                 <!-- </div> -->
                  
                 </div>
