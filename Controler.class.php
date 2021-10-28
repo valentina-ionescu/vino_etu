@@ -68,7 +68,6 @@ class Controler
 
 			include("vues/entete.php");
 			include("vues/cellier.php");
-
 			include("vues/pied.php");
 		}
 
