@@ -202,11 +202,7 @@ window.addEventListener('load', function() {
             "vino__bouteille_id":bouteille.nom.dataset.id,
             "date_achat":bouteille.date_achat.value,
             "garde_jusqua":bouteille.garde_jusqua.value,
-<<<<<<< HEAD
             // "notes":bouteille.notes.value,
-=======
-           /* "notes":bouteille.notes.value,*/
->>>>>>> 1b01f345f54bc611630986bf0936bb73fb42385f
             "prix":bouteille.prix.value,
             "quantite":bouteille.quantite.value,
             "millesime":bouteille.millesime.value,
