@@ -197,7 +197,7 @@ class Bouteille extends Modele {
 	 * 
 	 * @return Boolean Succès ou échec de l'ajout.
 	 */
-	public function modifierBouteilleCellier($data, $id = 1)
+	public function modifierBouteilleCellier($data, $id)
 	{
 		$connexion = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
 		str_replace($data->prix, ",", ".");
@@ -205,7 +205,7 @@ class Bouteille extends Modele {
 
 		$requete = mysqli_prepare($connexion, "UPDATE vino__cellier_has_vino__bouteille SET millesime = ?, date_achat =? , prix =? , garde_jusqua =? , notes = ? WHERE vino__bouteille_id = ?");
 
-        if($requete) 
+        if($requete)
         {
             mysqli_stmt_bind_param($requete, 'issssi',$data->millesime, $data->date_achat,$data->prix, $data->garde_jusqua, $data->notes, $id);
 

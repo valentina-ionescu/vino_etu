@@ -91,7 +91,7 @@ window.addEventListener('load', function() {
       element.addEventListener("click", function(evt){
 
         let id = document.querySelector('[data-id]').dataset.id;
-
+        console.log(id);
         var param = {
           "id":id,
           "millesime":modifBouteille.millesime.value,
