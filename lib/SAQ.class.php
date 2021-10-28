@@ -199,10 +199,10 @@ class SAQ extends Modele
 				/******     Code a conserver si on decide de manipuler le prix pour des calculs   *******/
 
 				// convertir la "," en "." pour conserver les decimales
-				$info -> prix = str_replace(' $', '', $info -> prix); //valeur "1.23 $"
+				//$info -> prix = str_replace('$', '', $info -> prix); //valeur "1.23 $"
 
-				// enlever tout exceptee les chifres et le "."
-				//	$info -> prix = preg_replace("/[^0-9\.]/", "", $info -> prix); //valeur "1.23"
+				// enlever tout exceptee les chifres et le ","
+					$info -> prix = preg_replace("/[^0-9\,]/", "", $info -> prix); //valeur "1.23"
 
 				//transformer la chaine de caracteres en float pour envoyer a la DB 
 				//$info -> prix = floatval($info -> prix); //valeur 1.23
