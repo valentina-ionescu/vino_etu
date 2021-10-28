@@ -11,7 +11,43 @@
 class Usager extends Modele {
 
     const TABLE = 'vino__usager';
-    
+
+    public function connexion(){
+
+        $connexion = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
+
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        $requete = mysqli_prepare($connexion, "SELECT vino__usager.email, vino__usager.password, vino__usager.nom, vino__usager.prenom, vino__usager.username, vino__usager.admin FROM vino__usager WHERE email = ? AND password = ?");
+
+        if($requete) 
+        {
+            mysqli_stmt_bind_param($requete, 'ss',$email, $password);
+
+            mysqli_stmt_execute($requete);
+
+            $resultat = mysqli_stmt_get_result($requete);
+
+            $usager = $resultat->fetch_assoc();
+
+            if (isset($usager['nom'])) {
+                $_SESSION['nom'] = $usager['nom'];
+                $_SESSION['usager_id'] = $usager['id'];
+                $_SESSION['admin'] = $usager['admin'];
+                $_SESSION['prenom'] = $usager['prenom'];
+                $_SESSION['email'] = $usager['email'];
+                $_SESSION['username'] = $usager['username'];
+            }
+        }
+    }
+
+    public function deconnexion(){
+
+        session_destroy();
+    }
+
+
     /**
      * getListeUsager - Cette méthode récupère la liste de tous les usagers 
      *
@@ -20,7 +56,7 @@ class Usager extends Modele {
     
     public function getListeUsager()
 	{
-        return $rows;
+//        return $rows;
     }  
     
     /**
@@ -31,7 +67,7 @@ class Usager extends Modele {
      */
     public function getUsagerId($id)
 	{
-        return $row;
+//        return $row;
     }   
         
     /**
@@ -42,7 +78,7 @@ class Usager extends Modele {
      */
     public function ajouterUsager($data)
 	{
-        return $id;
+//        return $id;
     }   
         
     /**
@@ -54,7 +90,7 @@ class Usager extends Modele {
     public function supprimerUsager($id)
 	{
         
-        return $res;
+ //       return $res;
     }   
         
     /**
@@ -65,7 +101,7 @@ class Usager extends Modele {
      */
     public function modifierUsager($data)
 	{
-        return $res;
+  //      return $res;
     }   
 
     

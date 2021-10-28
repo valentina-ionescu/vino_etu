@@ -23,11 +23,11 @@
                                     <label>Prix </label>
                                   <!-- a tester, prix en text - DK -->
                                     <!-- <input type="text" pattern="[0-9]+([,][0-9]{1,2})?" name="prix" value="<?php echo $row['prix'];  ?>"> -->
-                                    <input type="number" step="any"  name="prix" value="<?php echo $row['prix']; ?>">
+                                    <input type="text" name="prix" value="<?php echo $row['prix']; ?>">
                                     </div>
                                 <div class="form__label">
                                     <label>Garde</label>
-                                    <input type="date" name="garde_jusqua" value="<?php echo $row['garde_jusqua']; ?>">
+                                    <input type="text" name="garde_jusqua" value="<?php echo $row['garde_jusqua']; ?>">
                                 </div>
                                 <div class="form__label">
                                     <label>Notes </label>

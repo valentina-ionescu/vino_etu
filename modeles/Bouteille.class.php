@@ -102,7 +102,7 @@ class Bouteille extends Modele {
 		$nom = preg_replace("/\*/","%" , $nom);
 		 
 		//echo $nom;
-		$requete ='SELECT id, nom FROM vino__bouteille where LOWER(nom) like LOWER("%'. $nom .'%") LIMIT 0,'. $nb_resultat; 
+		$requete ='SELECT id, nom, prix_saq FROM vino__bouteille where LOWER(nom) like LOWER("%'. $nom .'%") LIMIT 0,'. $nb_resultat; 
 		//var_dump($requete);
 		if(($res = $this->_db->query($requete)) ==	 true)
 		{
@@ -146,11 +146,7 @@ class Bouteille extends Modele {
 			vino__bouteille_id,
 			date_achat,
 			garde_jusqua,
-<<<<<<< HEAD
 			/*notes,*/
-=======
-		/*notes,*/
->>>>>>> 1b01f345f54bc611630986bf0936bb73fb42385f
 			prix,
 			quantite,
 			millesime) 
