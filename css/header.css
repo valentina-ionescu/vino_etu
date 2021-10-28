@@ -135,6 +135,9 @@
         padding: 20px 0;
         font-size: 22px;
     }
+    #menu li:hover {
+        color: var(--bg-clair);
+    }
 
     #menuToggle input:checked ~ ul {
         transform: none;

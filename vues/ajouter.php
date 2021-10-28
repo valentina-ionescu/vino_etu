@@ -46,7 +46,7 @@
                             <textarea name="notes" id=""  rows="5" required></textarea>
                             <label>Notes </label>
                         </div> -->
-                <button name="ajouterBouteilleCellier">Ajouter la bouteille</button>
+                <button class="btn btn-accent solid" name="ajouterBouteilleCellier">Ajouter la bouteille</button>
             </form>
             <!-- </div> -->
 
