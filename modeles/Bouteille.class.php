@@ -197,13 +197,13 @@ class Bouteille extends Modele {
 	 * 
 	 * @return Boolean Succès ou échec de l'ajout.
 	 */
-	public function modifierBouteilleCellier($data, $id = 1)
+	public function modifierBouteilleCellier($data, $id)
 	{
 		$connexion = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
 		str_replace($data->prix, ",", ".");
 
 
-		$requete = mysqli_prepare($connexion, "UPDATE vino__cellier_has_vino__bouteille SET millesime = ?, date_achat =? , prix =? , garde_jusqua =? , notes = ? WHERE vino__bouteille_id = ?");
+		$requete = mysqli_prepare($connexion, "UPDATE vino__cellier_has_vino__bouteille SET millesime = ?, date_achat =? , prix =? , garde_jusqua =? , notes = ? WHERE vino__bouteille_id = ?");	
 
         if($requete) 
         {
@@ -220,6 +220,9 @@ class Bouteille extends Modele {
            
         }
 
+
+
+		
 		
 	}
 

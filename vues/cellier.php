@@ -5,7 +5,7 @@
             <h2> 
                 <?php
                 if (isset($_SESSION['nom'])) {
-                    echo "Bonjour ". $_SESSION['prenom'] "!";
+                    echo "Bonjour ". $_SESSION['prenom'] ."!";
                     // echo ' ' . $_SESSION['nom'];
                 } else {
                     echo 'Vous n\'êtes pas connecté';
