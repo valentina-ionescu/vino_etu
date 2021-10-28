@@ -111,12 +111,28 @@ footer p {
 .mt-1{
     margin-top: 1em;
 }
+.mt-3{
+    margin-top: 3em;
+}
+.mt-10{
+    margin-top: 10rem;
+}
 
 .relative{
     position: relative;
 }
 .absolute{
     position: absolute;
+}
+.txt-blanc{
+    color: #ffffff;
+}
+.center{
+ margin-left: auto;
+ margin-right: auto;
+} 
+.w-90{
+    width: 90vw;
 }
 /* -------------ajout par Djaouida ------ */
 

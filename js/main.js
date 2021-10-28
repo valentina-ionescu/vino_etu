@@ -125,7 +125,7 @@ window.addEventListener('load', function() {
     //////////////////////////////////////////////
 
     let inputNomBouteille = document.querySelector("[name='nom_bouteille']");
-    console.log(inputNomBouteille);
+    // console.log(inputNomBouteille);
     let liste = document.querySelector('.listeAutoComplete');
 
     if(inputNomBouteille){
@@ -146,9 +146,10 @@ window.addEventListener('load', function() {
               .then(response => {
 
                   if (response.status === 200) {
+                    console.log(response)
 
                     return response.json();
-
+                   
                   }
                    else {
                     throw new Error('Erreur');
@@ -157,7 +158,7 @@ window.addEventListener('load', function() {
                 })
                 .then(data => {
                   data.forEach(function(element){
-                    // console.log(element)
+                     console.log(element)
                     // console.log(liste.innerHTML)
 
                     //liste.innerHTML += "<li data-id='"+element.id+"'>"+element.nom+"</li>";
@@ -194,6 +195,8 @@ window.addEventListener('load', function() {
           bouteille.prix.setAttribute('value', evt.target.dataset.prix)
           //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
           bouteille.nom.innerHTML = evt.target.innerHTML;
+          // bouteille.prix.setAttribute('value', evt.target.dataset.prix)
+          console.log( evt.target.dataset.prix );
 
           liste.innerHTML = "";
           inputNomBouteille.value = "";
@@ -213,7 +216,7 @@ window.addEventListener('load', function() {
             "quantite":bouteille.quantite.value,
             "millesime":bouteille.millesime.value,
           };
-
+console.log(param);
           let requete = new Request("index.php?requete=ajouterNouvelleBouteilleCellier", {method: 'POST', body: JSON.stringify(param)});
             fetch(requete)
                 .then(response => {
