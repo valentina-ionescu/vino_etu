@@ -233,24 +233,7 @@ window.addEventListener('load', function () {
             console.log(json)                    
             window.location.href = "index.php?requete=accueil"
           });
-        // fetch(requete)
-        //   .then(response => {
-        //     console.log(response);
-        //     if (response.status === 200) {
-              
-        //       return response.json();
-        //     } else {
-        //       throw new Error('Erreur', response.status);
-        //     }
-        //   })
-        //   .then(response => {
-        //     console.log(response);
-        //     window.location.href = "index.php?requete=accueil"
-        //   }).catch(error => {
-        //     console.error(error);
-        //   });
-
-
+       
       });
     }
   }
