@@ -46,7 +46,6 @@ class Controler
 				 case 'updateSAQ':
 				 		$this->updateSAQ();
 				 		break; 
-
 				case 'profile':
 					$this->afficherProfile();
 					break;
@@ -149,10 +148,12 @@ class Controler
 			if(!empty($body)){
 
 				$bte = new Bouteille();
-				//  var_dump($_POST['data']);
+				  var_dump($_POST['data']);
 
 				$id = $body->id;
+				
 				$resultat = $bte->modifierBouteilleCellier($body, $id);
+
 				echo json_encode($resultat);
 			}
 			else{

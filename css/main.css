@@ -2,9 +2,6 @@
  * Votre CSS
  ********/
 
- .flex {
-     display: flex;
- }
 
  html, body {
 	height: 100%;
@@ -105,6 +102,10 @@ footer p {
 .row{
     flex-direction: row;
 }
+
+.justify-start{
+    justify-content: flex-start;
+}
 .justify-between{
     justify-content: space-between;
 }
@@ -113,6 +114,9 @@ footer p {
 }
 .mt-3{
     margin-top: 3em;
+}
+.mt-9{
+    margin-top: 9em;
 }
 .mt-10{
     margin-top: 10rem;
@@ -126,6 +130,9 @@ footer p {
 }
 .txt-blanc{
     color: #ffffff;
+}
+.txt-primary{
+    color: var(--txt-primary);
 }
 .center{
  margin-left: auto;
@@ -160,7 +167,7 @@ a.btn {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 4px 2px;
+    /* margin: 4px 2px; */
     transition-duration: 0.3s;
     cursor: pointer;
     border-radius: 3px;
