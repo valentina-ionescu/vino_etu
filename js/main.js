@@ -103,10 +103,12 @@ window.addEventListener('load', function() {
         console.log(param);
         console.log('prix',modifBouteille.prix.value)
         let requete = new Request("index.php?requete=modifierBouteilleCellier", {method: 'PUT', body: JSON.stringify(param)});
+        console.log(requete);
         fetch(requete)
         .then(response => {
           if (response.status === 200) {
-            // console.log(response);
+            //re-afficher le cellier
+            window.location.href = "index.php?requete=accueil"
             return response.json();
           } else {
             throw new Error('Erreur');

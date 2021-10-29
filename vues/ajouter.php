@@ -31,7 +31,7 @@
                     <label>Date d'achat </label>
                 </div>
                 <div class="form__label__aj">
-                    <input type="text" name="prix" required>
+                    <input type="text"  name="prix" required>
                     <label>Prix </label>
                 </div>
 
