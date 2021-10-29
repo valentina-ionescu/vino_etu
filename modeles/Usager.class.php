@@ -19,7 +19,7 @@ class Usager extends Modele {
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        $requete = mysqli_prepare($connexion, "SELECT vino__usager.email, vino__usager.password, vino__usager.nom, vino__usager.prenom, vino__usager.username, vino__usager.admin FROM vino__usager WHERE email = ? AND password = ?");
+        $requete = mysqli_prepare($connexion, "SELECT vino__usager.email, vino__usager.id, vino__usager.password, vino__usager.nom, vino__usager.prenom, vino__usager.username, vino__usager.admin FROM vino__usager WHERE email = ? AND password = ?");
 
         if($requete) 
         {

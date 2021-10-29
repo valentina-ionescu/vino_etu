@@ -7,25 +7,24 @@
                 if (isset($_SESSION['nom'])) {
                     echo "Bonjour ". $_SESSION['prenom'] ."!";
                     // echo ' ' . $_SESSION['nom'];
-                } else {
-                    echo 'Vous n\'êtes pas connecté';
-                }
                 ?>
             </h2>
         </div>
         <div class="cellier__information__wrapper">
             <!-- <i class="fas fa-wine-glass-alt cellier__information__icon"></i> -->
             <span class="center">
-                <?php
-                if (isset($_SESSION['cellier'])) {
-                    echo $_SESSION['cellier'];
-                } else {
-                    // echo 'Aucun cellier selectionné';
-                    echo 'Voici les détails du cellier  <strong> Vins Préférés </strong>.';
-                }
-                ?>
+                <div class="select"> 
+                <select name="selectCellier" id="">
+                    <option value="" disabled selected>Choisiser votre cellier</option>
+                    <?php foreach ($dataC as $cle => $cellier) { ?>
+                        <option value="<?php echo $cellier['id'] ?>"><?php echo $cellier['nom_cellier'] ?></option>
+                    <?php }                 } else {
+                    echo 'Vous n\'êtes pas connecté';
+                }?>
+                </select>
+                </div>
             </span>
-            <p class="center txt-primary ">Une bouteille a la fois! </p>
+            <h2 class="center txt-primary ">Une bouteille a la fois! </h2>
 
         </div>
     </div>
@@ -35,7 +34,9 @@
 
 
         <?php
-        foreach ($data as $cle => $bouteille) {
+
+        if (isset($_SESSION['cellier_id'])) {
+            foreach ($dataB as $cle => $bouteille) {
 
         ?>
             <article class="bouteille carte no_padding " data-quantite="">
@@ -123,6 +124,7 @@
 
 
         }
+    }
 
         ?>
     </div>
