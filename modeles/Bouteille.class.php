@@ -33,6 +33,8 @@ class Bouteille extends Modele {
 	public function getListeBouteilleCellier()
 	{
 		
+		$idCellier = $_SESSION['cellier_id'];
+
 		$rows = Array();
 		$requete ='SELECT 
 						c.nom_cellier,
@@ -59,6 +61,7 @@ class Bouteille extends Modele {
 						INNER JOIN vino__cellier_has_vino__bouteille ON c.id = vino__cellier_has_vino__bouteille.vino__cellier_id
 						INNER JOIN vino__bouteille b ON vino__cellier_has_vino__bouteille.vino__bouteille_id = b.id
 						/*INNER JOIN vino__type t ON vino__bouteille.vino__type_id = t.id*/
+						WHERE vino__cellier_id = '.$idCellier.'
 						'; 
 		if(($res = $this->_db->query($requete)) ==	 true)
 		{
@@ -66,7 +69,6 @@ class Bouteille extends Modele {
 			{
 				while($row = $res->fetch_assoc())
 				{
-					$_SESSION['cellier_id'] = $row['cellier_id'];
 					$row['nom'] = trim(htmlspecialchars($row['nom']));
 					$rows[] = $row;
 				}
@@ -142,6 +144,7 @@ class Bouteille extends Modele {
 		/*//TODO : Valider les données.*/
 		// INSERT INTO `vino__cellier_has_vino__bouteille` (`vino__cellier_id`, `vino__bouteille_id`, `quantite`, `date_achat`, `garde_jusqua`, `notes`, `prix`, `millesime`) VALUES ('10', '2', '5', '2021-10-04', '3ans', NULL, '23,78', '2021');
 
+		$vino__cellier_id = $_SESSION['cellier_id'];
 
 		$requete = "INSERT INTO vino__cellier_has_vino__bouteille(
             -- id_bouteille,
@@ -150,6 +153,7 @@ class Bouteille extends Modele {
             date_achat,
             garde_jusqua,
             prix,
+            vino__cellier_id,
             millesime) 
         VALUES (".
         "'".$data->vino__bouteille_id."',".
@@ -157,6 +161,7 @@ class Bouteille extends Modele {
         "'".$data->date_achat."',".
         "'".$data->garde_jusqua."',".
         "'".$data->prix."',".
+        "'".$vino__cellier_id."',".
         "'".$data->millesime."')";
 
         $res = $this->_db->query($requete);

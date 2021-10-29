@@ -121,6 +121,39 @@ window.addEventListener('load', function() {
     });
 
     //////////////////////////////////////////////
+    //Fonction Select Cellier                   //
+    //////////////////////////////////////////////
+
+    let inputSelectCellier = document.querySelector("[name='selectCellier']");
+    
+    if (inputSelectCellier) {
+      inputSelectCellier.addEventListener('change', function(evt){
+        console.log(inputSelectCellier.options[inputSelectCellier.selectedIndex].value);
+        let id = inputSelectCellier.options[inputSelectCellier.selectedIndex].value;
+
+        let requete = new Request("index.php?requete=getCellier", {method: 'POST', body: '{"id": '+id+'}'});
+        console.log(requete);
+        fetch(requete)
+            .then(response => {
+                if (response.status === 200) {
+                  console.log(response);
+                  return response.json();
+                } else {
+                  throw new Error('Erreur');
+                }
+              })
+        .then(response => {
+          console.log(response);
+
+        }).catch(error => {
+          console.error(error);
+        });
+
+        window.location.href = 'index.php?requete=accueil';
+      })
+    }
+
+    //////////////////////////////////////////////
     //Fonction autoComplete                     //
     //////////////////////////////////////////////
 
@@ -173,6 +206,9 @@ window.addEventListener('load', function() {
                 });
         }
 
+    //////////////////////////////////////////////
+    //Fonction Nouvelle Bouteille               //
+    //////////////////////////////////////////////
 
       });
 
@@ -216,7 +252,7 @@ window.addEventListener('load', function() {
             "quantite":bouteille.quantite.value,
             "millesime":bouteille.millesime.value,
           };
-console.log(param);
+          console.log(param);
           let requete = new Request("index.php?requete=ajouterNouvelleBouteilleCellier", {method: 'POST', body: JSON.stringify(param)});
             fetch(requete)
                 .then(response => {

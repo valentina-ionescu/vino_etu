@@ -52,10 +52,19 @@
 					<span></span>
 					<span></span>
 					<ul class="header__menu__links" id="menu">
-						<li><a href="?requete=accueil">Mon cellier</a></li>
-						<li><a href="?requete=ajouterNouvelleBouteilleCellier">Ajouter une bouteille au cellier</a></li>
-						<li><a href="?requete=updateSAQ">Importation du SAQ</a></li>
-					</ul>
+							<?php if (isset($_SESSION['nom'])) { ?>
+							<li><a href="?requete=accueil">Mon cellier</a></li>
+							<li><a href="?requete=ajouterNouvelleBouteilleCellier">Ajouter une bouteille au cellier</a></li>
+							<?php
+								if(isset($_SESSION['admin']) && $_SESSION['admin'] == 1){
+							?><li><a href="?requete=updateSAQ">Importation du SAQ</a></li>
+							<?php
+								}
+							?>
+					<?php }else { ?>
+						<li><a href="?requete=profile">Se connecter</a></li>
+					<?php } ?>
+						</ul>
 				</div>
 				<a href="?requete=accueil" class="flex"><img class="header__logo" src="assets/img/logo/logo.svg" alt=""></a>
 				<a href="?requete=profile"><i class="fa fa-user-circle header__icon__user"></i></a>
