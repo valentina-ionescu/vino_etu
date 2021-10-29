@@ -9,7 +9,8 @@
                 <div class="form__image flex">
                 <img src="<?php echo $row['image'] ?>" alt="">
                 </div>
-                <form class="form__modif flex col" action="index.php?requete=accueil">
+                <!-- <form class="form__modif flex col" action="index.php?requete=accueil"> -->
+                <div class="form__modif flex col">
                                 <h3 data-id="<?php echo $_POST['id'] ?>"><?php echo $row['nom']; ?></h3>
                                 <div class="form__label">
                                     <label>Millesime </label>
@@ -33,10 +34,9 @@
                                     <label>Notes </label>
                                 <textarea rows="5" name="notes"><?php echo $row['notes']; ?></textarea>
                                 </div>
-                                    <!-- <button class="btn btn-accent solid" class='btnModifier'>Modifier la bouteille</button> -->
-                                    <button class="btn btn-accent solid btnModifier">Modifier la bouteille</button>
+                                    <button class="btnModifier">Modifier la bouteille</button>
                 
-                </form>
+                </div>
             </div>
         </div>
     </div>

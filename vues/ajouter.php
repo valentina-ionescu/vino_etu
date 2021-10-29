@@ -18,9 +18,6 @@
         <!-- //action="index.php?requete=accueil" -->
         <div class="form__conteneur" action="index.php?requete=accueil">
             <form class="form">
-
-
-
                 <div class="form__label__aj">
                     <input type="number" name="millesime" required>
                     <label>Millesime </label>
@@ -34,7 +31,7 @@
                     <label>Date d'achat </label>
                 </div>
                 <div class="form__label__aj">
-                    <input type="text" name="prix" required>
+                    <input type="text"  name="prix" required>
                     <label>Prix </label>
                 </div>
 
