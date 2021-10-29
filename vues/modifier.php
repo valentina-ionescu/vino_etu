@@ -9,28 +9,25 @@
                 <div class="form__image flex">
                 <img src="<?php echo $row['image'] ?>" alt="">
                 </div>
-                <!-- <form class="form__modif flex col" action="index.php?requete=accueil"> -->
                 <div class="form__modif flex col">
                                 <h3 data-id="<?php echo $_POST['id'] ?>"><?php echo $row['nom']; ?></h3>
-                                <div class="form__label">
-                                    <label>Millesime </label>
+                                <div class="form__label__md">
                                     <input type="number" name="millesime" value="<?php echo $row['millesime']; ?>">
+                                    <label>Millesime </label>
                                 </div>
-                                <div class="form__label">
-                                    <label>Date achat </label>
+                                <div class="form__label__md">
                                     <input type="date" name="date_achat" value="<?php echo $row['date_achat']; ?>">
+                                    <label>Date achat </label>
                                 </div>
-                                <div class="form__label">
-                                    <label>Prix </label>
-                                  <!-- a tester, prix en text - DK -->
-                                    <!-- <input type="text" pattern="[0-9]+([,][0-9]{1,2})?" name="prix" value="<?php echo $row['prix'];  ?>"> -->
+                                <div class="form__label__md">
                                     <input type="text" name="prix" value="<?php echo $row['prix']; ?>">
+                                    <label>Prix </label>
                                     </div>
-                                <div class="form__label">
-                                    <label>Garde</label>
+                                <div class="form__label__md">
                                     <input type="text" name="garde_jusqua" value="<?php echo $row['garde_jusqua']; ?>">
+                                    <label>Garde</label>
                                 </div>
-                                <div class="form__label">
+                                <div class="form__label__md">
                                     <label>Notes </label>
                                 <textarea rows="5" name="notes"><?php echo $row['notes']; ?></textarea>
                                 </div>
