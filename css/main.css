@@ -102,7 +102,12 @@ footer p {
 .row{
     flex-direction: row;
 }
-
+.column{
+    flex-direction: column;
+}
+.align-item-center{
+    align-items: center;
+}
 .justify-start{
     justify-content: flex-start;
 }
@@ -121,7 +126,9 @@ footer p {
 .mt-10{
     margin-top: 10rem;
 }
-
+.mb-1{
+    margin-bottom: 1em;
+}
 .relative{
     position: relative;
 }

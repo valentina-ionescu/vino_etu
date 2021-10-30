@@ -4,7 +4,7 @@
  * Classe qui sert a redirectionner ou include des Vues 
  *
  *
- * @author Valentina Ionescu
+ * @author PW2-DFV
  * @version 1.0
  *
  */

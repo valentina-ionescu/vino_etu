@@ -66,7 +66,8 @@ class Cellier extends Modele {
 
     public function getListeCellier()
 	{
-       // return $rows;
+       
+       
     }  
     
     /**
