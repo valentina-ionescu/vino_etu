@@ -43,7 +43,7 @@
 		<!-- <script src="./js/plugins.js"></script> -->
 		<script src="./js/main.js"></script>
 	</head>
-	<body >
+	<body class="relative" >
 		<header class="header__wrapper">
 			<nav class="nav__wrapper flex" role="navigation">
 				<div id="menuToggle">

@@ -43,7 +43,7 @@ class Controler
 				case 'modifierBouteilleCellier':
 					$this->modifierBouteilleCellier();
 					break; 
-				 case 'updateSAQ':
+				case 'updateSAQ':
 				 		$this->updateSAQ();
 				 		break; 
 				case 'profile':
@@ -126,13 +126,14 @@ class Controler
 			}
 		}
 
+		
 		private function listeBouteille()
 		{
 			$bte = new Bouteille();
             $cellier = $bte->getListeBouteilleCellier();
             
             echo json_encode($cellier);
-                  
+			include("vues/accueil.php");       
 		}
 		
 		private function autocompleteBouteille()

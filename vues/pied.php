@@ -1,11 +1,6 @@
 		</main>
-		<footer class="footer__wrapper">
-			<section class="footer__links">
-				<div>
-					<h3>À propos</h3>
-					<span>Ceci est un projet de develloppement web</span>
-				</div>
-			</section>
+		<footer class="footer__wrapper absolute">
+			
 			<section class="footer__copyright">
 				<p>&copy; Tous droits reservés - DFV 2021</p>
 			</section>

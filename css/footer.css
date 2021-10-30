@@ -1,6 +1,7 @@
 .footer__wrapper {
     width: 100%;
      /* margin-top: 20px;  */
+     bottom: 0;
 }
 
 .footer__wrapper>h2,
@@ -13,7 +14,8 @@
 
 .download__wrapper {
     display: flex;
-    justify-content: space-around   ;
+    justify-content: space-around 
+    
 }
 
 .download__wrapper>img {
