@@ -46,9 +46,7 @@ class Controler
 				case 'updateSAQ':
 				 		$this->updateSAQ();
 				 		break; 
-				// case 'listeCellier':
-				// 	$this->afficherListeCellier();
-				// 	break;
+				
 
 				case 'profile':
 					$this->afficherProfile();
@@ -104,14 +102,7 @@ class Controler
 			}
 		}
 
-		private function afficherListeCellier()
-		{
-			$cel = new Cellier();
-			$celliers = $cel->getListeCellier();
-            echo json_encode($celliers);
-
-
-		}
+		
 		private function listeBouteille()
 		{
 			$bte = new Bouteille();
