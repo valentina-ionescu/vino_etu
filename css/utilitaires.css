@@ -36,8 +36,8 @@ html {
 body {
     font-family: var(--ff-sans-serif);
     font-size: 0.875em;
-    /* max-width: calc(40 * var(--vspace)); */
     margin: 0 auto;
+    position: relative;
 }
 
 main {

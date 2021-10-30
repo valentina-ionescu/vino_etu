@@ -3,7 +3,7 @@
 			<section class="footer__links">
 				<div>
 					<h3>À propos</h3>
-					<span>Ceci est un projet de develloppement web</span>
+					<span>Ceci est un projet de developpement web</span>
 				</div>
 			</section>
 			<section class="footer__copyright">

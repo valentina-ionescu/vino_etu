@@ -87,7 +87,7 @@ class Controler
 			$User = new Usager();
 
 			include("vues/entete.php");
-			include("vues/profile.php");
+		    include("vues/profile.php");
 			include("vues/pied.php");
 		}
 		

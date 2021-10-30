@@ -15,7 +15,7 @@
             <span class="center">
                 <div class="select"> 
                 <select name="selectCellier" id="">
-                    <option value="" disabled selected>Choisiser votre cellier</option>
+                    <option value="" disabled selected>Choisissez votre cellier</option>
                     <?php foreach ($dataC as $cle => $cellier) { ?>
                         <option value="<?php echo $cellier['id'] ?>"><?php echo $cellier['nom_cellier'] ?></option>
                     <?php }                 } else {
