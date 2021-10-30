@@ -53,6 +53,7 @@
 					<span></span>
 					<ul class="header__menu__links" id="menu">
 						<li><a href="?requete=accueil">Mon cellier</a></li>
+						<!-- <li><a href="?requete=listeCellier">Liste Celliers</a></li> -->
 						<li><a href="?requete=ajouterNouvelleBouteilleCellier">Ajouter une bouteille au cellier</a></li>
 						<li><a href="?requete=updateSAQ">Importation du SAQ</a></li>
 					</ul>

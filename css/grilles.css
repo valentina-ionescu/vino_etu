@@ -35,6 +35,14 @@
     gap: 10px;
 }
 
+.carte.horizontale {
+    flex-direction: row;
+    justify-content: unset;
+    flex-basis: 95vw;
+    min-width: unset;
+    align-items: center;
+}
+
 .carte:hover {
     box-shadow: 0 2px 25px rgba(0, 0, 0, 0.1);
 }
@@ -44,12 +52,20 @@
     height: 30px;
     text-align: right;
     font-weight: 600;
+    position: absolute;
+}
+
+.carte.horizontale .carte__tag-top span {
+    display: block;
+    display: inline-block;
+    border-radius: 4px 0 4px 0;
+    padding: 5px;
 }
 
 .carte__tag-top span {
     display: block;
     display: inline-block;
-    border-radius:  0 4px 0  4px;
+    border-radius: 0 4px 0 4px;
     padding: 5px;
 }
 
@@ -73,6 +89,11 @@
     flex-direction: column;
 }
 
+.carte__top.carte__start {
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
 .carte__contenu {
     flex-basis: 100%;
     display: flex;
@@ -87,6 +108,8 @@
     height: 20ch;
     min-height: 15vh;
     border-radius: 4px;
+
+  
 }
 
 .carte__image img {
@@ -94,49 +117,67 @@
     height: 100%;
     object-fit: contain;
 }
-.carte__format.absolute{
+
+.carte__format.absolute {
     left: 10px;
     top: 10px;
 }
 
 .btnAjouter, .btnBoire {
-    padding: 3px 6px;
-    border-radius: 3px;
+    padding: 2px 3px;
+    border-radius: 2px;
     border: none;
-    border: 2px solid var(--bg-primaire);
+    /* border: 2px solid var(--bg-primaire); */
     font-size: 14px;
     cursor: pointer;
     transition-duration: 0.3s;
-
 }
 
-.btnBoire {
+/* .btnBoire {
     background: var(--bg-primaire);
     color: white;
-}
+} */
 
-.btnAjouter {
+.btnAjouter, .btnBoire {
     color: var(--bg-primaire);
 }
 
 .btnAjouter:hover, .btnBoire:hover {
-    background: var(--bg-primaire-autre);
+    /* background: var(--bg-primaire-autre); */
     border-color: var(--bg-primaire-autre);
-    color: white;
+    border: 2px solid var(--bg-primaire);
+    /* color: white; */
+    color: var(--bg-primaire-autre);
 }
 
 .btnBoire:active {
-    background: var(--bg-sombre);
-    color: white;
+    /* background: var(--bg-sombre); */
+    /* color: white; */
 }
 
 .carte__quantite {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    /* display: block;  */
+    text-align: center;
+    min-width: 50px;
+    /* display: block; */
+    justify-content: center;
     align-items: center;
-    align-content: space-around;
+    FONT-WEIGHT: 100;
+    /* padding: 15px 0; */
+}
+
+.carte__quantite.column {
+    flex-direction: column;
+}
+
+.carte.horizontale .carte__quantite {
+    height: 80%;
+    display: flex;
+    text-align: center;
+    flex-wrap: nowrap;
+    align-items: center;
     gap: 20px;
+    justify-content: space-between;
 }
 
 .carte__description p {
@@ -161,11 +202,12 @@
     font-size: 20px;
     color: #293451;
 }
-.carte__description-prix{
-    font-size: 16px;
 
+.carte__description-prix {
+    font-size: 16px;
 }
-.carte__lien{
+
+.carte__lien {
     color: var(--bg-primaire);
 }
 
@@ -180,7 +222,6 @@ summary {
     font-weight: bold;
     margin: -.5em -.5em 0;
     padding: .5em;
-
 }
 
 details[open] {
@@ -188,35 +229,59 @@ details[open] {
     border: 1px solid rgb(233, 230, 230);
 }
 
-summary:hover{
+summary:hover {
     color: var(--bg-primaire);
-
 }
+
 details[open] summary {
     /* border-bottom: 1px solid #aaa; */
     color: var(--bg-primaire);
     margin-bottom: .5em;
 }
 
-@media all and  (max-width:460px) {
-    .carte__tag-top{
-        font-size: 1.3rem;
-        margin-bottom: 3px;
+@media all and (max-width:460px) {
+    .carte__tag-top {
+        font-size: .8rem;
+        margin-bottom: 2px;
+        top: 0;
+    }
+    .carte__tag-top span {
+        padding: 4px;
+    }
+    .carte__top {
+        display: block;
+        padding: 10px 0 10px 10px;
     }
     .carte {
         min-width: 95vw;
     }
     .carte__description-nom {
-        font-size: 1.4em;
+        font-size: 1em;
+        padding: 0;
+    }
+    .carte__description-pays {
+        font-size: 1em;
+        font-weight: 600;
     }
     .btnAjouter, .btnBoire {
-
-        padding: 10px 15px;
+        /* border-radius: 50%; */
+        padding: 3px 5px;
         font-size: 18px;
-
     }
     .quantite {
         font-size: 16px;
+    }
+    .carte__contenu {
+        padding: 10px 10px 10px 0;
+    }
+    .carte__image {
+        width: 80px;
+      
+    }
+    .carte.horizontale .carte__quantite {
+      
+        margin-left: -10px;
+        justify-content: center;
     }
 }
 
@@ -240,7 +305,98 @@ details[open] summary {
     margin: 0;
 }
 
-.cellier__information__wrapper p{
-   margin-top: 0.1em;
-   margin-bottom: 0.1em;
+.cellier__information__wrapper p {
+    margin-top: 0.1em;
+    margin-bottom: 0.1em;
+}
+
+/* Trop down */
+
+.row {
+    display: flex;
+}
+
+/* Accordion styles */
+
+.tabs {
+    border-radius: 2px;
+    overflow: hidden;
+    /* box-shadow: 0 4px 4px -2px rgba(0,0,0,0.5); */
+}
+
+.tab {
+    width: 100%;
+    color: white;
+    overflow: hidden;
+}
+
+.tab-label {
+    padding: 5px 0;
+    display: flex;
+    /* justify-content: space-between; */
+    gap: 10px;
+    /* background: var(--bg-doree); */
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.tab-label:hover {
+    /* background: var(--bg-primaire); */
+}
+
+.tab-label::after {
+    content: "\276F";
+    width: 1em;
+    height: 1em;
+    text-align: center;
+    transition: all .35s;
+}
+
+.tab-content {
+    max-height: 0;
+    padding: 0 1em;
+    color: var(--bg-sombre);
+    background: var(--bg-clair);
+    transition: all .2s;
+    left: 0;
+    display: none;
+    margin-top: 10px;
+    box-shadow: 0 4px 4px -2px rgba(0,0,0,0.5); 
+}
+
+.tab-close {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1em;
+    font-size: 0.75em;
+    background: var(--bg-sombre);
+    cursor: pointer;
+}
+
+.tab-close:hover {
+    background: var(--bg-primaire);
+}
+
+.note-input {
+    border: none;
+    box-shadow: none;
+}
+
+.note-input:checked+.tab-label {
+    background: var(--bg-clair);
+}
+
+.note-input:checked+.tab-label::after {
+    transform: rotate(90deg);
+}
+
+.note-input:checked ~.tab-content {
+    max-height: 100vh;
+    padding: 1em;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    left: 0;
+    display: block;
 }

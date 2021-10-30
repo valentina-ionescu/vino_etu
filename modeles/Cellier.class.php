@@ -20,7 +20,18 @@ class Cellier extends Modele {
 
     public function getListeCellier()
 	{
-       // return $rows;
+        $rows = Array();
+		$res = $this->_db->query('Select * from '. self::TABLE);
+		if($res->num_rows)
+		{
+			while($row = $res->fetch_assoc())
+			{
+				$rows[] = $row;
+			}
+		}
+		 echo $row;
+		return $rows;
+       
     }  
     
     /**

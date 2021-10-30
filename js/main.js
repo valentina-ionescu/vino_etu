@@ -34,7 +34,7 @@ window.addEventListener('load', function() {
                 console.log(data);
                  let el = document.querySelector(`[data-js-cellier="${id}"]`);
                  el.innerHTML = '';
-                 el.innerHTML = `<strong>${data} </strong> bouteilles`;
+                 el.innerHTML = `<strong>${data} </strong> `;
 
               }).catch(error => {
                 console.error(error);
@@ -67,7 +67,7 @@ window.addEventListener('load', function() {
                 let el = document.querySelector(`[data-js-cellier="${id}"]`);
                 console.log(el)
                 el.innerHTML = '';
-                el.innerHTML = `<strong>${data} </strong> bouteilles`;
+                el.innerHTML = `<strong>${data} </strong> `;
               }).catch(error => {
                 console.error(error);
               });
