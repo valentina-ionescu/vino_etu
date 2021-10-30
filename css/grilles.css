@@ -362,7 +362,7 @@ details[open] summary {
     transition: all .2s;
     left: 0;
     display: none;
-    margin-top: 10px;
+    margin-top: 5px;
     box-shadow: 0 4px 4px -2px rgba(0,0,0,0.5); 
 }
 

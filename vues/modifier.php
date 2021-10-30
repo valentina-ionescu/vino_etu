@@ -1,43 +1,32 @@
-
-    <div class="form__contenant flex col" vertical layout>
-
-            
-       
-            
-        
-            <div class="form__carte">
-                <div class="form__image flex">
-                <img src="<?php echo $row['image'] ?>" alt="">
-                </div>
-                <form class="form__modif flex col" action="index.php?requete=accueil">
-                                <h3 data-id="<?php echo $_POST['id'] ?>"><?php echo $row['nom']; ?></h3>
-                                <div class="form__label">
-                                    <label>Millesime </label>
-                                    <input type="number" name="millesime" value="<?php echo $row['millesime']; ?>">
-                                </div>
-                                <div class="form__label">
-                                    <label>Date achat </label>
-                                    <input type="date" name="date_achat" value="<?php echo $row['date_achat']; ?>">
-                                </div>
-                                <div class="form__label">
-                                    <label>Prix </label>
-                                  <!-- a tester, prix en text - DK -->
-                                    <!-- <input type="text" pattern="[0-9]+([,][0-9]{1,2})?" name="prix" value="<?php echo $row['prix'];  ?>"> -->
-                                    <input type="text" name="prix" value="<?php echo $row['prix']; ?>">
-                                    </div>
-                                <div class="form__label">
-                                    <label>Garde</label>
-                                    <input type="text" name="garde_jusqua" value="<?php echo $row['garde_jusqua']; ?>">
-                                </div>
-                                <div class="form__label">
-                                    <label>Notes </label>
-                                <textarea rows="5" name="notes"><?php echo $row['notes']; ?></textarea>
-                                </div>
-                                    <!-- <button class="btn btn-accent solid" class='btnModifier'>Modifier la bouteille</button> -->
-                                    <button class="btn btn-accent solid btnModifier">Modifier la bouteille</button>
-                
-                </form>
+<div class="form__contenant flex col" vertical layout>
+    <div class="form__carte">
+        <div class="form__image flex">
+            <img src="<?php echo $row['image'] ?>" alt="">
+        </div>
+        <div class="form__modif flex col">
+            <h3 data-id="<?php echo $_POST['id'] ?>"><?php echo $row['nom']; ?></h3>
+            <div class="form__label__md">
+                <input type="number" name="millesime" value="<?php echo $row['millesime']; ?>">
+                <label>Millesime </label>
             </div>
+            <div class="form__label__md">
+                <input type="date" name="date_achat" value="<?php echo $row['date_achat']; ?>">
+                <label>Date achat </label>
+            </div>
+            <div class="form__label__md">
+                <input type="text" name="prix" value="<?php echo $row['prix']; ?>">
+                <label>Prix </label>
+            </div>
+            <div class="form__label__md">
+                <input type="text" name="garde_jusqua" value="<?php echo $row['garde_jusqua']; ?>">
+                <label>Garde</label>
+            </div>
+            <div class="form__label__md">
+                <label>Notes </label>
+                <textarea rows="5" name="notes"><?php echo $row['notes']; ?></textarea>
+            </div>
+            <button class="btnModifier">Modifier la bouteille</button>
         </div>
     </div>
-
+</div>
+</div>

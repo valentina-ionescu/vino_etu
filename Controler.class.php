@@ -46,13 +46,14 @@ class Controler
 				case 'updateSAQ':
 				 		$this->updateSAQ();
 				 		break; 
-				
-
 				case 'profile':
 					$this->afficherProfile();
 					break;
 				case 'profileConnexion':
 					$this->gestionConnexion();
+					break;
+				case 'getCellier':
+					$this->getCellier();
 					break;
 				default:
 					$this->accueil();
@@ -62,14 +63,22 @@ class Controler
 
 		private function accueil()
 		{
-			$bte = new Bouteille();
 			$User = new Usager();
+			$cel = new Cellier();
 
-			$data = $bte->getListeBouteilleCellier();
+			if (isset($_SESSION['usager_id'])) {
+				$dataC = $cel->getCellierInfo();
+			}
+
+			if (isset($_SESSION['cellier_id'])) {
+
+				$bte = new Bouteille();
+				
+				$dataB = $bte->getListeBouteilleCellier();
+			}
 
 			include("vues/entete.php");
 			include("vues/cellier.php");
-
 			include("vues/pied.php");
 		}
 
@@ -80,7 +89,22 @@ class Controler
 			include("vues/entete.php");
 			include("vues/profile.php");
 			include("vues/pied.php");
-			
+		}
+		
+		private function getCellier()
+		{
+			$cel = new Cellier();
+			$bte = new Bouteille();
+
+			$body = json_decode(file_get_contents('php://input'));
+			echo $body->id;
+
+			$_SESSION['cellier_id'] = $body->id;
+
+			echo $_SESSION['cellier_id'];
+
+			$dataB = $bte->getListeBouteilleCellier();
+			$dataC = $cel->getCellierInfo();
 		}
 
 		private function gestionConnexion()

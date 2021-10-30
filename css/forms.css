@@ -40,6 +40,7 @@ main {
     max-width: fit-content;
     text-align: center;
     justify-content: center;
+    padding: 0 .25em
     /* color: #d3b3b3; */
 }
 
@@ -57,11 +58,9 @@ main {
     border-radius: 5px;
 }
 
-/* .form__modif {
-    align-self: center;
-    flex-basis: 85%;
-    width: 85vw;
-} */
+.form__modif {
+    padding: 0 .25em
+}
 
 
 .form__modif label {
@@ -224,9 +223,9 @@ button {
 	resize: none;
 }
 
-.form__label__aj:last-of-type>input{
+/* .form__label__aj:last-of-type>input{
     border: none;
-}
+} */
 
 .form > div {
 	position: relative;
@@ -267,3 +266,15 @@ input[type=date]:required:invalid::-webkit-datetime-edit {
 input[type=date]:focus::-webkit-datetime-edit {
     color: black !important;
 }
+
+/*CSS pour le select du cellier*/
+
+select {
+    background-color: var(--bg-medium);
+    color: var(--bg-clair);
+    border-radius: 5px;
+    padding: 10px;
+    width: 20em;
+    margin: 10px;
+}
+
