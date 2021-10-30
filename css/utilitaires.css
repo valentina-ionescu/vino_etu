@@ -46,6 +46,10 @@ main {
     margin-left: auto;
     margin-top: 102px;
     padding-bottom: 2em;
+<<<<<<< HEAD
+=======
+    max-width: 100vw;
+>>>>>>> f28b8ac235b8b71c1e6e5425df8a3706416a71a2
     min-height: 100%;
 }
 

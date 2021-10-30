@@ -106,7 +106,7 @@
                                             <p class="garde_jusqua"><strong>Garde:</strong> <?php echo $bouteille['garde_jusqua'] ?></p>
                                             <?php if ($bouteille['notes'] != null) { ?>
 
-                                                <p class="date_achat"><strong>Date d'achat:</strong>
+                                                <p class="date_achat"><strong>Note:</strong>
                                                     <?php echo $bouteille['notes'] ?>
                                                 </p>
 
