@@ -46,6 +46,8 @@ main {
     margin-left: auto;
     margin-top: 102px;
     padding-bottom: 2em;
+    max-width: 100vw;
+    min-height: 100%;
 }
 
 h1, h2, h3, h4, h5, h6 {
