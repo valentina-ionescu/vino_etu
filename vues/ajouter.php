@@ -11,31 +11,34 @@
 
     <div class="form__carte">
       
-        <h3 data-id="" class="nom_bouteille carte__description-nom"></h3>
+        <!-- <h3 data-id="" class="nom_bouteille carte__description-nom"></h3> -->
       
         <div class="form__conteneur">
            
             <div class="form">
                 <div class="form__label__aj">
-                    <input type="number" name="millesime" required>
-                    <label>Millesime </label>
+                    <input type="text" name="nom" placeholder="Nom" class="nom_bouteille" required>
+                    <!-- <label>Nom </label> -->
                 </div>
                 <div class="form__label__aj">
-                    <input type="number" name="quantite" value="1" required>
-                    <label>Quantité </label>
+                    <input type="number" name="millesime" placeholder="Millesime" required>
+                    <!-- <label>Millesime </label> -->
                 </div>
                 <div class="form__label__aj">
-                    <input type="date" name="date_achat" value="<?php echo date('Y-m-d');?>" required>
-                    <label>Date d'achat </label>
+                    <input type="number" name="quantite" placeholder="Quantité" value="1" required>
+                    <!-- <label>Quantité </label> -->
                 </div>
                 <div class="form__label__aj">
-                    <input type="text"  name="prix" required>
-                    <label>Prix </label>
+                    <input type="date" name="date_achat" placeholder="Date d'achat"  value="<?php echo date('Y-m-d');?>" required>
+                    <!-- <label>Date d'achat </label> -->
                 </div>
-
                 <div class="form__label__aj">
-                    <input type="text" name="garde_jusqua" required>
-                    <label>Garde </label>
+                    <input type="text"  placeholder="Prix" name="prix" required>
+                    <!-- <label>Prix </label> -->
+                </div>
+                <div class="form__label__aj">
+                    <input type="text" placeholder="Garde" name="garde_jusqua" required>
+                    <!-- <label>Garde </label> -->
                 </div>
                 
                 <button class="btn btn-accent solid" name="ajouterBouteilleCellier">Ajouter la bouteille</button>

@@ -14,6 +14,7 @@
     --vspace-1: calc(2 * var(--space) * 1rem);
     --vspace-2: calc(1.5 * var(--space) * 1rem);
     --vspace-3: calc(0.5 * var(--space) * 1rem);
+    
     /*  Les couleurs */
     --bg-primaire: #7B033D;
     --bg-primaire-autre: #410623;
@@ -46,10 +47,6 @@ main {
     margin-left: auto;
     margin-top: 102px;
     padding-bottom: 2em;
-<<<<<<< HEAD
-=======
-    max-width: 100vw;
->>>>>>> f28b8ac235b8b71c1e6e5425df8a3706416a71a2
     min-height: 100%;
 }
 

@@ -40,8 +40,8 @@ main {
     max-width: fit-content;
     text-align: center;
     justify-content: center;
-    padding: 0 .25em
-    /* color: #d3b3b3; */
+    /* padding: 0 .25em; */
+    padding: 1em .25em 0 .25em;
 }
 
 .form__carte {
@@ -64,7 +64,7 @@ main {
 
 
 .form__modif label {
-    font-size:  clamp(1rem, -0.875rem + 8.333333vw, 1.5rem);;
+    font-size:  clamp(1rem, -0.875rem + 8.333333vw, 1.5rem);
 }
 .form__image {
     width: 100%;
@@ -147,9 +147,11 @@ textarea {
 
 .form__recherche input {
  width: 85vw;
- background: var(--bg-input);
+ background: transparent;
  padding-left: 0;
- /* border-bottom: 1px solid var(--bg-clair); */
+}
+.form__recherche ::placeholder {
+    color: #f1f1f1;
 }
 
 .listeAutoComplete {
@@ -259,6 +261,9 @@ button {
 	border-bottom: 2px solid var(--bg-medium);
 }
 
+.nom_bouteille {
+    font-size: clamp(.75rem, -0.875rem + 8.333333vw, 1rem);
+}
 /* enlever le 'YYYY-MM-DD' de l'input date */
 input[type=date]:required:invalid::-webkit-datetime-edit {
     color: transparent;
