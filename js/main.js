@@ -155,13 +155,70 @@ window.addEventListener('load', function () {
         });
     });
   });
+  //////////////////////////////////////////////
+  //Fonction SUPPRIMER                        //
+  //////////////////////////////////////////////
+  // let modifBouteille = {
+  //   millesime: document.querySelector("[name='millesime']"),
+  //   date_achat: document.querySelector("[name='date_achat']"),
+  //   prix: document.querySelector("[name='prix']"),
+  //   garde_jusqua: document.querySelector("[name='garde_jusqua']"),
+  //   notes: document.querySelector("[name='notes']"),
+  // };
 
+  document.querySelectorAll(".btnSupprimer").forEach(function (element) {
+    element.addEventListener("click", function (evt) {
+      
+      console.log(element);
+      let id = element.dataset.id;
+      console.log('id',id)
+      // var param = {
+      //   "id": id,
+      //   "millesime": modifBouteille.millesime.value,
+      //   "date_achat": modifBouteille.date_achat.value,
+      //   "garde_jusqua": modifBouteille.garde_jusqua.value,
+      //   "notes": modifBouteille.notes.value,
+      //   "prix": modifBouteille.prix.value,
+      // };
+    
+      afficherModale(id);
+      let requete = new Request("index.php?requete=supprimerBouteilleCellier", { method: 'DELETE', body: '{"id": '+id+'}'});
+      console.log(requete);
+    //   fetch(requete)
+    //     .then(response => {
+    //       if (response.status === 200) {
+    //         //re-afficher le cellier
+    //         window.location.href = "index.php?requete=accueil"
+    //         return response.json();
+    //       } else {
+    //         throw new Error('Erreur');
+    //       }
+    //     })
+    //     .then(response => {
+    //       console.log(response);
+
+    //     }).catch(error => {
+    //       console.error(error);
+    //     });
+    });
+  });
+
+
+  //////////////////////////////////////////////
+  //Fonction afficherModale                   //
+  //////////////////////////////////////////////
+  function afficherModale(id) {
+    console.log(id);
+  }
+  
+  
+  
   //////////////////////////////////////////////
   //Fonction autoComplete                     //
   //////////////////////////////////////////////
 
   let inputNomBouteille = document.querySelector("[name='nom_bouteille']");
-  
+  console.log('inputNomBouteille',inputNomBouteille)
   let liste = document.querySelector('.listeAutoComplete');
 
   if (inputNomBouteille) {
@@ -170,6 +227,7 @@ window.addEventListener('load', function () {
       let nom = inputNomBouteille.value;
 
       liste.innerHTML = "";
+      console.log('nom',nom)
       if (nom) {
         
         // enleve le BaseURL+ de la Request, pour la faire fonctionner
@@ -215,8 +273,8 @@ window.addEventListener('load', function () {
     });
 
     let bouteille = {
-      // nom: document.querySelector(".nom_bouteille"),
-      nom: document.querySelector("[name='nom']"),
+      nom: document.querySelector(".nom_bouteille"),
+      // nom: document.querySelector("[name='nom']"),
       millesime: document.querySelector("[name='millesime']"),
       quantite: document.querySelector("[name='quantite']"),
       date_achat: document.querySelector("[name='date_achat']"),
@@ -232,10 +290,10 @@ window.addEventListener('load', function () {
         bouteille.nom.dataset.id = evt.target.dataset.id;
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         bouteille.prix.setAttribute('value', evt.target.dataset.prix)
-        bouteille.nom.setAttribute('value', evt.target.innerText)
+        // bouteille.nom.setAttribute('value', evt.target.innerText)
         console.log('nom', evt.target.innerText)
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // bouteille.nom.innerHTML = evt.target.innerHTML;
+        bouteille.nom.innerHTML = evt.target.innerHTML;
         // bouteille.prix.setAttribute('value', evt.target.dataset.prix)
         console.log(evt.target.dataset.prix);
 

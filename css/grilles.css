@@ -123,6 +123,18 @@
     top: 10px;
 }
 
+/* Suppression de bouteille */
+.carte__supp {
+   padding: unset;
+   width: unset;
+   background-color: transparent;
+   color: var(--bg-primaire);
+   align-self: baseline;
+}
+.carte__description__wrapper {
+
+}
+
 .btnAjouter, .btnBoire {
     padding: 2px 3px;
     border-radius: 2px;

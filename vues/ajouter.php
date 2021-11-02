@@ -11,15 +11,14 @@
 
     <div class="form__carte">
       
-        <!-- <h3 data-id="" class="nom_bouteille carte__description-nom"></h3> -->
+        <h3 data-id="" class="nom_bouteille carte__description-nom"></h3>
       
         <div class="form__conteneur">
            
             <div class="form">
-                <div class="form__label__aj">
+                <!-- <div class="form__label__aj">
                     <input type="text" name="nom" placeholder="Nom" class="nom_bouteille" required>
-                    <!-- <label>Nom </label> -->
-                </div>
+                </div> -->
                 <div class="form__label__aj">
                     <input type="number" name="millesime" placeholder="Millesime" required>
                     <!-- <label>Millesime </label> -->
