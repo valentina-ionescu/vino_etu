@@ -12,7 +12,12 @@ class Cellier extends Modele {
 
     const TABLE = 'vino__cellier';
 
-
+    
+    /**
+     * getCellierInfo
+     *
+     * @return void
+     */
     public function getCellierInfo()
 	{
 
@@ -34,7 +39,12 @@ class Cellier extends Modele {
         }
         return $rows;
     }
-
+    
+    /**
+     * getCellierBouteille
+     *
+     * @return void
+     */
     public function getCellierBouteille()
 	{
 
@@ -58,6 +68,24 @@ class Cellier extends Modele {
         return $rows;
     }
     
+    
+    /**
+     * ajouterCellier
+     *
+     * @param  mixed $nomCellier
+     * @return void
+     */
+    public function ajouterCellier($nomCellier)
+	{
+        $idUser = $_SESSION['usager_id'];
+
+        $requete = "INSERT INTO vino__cellier (nom_cellier, usager_id) VALUE ('".$nomCellier."', '".$idUser."')";
+
+        $res = $this->_db->query($requete);
+
+		return $res;
+    }   
+
     /**
      * getListeCellier - Cette méthode récupère la liste de tous les celliers 
      *
@@ -80,17 +108,6 @@ class Cellier extends Modele {
 	{
       //  return $row;
     }
-        
-    /**
-     * ajouterCellier Cette méthode ajoute un cellier avec les données reçues dans $data
-     *
-     * @param  Array $data Tableau des données du cellier à inserer
-     * @return int   $id du nouveau cellier inséré
-     */
-    public function ajouterCellier($data)
-	{
-       // return $id;
-    }   
         
     /**
      * supprimerCellier
