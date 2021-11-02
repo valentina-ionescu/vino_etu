@@ -76,6 +76,44 @@ window.addEventListener('load', function () {
   });
 
   //////////////////////////////////////////////
+  //Fonction ajouter Cellier                  //
+  //////////////////////////////////////////////
+
+  let newCellier = {
+    nom: document.querySelector("[name='nomCellier']"),
+  };
+
+  let btnAjouter = document.querySelector("[name='ajouterCellier']");
+  if (btnAjouter) {
+    btnAjouter.addEventListener("click", function (evt) {
+
+      var param = {
+        "nom": newCellier.nom.value,
+      };
+
+      let requete = new Request("index.php?requete=ajouterCellier", { method: 'POST', body: JSON.stringify(param), headers: {'Content-Type': 'application/json', }});
+      console.log(requete);
+      
+      fetch(requete)
+          .then(response => {
+              if (response.status === 200) {
+                  console.log(response);
+                  window.location.href = 'index.php?requete=accueil';
+                  return response.json();
+              } else {
+                throw new Error('Erreur');
+              }
+            }).then(response => {
+
+                console.log(response);
+
+              }).catch(error => {
+        console.error(error);
+      });
+    });
+  }
+
+  //////////////////////////////////////////////
   //Fonction Select Cellier                   //
   //////////////////////////////////////////////
 
@@ -92,19 +130,19 @@ window.addEventListener('load', function () {
           .then(response => {
               if (response.status === 200) {
                 console.log(response);
+                window.location.href = 'index.php?requete=accueil';
                 return response.json();
               } else {
                 throw new Error('Erreur');
               }
-            })
-      .then(response => {
-        console.log(response);
+            }).then(response => {
 
-      }).catch(error => {
+                console.log(response);
+
+              }).catch(error => {
         console.error(error);
       });
 
-      window.location.href = 'index.php?requete=accueil';
     })
   }
 
