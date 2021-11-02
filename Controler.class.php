@@ -34,6 +34,9 @@ class Controler
 				case 'ajouterNouvelleBouteilleCellier':
 					$this->ajouterNouvelleBouteilleCellier();
 					break;
+				case 'ajouterBouteilleNonListee':
+					$this->ajouterBouteilleNonListee();
+					break;
 				case 'ajouterBouteilleCellier':
 					$this->ajouterBouteilleCellier();
 					break;
@@ -49,6 +52,9 @@ class Controler
 				case 'profile':
 					$this->afficherProfile();
 					break;
+					case 'admin':
+						$this->afficherAdmin();
+						break;
 				case 'profileConnexion':
 					$this->gestionConnexion();
 					break;
@@ -133,7 +139,7 @@ class Controler
             $cellier = $bte->getListeBouteilleCellier();
             
             echo json_encode($cellier);
-			include("vues/accueil.php");       
+			 include("vues/accueil.php");       
 		}
 		
 		private function autocompleteBouteille()
@@ -147,6 +153,24 @@ class Controler
             echo json_encode($listeBouteille);
                   
 		}
+		private function ajouterBouteilleNonListee()
+	{
+		$body = json_decode(file_get_contents('php://input'));
+		if(!empty($body)){
+			$bte = new Bouteille();
+			 var_dump($_POST['data']);
+			
+			var_dump($body);
+			
+			$id = $bte->getListeBouteille();
+			var_dump($id);
+		}
+		else{
+			//  include("vues/entete.php");
+			// include("vues/ajouter.php");
+			// include("vues/pied.php");
+		}
+	}
 		private function ajouterNouvelleBouteilleCellier()
 		{
 			$body = json_decode(file_get_contents('php://input'));
@@ -155,14 +179,14 @@ class Controler
 				$bte = new Bouteille();
 				// var_dump($_POST['data']);
 				
-				//var_dump($data);
-				$resultat = $bte->ajouterBouteilleCellier($body);
-				echo json_encode($resultat);
+				var_dump($body);
+			//	$resultat = $bte->ajouterBouteilleCellier($body);
+				//echo json_encode($resultat);
 			}
 			else{
-				include("vues/entete.php");
+				 include("vues/entete.php");
 				include("vues/ajouter.php");
-				include("vues/pied.php");
+				// include("vues/pied.php");
 			}
 		}
 
@@ -217,6 +241,11 @@ class Controler
 			require_once('updateSAQ.php');
 
 
+		 }
+
+		 private function afficherAdmin(){
+			include("vues/entete_admin.php");
+			include("vues/admin_dashboard.php");
 		 }
 }
 ?>

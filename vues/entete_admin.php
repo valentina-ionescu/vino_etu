@@ -44,34 +44,31 @@
 		<!-- <script src="./js/plugins.js"></script> -->
 		<script src="./js/main.js"></script>
 	</head>
-	<body class="relative" >
-		<header class="header__wrapper">
-			<nav class="nav__wrapper flex" role="navigation">
+	<body class="relative admin_body" >
+    <header class="header__wrapper admin">
+			<nav class="nav__wrapper flex " role="navigation">
 				<div id="menuToggle">
 					<input type="checkbox" />
 					<span></span>
 					<span></span>
 					<span></span>
 					<ul class="header__menu__links" id="menu">
-							<?php if (isset($_SESSION['nom'])) { ?>
+							<!-- <?//php if (isset($_SESSION['nom'])) { ?>
 							<li><a href="?requete=accueil">Mon cellier</a></li>
-							<li><a href="?requete=ajouterNouvelleBouteilleCellier">Ajouter une bouteille au cellier</a></li>
+							<li><a href="?requete=ajouterNouvelleBouteilleCellier">Ajouter une bouteille au cellier</a></li> -->
 							<?php
 								if(isset($_SESSION['admin']) && $_SESSION['admin'] == 1){
-							?>
-							<!-- <li><a href="?requete=updateSAQ">Importation du SAQ</a></li> -->
-							<li><a href="?requete=admin">Admin - tableau de bord </a></li>
-
+							?><li><a href="?requete=updateSAQ">Importation du SAQ</a></li>
 							<?php
 								}
 							?>
-					<?php }else { ?>
+					<!-- <?//php }else { ?>
 						<li><a href="?requete=profile">Se connecter</a></li>
-					<?php } ?>
+					<?//php } ?> -->
 						</ul>
 				</div>
 				<a href="?requete=accueil" class="flex"><img class="header__logo" src="assets/img/logo/logo.svg" alt=""></a>
 				<a href="?requete=profile"><i class="fa fa-user-circle header__icon__user"></i></a>
 			</nav>
 		</header>
-		<main >	
+		<main class="admin_main">	

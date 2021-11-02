@@ -108,13 +108,13 @@ class SAQ extends Modele
 				}
 				// echo "</p>";
 
-				 array_push($data,['info'=>$info, "retour"=>$retour, "msg"=>$msg ] );// creer un array de donnees pour afficher sur la page. 
+				 array_push($data,['info'=>$info, "retour"=>$retour, "msg"=>$msg, 'i'=> $i++  ] );// creer un array de donnees pour afficher sur la page. 
 			}
 			
 		} 
 		
 	RequirePage::getView('importation', $data);
-
+		
 		return $i;
 	}
 

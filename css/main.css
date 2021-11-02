@@ -26,9 +26,14 @@
 
 body
 {
+    background-color: var(--bg-sombre);
   margin-top: 0px;
 }
 
+.admin_body{
+    background-color: var(--bg-clair);
+
+}
 .liste {
     display: block;
     border-top: 1px solid rgb(255, 255, 255);
@@ -104,6 +109,9 @@ footer p {
 }
 .column{
     flex-direction: column;
+}
+.gap-3{
+    gap: 3em;
 }
 .align-item-center{
     align-items: center;

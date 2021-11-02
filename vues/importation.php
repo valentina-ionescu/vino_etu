@@ -10,7 +10,7 @@
         </tr>
         <?php 
         foreach ($data as $row) {
-            //  var_dump($data);
+            //   var_dump($data);
 
         ?>
             <tr>

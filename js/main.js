@@ -80,29 +80,29 @@ window.addEventListener('load', function () {
   //////////////////////////////////////////////
 
   let inputSelectCellier = document.querySelector("[name='selectCellier']");
-  
+
   if (inputSelectCellier) {
-    inputSelectCellier.addEventListener('change', function(evt){
+    inputSelectCellier.addEventListener('change', function (evt) {
       console.log(inputSelectCellier.options[inputSelectCellier.selectedIndex].value);
       let id = inputSelectCellier.options[inputSelectCellier.selectedIndex].value;
 
-      let requete = new Request("index.php?requete=getCellier", {method: 'POST', body: '{"id": '+id+'}'});
+      let requete = new Request("index.php?requete=getCellier", { method: 'POST', body: '{"id": ' + id + '}' });
       console.log(requete);
       fetch(requete)
-          .then(response => {
-              if (response.status === 200) {
-                console.log(response);
-                return response.json();
-              } else {
-                throw new Error('Erreur');
-              }
-            })
-      .then(response => {
-        console.log(response);
+        .then(response => {
+          if (response.status === 200) {
+            console.log(response);
+            return response.json();
+          } else {
+            throw new Error('Erreur');
+          }
+        })
+        .then(response => {
+          console.log(response);
 
-      }).catch(error => {
-        console.error(error);
-      });
+        }).catch(error => {
+          console.error(error);
+        });
 
       window.location.href = 'index.php?requete=accueil';
     })
@@ -159,19 +159,25 @@ window.addEventListener('load', function () {
   //////////////////////////////////////////////
   //Fonction autoComplete                     //
   //////////////////////////////////////////////
+  let inputNomBouteilleForm = document.querySelector("[name='nom']");
 
   let inputNomBouteille = document.querySelector("[name='nom_bouteille']");
-  
+
   let liste = document.querySelector('.listeAutoComplete');
+
+  let imageFormGroup = document.querySelector('.image_form_group');
 
   if (inputNomBouteille) {
     inputNomBouteille.addEventListener("keyup", function (evt) {
       console.log(evt);
       let nom = inputNomBouteille.value;
-
+      if(!imageFormGroup.classList.contains('hidden')){
+        imageFormGroup.classList.add('hidden');
+     }
+     
       liste.innerHTML = "";
       if (nom) {
-        
+
         // enleve le BaseURL+ de la Request, pour la faire fonctionner
         let requete = new Request("index.php?requete=autocompleteBouteille", { method: 'POST', body: '{"nom": "' + nom + '"}' });
         console.log(requete)
@@ -193,10 +199,9 @@ window.addEventListener('load', function () {
           })
           .then(data => {
             data.forEach(function (element) {
-              console.log(element)
-              // console.log(liste.innerHTML)
+              // console.log(element)
 
-              //liste.innerHTML += "<li data-id='"+element.id+"'>"+element.nom+"</li>";
+              
               //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
               liste.innerHTML += "<li data-id='" + element.id + "' data-prix='" + element.prix_saq + "'>" + element.nom + "</li>";
               //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -206,16 +211,19 @@ window.addEventListener('load', function () {
           .catch(error => {
             console.error(error);
           });
+       
+     
       }
 
-    //////////////////////////////////////////////
-    //Fonction Nouvelle Bouteille               //
-    //////////////////////////////////////////////
+      //////////////////////////////////////////////
+      //Fonction Nouvelle Bouteille               //
+      //////////////////////////////////////////////
 
     });
 
+
     let bouteille = {
-      nom: document.querySelector(".nom_bouteille"),
+      nom: document.querySelector("[name='nom']"),
       millesime: document.querySelector("[name='millesime']"),
       quantite: document.querySelector("[name='quantite']"),
       date_achat: document.querySelector("[name='date_achat']"),
@@ -224,18 +232,34 @@ window.addEventListener('load', function () {
       // notes : document.querySelector("[name='notes']"),
     };
 
-
+    // console.log(inputNomBouteilleForm.value)
+   
+    
     liste.addEventListener("click", function (evt) {
-      console.dir(evt.target)
+
+      console.log(evt.target)
+      console.log(bouteille.nom)
+      console.log(evt.target.dataset.prix)
+       
+     
       if (evt.target.tagName == "LI") {
-        bouteille.nom.dataset.id = evt.target.dataset.id;
+
+    // si un nom a ete ajoutee manuellement dans le input de nom de bouteille, mais usager change d'avis et veux rechercher, allors remplace-le avec les valeurs de la bouteille choisie de la liste autocomplete
+        if (inputNomBouteilleForm != ""){
+          bouteille.nom.value =  evt.target.innerHTML;
+         }
+       
+       // bouteille.nom.setAttribute('value', evt.target.innerHTML);
+
+       // 
+       bouteille.nom.dataset.id = evt.target.dataset.id;
+
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         bouteille.prix.setAttribute('value', evt.target.dataset.prix)
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        bouteille.nom.innerHTML = evt.target.innerHTML;
-        // bouteille.prix.setAttribute('value', evt.target.dataset.prix)
-        console.log(evt.target.dataset.prix);
+        
 
+        // vider le dom Liste et le texte ecrit dans le input de recherche
         liste.innerHTML = "";
         inputNomBouteille.value = "";
 
@@ -254,26 +278,28 @@ window.addEventListener('load', function () {
           "millesime": bouteille.millesime.value,
         };
 
-        let requete = new Request("index.php?requete=ajouterNouvelleBouteilleCellier", 
-                          { method: 'POST', 
-                            body: JSON.stringify(param), 
-                            headers: {'Content-Type': 'application/json', }});
-                            console.log(requete);
-        
-        fetch(requete)    
-        .then(response => 
-          {console.log(response);
-            response.json();})
-        .then(json => 
+        let requete = new Request("index.php?requete=ajouterNouvelleBouteilleCellier",
           {
-            console.log(json)                    
-            window.location.href = "index.php?requete=accueil"
+            method: 'POST',
+            body: JSON.stringify(param),
+            headers: { 'Content-Type': 'application/json', }
+          });
+        console.log(requete);
+
+        fetch(requete)
+          .then(response => {
+            console.log(response);
+            response.json();
+          })
+          .then(json => {
+            console.log(json)
+            // window.location.href = "index.php?requete=accueil"
           });
         // fetch(requete)
         //   .then(response => {
         //     console.log(response);
         //     if (response.status === 200) {
-              
+
         //       return response.json();
         //     } else {
         //       throw new Error('Erreur', response.status);
@@ -289,7 +315,117 @@ window.addEventListener('load', function () {
 
       });
     }
+
+
+
+
+  //////////////////////////////////////////////
+  //Fonction ajoute bouteille 'Non-listée'               //
+  //////////////////////////////////////////////
+
+
+  
+    }else if (inputNomBouteilleForm && !inputNomBouteille) {
+      
+      let imageInput = imageFormGroup.querySelector('[name="image"]');
+      
+    inputNomBouteilleForm.addEventListener('keyup', function (evt) {
+
+      console.log(inputNomBouteilleForm.value);
+      console.log(imageFormGroup);
+      console.log(imageInput);
+
+       if(inputNomBouteilleForm.value != ''){
+          imageFormGroup.classList.remove('hidden');
+
+       }else{
+         imageFormGroup.classList.add('hidden');
+
+      }
+     
+      
+    let btnAjouter = document.querySelector("[name='ajouterBouteilleCellier']");
+    if (btnAjouter) {
+      btnAjouter.addEventListener("click", function (evt) {
+        var param = {
+          "vino__bouteille_id": bouteille.nom.dataset.id,
+          "date_achat": bouteille.date_achat.value,
+          "garde_jusqua": bouteille.garde_jusqua.value,
+          "prix": bouteille.prix.value,
+          "quantite": bouteille.quantite.value,
+          "millesime": bouteille.millesime.value,
+        };
+
+        let requete = new Request("index.php?requete=ajouterBouteilleNonListee")
+      
+        /*   {
+            method: 'POST',
+            body: JSON.stringify(param),
+            headers: { 'Content-Type': 'application/json', }
+          });
+        
+
+        fetch(requete)
+          .then(response => {
+            console.log(response);
+            response.json();
+          })
+          .then(json => {
+            console.log(json)
+            // window.location.href = "index.php?requete=accueil"
+          });*/
+console.log(requete);
+
+        // fetch(requete)
+        //   .then(response => {
+        //     console.log(response);
+        //     if (response.status === 200) {
+
+        //       return response.json();
+        //     } else {
+        //       throw new Error('Erreur', response.status);
+        //     }
+        //   })
+        //   .then(response => {
+        //     console.log(response);
+        //     window.location.href = "index.php?requete=accueil"
+        //   }).catch(error => {
+        //     console.error(error);
+        //   });
+
+
+      });
+    }
+      
+      // let id = inputSelectCellier.options[inputSelectCellier.selectedIndex].value;
+
+     /* let requete = new Request("index.php?requete=getCellier", { method: 'POST', body: '{"id": ' + id + '}' });
+      console.log(requete);
+      fetch(requete)
+        .then(response => {
+          if (response.status === 200) {
+            console.log(response);
+            return response.json();
+          } else {
+            throw new Error('Erreur');
+          }
+        })
+        .then(response => {
+          console.log(response);
+
+        }).catch(error => {
+          console.error(error);
+        });
+
+      window.location.href = 'index.php?requete=accueil';*/
+    })
+  }else{
+    if(! imageFormGroup.classList.contains('hidden')){
+       imageFormGroup.classList.add('hidden');
+    }
+   
   }
+
 
 
 });
