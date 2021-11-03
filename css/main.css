@@ -248,6 +248,7 @@ a.btn {
     font-weight: 800;
     line-height: 16px;
     min-height: 40px;
+    transition: all .3ms ease-in-out;
 }
 
 .btn__annuler {
@@ -258,9 +259,9 @@ a.btn {
 
 .btn__danger:hover,
 .btn__danger:active {
-  background-color: initial;
+  background-color: var(--bg-clair);
   background-position: 0 0;
-  color: var(--bg-danger);
+  color: #222;
 }
 
 .btn__danger:active,
@@ -271,7 +272,7 @@ a.btn {
 .btn__annuler:active {
   background-color: initial;
   background-position: 0 0;
-  color: #ccc;
+  color: #333;
 }
 
 .modal__texte {
@@ -280,6 +281,11 @@ a.btn {
 }
 .fermer {
 text-align: right;
-font-size: 1rem;;
+font-size: 1rem;
 padding: 1em;
+transition: all .3ms ease-in-out;
+color: var(--bg-primaire);
+}
+.fermer:hover {
+color: var(--bg-sombre);
 }

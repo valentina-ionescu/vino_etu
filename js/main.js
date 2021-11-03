@@ -218,8 +218,11 @@ window.addEventListener('load', function () {
    //////////////////////////////////////////////
   //Fonction fermer Modale                   //
   //////////////////////////////////////////////
-  
-  
+  let fermerBouton = document.querySelector('.fermer');
+  fermerBouton.addEventListener('click', function (e) {
+     let modal = document.querySelector('.modal__wrapper');
+     modal.classList.remove('show');
+  })
   //////////////////////////////////////////////
   //Fonction autoComplete                     //
   //////////////////////////////////////////////
