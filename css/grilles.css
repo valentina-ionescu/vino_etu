@@ -298,9 +298,7 @@ details[open] summary {
 
 }
 
-.tab-label:hover {
-    /* background: var(--bg-primaire); */
-}
+
 
 .tab-label::after {
     content: "\276F";

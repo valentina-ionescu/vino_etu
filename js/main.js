@@ -76,6 +76,44 @@ window.addEventListener('load', function () {
   });
 
   //////////////////////////////////////////////
+  //Fonction ajouter Cellier                  //
+  //////////////////////////////////////////////
+
+  let newCellier = {
+    nom: document.querySelector("[name='nomCellier']"),
+  };
+
+  let btnAjouter = document.querySelector("[name='ajouterCellier']");
+  if (btnAjouter) {
+    btnAjouter.addEventListener("click", function (evt) {
+
+      var param = {
+        "nom": newCellier.nom.value,
+      };
+
+      let requete = new Request("index.php?requete=ajouterCellier", { method: 'POST', body: JSON.stringify(param), headers: {'Content-Type': 'application/json', }});
+      console.log(requete);
+      
+      fetch(requete)
+          .then(response => {
+              if (response.status === 200) {
+                  console.log(response);
+                  window.location.href = 'index.php?requete=accueil';
+                  return response.json();
+              } else {
+                throw new Error('Erreur');
+              }
+            }).then(response => {
+
+                console.log(response);
+
+              }).catch(error => {
+        console.error(error);
+      });
+    });
+  }
+
+  //////////////////////////////////////////////
   //Fonction Select Cellier                   //
   //////////////////////////////////////////////
 
@@ -89,22 +127,22 @@ window.addEventListener('load', function () {
       let requete = new Request("index.php?requete=getCellier", { method: 'POST', body: '{"id": ' + id + '}' });
       console.log(requete);
       fetch(requete)
-        .then(response => {
-          if (response.status === 200) {
-            console.log(response);
-            return response.json();
-          } else {
-            throw new Error('Erreur');
-          }
-        })
-        .then(response => {
-          console.log(response);
+          .then(response => {
+              if (response.status === 200) {
+                console.log(response);
+                window.location.href = 'index.php?requete=accueil';
+                return response.json();
+              } else {
+                throw new Error('Erreur');
+              }
+            }).then(response => {
 
-        }).catch(error => {
-          console.error(error);
-        });
+                console.log(response);
 
-      window.location.href = 'index.php?requete=accueil';
+              }).catch(error => {
+        console.error(error);
+      });
+
     })
   }
 
@@ -328,7 +366,7 @@ window.addEventListener('load', function () {
     }else if (inputNomBouteilleForm && !inputNomBouteille) {
       
       let imageInput = imageFormGroup.querySelector('[name="image"]');
-      
+
     inputNomBouteilleForm.addEventListener('keyup', function (evt) {
 
       console.log(inputNomBouteilleForm.value);

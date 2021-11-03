@@ -46,7 +46,7 @@
 	</head>
 	<body class="relative admin_body" >
     <header class="header__wrapper admin">
-			<nav class="nav__wrapper flex " role="navigation">
+			<nav class="nav__wrapper flex row align-item-center" role="navigation">
 				<div id="menuToggle">
 					<input type="checkbox" />
 					<span></span>
@@ -67,7 +67,11 @@
 					<?//php } ?> -->
 						</ul>
 				</div>
-				<a href="?requete=accueil" class="flex"><img class="header__logo" src="assets/img/logo/logo.svg" alt=""></a>
+                <a href="?requete=accueil" class="flex"><img class="header__logo" src="assets/img/logo/logo.svg" alt=""></a>
+                <div class="admin_content-title ">
+                <h2><i class="fas fa-tachometer-alt"></i> Panneau Administration</h2>
+            </div>
+				
 				<a href="?requete=profile"><i class="fa fa-user-circle header__icon__user"></i></a>
 			</nav>
 		</header>

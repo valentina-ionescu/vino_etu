@@ -61,6 +61,9 @@ class Controler
 				case 'getCellier':
 					$this->getCellier();
 					break;
+				case 'ajouterCellier':
+					$this->addCellier();
+					break;
 				default:
 					$this->accueil();
 					break;
@@ -95,6 +98,31 @@ class Controler
 			include("vues/entete.php");
 			include("vues/profile.php");
 			include("vues/pied.php");
+		}
+
+		private function addCellier()
+		{
+			$body = json_decode(file_get_contents('php://input'));
+
+			if(!empty($body)){
+
+				#var_dump($body);
+				#echo $body->nom;
+
+				$cel = new Cellier();
+
+				$NouveauNomCel = $body->nom;
+				
+				echo $NouveauNomCel;
+
+				$resultat = $cel->ajouterCellier($NouveauNomCel);
+				
+				echo json_encode($resultat);
+			}else {
+				include("vues/entete.php");
+				include("vues/ajouterCellier.php");
+				include("vues/pied.php");
+			}
 		}
 		
 		private function getCellier()
@@ -184,7 +212,7 @@ class Controler
 				//echo json_encode($resultat);
 			}
 			else{
-				 include("vues/entete.php");
+				include("vues/entete.php");
 				include("vues/ajouter.php");
 				// include("vues/pied.php");
 			}

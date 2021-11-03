@@ -210,3 +210,9 @@ a.btn {
     border: 2px solid var(--bg-sombre);
 
 }
+.btn-accent.solid:hover{
+    background-color: var(--bg-primaire-autre); 
+    color: #FFFFFF;
+    border: 2px solid var(--bg-primaire-autre);
+
+}

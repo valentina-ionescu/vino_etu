@@ -88,27 +88,28 @@ class SAQ extends Modele
 				//echo $this->get_inner_html($noeud);
 
 				$info = self::recupereInfo($noeud);
-				//echo "<p>".$info->nom;
+
+			//	echo "<p>".$info->nom;
 				$retour = $this -> ajouteProduit($info);
 			//	echo "<br>Code de retour : " . $retour -> raison . "<br>";
 				
 			 
 				
-				  // echo "<br>Code de retour : " . $retour->raison . "<br>";
+				 // echo "<br>Code de retour : " . $retour->raison . "<br>";
 
 
 				if ($retour->succes == false) {
-				//	echo "<pre>";
+				//echo "<pre>";
 					//var_dump($info);
 					$msg="erreur d'importation";
-				//	echo "</pre>";
+					echo "</pre>";
 				//	echo "<br>";
 				} else {
 					$i++;
 				}
 				// echo "</p>";
 
-				 array_push($data,['info'=>$info, "retour"=>$retour, "msg"=>$msg, 'i'=> $i++  ] );// creer un array de donnees pour afficher sur la page. 
+			 array_push($data,['info'=>$info, "retour"=>$retour, "msg"=>$msg, 'i'=> $i++  ] );// creer un array de donnees pour afficher sur la page. 
 			}
 			
 		} 
