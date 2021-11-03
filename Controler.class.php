@@ -43,6 +43,9 @@ class Controler
 				case 'modifierBouteilleCellier':
 					$this->modifierBouteilleCellier();
 					break; 
+				case 'supprimerBouteilleCellier':
+					$this->supprimerBouteilleCellier();
+					break; 
 				case 'updateSAQ':
 				 		$this->updateSAQ();
 				 		break; 
@@ -90,7 +93,7 @@ class Controler
 			$User = new Usager();
 
 			include("vues/entete.php");
-			include("vues/profile.php");
+		    include("vues/profile.php");
 			include("vues/pied.php");
 		}
 
@@ -220,6 +223,20 @@ class Controler
 				include("vues/modifier.php");
 				include("vues/pied.php");
 			}
+		}
+
+				
+		/**
+		 * supprimerBouteilleCellier
+		 *
+		 * @return void
+		 */
+		private function supprimerBouteilleCellier() {
+			$body = json_decode(file_get_contents('php://input'));
+			$idBouteille = $_POST['id'];
+			$bte = new Bouteille();
+			$id = $body->id;
+			$bte->supprimerBouteilleCellier($id);
 		}
 		
 		private function boireBouteilleCellier()
