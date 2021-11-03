@@ -259,9 +259,9 @@ a.btn {
 
 .btn__danger:hover,
 .btn__danger:active {
-  background-color: var(--bg-clair);
+  background-color: var(--txt-medium);
   background-position: 0 0;
-  color: #222;
+  color: #f1f1f1;
 }
 
 .btn__danger:active,
@@ -281,8 +281,8 @@ a.btn {
 }
 .fermer {
 text-align: right;
-font-size: 1rem;
-padding: 1em;
+font-size: 1.5rem;
+padding: .5em 1em 0 0;
 transition: all .3ms ease-in-out;
 color: var(--bg-primaire);
 }

@@ -92,6 +92,7 @@ window.addEventListener('load', function () {
           .then(response => {
               if (response.status === 200) {
                 console.log(response);
+                window.location.href = 'index.php?requete=accueil';
                 return response.json();
               } else {
                 throw new Error('Erreur');
@@ -104,7 +105,6 @@ window.addEventListener('load', function () {
         console.error(error);
       });
 
-      window.location.href = 'index.php?requete=accueil';
     })
   }
 
@@ -168,61 +168,70 @@ window.addEventListener('load', function () {
 
   document.querySelectorAll(".btnSupprimer").forEach(function (element) {
     element.addEventListener("click", function (evt) {
-      
-      console.log(element);
       let id = element.dataset.id;
-      console.log('id',id)
-      // var param = {
-      //   "id": id,
-      //   "millesime": modifBouteille.millesime.value,
-      //   "date_achat": modifBouteille.date_achat.value,
-      //   "garde_jusqua": modifBouteille.garde_jusqua.value,
-      //   "notes": modifBouteille.notes.value,
-      //   "prix": modifBouteille.prix.value,
-      // };
+      let modal = document.querySelector('.modal__wrapper');
+
+    //Afficher Modal  //  
+      modal.classList.toggle('show');
+
+    //Fermeture du modal //
+  
+    let fermerBouton = document.querySelector('.fermer');
+    fermerBouton.addEventListener('click', function (e) {
+    let modal = document.querySelector('.modal__wrapper');
+    modal.classList.remove('show');
+    })
+
+    let annBouton = document.querySelector('.btn__annuler');
+    annBouton.addEventListener('click', function (e) {
+      let modal = document.querySelector('.modal__wrapper');
+      modal.classList.remove('show');
+      })
     
-      afficherModale(id);
+    // Suppression de la bouteille //
+
+    let btnDanger = modal.querySelector('.btn__danger');
+    btnDanger.addEventListener('click', (e)=> {
+      console.log(id);  
       let requete = new Request("index.php?requete=supprimerBouteilleCellier", { method: 'DELETE', body: '{"id": '+id+'}'});
       console.log(requete);
-    //   fetch(requete)
-    //     .then(response => {
-    //       if (response.status === 200) {
-    //         //re-afficher le cellier
-    //         window.location.href = "index.php?requete=accueil"
-    //         return response.json();
-    //       } else {
-    //         throw new Error('Erreur');
-    //       }
-    //     })
-    //     .then(response => {
-    //       console.log(response);
+      fetch(requete)
+        .then(response => {
+          if (response.status === 200) {
+            //re-afficher le cellier
+            console.log(response)
+            window.location.href = "index.php?requete=accueil"
+            return response.json();
+          } else {
+            throw new Error('Erreur');
+          }
+        })
+        .then(response => {
+          console.log(response);
 
-    //     }).catch(error => {
-    //       console.error(error);
-    //     });
+        }).catch(error => {
+          console.error(error);
+        });
     });
+
+      
+      });
   });
 
 
-  //////////////////////////////////////////////
-  //Fonction afficherModale                   //
-  //////////////////////////////////////////////
-  function afficherModale(id) {
-    console.log(id);
-    let modal = document.querySelector('.modal__wrapper');
-    modal.classList.toggle('show');
+  
+  
     
-  }
   
   
-   //////////////////////////////////////////////
-  //Fonction fermer Modale                   //
-  //////////////////////////////////////////////
-  let fermerBouton = document.querySelector('.fermer');
-  fermerBouton.addEventListener('click', function (e) {
-     let modal = document.querySelector('.modal__wrapper');
-     modal.classList.remove('show');
-  })
+  
+  
+   
+  // let fermerBouton = document.querySelector('.fermer');
+  // fermerBouton.addEventListener('click', function (e) {
+  //    let modal = document.querySelector('.modal__wrapper');
+  //    modal.classList.remove('show');
+  // })
   //////////////////////////////////////////////
   //Fonction autoComplete                     //
   //////////////////////////////////////////////
