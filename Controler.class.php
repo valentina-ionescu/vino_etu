@@ -133,6 +133,8 @@ class Controler
 
 			$dataB = $bte->getListeBouteilleCellier();
 			$dataC = $cel->getCellierInfo();
+			$celNom = $cel->getCellierNom($_SESSION['cellier_id']);
+			$_SESSION['cellier_nom'] = $celNom['nom_cellier'];
 		}
 
 		private function gestionConnexion()
