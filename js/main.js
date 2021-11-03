@@ -209,8 +209,15 @@ window.addEventListener('load', function () {
   //////////////////////////////////////////////
   function afficherModale(id) {
     console.log(id);
+    let modal = document.querySelector('.modal__wrapper');
+    modal.classList.toggle('show');
+    
   }
   
+  
+   //////////////////////////////////////////////
+  //Fonction fermer Modale                   //
+  //////////////////////////////////////////////
   
   
   //////////////////////////////////////////////

@@ -202,3 +202,84 @@ a.btn {
     border: 2px solid var(--bg-sombre);
 
 }
+
+/* Modal */
+.modal__wrapper {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+}
+.modal__contenu {
+    background-color: #f1f1f1;
+    margin: 50% auto 15% auto; 
+    border: 1px solid #888;
+    width: 80%; 
+    border-radius: 7px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    gap: .25rem;;
+}
+.modal__overlay {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,.85);
+    z-index: 10000;
+}
+
+.show {
+    display: block;
+}
+.modal__texte {
+    margin: .25rem 1.25rem 1.25rem 1.25rem;
+}
+
+.btn__danger,
+.btn__annuler  {
+    background: var(--bg-primaire-autre);
+    border: 1px solid var(--bg-primaire-autre);
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 16px;
+    min-height: 40px;
+}
+
+.btn__annuler {
+    background-color: #ccc;
+    border: 1px solid #222;
+    color: #222;
+}
+
+.btn__danger:hover,
+.btn__danger:active {
+  background-color: initial;
+  background-position: 0 0;
+  color: var(--bg-danger);
+}
+
+.btn__danger:active,
+.btn__annuler:active {
+  opacity: .5;
+}
+.btn__annuler:hover,
+.btn__annuler:active {
+  background-color: initial;
+  background-position: 0 0;
+  color: #ccc;
+}
+
+.modal__texte {
+    text-align: center;
+    font-size: clamp(1rem, -0.875rem + 8.333333vw, 1.2rem);
+}
+.fermer {
+text-align: right;
+font-size: 1rem;;
+padding: 1em;
+}
