@@ -60,7 +60,7 @@ top: 30px;
  
   
 
-  h3{
+  .admin_carte-titre h3{
     font-size: 16px;
     font-weight: 600;
     letter-spacing: 2px;
@@ -84,6 +84,7 @@ top: 30px;
     font-style: italic;
     line-height: 18px;
   }
+  
 /* =====================================            ===================================              ========================================= */
 
 

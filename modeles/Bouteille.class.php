@@ -237,6 +237,27 @@ class Bouteille extends Modele {
 			}
         }
 	}
+	
+	/**
+	 * supprimerBouteilleCellier - Cette méthode supprime une bouteille en particulier dans le cellier
+	 *
+	 * @param  mixed $id
+	 * @return void
+	 */
+	public function supprimerBouteilleCellier($id) {
+		$connexion = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
+		$requete = mysqli_prepare($connexion, "DELETE FROM vino__cellier_has_vino__bouteille  WHERE vino__bouteille_id = ?");	
+		if($requete)
+        {
+            mysqli_stmt_bind_param($requete, 'i',$id);
+
+            $res = mysqli_stmt_execute($requete);
+			return $res;
+		}	
+	}
+
+
+
 
 	/**
 	 * Cette méthode change la quantité d'une bouteille en particulier dans le cellier

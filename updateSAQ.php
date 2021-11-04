@@ -20,7 +20,7 @@
 		echo "<p class=''>Importation : ". $nombre. " items </p><br> </section>";
 	
 	}
-	include("vues/admin_dashboard.php");
+	// include("vues/admin_dashboard.php");
 		
 
 ?>
