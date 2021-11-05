@@ -16,8 +16,11 @@
         <div class="form__conteneur">
            
             <div class="form">
+                <!-- <div class="form__label__aj">
+                    <input type="text" name="nom" placeholder="Nom" class="nom_bouteille" required>
+                </div> -->
                 <div class="form__label__aj">
-                    <input type="number" name="millesime" required>
+                    <input type="number" name="millesime"  required>
                     <label>Millesime </label>
                 </div>
                 <div class="form__label__aj">
@@ -25,16 +28,15 @@
                     <label>Quantité </label>
                 </div>
                 <div class="form__label__aj">
-                    <input type="date" name="date_achat" value="<?php echo date('Y-m-d');?>" required>
+                    <input type="date" name="date_achat"   value="<?php echo date('Y-m-d');?>" required>
                     <label>Date d'achat </label>
                 </div>
                 <div class="form__label__aj">
-                    <input type="text"  name="prix" required>
+                    <input type="text"   name="prix" required>
                     <label>Prix </label>
                 </div>
-
                 <div class="form__label__aj">
-                    <input type="text" name="garde_jusqua" required>
+                    <input type="text"  name="garde_jusqua" required>
                     <label>Garde </label>
                 </div>
                 
