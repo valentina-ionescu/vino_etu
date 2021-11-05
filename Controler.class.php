@@ -71,6 +71,9 @@ class Controler
 				case 'ajouterCellier':
 					$this->addCellier();
 					break;
+				case 'creationUsager':
+					$this->addUser();
+					break;
 				default:
 					$this->accueil();
 					break;
@@ -108,6 +111,25 @@ class Controler
 			include("vues/entete.php");
 		    include("vues/profile.php");
 			include("vues/pied.php");
+		}
+
+		private function addUser()
+		{
+			$body = json_decode(file_get_contents('php://input'));
+
+			if(!empty($body)){
+
+				$user = new Usager();
+
+				$hashPass = $user->hashPassword($body->password);
+				$user->inscription($body, $hashPass);
+				
+			}else {
+				include("vues/entete.php");
+				include("vues/inscription.php");
+				include("vues/pied.php");
+			}
+
 		}
 
 		private function addCellier()
@@ -149,6 +171,8 @@ class Controler
 
 			$dataB = $bte->getListeBouteilleCellier();
 			$dataC = $cel->getCellierInfo();
+			$celNom = $cel->getCellierNom($_SESSION['cellier_id']);
+			$_SESSION['cellier_nom'] = $celNom['nom_cellier'];
 		}
 
 		private function gestionConnexion()
@@ -163,9 +187,20 @@ class Controler
 
 			}elseif ($_POST['status'] == 'connexion') {
 
-				$User->connexion();
+				$Pass = $_POST['password'];
 
-				header('Location: index.php?requete=profile');
+				$validation = $User->checkPassword($Pass, $_POST['email']);
+				
+				echo $validation;
+
+				if ($validation) {	
+
+					$User->connexion();
+					
+					header('Location: index.php?requete=profile');
+				}else {
+					header('Location: index.php?requete=creationUsager');
+				}
 
 			}
 		}
