@@ -1,12 +1,8 @@
 <div class="cellier">
     <div class="cellier__information">
         <div class="cellier__information__wrapper flex row justify-start">
-            <i class="fa fa-user cellier__information__icon"></i>
-            <h2>
-                <?php
-                echo "Le cellier: " . $cellier['nom_cellier']?>
-                 
-            </h2>
+            <!-- <i class="fa fa-user cellier__information__icon"></i> -->
+            <div class="nomCellier"></div>
         </div>
         <div class="cellier__information__wrapper">
            

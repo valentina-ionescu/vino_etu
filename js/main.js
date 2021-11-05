@@ -128,15 +128,16 @@ window.addEventListener('load', function () {
         fetch(requete)
             .then(response => {
                 if (response.status === 200) {
+                 
                   console.log(response);
-                  window.location.href = 'index.php?requete=accueil';
+                  // window.location.href = 'index.php?requete=accueil';
                   return response.json();
                 } else {
                   throw new Error('Erreur');
                 }
-              }).then(response => {
-  
-                  console.log(response);
+              }).then((data) => {
+                
+                window.location.href = 'index.php?requete=accueil';
   
                 }).catch(error => {
           console.error(error);
