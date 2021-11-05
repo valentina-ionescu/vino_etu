@@ -2,21 +2,18 @@
     <div class="form__recherche form__recherche--clair">
         <input class="form__recherche--clair" type="text" placeholder="Entrer le nom de la bouteille..." name="nom_bouteille">
 
-
-
-        <ul class="listeAutoComplete form__contenant__liste">
-
-        </ul>
     </div>
 
     <div class="form__carte">
 
-        <!-- <h3 data-id="" class="nom_bouteille carte__description-nom"></h3> -->
+        <h3 data-id="" class="nom_bouteille carte__description-nom"></h3>
 
         <div class="form__conteneur">
 
+
             <div class="form">
-                <div class="form__label__aj">
+                
+               <div class="form__label__aj">
                     <input type="text" id="nom" name="nom" required data-id="" class="nouvelle_bouteille" value="">
                     <label for="nom">Nom Bouteille </label>
                 </div> 

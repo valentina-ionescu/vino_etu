@@ -122,6 +122,9 @@ footer p {
 .justify-between{
     justify-content: space-between;
 }
+.p-1{
+    padding: 1em;
+}
 .mt-1{
     margin-top: 1em;
 }
@@ -187,6 +190,10 @@ a.btn {
     cursor: pointer;
     border-radius: 3px;
 }
+.small{
+    padding: 0.2em;
+    font-weight: 500;
+  }
 .btn-primaire.solid{
     background-color: var(--bg-primaire); 
     color: white;

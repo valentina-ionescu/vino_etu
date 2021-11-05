@@ -34,9 +34,9 @@ class Controler
 				case 'ajouterNouvelleBouteilleCellier':
 					$this->ajouterNouvelleBouteilleCellier();
 					break;
-				case 'ajouterBouteilleNonListee':
+				/*case 'ajouterBouteilleNonListee':
 					$this->ajouterBouteilleNonListee();
-					break;
+					break;*/
 				case 'ajouterBouteilleCellier':
 					$this->ajouterBouteilleCellier();
 					break;
@@ -50,12 +50,16 @@ class Controler
 					$this->supprimerBouteilleCellier();
 					break; 
 				case 'updateSAQ':
-				 		$this->updateSAQ();
-				 		break; 
+					$this->updateSAQ();
+					break; 
+				// case 'listeUsagers':
+				// 	$this->getListeUsagers();
+				// 	break;
+
 				case 'profile':
 					$this->afficherProfile();
 					break;
-					case 'admin':
+				case 'admin':
 						$this->afficherAdmin();
 						break;
 				case 'profileConnexion':
@@ -70,6 +74,9 @@ class Controler
 				default:
 					$this->accueil();
 					break;
+				// case 'getCatalogue':
+				// 	$this->getCatalogue();
+				// 	break;
 			}
 		}
 
@@ -162,15 +169,45 @@ class Controler
 
 			}
 		}
+/*
+		private function getListeUsagers()
+		{
+			$bte = new Bouteille();
+            $listeBouteilles = $bte->getListeBouteille();
 
-		
+			$user = new Usager();
+            $listeUsager = $user->getListeUsager();
+            //  var_dump($listeUsager);
+			$_SESSION['listeUsagers'] = $listeUsager;
+            
+            // echo json_encode($listeBouteilles);
+			  include("vues/admin_controls.php");   
+
+		}
+
+		private function getCatalogue()
+		{
+			$user = new Usager();
+            $listeUsager = $user->getListeUsager();
+
+			$bte = new Bouteille();
+            $listeBouteilles = $bte->getListeBouteille();
+            // var_dump($listeBouteilles);
+			$_SESSION['listeBouteilles'] = $listeBouteilles;
+            
+            // echo json_encode($listeBouteilles);
+			  include("vues/admin_controls.php");   
+
+		}
+*/
+
 		private function listeBouteille()
 		{
 			$bte = new Bouteille();
             $cellier = $bte->getListeBouteilleCellier();
-            
+            var_dump($cellier);
             echo json_encode($cellier);
-			 include("vues/accueil.php");       
+			//  include("vues/accueil.php");       
 		}
 		
 		private function autocompleteBouteille()
@@ -184,6 +221,8 @@ class Controler
             echo json_encode($listeBouteille);
                   
 		}
+
+	/*	
 		private function ajouterBouteilleNonListee()
 	{
 		$body = json_decode(file_get_contents('php://input'));
@@ -201,25 +240,25 @@ class Controler
 			// include("vues/ajouter.php");
 			// include("vues/pied.php");
 		}
-	}
-		private function ajouterNouvelleBouteilleCellier()
-		{
-			$body = json_decode(file_get_contents('php://input'));
-			// var_dump($body);
-			if(!empty($body)){
-				$bte = new Bouteille();
-				// var_dump($_POST['data']);
-				
-				var_dump($body);
-			//	$resultat = $bte->ajouterBouteilleCellier($body);
-				//echo json_encode($resultat);
-			}
-			else{
-				include("vues/entete.php");
-				include("vues/ajouter.php");
-				// include("vues/pied.php");
-			}
+	}*/
+	private function ajouterNouvelleBouteilleCellier()
+	{
+		$body = json_decode(file_get_contents('php://input'));
+		// var_dump($body);
+		if(!empty($body)){
+			$bte = new Bouteille();
+			// var_dump($_POST['data']);
+			
+			//var_dump($data);
+			$resultat = $bte->ajouterBouteilleCellier($body);
+			echo json_encode($resultat);
 		}
+		else{
+			include("vues/entete.php");
+			include("vues/ajouter.php");
+			include("vues/pied.php");
+		}
+	}
 
 		private function modifierBouteilleCellier()
 		{
@@ -286,26 +325,21 @@ class Controler
 			require_once('updateSAQ.php');
 
 
+
 		 }
 
 		 private function afficherAdmin(){
-			include("vues/entete_admin.php");
-			include("vues/admin_dashboard.php");
+			 $saq = new SAQ();
+			$bte = new Bouteille();
+            $listeBouteilles = $bte->getListeBouteille();
+		
+			$user = new Usager();
+            $listeUsager = $user->getListeUsager();
+            //  var_dump($listeUsager);
+			$_SESSION['listeUsagers'] = $listeUsager;
+			$_SESSION['listeBouteilles'] = $listeBouteilles;
+            
+            // echo json_encode($listeBouteilles);
+			  include("vues/admin_controls.php"); 
 		 }
 }
-?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

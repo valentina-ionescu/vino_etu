@@ -278,3 +278,14 @@ select {
     margin: 10px;
 }
 
+form.nostyle{
+    background-color: unset;
+      margin: 0;
+      padding: 0;
+      width: auto;
+      min-width: unset;
+      box-shadow: unset;
+      border-radius: unset; 
+      text-align: unset;
+      display: inline-block;
+  }

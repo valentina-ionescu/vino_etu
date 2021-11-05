@@ -11,11 +11,12 @@
 
 	for($i=0; $i<1;$i++)	//permet d'importer séquentiellement plusieurs pages.
 	{
-		echo "<section class='mt-10 center w-70' >
-		<h2 class=''>Page ". ($page+$i)."</h2>";
+		echo "<section class='center w-70' >
+		<h2 class=''>Importation Finie  !</h2>";
 
 
 		$nombre = $saq->getProduits($nombreProduit, $page+$i);
+		
 
 		echo "<p class=''>Importation : ". $nombre. " items </p><br> </section>";
 	
