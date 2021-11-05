@@ -194,7 +194,7 @@ window.addEventListener('load', function () {
     });
   });
   //////////////////////////////////////////////
-  //Fonction SUPPRIMER                        //
+  //Fonction SUPPRIMER Bouteille du cellier   //
   //////////////////////////////////////////////
   // let modifBouteille = {
   //   millesime: document.querySelector("[name='millesime']"),
