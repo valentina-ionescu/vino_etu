@@ -226,12 +226,12 @@ a.btn {
 }
 .modal__contenu {
     background-color: #f1f1f1;
-    margin: 50% auto 15% auto; 
+    margin: 50% auto;
     border: 1px solid #888;
     width: 80%; 
     border-radius: 7px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    gap: .25rem;;
+    gap: .25rem;
 }
 .modal__overlay {
     position: fixed;
@@ -250,7 +250,9 @@ a.btn {
 .modal__texte {
     margin: .25rem 1.25rem 1.25rem 1.25rem;
 }
-
+.modal__buttons {
+    gap: 1px;
+}
 .btn__danger,
 .btn__annuler  {
     background: var(--bg-primaire-autre);
@@ -267,8 +269,8 @@ a.btn {
 }
 
 .btn__annuler {
-    background-color: #ccc;
-    border: 1px solid #222;
+    background-color: #f4f4f4;
+    border: 1px solid var(--bg-primaire-autre);
     color: #222;
 }
 
@@ -304,3 +306,32 @@ color: var(--bg-primaire);
 .fermer:hover {
 color: var(--bg-sombre);
 }
+
+@media all and (min-width:768px) {
+    .btn__danger,
+    .btn__annuler  {
+        width: 50%;
+    }
+ /* .modal__contenu {
+    width: 50%; 
+ }   */
+}
+
+@media (min-width: 768px) {
+    .modal__contenu  {
+      width: 66.66666666%;
+      margin: 30% auto;
+    }
+  }
+  @media (min-width: 992px) {
+    .modal__contenu  {
+      width: 50%;
+      margin: 25% auto;
+    }
+  }
+  @media (min-width: 1200px) {
+    .modal__contenu  {
+      width: 33.33333%;
+      margin: 20% auto;
+    }
+  }

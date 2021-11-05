@@ -2,7 +2,7 @@
 <div class="form__contenant mt-9 flex col" vertical layout>
     <div class="form__carte">
         <div class="form__image flex">
-            <h1>Profile</h1>
+            <h1>Se connecter</h1>
         </div>
         <?php if (isset($_SESSION['nom'])) {  ?>
             <form class="form__connexion flex col" method="POST" action="index.php?requete=profileConnexion">

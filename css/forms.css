@@ -278,6 +278,16 @@ select {
     margin: 10px;
 }
 
+.petit {
+    font-size: clamp(.75rem, -0.875rem + 8.333333vw, 1rem);
+    text-decoration: none;
+    text-transform: capitalize;
+    color: #f1f1f1;
+    text-align: center;
+    margin-top: -.5rem;
+    margin-bottom: .75rem;
+    margin-right: 1.5rem;
+}
 form.nostyle{
     background-color: unset;
       margin: 0;

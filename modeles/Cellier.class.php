@@ -107,6 +107,19 @@ class Cellier extends Modele {
      */
     public function getCellierNom($id)
 	{
+        $idUser = $_SESSION['usager_id'];
+        
+		// $rows = Array();
+
+        // $requete = "SELECT * FROM vino__cellier WHERE id = ".$id."";
+
+		// if(($res = $this->_db->query($requete)) ==	 true)
+        // {
+
+		// return $res;
+        // }
+
+       
         $requete = "SELECT nom_cellier FROM vino__cellier WHERE id = ".$id."";
 
         $res = $this->_db->query($requete);

@@ -68,6 +68,9 @@ class Controler
 				case 'getCellier':
 					$this->getCellier();
 					break;
+				case 'getCellierId':
+					$this->getCellierId();
+					break;
 				case 'ajouterCellier':
 					$this->addCellier();
 					break;
@@ -90,6 +93,10 @@ class Controler
 
 			if (isset($_SESSION['usager_id'])) {
 				$dataC = $cel->getCellierInfo();
+			}else {
+				include("vues/entete.php");
+				include("vues/profile.php");
+				include("vues/pied.php");
 			}
 
 			if (isset($_SESSION['cellier_id'])) {
@@ -97,6 +104,8 @@ class Controler
 				$bte = new Bouteille();
 				
 				$dataB = $bte->getListeBouteilleCellier();
+				if($dataB == 0) //pas de bouteilles dans le cellier
+				$msg = "Votre cellier est vide.";
 			}
 
 			include("vues/entete.php");
@@ -107,10 +116,18 @@ class Controler
 		private function afficherProfile()
 		{
 			$User = new Usager();
+			if (isset($_SESSION['nom'])) {
+				$cel = new Cellier();
+				$dataC = $cel->getCellierInfo();
+				include("vues/entete.php");
+				include("vues/upanneau.php");
+				include("vues/pied.php");
+			}else {
+				include("vues/entete.php");
+				include("vues/profile.php");
+				include("vues/pied.php");
+			}
 
-			include("vues/entete.php");
-		    include("vues/profile.php");
-			include("vues/pied.php");
 		}
 
 		private function addUser()
@@ -175,6 +192,23 @@ class Controler
 			$_SESSION['cellier_nom'] = $celNom['nom_cellier'];
 		}
 
+		private function getCellierId()
+		{
+			$cel = new Cellier();
+			$bte = new Bouteille();
+
+			$body = json_decode(file_get_contents('php://input'));
+			echo $body->id;
+			$id = $body->id;
+
+			$_SESSION['cellier_id'] = $body->id;
+
+			echo $_SESSION['cellier_id'];
+
+			// $dataB = $bte->getListeBouteilleCellier();
+			$dataC = $cel->getCellierId($id);
+		}
+
 		private function gestionConnexion()
 		{
 			$User = new Usager();
@@ -187,6 +221,13 @@ class Controler
 
 			}elseif ($_POST['status'] == 'connexion') {
 
+				$User->connexion();
+                $cel = new Cellier();
+				$dataC = $cel->getCellierInfo();
+				// header('Location: index.php?requete=profile');
+				include("vues/entete.php");
+				include("vues/upanneau.php");
+				include("vues/pied.php");
 				$Pass = $_POST['password'];
 
 				$validation = $User->checkPassword($Pass, $_POST['email']);
@@ -358,23 +399,25 @@ class Controler
 		 private function updateSAQ (){
 		 	$saq = new SAQ;
 			require_once('updateSAQ.php');
-
-
-
 		 }
 
-		 private function afficherAdmin(){
-			 $saq = new SAQ();
-			$bte = new Bouteille();
-            $listeBouteilles = $bte->getListeBouteille();
+		 
 		
-			$user = new Usager();
-            $listeUsager = $user->getListeUsager();
-            //  var_dump($listeUsager);
-			$_SESSION['listeUsagers'] = $listeUsager;
-			$_SESSION['listeBouteilles'] = $listeBouteilles;
-            
-            // echo json_encode($listeBouteilles);
-			  include("vues/admin_controls.php"); 
-		 }
+
+private function afficherAdmin(){
+	$saq = new SAQ();
+	$bte = new Bouteille();
+	$listeBouteilles = $bte->getListeBouteille();
+	
+	$user = new Usager();
+	$listeUsager = $user->getListeUsager();
+	//  var_dump($listeUsager);
+	$_SESSION['listeUsagers'] = $listeUsager;
+	$_SESSION['listeBouteilles'] = $listeBouteilles;
+	
+	// echo json_encode($listeBouteilles);
+	include("vues/admin_controls.php"); 
 }
+}
+
+	

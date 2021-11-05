@@ -1,33 +1,11 @@
 <div class="cellier">
     <div class="cellier__information">
         <div class="cellier__information__wrapper flex row justify-start">
-            <i class="fa fa-user cellier__information__icon"></i>
-            <h2>
-                <?php
-                if (isset($_SESSION['nom'])) {
-                    echo "Bonjour " . $_SESSION['prenom'] . "!";
-                    // echo ' ' . $_SESSION['nom'];
-                ?>
-            </h2>
+            <!-- <i class="fa fa-user cellier__information__icon"></i> -->
+            <div class="nomCellier"></div>
         </div>
         <div class="cellier__information__wrapper">
-            <!-- <i class="fas fa-wine-glass-alt cellier__information__icon"></i> -->
-            <span class="center">
-                <div class="select"> 
-                <select name="selectCellier" id="">
-                    <option value="" disabled selected><?php if(isset($_SESSION['cellier_nom'])){
-                        echo $_SESSION['cellier_nom'];
-                    }else {?>Choisissez votre cellier</option><?php } ?>
-                    <?php foreach ($dataC as $cle => $cellier) { ?>
-                        <option value="<?php echo $cellier['id'] ?>"><?php echo $cellier['nom_cellier'] ?></option>
-                    <?php }                 } else {
-                    echo 'Vous n\'êtes pas connecté';
-                }?>
-                </select>
-                </div>
-            </span>
-            <h2 class="center txt-primary ">Une bouteille a la fois! </h2>
-
+           
         </div>
     </div>
 
@@ -38,7 +16,10 @@
         <?php
 
         if (isset($_SESSION['cellier_id'])) {
-            foreach ($dataB as $cle => $bouteille) {
+            if($msg) ?>
+            <h3 class="txt-blanc"><?php echo $msg;?></h3>
+
+            <?php foreach ($dataB as $cle => $bouteille) {
 
         ?>
 
