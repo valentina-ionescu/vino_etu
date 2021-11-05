@@ -136,7 +136,7 @@ window.addEventListener('load', function () {
                   throw new Error('Erreur');
                 }
               }).then((data) => {
-                
+                console.log(data)
                 window.location.href = 'index.php?requete=accueil';
   
                 }).catch(error => {

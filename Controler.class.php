@@ -58,6 +58,9 @@ class Controler
 				case 'getCellier':
 					$this->getCellier();
 					break;
+				case 'getCellierId':
+					$this->getCellierId();
+					break;
 				case 'ajouterCellier':
 					$this->addCellier();
 					break;
@@ -150,6 +153,23 @@ class Controler
 
 			$dataB = $bte->getListeBouteilleCellier();
 			$dataC = $cel->getCellierInfo();
+		}
+
+		private function getCellierId()
+		{
+			$cel = new Cellier();
+			$bte = new Bouteille();
+
+			$body = json_decode(file_get_contents('php://input'));
+			echo $body->id;
+			$id = $body->id;
+
+			$_SESSION['cellier_id'] = $body->id;
+
+			echo $_SESSION['cellier_id'];
+
+			// $dataB = $bte->getListeBouteilleCellier();
+			$dataC = $cel->getCellierId($id);
 		}
 
 		private function gestionConnexion()
