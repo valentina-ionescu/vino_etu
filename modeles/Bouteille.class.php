@@ -130,7 +130,22 @@ class Bouteille extends Modele {
 		//var_dump($rows);
 		return $rows;
 	}
-	
+		/**
+	 * Cette méthode permet de retourner le dernier id de la table vino__bouteille
+	 * 
+	 * @param string $nom La chaine de caractère à rechercher
+	 * @param integer $nb_resultat Le nombre de résultat maximal à retourner.
+	 * 
+	 * @throws Exception Erreur de requête sur la base de données 
+	 * 
+	 * @return integer id de la derniere bouteille inserree dans le catalogue
+	 */
+       
+	public function lastBouteilleId()
+	{
+		
+
+	}
 	
 	/**
 	 * Cette méthode ajoute une ou des bouteilles au cellier

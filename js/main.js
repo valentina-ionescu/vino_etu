@@ -194,7 +194,7 @@ window.addEventListener('load', function () {
     });
   });
   //////////////////////////////////////////////
-  //Fonction SUPPRIMER                        //
+  //Fonction SUPPRIMER Bouteille du cellier   //
   //////////////////////////////////////////////
   // let modifBouteille = {
   //   millesime: document.querySelector("[name='millesime']"),
@@ -330,8 +330,8 @@ window.addEventListener('load', function () {
     });
 
     let bouteille = {
-      nom: document.querySelector(".nom_bouteille"),
-      // nom: document.querySelector("[name='nom']"),
+      //nom: document.querySelector(".nom_bouteille"),
+      nom: document.querySelector("[name='nom']"),
       millesime: document.querySelector("[name='millesime']"),
       quantite: document.querySelector("[name='quantite']"),
       date_achat: document.querySelector("[name='date_achat']"),
@@ -343,14 +343,18 @@ window.addEventListener('load', function () {
 
     liste.addEventListener("click", function (evt) {
       console.dir(evt.target)
+
       if (evt.target.tagName == "LI") {
+
         bouteille.nom.dataset.id = evt.target.dataset.id;
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         bouteille.prix.setAttribute('value', evt.target.dataset.prix)
-        // bouteille.nom.setAttribute('value', evt.target.innerText)
+         bouteille.nom.setAttribute('value', evt.target.innerText)
         console.log('nom', evt.target.innerText)
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        bouteille.nom.innerHTML = evt.target.innerHTML;
+      // bouteille.nom.innerHTML = evt.target.innerText;
+       
+
         // bouteille.prix.setAttribute('value', evt.target.dataset.prix)
         console.log(evt.target.dataset.prix);
 

@@ -26,9 +26,14 @@
 
 body
 {
+    background-color: var(--bg-sombre);
   margin-top: 0px;
 }
 
+.admin_body{
+    background-color: var(--bg-clair);
+
+}
 .liste {
     display: block;
     border-top: 1px solid rgb(255, 255, 255);
@@ -105,6 +110,9 @@ footer p {
 .column{
     flex-direction: column;
 }
+.gap-3{
+    gap: 3em;
+}
 .align-item-center{
     align-items: center;
 }
@@ -113,6 +121,9 @@ footer p {
 }
 .justify-between{
     justify-content: space-between;
+}
+.p-1{
+    padding: 1em;
 }
 .mt-1{
     margin-top: 1em;
@@ -179,6 +190,10 @@ a.btn {
     cursor: pointer;
     border-radius: 3px;
 }
+.small{
+    padding: 0.2em;
+    font-weight: 500;
+  }
 .btn-primaire.solid{
     background-color: var(--bg-primaire); 
     color: white;

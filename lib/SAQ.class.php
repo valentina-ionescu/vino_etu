@@ -35,12 +35,12 @@ class SAQ extends Modele
 	 * @param int $nombre	
 	 * @param int $debut
 	 */
-	public function getProduits( $nombre = 24, $page = 1 )
+	public function getProduits($nombre = 24, $page = 1)
 	{
 		$s = curl_init();
 		// $url = "https://www.saq.com/fr/produits/vin/vin-blanc?p=2&product_list_limit=24&product_list_order=name_asc";
-		$url="https://www.saq.com/fr/produits/vin?p=2&product_list_limit=24&product_list_order=name_asc";
-		
+		$url = "https://www.saq.com/fr/produits/vin?p=2&product_list_limit=24&product_list_order=name_asc";
+
 		//curl_setopt($s, CURLOPT_URL, "http://www.saq.com/webapp/wcs/stores/servlet/SearchDisplay?searchType=&orderBy=&categoryIdentifier=06&showOnly=product&langId=-2&beginIndex=".$debut."&tri=&metaData=YWRpX2YxOjA8TVRAU1A%2BYWRpX2Y5OjE%3D&pageSize=". $nombre ."&catalogId=50000&searchTerm=*&sensTri=&pageView=&facet=&categoryId=39919&storeId=20002");
 		//curl_setopt($s, CURLOPT_URL, "https://www.saq.com/webapp/wcs/stores/servlet/SearchDisplay?categoryIdentifier=06&showOnly=product&langId=-2&beginIndex=" . $debut . "&pageSize=" . $nombre . "&catalogId=50000&searchTerm=*&categoryId=39919&storeId=20002");
 		//curl_setopt($s, CURLOPT_URL, $url);
@@ -67,53 +67,53 @@ class SAQ extends Modele
 		self::$_webpage = curl_exec($s);
 		self::$_status = curl_getinfo($s, CURLINFO_HTTP_CODE);
 		curl_close($s);
-		
+
 		$doc = new DOMDocument();
 		$doc->recover = true;
 		$doc->strictErrorChecking = false;
 		@$doc->loadHTML(self::$_webpage);
 		$elements = $doc->getElementsByTagName("li");
 		$i = 0;
-		
+
 		// $data['page_title'] = 'Importation || Bouteilles';
-		 $msg = [];
+		$msg = [];
 		$data = [];
 		foreach ($elements as $key => $noeud) {
-			
+
 			//var_dump($noeud -> getAttribute('class')) ;
 			//if ("resultats_product" == str$noeud -> getAttribute('class')) {
 
 			if (strpos($noeud->getAttribute('class'), "product-item") !== false) {
-			
+
 				//echo $this->get_inner_html($noeud);
 
 				$info = self::recupereInfo($noeud);
-				//echo "<p>".$info->nom;
-				$retour = $this -> ajouteProduit($info);
-			//	echo "<br>Code de retour : " . $retour -> raison . "<br>";
-				
-			 
-				
-				  // echo "<br>Code de retour : " . $retour->raison . "<br>";
+
+				//	echo "<p>".$info->nom;
+				$retour = $this->ajouteProduit($info);
+				//	echo "<br>Code de retour : " . $retour -> raison . "<br>";
+
+
+
+				// echo "<br>Code de retour : " . $retour->raison . "<br>";
 
 
 				if ($retour->succes == false) {
-				//	echo "<pre>";
+					//echo "<pre>";
 					//var_dump($info);
-					$msg="erreur d'importation";
-				//	echo "</pre>";
-				//	echo "<br>";
+					$msg = "erreur d'importation";
+					echo "</pre>";
+					//	echo "<br>";
 				} else {
 					$i++;
 				}
 				// echo "</p>";
 
-				 array_push($data,['info'=>$info, "retour"=>$retour, "msg"=>$msg ] );// creer un array de donnees pour afficher sur la page. 
+				array_push($data, ['info' => $info, "retour" => $retour, "msg" => $msg, 'i' => $i++]); // creer un array de donnees pour afficher sur la page. 
 			}
-			
-		} 
-		
-	RequirePage::getView('importation', $data);
+		}
+
+		RequirePage::getView('importation', $data);
 
 		return $i;
 	}
@@ -139,16 +139,16 @@ class SAQ extends Modele
 
 		// $info->img = $noeud->getElementsByTagName("img")->item(0)->getAttribute('src'); // ancien code n'est pas optimal car importe  la premiere balise "img" qu'il rencontre, et parfois ce n'est pas l'image de la bouteille de vin -- c'est un medaillon ou meme de petites icones.
 
-		 $imgs = $noeud->getElementsByTagName("img");
+		$imgs = $noeud->getElementsByTagName("img");
 
-		
-//chercher la balise qui contient l'image du produit en ciblant la classe
 
-		 for($i=0;$i<$imgs->length;$i++) {
-			if($imgs->item($i)->attributes->getNamedItem('class')){
-				if($imgs->item($i)->attributes->getNamedItem('class')->nodeValue == "product-image-photo") {
+		//chercher la balise qui contient l'image du produit en ciblant la classe
+
+		for ($i = 0; $i < $imgs->length; $i++) {
+			if ($imgs->item($i)->attributes->getNamedItem('class')) {
+				if ($imgs->item($i)->attributes->getNamedItem('class')->nodeValue == "product-image-photo") {
 					//recuperer l'url image
-					$info->img=	$imgs->item($i)->getAttribute('src');
+					$info->img =	$imgs->item($i)->getAttribute('src');
 				}
 			}
 		}
@@ -203,7 +203,7 @@ class SAQ extends Modele
 				//$info -> prix = str_replace('$', '', $info -> prix); //valeur "1.23 $"
 
 				// enlever tout exceptee les chifres et le ","
-					$info -> prix = preg_replace("/[^0-9\,]/", "", $info -> prix); //valeur "1.23"
+				$info->prix = preg_replace("/[^0-9\,]/", "", $info->prix); //valeur "1.23"
 
 				//transformer la chaine de caracteres en float pour envoyer a la DB 
 				//$info -> prix = floatval($info -> prix); //valeur 1.23
@@ -250,10 +250,8 @@ class SAQ extends Modele
 			$retour->succes = false;
 			$retour->raison = self::ERREURDB;
 		}
-		
-		
-		return $retour;
-		
 
+
+		return $retour;
 	}
 }
