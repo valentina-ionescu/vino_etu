@@ -24,3 +24,26 @@
 .form__label__connexion>label {
     padding: 0 0 10px 0;
 }
+
+/* Panneau de gestion d'un  usager */
+.u__profile__wrapper {
+   background-color: var(--bg-clair);
+   width: 100vw;
+   height: 100vh; 
+   padding: 1.25em;
+   color: var(--txt-primary);
+  }
+.u__titre {
+    text-transform: none;
+}
+.u__article {
+    width: calc(100% / 2 - 1.25rem);
+    background-image: url("../img/klara-kulikova-CPMZguYURMw-unsplash.jpg") ;
+    background-position: center;
+    background-size: cover;
+    border-radius: 5px;
+}
+.u__celliers_liste {
+    width: 100%;
+}
+

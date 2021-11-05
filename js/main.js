@@ -117,13 +117,45 @@ window.addEventListener('load', function () {
   //Fonction Select Cellier                   //
   //////////////////////////////////////////////
 
-  let inputSelectCellier = document.querySelector("[name='selectCellier']");
+  // let inputSelectCellier = document.querySelector("[name='selectCellier']");
   
-  if (inputSelectCellier) {
-    inputSelectCellier.addEventListener('change', function(evt){
-      console.log(inputSelectCellier.options[inputSelectCellier.selectedIndex].value);
-      let id = inputSelectCellier.options[inputSelectCellier.selectedIndex].value;
+  // if (inputSelectCellier) {
+  //   inputSelectCellier.addEventListener('change', function(evt){
+  //     console.log(inputSelectCellier.options[inputSelectCellier.selectedIndex].value);
+  //     let id = inputSelectCellier.options[inputSelectCellier.selectedIndex].value;
 
+  //     let requete = new Request("index.php?requete=getCellier", {method: 'POST', body: '{"id": '+id+'}'});
+  //     console.log(requete);
+  //     fetch(requete)
+  //         .then(response => {
+  //             if (response.status === 200) {
+  //               console.log(response);
+  //               window.location.href = 'index.php?requete=accueil';
+  //               return response.json();
+  //             } else {
+  //               throw new Error('Erreur');
+  //             }
+  //           }).then(response => {
+
+  //               console.log(response);
+
+  //             }).catch(error => {
+  //       console.error(error);
+  //     });
+
+  //   })
+  // }
+  //////////////////////////////////////////////
+  //Fonction select Cellier                   //
+  //////////////////////////////////////////////
+
+  let inputSelectCellier = document.querySelector(".selectCellier");
+  console.log(inputSelectCellier)
+  if (inputSelectCellier) {
+    inputSelectCellier.addEventListener('click', function(evt){
+      console.log(inputSelectCellier)
+      console.log(inputSelectCellier.dataset.cellid);
+      let id=inputSelectCellier.dataset.cellid;
       let requete = new Request("index.php?requete=getCellier", {method: 'POST', body: '{"id": '+id+'}'});
       console.log(requete);
       fetch(requete)

@@ -93,6 +93,9 @@ h4 {
     font-size: clamp(.75rem, -0.875rem + 8.333333vw, 1rem);
 }
 
+a {
+    text-decoration: none;
+}
 .bigtitle, h1 {
     /* font-size: 5.2917em; */
     word-break: break-word;
@@ -161,3 +164,4 @@ sup {
     font-style: italic;
     font-weight: normal;
 }
+

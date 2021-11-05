@@ -12,7 +12,8 @@
 
     .header__icon__user {
         font-size: 3em;
-        margin: 30px;
+        margin: 1.5rem 1.5rem 0 0;
+        margin-bottom: .5rem;
         color: var(--bg-clair);
     }
 
@@ -23,6 +24,13 @@
         top:0;
         width: 100%;
         z-index: 99;
+        gap: unset;
+    }
+    .nav__wrapper>a {
+        gap: unset;
+    }
+    .nav__wrapper>a:last-child {
+        margin: 1rem;
     }
 
     .modifBouteille>form>div>h1 {
@@ -47,7 +55,8 @@
         display: block;
         left: 30px;
         position: relative;
-        top: 40px;
+        /* top: 40px; */
+        align-self: center;
         user-select: none;
         -webkit-user-select: none;
         z-index: 1;
@@ -142,3 +151,9 @@
     #menuToggle input:checked ~ ul {
         transform: none;
     }
+
+   /* Men dropdown du profile usager */
+   .u__profile-toggle {
+       display: none;
+       transition: all .2ms ease-in-out;
+   }

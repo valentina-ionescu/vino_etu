@@ -4,29 +4,12 @@
             <i class="fa fa-user cellier__information__icon"></i>
             <h2>
                 <?php
-                if (isset($_SESSION['nom'])) {
-                    echo "Bonjour " . $_SESSION['prenom'] . "!";
-                    // echo ' ' . $_SESSION['nom'];
-                ?>
+                echo "Le cellier: " . $cellier['nom_cellier']?>
+                 
             </h2>
         </div>
         <div class="cellier__information__wrapper">
-            <!-- <i class="fas fa-wine-glass-alt cellier__information__icon"></i> -->
-            <span class="center">
-                <div class="select">
-                    <select name="selectCellier" id="">
-                        <option value="" disabled selected>Choisissez votre cellier</option>
-                        <?php foreach ($dataC as $cle => $cellier) { ?>
-                            <option value="<?php echo $cellier['id'] ?>"><?php echo $cellier['nom_cellier'] ?></option>
-                    <?php }
-                    } else {
-                        echo 'Vous n\'êtes pas connecté';
-                    } ?>
-                    </select>
-                </div>
-            </span>
-            <h2 class="center txt-primary ">Une bouteille a la fois! </h2>
-
+           
         </div>
     </div>
 

@@ -55,6 +55,8 @@
 							<?php if (isset($_SESSION['nom'])) { ?>
 							<li><a href="?requete=accueil">Mon cellier</a></li>
 							<li><a href="?requete=ajouterNouvelleBouteilleCellier">Ajouter une bouteille au cellier</a></li>
+							<li><a href="?requete=profile">Gérer mes celliers</a></li>
+							
 							<?php
 								if(isset($_SESSION['admin']) && $_SESSION['admin'] == 1){
 							?><li><a href="?requete=updateSAQ">Importation du SAQ</a></li>
@@ -67,7 +69,18 @@
 						</ul>
 				</div>
 				<a href="?requete=accueil" class="flex"><img class="header__logo" src="assets/img/logo/logo.svg" alt=""></a>
-				<a href="?requete=profile"><i class="fa fa-user-circle header__icon__user"></i></a>
+				<?php if (isset($_SESSION['nom'])) { ?>
+				<a class="u__profile_img flex col"><i class="fa fa-user-circle header__icon__user"></i>
+				<span class="petit"><?php echo $_SESSION['nom'];?></span>
+				<div class="u__profile-toggle flex col">
+					<a href="">Mon profile</a>
+					<form  method="POST" action="index.php?requete=profileConnexion">
+					<button class='lienModifier' name="status" value="deconnexion">Déconnexion</button>
+                    </form>
+				</div>
+				<?php 
+				}?>
+			    </a>
 			</nav>
 		</header>
 		<main >	

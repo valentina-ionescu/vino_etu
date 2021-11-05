@@ -74,6 +74,10 @@ class Controler
 
 			if (isset($_SESSION['usager_id'])) {
 				$dataC = $cel->getCellierInfo();
+			}else {
+				include("vues/entete.php");
+				include("vues/profile.php");
+				include("vues/pied.php");
 			}
 
 			if (isset($_SESSION['cellier_id'])) {
@@ -91,10 +95,18 @@ class Controler
 		private function afficherProfile()
 		{
 			$User = new Usager();
+			if (isset($_SESSION['nom'])) {
+				$cel = new Cellier();
+				$dataC = $cel->getCellierInfo();
+				include("vues/entete.php");
+				include("vues/upanneau.php");
+				include("vues/pied.php");
+			}else {
+				include("vues/entete.php");
+				include("vues/profile.php");
+				include("vues/pied.php");
+			}
 
-			include("vues/entete.php");
-		    include("vues/profile.php");
-			include("vues/pied.php");
 		}
 
 		private function addCellier()
@@ -151,8 +163,12 @@ class Controler
 			}elseif ($_POST['status'] == 'connexion') {
 
 				$User->connexion();
-
-				header('Location: index.php?requete=profile');
+                $cel = new Cellier();
+				$dataC = $cel->getCellierInfo();
+				// header('Location: index.php?requete=profile');
+				include("vues/entete.php");
+				include("vues/upanneau.php");
+				include("vues/pied.php");
 
 			}
 		}
@@ -260,9 +276,9 @@ class Controler
 		 private function updateSAQ (){
 		 	$saq = new SAQ;
 			require_once('updateSAQ.php');
-
-
 		 }
+
+		 
 }
 ?>
 
