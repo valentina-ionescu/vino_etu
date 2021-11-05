@@ -20,7 +20,10 @@
         <?php
 
         if (isset($_SESSION['cellier_id'])) {
-            foreach ($dataB as $cle => $bouteille) {
+            if($msg) ?>
+            <h3 class="txt-blanc"><?php echo $msg;?></h3>
+
+            <?php foreach ($dataB as $cle => $bouteille) {
 
         ?>
 

@@ -85,6 +85,8 @@ class Controler
 				$bte = new Bouteille();
 				
 				$dataB = $bte->getListeBouteilleCellier();
+				if($dataB == 0) //pas de bouteilles dans le cellier
+				$msg = "Votre cellier est vide.";
 			}
 
 			include("vues/entete.php");
