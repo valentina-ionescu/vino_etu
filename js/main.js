@@ -112,6 +112,53 @@ window.addEventListener('load', function () {
       });
     });
   }
+
+  //////////////////////////////////////////////
+  //Fonction ajouter Usager                   //
+  //////////////////////////////////////////////
+
+  let newUser = {
+    nom: document.querySelector("[name='nomUser']"),
+    prenom: document.querySelector("[name='prenomUser']"),
+    username: document.querySelector("[name='usernameUser']"),
+    email: document.querySelector("[name='emailUser']"),
+    password: document.querySelector("[name='passwordUser']"),
+  };
+
+  let btnAjouterUser = document.querySelector("[name='ajouterUser']");
+  if (btnAjouterUser) {
+    btnAjouterUser.addEventListener("click", function (evt) {
+
+      var param = {
+        "nom": newUser.nom.value,
+        "prenom": newUser.prenom.value,
+        "username": newUser.username.value,
+        "email": newUser.email.value,
+        "password": newUser.password.value,
+      };
+
+      let requete = new Request("index.php?requete=creationUsager", { method: 'POST', body: JSON.stringify(param), headers: {'Content-Type': 'application/json', }});
+      console.log(requete);
+      
+      fetch(requete)
+          .then(response => {
+              if (response.status === 200) {
+                  console.log(response);
+                  window.location.href = 'index.php?requete=profile';
+                  return response.json();
+              } else {
+                throw new Error('Erreur');
+              }
+            }).then(response => {
+
+                console.log(response);
+
+              }).catch(error => {
+        console.error(error);
+      });
+    });
+  }
+
 //////////////////////////////////////////////
 //Fonction selectionner Cellier                  //
 //////////////////////////////////////////////
@@ -197,7 +244,7 @@ window.addEventListener('load', function () {
     });
   });
   //////////////////////////////////////////////
-  //Fonction SUPPRIMER                        //
+  //Fonction SUPPRIMER Bouteille du cellier   //
   //////////////////////////////////////////////
   // let modifBouteille = {
   //   millesime: document.querySelector("[name='millesime']"),
@@ -333,8 +380,8 @@ window.addEventListener('load', function () {
     });
 
     let bouteille = {
-      nom: document.querySelector(".nom_bouteille"),
-      // nom: document.querySelector("[name='nom']"),
+      //nom: document.querySelector(".nom_bouteille"),
+      nom: document.querySelector("[name='nom']"),
       millesime: document.querySelector("[name='millesime']"),
       quantite: document.querySelector("[name='quantite']"),
       date_achat: document.querySelector("[name='date_achat']"),
@@ -346,14 +393,18 @@ window.addEventListener('load', function () {
 
     liste.addEventListener("click", function (evt) {
       console.dir(evt.target)
+
       if (evt.target.tagName == "LI") {
+
         bouteille.nom.dataset.id = evt.target.dataset.id;
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         bouteille.prix.setAttribute('value', evt.target.dataset.prix)
-        // bouteille.nom.setAttribute('value', evt.target.innerText)
+         bouteille.nom.setAttribute('value', evt.target.innerText)
         console.log('nom', evt.target.innerText)
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        bouteille.nom.innerHTML = evt.target.innerHTML;
+      // bouteille.nom.innerHTML = evt.target.innerText;
+       
+
         // bouteille.prix.setAttribute('value', evt.target.dataset.prix)
         console.log(evt.target.dataset.prix);
 

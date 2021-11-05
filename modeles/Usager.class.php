@@ -17,13 +17,12 @@ class Usager extends Modele {
         $connexion = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
 
         $email = $_POST['email'];
-        $password = $_POST['password'];
 
-        $requete = mysqli_prepare($connexion, "SELECT vino__usager.email, vino__usager.id, vino__usager.password, vino__usager.nom, vino__usager.prenom, vino__usager.username, vino__usager.admin FROM vino__usager WHERE email = ? AND password = ?");
+        $requete = mysqli_prepare($connexion, "SELECT vino__usager.email, vino__usager.id, vino__usager.password, vino__usager.nom, vino__usager.prenom, vino__usager.username, vino__usager.admin FROM vino__usager WHERE email = ?");
 
         if($requete) 
         {
-            mysqli_stmt_bind_param($requete, 'ss',$email, $password);
+            mysqli_stmt_bind_param($requete, 's',$email);
 
             mysqli_stmt_execute($requete);
 
@@ -48,6 +47,38 @@ class Usager extends Modele {
     }
 
 
+    public function hashPassword($password){
+        $options = [
+            'cost' => 12,
+        ];
+        $hashPassword= password_hash($password, PASSWORD_BCRYPT, $options);
+  
+        return $hashPassword;
+    }
+
+    public function checkPassword($password, $email){
+        
+        $requete = "SELECT password FROM vino__usager WHERE email = '".$email."'";
+        
+        $res = $this->_db->query($requete);
+
+        $row = $res->fetch_assoc();
+
+        $dbpassword = $row['password'];
+
+        return password_verify($password, $dbpassword);
+    }
+
+    public function inscription($data, $hashPass){
+
+        $requete = "INSERT INTO vino__usager (nom, prenom, username, email, password) VALUE ('".$data->nom."', '".$data->prenom."', '".$data->username."', '".$data->email."', '".$hashPass."')";
+   
+        $res = $this->_db->query($requete);
+
+		return $res;
+    }
+
+
     /**
      * getListeUsager - Cette méthode récupère la liste de tous les usagers 
      *
@@ -56,7 +87,18 @@ class Usager extends Modele {
     
     public function getListeUsager()
 	{
-//        return $rows;
+        $rows = Array();
+		$res = $this->_db->query('Select * from '. self::TABLE);
+		if($res->num_rows)
+		{
+			while($row = $res->fetch_assoc())
+			{
+				$rows[] = $row;
+			}
+		}
+		
+		return $rows;
+
     }  
     
     /**

@@ -27,7 +27,7 @@ class Cellier extends Modele {
 
         $requete = "SELECT id, nom_cellier, usager_id FROM vino__cellier WHERE usager_id = ".$idUser."";
 
-		if(($res = $this->_db->query($requete)) ==	 true)
+		if(($res = $this->_db->query($requete)) == true)
         {
             if($res->num_rows)
             {
@@ -98,27 +98,35 @@ class Cellier extends Modele {
        
     }  
     
+    
     /**
-     * getCellierId  - Cette méthode récupere les données d'un seul cellier identifié par $id
+     * getCellierNom
      *
      * @param  mixed $id
      * @return void
      */
-    public function getCellierId($id)
+    public function getCellierNom($id)
 	{
         $idUser = $_SESSION['usager_id'];
         
-		$rows = Array();
+		// $rows = Array();
 
-        $requete = "SELECT * FROM vino__cellier WHERE id = ".$id."";
+        // $requete = "SELECT * FROM vino__cellier WHERE id = ".$id."";
 
-		if(($res = $this->_db->query($requete)) ==	 true)
-        {
+		// if(($res = $this->_db->query($requete)) ==	 true)
+        // {
 
-		return $res;
-        }
+		// return $res;
+        // }
 
        
+        $requete = "SELECT nom_cellier FROM vino__cellier WHERE id = ".$id."";
+
+        $res = $this->_db->query($requete);
+
+        $row = $res->fetch_assoc();
+
+		return $row;
     }
         
     /**

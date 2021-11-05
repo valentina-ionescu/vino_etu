@@ -44,47 +44,31 @@
 		<!-- <script src="./js/plugins.js"></script> -->
 		<script src="./js/main.js"></script>
 	</head>
-	<body class="relative" >
-		<header class="header__wrapper">
-			<nav class="nav__wrapper flex" role="navigation">
-				<div id="menuToggle">
+	<body class="relative admin_body" >
+    <header class="header__wrapper admin">
+			<nav class="nav__wrapper flex row align-item-center" role="navigation">
+				<!-- <div id="menuToggle">
 					<input type="checkbox" />
 					<span></span>
 					<span></span>
 					<span></span>
 					<ul class="header__menu__links" id="menu">
-							<?php if (isset($_SESSION['nom'])) { ?>
+							<?//php if (isset($_SESSION['nom'])) { ?>
 							<li><a href="?requete=accueil">Mon cellier</a></li>
-							<li><a href="?requete=ajouterNouvelleBouteilleCellier">Ajouter une bouteille au cellier</a></li>
-							<li><a href="?requete=profile">Gérer mes celliers</a></li>
-							
-							<?php
-								if(isset($_SESSION['admin']) && $_SESSION['admin'] == 1){
-							?>
-							<!-- <li><a href="?requete=updateSAQ">Importation du SAQ</a></li> -->
-							<li><a href="?requete=admin">Admin - tableau de bord </a></li>
-
-							<?php
-								}
-							?>
-					<?php }else { ?>
+							<li><a href="?requete=ajouterNouvelleBouteilleCellier">Ajouter une bouteille au cellier</a></li> -->
+						
+					<!-- <?//php }else { ?>
 						<li><a href="?requete=profile">Se connecter</a></li>
-					<?php } ?>
+					<?//php } ?> 
 						</ul>
-				</div>
-				<a href="?requete=accueil" class="flex"><img class="header__logo" src="assets/img/logo/logo.svg" alt=""></a>
-				<?php if (isset($_SESSION['nom'])) { ?>
-				<a class="u__profile_img flex col"><i class="fa fa-user-circle header__icon__user"></i>
-				<span class="petit"><?php echo $_SESSION['nom'];?></span>
-				<div class="u__profile-toggle flex col">
-					<a href="">Mon profile</a>
-					<form  method="POST" action="index.php?requete=profileConnexion">
-					<button class='lienModifier' name="status" value="deconnexion">Déconnexion</button>
-                    </form>
-				</div>
-				<?php 
-				}?>
-			    </a>
+				</div> -->
+                <a href="?requete=accueil" class="flex"><img class="header__logo" src="assets/img/logo/logo.svg" alt=""></a>
+				<a href="?requete=admin" class="btn solid">Retournez a l'admin! </a>
+                <div class="admin_content-title ">
+                <h2><i class="fas fa-tachometer-alt"></i> Panneau Administration</h2>
+            </div>
+				
+				<a href="?requete=profile"><i class="fa fa-user-circle header__icon__user"></i></a>
 			</nav>
 		</header>
-		<main >	
+		<main class="admin_main">	

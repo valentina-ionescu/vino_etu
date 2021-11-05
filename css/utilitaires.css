@@ -25,6 +25,7 @@
     --txt-primary:#7B033D;
     --txt-medium: #7a476e;
     --bg-input: rgba(30, 18, 33, 0.434);
+    --bg-primary-admin: #07364d;
 
 
 
@@ -48,6 +49,10 @@ main {
     margin-top: 102px;
     padding-bottom: 2em;
     min-height: 100%;
+}
+.admin_main{
+    max-width: 95vw;
+    background-color: #ffffff;
 }
 
 h1, h2, h3, h4, h5, h6 {

@@ -34,6 +34,7 @@
                     <label>Mot de passe</label>
                     <input type="password" name="password" value="">
                 </div>
+                <a href="index.php?requete=creationUsager">Se créer un compte</a>
                     <button class='btnModifier' name="status" value="connexion">Connexion</button>
             </form>
         <?php } ?>
