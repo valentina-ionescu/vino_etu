@@ -4,7 +4,7 @@
 
 
  html, body {
-	height: 100%;
+	/* height: 100%; */
 	margin: 0;
 	/* background-color: #fff; */
 	
@@ -12,6 +12,8 @@
 	font-size: 95%;
 	
 }
+
+body { min-height: 100vh; }
 
 /* Ajouté par Félix - scroll pour la description*/
 

@@ -3,7 +3,7 @@
    
   
     <form method="POST" action="index.php?requete=profileConnexion">
-    <button name="status" value="deconnexion">Deconnexion</button>
+    <!-- <button name="status" value="deconnexion">Deconnexion</button> -->
     </form>
 
     

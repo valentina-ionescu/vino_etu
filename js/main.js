@@ -447,5 +447,13 @@ window.addEventListener('load', function () {
   }
 
 
+  let uimage = document.querySelector('.u__img');
+  let umenu= document.querySelector('.u__profile-toggle')
+  console.log(umenu)
+  uimage.addEventListener("click", (e) => {
+    
+    umenu.style.display = umenu.style.display === 'none' ? 'flex' : 'none';
+  })
+
 });
 
