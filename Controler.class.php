@@ -90,7 +90,7 @@ class Controler
 		{
 			$User = new Usager();
 			$cel = new Cellier();
-
+            $msg = '';
 			if (isset($_SESSION['usager_id'])) {
 				$dataC = $cel->getCellierInfo();
 			}else {
@@ -104,7 +104,7 @@ class Controler
 				$bte = new Bouteille();
 				
 				$dataB = $bte->getListeBouteilleCellier();
-				if($dataB == 0) //pas de bouteilles dans le cellier
+				if(empty($dataB)) //pas de bouteilles dans le cellier
 				$msg = "Votre cellier est vide.";
 			}
 
@@ -232,13 +232,13 @@ class Controler
 
 				$validation = $User->checkPassword($Pass, $_POST['email']);
 				
-				echo $validation;
+				// echo $validation;
 
 				if ($validation) {	
 
 					$User->connexion();
 					
-					header('Location: index.php?requete=profile');
+					// header('Location: index.php?requete=profile');
 				}else {
 					header('Location: index.php?requete=creationUsager');
 				}

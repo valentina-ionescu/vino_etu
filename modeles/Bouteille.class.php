@@ -72,7 +72,7 @@ class Bouteille extends Modele {
 					$row['nom'] = trim(htmlspecialchars($row['nom']));
 					$rows[] = $row;
 				}
-			}else return 0;
+			}
 		}
 		else 
 		{

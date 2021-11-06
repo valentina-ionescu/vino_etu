@@ -47,3 +47,13 @@
     width: 100%;
 }
 
+.u__profile-toggle {
+    left: 10rem;
+    padding:.85em;
+    border: 1px solid #ccc;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.u__profile-toggle > a {
+    
+}
