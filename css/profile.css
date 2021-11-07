@@ -28,23 +28,39 @@
 /* Panneau de gestion d'un  usager */
 .u__profile__wrapper {
    background-color: var(--bg-clair);
-   width: 100vw;
-   height: 100vh; 
    padding: 1.25em;
    color: var(--txt-primary);
-  }
+   border-radius: 7px;
+   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.u__profile__wrapper {
+    width: 80vw;
+    height: auto; 
+    margin: 0 auto;
+}
+
+
 .u__titre {
     text-transform: none;
 }
 .u__article {
-    width: calc(100% / 2 - 1.25rem);
-    background-image: url("../img/klara-kulikova-CPMZguYURMw-unsplash.jpg") ;
+    display: flex;
+    gap: 1.25rem;
+}
+.u__article {
+    width: 80%;
+    /* background-image: url("../img/klara-kulikova-CPMZguYURMw-unsplash.jpg") ; */
     background-position: center;
     background-size: cover;
     border-radius: 5px;
+    margin-right: 1.25rem;
 }
 .u__celliers_liste {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 .u__profile-toggle {
