@@ -11,7 +11,10 @@
         <?php foreach ($dataC as $cle => $cel) { ?>
             <article class="u__article">
                 <!-- <button class="selectCellier" data-cellid="<?php echo $cel['id'] ?>"><?php echo $cel['nom_cellier'] ?></button>  -->
-                <a href="" class="selectCellier" data-cellid="<?php echo $cel['id'] ?>"><?php echo $cel['nom_cellier'] ?></a><i class="far fa-trash-alt"></i>
+                <i class="fas fa-circle b__compte"></i> <!--Nombre de bouteilles dans le cellier -->
+                <a href="" class="selectCellier" data-cellid="<?php echo $cel['id'] ?>"><?php echo ucfirst($cel['nom_cellier']) ?></a>
+                <i class="far fa-edit c__edit"></i> <!--Mise a jour d'un cellier -->
+                <i class="far fa-trash-alt c__supp"></i><!--Suppression d'un cellier -->
             </article> <?php } ?>
         <form method="POST" action="index.php?requete=ajouterCellier">
             <button class="u__ajout"><i class="fas fa-plus"></i></button>
