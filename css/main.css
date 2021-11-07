@@ -28,7 +28,7 @@ body { min-height: 100vh; }
 
 body
 {
-    background-color: var(--bg-sombre);
+  background-color: var(--bg-sombre);
   margin-top: 0px;
 }
 

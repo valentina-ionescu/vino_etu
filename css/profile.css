@@ -1,3 +1,7 @@
+body {
+    background-color: var(--bg-clair);
+}
+
 .profile__wrapper__bg {
     padding: 20px;
 }
@@ -28,10 +32,13 @@
 /* Panneau de gestion d'un  usager */
 .u__profile__wrapper {
    background-color: var(--bg-clair);
-   padding: 1.25em;
    color: var(--txt-primary);
    border-radius: 7px;
    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.u__contenu {
+    padding: 1.25em;
+
 }
 
 .u__profile__wrapper {
@@ -43,6 +50,9 @@
 
 .u__titre {
     text-transform: none;
+    color: #f1f1f1;
+    align-self: center;
+    font-size: clamp(1.5rem, -0.875rem + 8.333333vw, 1.75rem);
 }
 .u__article {
     display: flex;
@@ -115,4 +125,17 @@
 }
 .fa-cog {
     margin-right: .25rem;
+}
+
+.u__entete {
+    width: 100%;
+    height: 40vh;
+    background-image: url("../img/bg2.jpg");
+    background-size: cover; 
+}
+
+.overlay {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
 }
