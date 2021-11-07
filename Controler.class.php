@@ -106,10 +106,13 @@ class Controler
 				$dataB = $bte->getListeBouteilleCellier();
 				if(empty($dataB)) //pas de bouteilles dans le cellier
 				$msg = "Votre cellier est vide.";
+				
+				include("vues/entete.php");
+				include("vues/cellier.php");
+				include("vues/pied.php");
 			}
-
 			include("vues/entete.php");
-			include("vues/cellier.php");
+			include("vues/upanneau.php");
 			include("vues/pied.php");
 		}
 
@@ -205,8 +208,8 @@ class Controler
 
 			echo $_SESSION['cellier_id'];
 
-			// $dataB = $bte->getListeBouteilleCellier();
-			$dataC = $cel->getCellierId($id);
+			$dataB = $bte->getListeBouteilleCellier();
+			// $dataC = $cel->getCellierId($id);
 		}
 
 		private function gestionConnexion()

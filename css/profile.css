@@ -139,3 +139,15 @@ body {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.3);
 }
+
+/* --------- Ajout de cellier ------------- */
+.u__ajout {
+   background: unset;
+}
+.fa-plus {
+    color: var(--bg-primaire-autre);
+    font-size: clamp(2rem, -0.875rem + 8.333333vw, 2.75rem);
+    border: 1px solid var(--bg-primaire-autre);
+    border-radius: 50%;
+    padding: .25em;
+}

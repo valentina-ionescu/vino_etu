@@ -14,7 +14,7 @@
                 <a href="" class="selectCellier" data-cellid="<?php echo $cel['id'] ?>"><?php echo $cel['nom_cellier'] ?></a><i class="far fa-trash-alt"></i>
             </article> <?php } ?>
         <form method="POST" action="index.php?requete=ajouterCellier">
-            <button class="u__ajout">Ajouter</button>
+            <button class="u__ajout"><i class="fas fa-plus"></i></button>
         </form>
 
     </div>
