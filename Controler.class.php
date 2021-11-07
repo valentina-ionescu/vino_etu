@@ -74,6 +74,9 @@ class Controler
 				case 'ajouterCellier':
 					$this->addCellier();
 					break;
+				case 'supprimerCellier':
+					$this->suppCellier();
+					break;
 				case 'creationUsager':
 					$this->addUser();
 					break;
@@ -403,7 +406,19 @@ class Controler
 		 	$saq = new SAQ;
 			require_once('updateSAQ.php');
 		 }
-
+		 
+		 /**
+		  * suppCellier
+		  *
+		  * @return void
+		  */
+		 private function suppCellier() {
+			$body = json_decode(file_get_contents('php://input'));
+			
+			$cel = new Cellier();
+			$id = $body->id;
+			$cel->supprimerCellier($id);
+		}		 
 		 
 		
 

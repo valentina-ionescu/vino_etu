@@ -160,3 +160,13 @@ body {
     padding: .25em;
     margin-left: auto;
 }
+/* ==========--------- Modifier celliers -------------========== */
+
+
+/* ==========--------- Supprimer celliers -------------========== */
+
+/* ==========--------- Nbre de bouteilles -------------========== */
+.b__compte {
+    font-size: .75rem;
+}
+

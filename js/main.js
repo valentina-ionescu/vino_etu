@@ -164,12 +164,16 @@ window.addEventListener('load', function () {
 //////////////////////////////////////////////
   
 
-  let inputSelectCellier = document.querySelectorAll(".selectCellier").forEach((element)=>{
+  // let inputSelectCellier = document.querySelectorAll(".selectCellier").forEach((element)=>{
+  let uArticle = document.querySelectorAll(".u__article");
+  console.log(uArticle)
+  uArticle.forEach((element)=>{
     if (element) {
-      element.addEventListener('click', function(evt){
-        console.log(element)
-        console.log(element.dataset.cellid);
-        let id=element.dataset.cellid;
+      console.log(element)
+      let selCell = document.querySelector('.selectCellier');
+      let id=element.dataset.cellid;
+      console.log(id)
+      selCell.addEventListener('click', function(evt) {
         let requete = new Request("index.php?requete=getCellier", {method: 'POST', body: '{"id": '+id+'}'});
         console.log(requete);
         fetch(requete)
@@ -190,6 +194,14 @@ window.addEventListener('load', function () {
           console.error(error);
         });
   
+      })
+
+      // Supprimer cellier
+      let suppCell = element.querySelector('.c__supp');
+  
+      suppCell.addEventListener('click', (evt) => {
+        console.log(id)
+        async('supprimerCellier',id);    
       })
   };
   
@@ -246,13 +258,7 @@ window.addEventListener('load', function () {
   //////////////////////////////////////////////
   //Fonction SUPPRIMER Bouteille du cellier   //
   //////////////////////////////////////////////
-  // let modifBouteille = {
-  //   millesime: document.querySelector("[name='millesime']"),
-  //   date_achat: document.querySelector("[name='date_achat']"),
-  //   prix: document.querySelector("[name='prix']"),
-  //   garde_jusqua: document.querySelector("[name='garde_jusqua']"),
-  //   notes: document.querySelector("[name='notes']"),
-  // };
+ 
 
   document.querySelectorAll(".btnSupprimer").forEach(function (element) {
     element.addEventListener("click", function (evt) {
@@ -306,20 +312,7 @@ window.addEventListener('load', function () {
       });
   });
 
-
-  
-  
-    
-  
-  
-  
-  
-   
-  // let fermerBouton = document.querySelector('.fermer');
-  // fermerBouton.addEventListener('click', function (e) {
-  //    let modal = document.querySelector('.modal__wrapper');
-  //    modal.classList.remove('show');
-  // })
+ 
   //////////////////////////////////////////////
   //Fonction autoComplete                     //
   //////////////////////////////////////////////
@@ -455,5 +448,19 @@ window.addEventListener('load', function () {
     umenu.style.display = umenu.style.display === 'none' ? 'flex' : 'none';
   })
 
-});
 
+//////////////////////////////////////////////
+// Fonction modifier cellier               //
+//////////////////////////////////////////////
+
+// let cedit = document.querySelectorAll('.c__edit');
+// cedit.forEach((element) => {
+//   element.addEventListener("click", function (evt) {
+//     console.log(element);
+//   })
+//   });
+  
+  
+  
+
+}) //fin window load  

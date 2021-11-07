@@ -9,10 +9,10 @@
     <div class="u__celliers_liste u__contenu">
         <p>Mes celliers</p>
         <?php foreach ($dataC as $cle => $cel) { ?>
-            <article class="u__article">
+            <article class="u__article" data-cellid="<?php echo $cel['id'] ?>">
                 <!-- <button class="selectCellier" data-cellid="<?php echo $cel['id'] ?>"><?php echo $cel['nom_cellier'] ?></button>  -->
                 <i class="fas fa-circle b__compte"></i> <!--Nombre de bouteilles dans le cellier -->
-                <a href="" class="selectCellier" data-cellid="<?php echo $cel['id'] ?>"><?php echo ucfirst($cel['nom_cellier']) ?></a>
+                <a href="" class="selectCellier" ><?php echo ucfirst($cel['nom_cellier']) ?></a>
                 <i class="far fa-edit c__edit"></i> <!--Mise a jour d'un cellier -->
                 <i class="far fa-trash-alt c__supp"></i><!--Suppression d'un cellier -->
             </article> <?php } ?>
