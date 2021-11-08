@@ -100,11 +100,12 @@ class Controler
 			}
 
 			if (isset($_SESSION['cellier_id'])) {
+				$msg = "";
 
 				$bte = new Bouteille();
 				
 				$dataB = $bte->getListeBouteilleCellier();
-				if($dataB == 0) //pas de bouteilles dans le cellier
+				if(empty($dataB)) //pas de bouteilles dans le cellier
 				$msg = "Votre cellier est vide.";
 			}
 
@@ -205,8 +206,8 @@ class Controler
 
 			echo $_SESSION['cellier_id'];
 
-			// $dataB = $bte->getListeBouteilleCellier();
-			$dataC = $cel->getCellierId($id);
+			$dataB = $bte->getListeBouteilleCellier();
+			//$dataC = $cel->getCellierId($id);
 		}
 
 		private function gestionConnexion()
@@ -231,14 +232,12 @@ class Controler
 				$Pass = $_POST['password'];
 
 				$validation = $User->checkPassword($Pass, $_POST['email']);
-				
-				echo $validation;
 
 				if ($validation) {	
 
 					$User->connexion();
 					
-					header('Location: index.php?requete=profile');
+					//header('Location: index.php?requete=profile');
 				}else {
 					header('Location: index.php?requete=creationUsager');
 				}
