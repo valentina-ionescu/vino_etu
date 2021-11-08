@@ -160,7 +160,7 @@ window.addEventListener('load', function () {
   }
 
 //////////////////////////////////////////////
-//Fonction selectionner Cellier                  //
+//Fonctions gestion de Celliers                  //
 //////////////////////////////////////////////
   
 
@@ -169,44 +169,50 @@ window.addEventListener('load', function () {
   console.log(uArticle)
   uArticle.forEach((element)=>{
     if (element) {
-      console.log(element)
-      let selCell = document.querySelector('.selectCellier');
       let id=element.dataset.cellid;
       console.log(id)
-      selCell.addEventListener('click', function(evt) {
-        let requete = new Request("index.php?requete=getCellier", {method: 'POST', body: '{"id": '+id+'}'});
-        console.log(requete);
-        fetch(requete)
-            .then(response => {
-                if (response.status === 200) {
-                 
-                  console.log(response);
-                  // window.location.href = 'index.php?requete=accueil';
-                  return response.json();
-                } else {
-                  throw new Error('Erreur');
-                }
-              }).then((data) => {
-                console.log(data)
-                window.location.href = 'index.php?requete=accueil';
-  
-                }).catch(error => {
-          console.error(error);
-        });
-  
-      })
-
+     
+      
       // Supprimer cellier
+
       let suppCell = element.querySelector('.c__supp');
   
       suppCell.addEventListener('click', (evt) => {
         console.log(id)
-        async('supprimerCellier',id);    
+        async('supprimerCellier','DELETE',id);    
       })
-  };
-  
-  
+
+      //Ouvrir cellier
+
+      let selCell = element.querySelector('.selectCellier');
+      selCell.addEventListener('click', (evt) => {
+        console.log(selCell)
+          let requete = new Request("index.php?requete=getCellier", {method: 'POST', body: '{"id": '+id+'}'});
+          console.log(requete);
+          fetch(requete)
+              .then(response => {
+                  if (response.status === 200) {
+                   
+                    console.log(response);
+                    // window.location.href = 'index.php?requete=accueil';
+                    return response.json();
+                  } else {
+                    throw new Error('Erreur');
+                  }
+                }).then((data) => {
+                  console.log(data)
+                  window.location.href = 'index.php?requete=accueil';
+    
+                  }).catch(error => {
+            console.error(error);
+          });
+
+
+  }); 
+};
   });
+  
+  
 
   //////////////////////////////////////////////
   //Fonction modifier                         //

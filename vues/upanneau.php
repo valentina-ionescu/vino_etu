@@ -1,4 +1,5 @@
-<section class="u__profile__wrapper">
+<section class="light__wrapper">
+<div class="u__profile__wrapper">
     <div class="u__entete flex col">
         <div class="overlay flex">
             <h3 class="u__titre">Gestion des Celliers</h3>
@@ -21,4 +22,5 @@
         </form>
 
     </div>
-</section>
+</div>
+</section>        

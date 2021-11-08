@@ -16,9 +16,10 @@
         <?php
 
         if (isset($_SESSION['cellier_id'])) {
-            if($msg) ?>
+            if($msg) {?>
             <h3 class="txt-blanc"><?php echo $msg;?></h3>
-
+            <?php  }else { ?>
+            <h3 class="txt-blanc capit"><?php echo 'Votre cellier: ' . $_SESSION['cellier_nom'];}?></h3>
             <?php foreach ($dataB as $cle => $bouteille) {
 
         ?>

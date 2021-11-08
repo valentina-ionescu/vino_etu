@@ -170,3 +170,6 @@ sup {
     font-weight: normal;
 }
 
+.capit {
+    text-transform: capitalize;
+}

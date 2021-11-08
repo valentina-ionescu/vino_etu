@@ -114,9 +114,9 @@ class Controler
 				include("vues/cellier.php");
 				include("vues/pied.php");
 			}
-			include("vues/entete.php");
-			include("vues/upanneau.php");
-			include("vues/pied.php");
+			// include("vues/entete.php");
+			// include("vues/upanneau.php");
+			// include("vues/pied.php");
 		}
 
 		private function afficherProfile()
