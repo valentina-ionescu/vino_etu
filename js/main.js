@@ -100,12 +100,11 @@ window.addEventListener('load', function () {
                   console.log(response);
                   window.location.href = 'index.php?requete=accueil';
                   return response.json();
-              } else {
-                throw new Error('Erreur');
-              }
-            }).then(response => {
-
-                console.log(response);
+                } else {
+                  throw new Error('Erreur');
+                }
+              }).then(response => {
+                
 
               }).catch(error => {
         console.error(error);
@@ -179,7 +178,26 @@ window.addEventListener('load', function () {
   
       suppCell.addEventListener('click', (evt) => {
         console.log(id)
-        async('supprimerCellier','DELETE',id);    
+        let requete = new Request("index.php?requete=supprimerCellier", {method: 'DELETE', body: '{"id": '+id+'}'});
+        console.log(requete);
+        fetch(requete)
+            .then(response => {
+                if (response.status === 200) {
+                 
+                  console.log(response);
+                  // window.location.href = 'index.php?requete=accueil';
+                  return response.json();
+                } else {
+                  throw new Error('Erreur');
+                }
+              }).then((data) => {
+                console.log(data)
+                window.location.href = 'index.php?requete=accueil';
+  
+                }).catch(error => {
+          console.error(error);
+        });
+
       })
 
       //Ouvrir cellier
@@ -446,7 +464,8 @@ window.addEventListener('load', function () {
   }
 
 
-  let uimage = document.querySelector('.u__img');
+  // let uimage = document.querySelector('.u__img');
+  let uimage = document.querySelector('.u__profile_img');
   let umenu= document.querySelector('.u__profile-toggle')
   console.log(umenu)
   uimage.addEventListener("click", (e) => {

@@ -96,6 +96,9 @@ class Controler
             $msg = '';
 			if (isset($_SESSION['usager_id'])) {
 				$dataC = $cel->getCellierInfo();
+				// include("vues/entete.php");
+				// include("vues/upanneau.php");
+				// include("vues/pied.php");
 			}else {
 				include("vues/entete.php");
 				include("vues/profile.php");
@@ -114,9 +117,7 @@ class Controler
 				include("vues/cellier.php");
 				include("vues/pied.php");
 			}
-			// include("vues/entete.php");
-			// include("vues/upanneau.php");
-			// include("vues/pied.php");
+			
 		}
 
 		private function afficherProfile()
