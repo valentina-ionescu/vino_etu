@@ -36,6 +36,9 @@ class Usager extends Modele {
             $usager = $resultat->fetch_assoc();
 
             if (isset($usager['nom'])) {
+                $initiales = $this->initials($usager['prenom'].' '.$usager['nom']);
+                print_r($initiales);
+                $_SESSION['initiales']=$initiales;
                 $_SESSION['nom'] = $usager['nom'];
                 $_SESSION['usager_id'] = $usager['id'];
                 $_SESSION['admin'] = $usager['admin'];
@@ -172,5 +175,15 @@ class Usager extends Modele {
                 $_SESSION['password'] = $data->password;
             }
         }
+    }
+
+    /**
+    * initials retourne les initiales d'un usager à partir des nom et prénom
+    *
+    * @return string
+    */
+    public function initials($nomc) {
+        preg_match('/(?:\w+\. )?(\w+).*?(\w+)(?: \w+\.)?$/', $nomc, $result);
+        return strtoupper($result[1][0].$result[2][0]);
     }
 }

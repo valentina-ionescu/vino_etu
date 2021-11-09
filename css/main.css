@@ -4,7 +4,7 @@
 
 
  html, body {
-	height: 100%;
+	/* height: 100%; */
 	margin: 0;
 	/* background-color: #fff; */
 	
@@ -12,6 +12,8 @@
 	font-size: 95%;
 	
 }
+
+body { min-height: 100vh; }
 
 /* Ajouté par Félix - scroll pour la description*/
 
@@ -26,7 +28,7 @@
 
 body
 {
-    background-color: var(--bg-sombre);
+  background-color: var(--bg-sombre);
   margin-top: 0px;
 }
 
@@ -307,6 +309,11 @@ color: var(--bg-primaire);
 color: var(--bg-sombre);
 }
 
+.btn__icone {
+    appearance: none;
+    padding: unset;
+    background: transparent;
+}
 @media all and (min-width:768px) {
     .btn__danger,
     .btn__annuler  {
