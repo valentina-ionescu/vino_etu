@@ -18,6 +18,7 @@ const BaseURL = document.baseURI;
 console.log(BaseURL);
 window.addEventListener("load", function () {
   console.log("load");
+ 
   document.querySelectorAll(".btnBoire").forEach(function (element) {
     element.addEventListener("click", function (evt) {
       let id = evt.target.parentElement.dataset.id;
@@ -172,19 +173,40 @@ window.addEventListener("load", function () {
   //Fonctions gestion de Celliers                  //
   //////////////////////////////////////////////
 
-  // let inputSelectCellier = document.querySelectorAll(".selectCellier").forEach((element)=>{
-  let uArticle = document.querySelectorAll(".u__article");
-  console.log(uArticle);
-  uArticle.forEach((element) => {
-    if (element) {
-      let id = element.dataset.cellid;
-      console.log(id);
-
+  
+    
+      
       // Supprimer cellier
+      
+      let supprimerCellier = document.querySelectorAll(".c__supp");
+      supprimerCellier.forEach((element) => {
+        let id = element.dataset.cellid;
+        console.log(id);
 
-      let suppCell = element.querySelector(".c__supp");
+        element.addEventListener('click', (e)=> {
+          //Afficher Modal  //
+          let modal = document.querySelector(".modal__wrapper");
+          modal.classList.toggle("show");
+  
+          //Fermeture du modal //
+          let fermerBouton = document.querySelector(".fermer");
+          fermerBouton.addEventListener("click", function (e) {
+          let modal = document.querySelector(".modal__wrapper");
+          modal.classList.remove("show");
+          });
 
-      suppCell.addEventListener("click", (evt) => {
+        let annBouton = document.querySelector(".btn__annuler");
+        annBouton.addEventListener("click", function (e) {
+        let modal = document.querySelector(".modal__wrapper");
+        modal.classList.remove("show");
+        });
+     
+      
+      // Supprimer cellier apres confirmation
+      
+      let suppCell = document.querySelector(".btn__danger");
+      console.log(suppCell)
+      suppCell.addEventListener('click', (evt) => {
         console.log(id);
         let requete = new Request("index.php?requete=suppCellier", {
           method: "DELETE",
@@ -205,7 +227,7 @@ window.addEventListener("load", function () {
               }).then((data) => {
                 console.log(data)
                 // modal.classList.remove('show'); //fermeture du modal.
-                suppCell.parentElement.remove();
+                element.parentElement.remove();
                 document.querySelector(".msg-supprime").innerText = "Cellier supprimé."
                
                 }).catch(error => {
@@ -214,36 +236,43 @@ window.addEventListener("load", function () {
        
       });
 
+    });
+    });
+
+
       //Ouvrir cellier
 
-      let selCell = element.querySelector(".selectCellier");
-      selCell.addEventListener("click", (evt) => {
-        console.log(selCell);
-        let requete = new Request("index.php?requete=getCellier", {
-          method: "POST",
-          body: '{"id": ' + id + "}",
-        });
-        console.log(requete);
-        fetch(requete)
-          .then((response) => {
-            if (response.status === 200) {
-              console.log(response);
-              // window.location.href = 'index.php?requete=accueil';
-              return response.json();
-            } else {
-              throw new Error("Erreur");
-            }
-          })
-          .then((data) => {
-            console.log(data);
-            window.location.href = "index.php?requete=accueil";
-          })
-          .catch((error) => {
-            console.error(error);
+      let selCell = document.querySelectorAll(".selectCellier");
+      selCell.forEach((element)=> {
+        element.addEventListener("click", (evt) => {
+       
+          let requete = new Request("index.php?requete=getCellier", {
+            method: "POST",
+            body: '{"id": ' + id + "}",
           });
-      });
-    }
-  });
+          console.log(requete);
+          fetch(requete)
+            .then((response) => {
+              if (response.status === 200) {
+                console.log(response);
+                // window.location.href = 'index.php?requete=accueil';
+                return response.json();
+              } else {
+                throw new Error("Erreur");
+              }
+            })
+            .then((data) => {
+              console.log(data);
+              window.location.href = "index.php?requete=accueil";
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+        });
+      
+      })
+    
+  
 
   //////////////////////////////////////////////
   //Fonction modifier                         //
