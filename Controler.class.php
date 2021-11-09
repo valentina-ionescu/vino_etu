@@ -77,6 +77,12 @@ class Controler
 				case 'creationUsager':
 					$this->addUser();
 					break;
+				case 'suppUsager':
+					$this->delUser();
+					break;
+				case 'modifUsager':
+					$this->modifUser();
+					break;
 				default:
 					$this->accueil();
 					break;
@@ -108,7 +114,6 @@ class Controler
 				if(empty($dataB)) //pas de bouteilles dans le cellier
 				$msg = "Votre cellier est vide.";
 			}
-
 			include("vues/entete.php");
 			include("vues/cellier.php");
 			include("vues/pied.php");
@@ -147,7 +152,41 @@ class Controler
 				include("vues/inscription.php");
 				include("vues/pied.php");
 			}
+		}
 
+		private function delUser()
+		{
+
+			$id = $_SESSION['usager_id'];
+			
+			$user = new Usager();
+			
+			$user->supprimerUsager($id);
+
+			echo $_SESSION['usager_id'];
+			
+			session_destroy();
+
+			header('Location: index.php?');
+		}
+
+		private function modifUser()
+		{
+			$body = json_decode(file_get_contents('php://input'));
+
+			if(!empty($body)){
+
+				$User = new Usager();
+
+				$id = $_SESSION['usager_id'];
+				
+				$resultat = $User->modifierUsager($body, $id);
+			}
+			else{
+				include("vues/entete.php");
+				include("vues/modifierUsager.php");
+				include("vues/pied.php");
+			}
 		}
 
 		private function addCellier()
@@ -222,13 +261,9 @@ class Controler
 
 			}elseif ($_POST['status'] == 'connexion') {
 
-				$User->connexion();
-                $cel = new Cellier();
-				$dataC = $cel->getCellierInfo();
+
 				// header('Location: index.php?requete=profile');
-				include("vues/entete.php");
-				include("vues/upanneau.php");
-				include("vues/pied.php");
+
 				$Pass = $_POST['password'];
 
 				$validation = $User->checkPassword($Pass, $_POST['email']);
@@ -236,6 +271,14 @@ class Controler
 				if ($validation) {	
 
 					$User->connexion();
+					$cel = new Cellier();
+					$dataC = $cel->getCellierInfo();
+					$_SESSION['password'] = $Pass;
+
+					include("vues/entete.php");
+					include("vues/upanneau.php");
+					include("vues/pied.php");
+
 					
 					//header('Location: index.php?requete=profile');
 				}else {
