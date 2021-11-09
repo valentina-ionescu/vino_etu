@@ -56,6 +56,16 @@ class Controler
 				// 	$this->getListeUsagers();
 				// 	break;
 
+
+			case 'creationUsager':
+				$this->addUser();
+				break;
+			case 'suppUsager':
+				$this->delUser();
+				break;
+			case 'modifUsager':
+				$this->modifUser();
+				break;
 			case 'profile':
 				$this->afficherProfile();
 				break;
@@ -83,9 +93,6 @@ class Controler
 			case 'suppCellier':
 				$this->suppCellier();
 				break;
-			case 'creationUsager':
-				$this->addUser();
-				break;
 			default:
 				$this->accueil();
 				break;
@@ -110,18 +117,19 @@ class Controler
 			include("vues/pied.php");
 		}
 
-		if (isset($_SESSION['cellier_id'])) {
+			if (isset($_SESSION['cellier_id'])) {
+				$msg = "";
 
-			$bte = new Bouteille();
-
-			$dataB = $bte->getListeBouteilleCellier();
-			if (empty($dataB)) //pas de bouteilles dans le cellier
+				$bte = new Bouteille();
+				
+				$dataB = $bte->getListeBouteilleCellier();
+				if(empty($dataB)) //pas de bouteilles dans le cellier
 				$msg = "Votre cellier est vide.";
-
-			include("vues/entete.php");
-			include("vues/cellier.php");
-			include("vues/pied.php");
-		}else {
+				include("vues/entete.php");
+				include("vues/cellier.php");
+				include("vues/pied.php");
+			}
+		else {
 			include("vues/entete.php");
 			include("vues/upanneau.php");
 			include("vues/pied.php");
@@ -168,23 +176,55 @@ class Controler
 
 		if (!empty($body)) {
 
-			#var_dump($body);
-			#echo $body->nom;
+		#var_dump($body);
+		#echo $body->nom;
 
-			$cel = new Cellier();
+		$cel = new Cellier();
 
-			$NouveauNomCel = $body->nom;
+		$NouveauNomCel = $body->nom;
 
-			echo $NouveauNomCel;
-
-			$resultat = $cel->ajouterCellier($NouveauNomCel);
-
-			echo json_encode($resultat);
+		echo $NouveauNomCel;
+		$resultat = $cel->ajouterCellier($NouveauNomCel);
+		echo json_encode($resultat);
 		} else {
-			include("vues/entete.php");
-			include("vues/ajouterCellier.php");
-			include("vues/pied.php");
+		include("vues/entete.php");
+		include("vues/ajouterCellier.php");
+		include("vues/pied.php");
 		}
+	}
+		private function delUser()
+		{
+
+			$id = $_SESSION['usager_id'];
+			
+			$user = new Usager();
+			
+			$user->supprimerUsager($id);
+
+			echo $_SESSION['usager_id'];
+			
+			session_destroy();
+
+			header('Location: index.php?');
+		}
+
+		private function modifUser()
+		{
+			$body = json_decode(file_get_contents('php://input'));
+
+			if(!empty($body)){
+
+				$User = new Usager();
+
+				$id = $_SESSION['usager_id'];
+				
+				$resultat = $User->modifierUsager($body, $id);
+			}
+			else{
+				include("vues/entete.php");
+				include("vues/modifierUsager.php");
+				include("vues/pied.php");
+			}
 	}
 
 	private function getCellier()
@@ -244,27 +284,11 @@ class Controler
 
 		$resultat = $cel->modifierCellier($nom_cellier, $id);
 
-		// echo json_encode($resultat);
 		include("vues/entete.php");
 		include("vues/modifierCellier.php");
 		include("vues/pied.php");
 	}
-	// private function getCellierId()
-	// {
-	// 	$cel = new Cellier();
-	// 	$bte = new Bouteille();
 
-	// 	$body = json_decode(file_get_contents('php://input'));
-	// 	echo $body->id;
-	// 	$id = $body->id;
-
-	// 	$_SESSION['cellier_id'] = $body->id;
-
-	// 	echo $_SESSION['cellier_id'];
-
-	// 	$dataB = $bte->getListeBouteilleCellier();
-	// 	// $dataC = $cel->getCellierId($id);
-	// }
 
 	private function gestionConnexion()
 	{
@@ -275,24 +299,26 @@ class Controler
 			$User->deconnexion();
 
 			header('Location: index.php?requete=profile');
+
 		} elseif ($_POST['status'] == 'connexion') {
 
-			$User->connexion();
-			$cel = new Cellier();
-			$dataC = $cel->getCellierInfo();
-			// header('Location: index.php?requete=profile');
-			include("vues/entete.php");
-			include("vues/upanneau.php");
-			include("vues/pied.php");
 			$Pass = $_POST['password'];
 
+			$cel = new Cellier();
+			$_SESSION['password'] = $Pass;
+			
 			$validation = $User->checkPassword($Pass, $_POST['email']);
-
+			
 			// echo $validation;
-
+			
 			if ($validation) {
+				
+				$connect = $User->connexion();
+				$dataC = $cel->getCellierInfo();
 
-				$User->connexion();
+				include("vues/entete.php");
+				include("vues/upanneau.php");
+				include("vues/pied.php");
 
 				// header('Location: index.php?requete=profile');
 			} else {

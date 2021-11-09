@@ -170,6 +170,53 @@ window.addEventListener("load", function () {
   }
 
   //////////////////////////////////////////////
+  //Fonction modifier Usager                  //
+  //////////////////////////////////////////////
+
+  let modifUsager = {
+    nom: document.querySelector("[name='nom']"),
+    prenom: document.querySelector("[name='prenom']"),
+    email: document.querySelector("[name='email']"),
+    username: document.querySelector("[name='username']"),
+    password: document.querySelector("[name='password']"),
+  };
+
+  document.querySelectorAll(".btnModifierUser").forEach(function (element) {
+    console.log(element);
+    element.addEventListener("click", function (evt) {
+
+      var param = {
+        "nom": modifUsager.nom.value,
+        "prenom": modifUsager.prenom.value,
+        "email": modifUsager.email.value,
+        "username": modifUsager.username.value,
+        "password": modifUsager.password.value,
+      };
+      let requete = new Request("index.php?requete=modifUsager", { method: 'PUT', body: JSON.stringify(param) });
+      console.log(requete);
+      fetch(requete)
+        .then(response => {
+          if (response.status === 200) {
+            //re-afficher le cellier
+            window.location.href = "index.php?requete=profile"
+            return response.json();
+          } else {
+            throw new Error('Erreur');
+          }
+        })
+        .then(response => {
+          console.log(response);
+
+        }).catch(error => {
+          console.error(error);
+        });
+    });
+  });
+
+  //////////////////////////////////////////////
+  //Fonction selectionner Cellier             //
+  //////////////////////////////////////////////
+  
   //Fonctions gestion de Celliers                  //
   //////////////////////////////////////////////
 
@@ -310,7 +357,7 @@ window.addEventListener("load", function () {
   }
 
   //////////////////////////////////////////////
-  //Fonction modifier                         //
+  //Fonction modifier bouteille               //
   //////////////////////////////////////////////
   let modifBouteille = {
     millesime: document.querySelector("[name='millesime']"),
