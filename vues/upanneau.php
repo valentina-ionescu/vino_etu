@@ -32,7 +32,7 @@
                     
                 
                     <!--Nombre de bouteilles dans le cellier -->
-                    <i class="fas fa-circle b__compte"></i>
+                    <i class="fas fa-circle b__compte"></i><?php echo $cel['count'];?>
                     
                     <!-- Nom du cellier -->
                     <a href="" class="selectCellier" data-cellid="<?php echo $cel['id'] ?>"><?php echo ucfirst($cel['nom_cellier']) ?></a>

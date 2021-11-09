@@ -134,6 +134,7 @@ class Controler
 		if (isset($_SESSION['nom'])) {
 			$cel = new Cellier();
 			$dataC = $cel->getCellierInfo();
+			
 			include("vues/entete.php");
 			include("vues/upanneau.php");
 			include("vues/pied.php");

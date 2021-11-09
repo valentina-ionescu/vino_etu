@@ -37,6 +37,7 @@ class Cellier extends Modele {
                 }
             }
         }
+        
         return $rows;
     }
     
@@ -126,6 +127,7 @@ class Cellier extends Modele {
 
         $row = $res->fetch_assoc();
 
+        
 		return $row;
     }
         
@@ -176,6 +178,12 @@ class Cellier extends Modele {
         }
     }   
 
-    
+    public function bouteillesCellier($id) {
+        // Nombre de bouteilles pour ce cellier
+        $requete = "SELECT count(*) FROM vino__cellier_has_vino__bouteille WHERE vino__cellier_id = ".$id." group by vino__cellier_id";
+        $res =  $this->_db->query($requete);
+        $count = $res->fetch_assoc();
+        return $count;
+    }
 
 }

@@ -78,7 +78,10 @@
 				<a class="u__profile_img flex col">
 					<!-- <i class="fa fa-user-circle header__icon__user"></i> -->
 					<div class="u__img">
-						<img src="https://source.unsplash.com/featured/?profile" alt="">
+
+						<!-- icone de: <a href='https://pngtree.com/so/Profile'>Profile png from pngtree.com/</a> -->
+						<img src="img/abstract-user.svg" style="color:var(--bg-primaire);"
+						alt="">
 					</div>
 				<!-- <span class="petit"><?php echo $_SESSION['nom'];?></span> -->
 				<span class="petit"><?php echo $_SESSION['initiales'];?></span>
