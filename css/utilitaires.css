@@ -48,7 +48,7 @@ main {
     margin-left: auto;
     margin-top: 102px;
     padding-bottom: 2em;
-    min-height: 100%;
+    min-height: 100vh;
 }
 .admin_main{
     max-width: 95vw;
@@ -170,3 +170,6 @@ sup {
     font-weight: normal;
 }
 
+.capit {
+    text-transform: capitalize;
+}

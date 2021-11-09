@@ -4,7 +4,7 @@
         <div class="form__image flex">
             <h1>Se connecter</h1>
         </div>
-        <?php if (isset($_SESSION['nom'])) {  ?>
+        <!-- <?php if (isset($_SESSION['nom'])) {  ?>
             <form class="form__connexion flex col" method="POST" action="index.php?requete=profileConnexion">
                 <div class="form__label__connexion">
                     <label>Nom </label>
@@ -24,7 +24,7 @@
                 </div>
                     <button class='btnModifier' name="status" value="deconnexion">Deconnexion</button>
             </form>
-        <?php }else { ?>
+        <?php }else { ?> -->
             <form class="form__connexion flex col" method="POST" action="index.php?requete=profileConnexion">
                 <div class="form__label__connexion">
                     <label>Adresse courriel</label>
@@ -37,6 +37,6 @@
                 <a href="index.php?requete=creationUsager">Se créer un compte</a>
                     <button class='btnModifier' name="status" value="connexion">Connexion</button>
             </form>
-        <?php } ?>
+        <!-- <?php } ?> -->
     </div>
 </div>

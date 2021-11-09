@@ -37,6 +37,7 @@ class Cellier extends Modele {
                 }
             }
         }
+        
         return $rows;
     }
     
@@ -126,6 +127,7 @@ class Cellier extends Modele {
 
         $row = $res->fetch_assoc();
 
+        
 		return $row;
     }
         
@@ -137,8 +139,17 @@ class Cellier extends Modele {
      */
     public function supprimerCellier($id)
 	{
-        
-       // return $res;
+        $connexion = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
+		$requete = mysqli_prepare($connexion, "DELETE FROM vino__cellier  WHERE id = ?");	
+		if($requete)
+        {
+            mysqli_stmt_bind_param($requete, 'i',$id);
+
+            $res = mysqli_stmt_execute($requete);
+            print_r($res);
+			return $res;
+		}	
+       
     }   
         
     /**
@@ -149,9 +160,30 @@ class Cellier extends Modele {
      */
     public function modifierCellier($data)
 	{
-       // return $res;
+        $connexion = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
+		
+
+		$requete = mysqli_prepare($connexion, "UPDATE vino__cellier SET nom_cellier = ? WHERE id = ?");	
+
+        if($requete)
+        {
+            mysqli_stmt_bind_param($requete, 'si',$data->nom_cellier, $data->id);
+
+            mysqli_stmt_execute($requete);
+
+            $resultat = mysqli_stmt_get_result($requete);
+
+            
+            return $resultat;
+        }
     }   
 
-    
+    public function bouteillesCellier($id) {
+        // Nombre de bouteilles pour ce cellier
+        $requete = "SELECT count(*) FROM vino__cellier_has_vino__bouteille WHERE vino__cellier_id = ".$id." group by vino__cellier_id";
+        $res =  $this->_db->query($requete);
+        $count = $res->fetch_assoc();
+        return $count;
+    }
 
 }
