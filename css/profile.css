@@ -175,11 +175,20 @@ form.btn__ajouter_cellier {
     margin-top: 1.25rem;
 }
 /* ==========--------- Modifier celliers -------------========== */
-
+.c__modif {
+    appearance: none;
+    background: transparent;
+    padding: unset;
+    color: var(--txt-primary);
+    font-size: clamp(.75rem, -0.875rem + 8.333333vw, 1rem);
+    line-height: unset;
+}
 
 /* ==========--------- Supprimer celliers -------------========== */
 .c__supp {
     pointer-events: auto;
+    font-size: clamp(.75rem, -0.875rem + 8.333333vw, 1rem);
+    align-self: center;
 }
 .msg-supprime {
     padding: 1.25rem 0 0 1.25rem;
