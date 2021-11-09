@@ -292,7 +292,7 @@ window.addEventListener("load", function () {
         .then((response) => {
           if (response.status === 200) {
             //re-afficher le cellier
-            // window.location.href = "index.php?requete=accueil";
+            window.location.href = "index.php?requete=profile";
             return response.json();
           } else {
             throw new Error("Erreur");
