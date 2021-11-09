@@ -7,11 +7,11 @@
            
             <div class="form">
                 <div class="form__label__aj">
-                    <input type="texte" name="nomCellier" required>
+                    <input type="texte" name="nom_cellier" value="<?php echo $dataC['nom_cellier']; ?>" required>
                     <label>Nom du cellier </label>
-                    <input type="hidden" name="id">
+                    <input type="hidden" name="id" value="<?php echo $id; ?>">
                 </div>
-                <button class="btn btn-accent solid" name="ajouterCellier">Ajouter le cellier</button>
+                <button class="btn btn-accent solid " name="btnModifier">Modifier</button>
             </div>
           
             

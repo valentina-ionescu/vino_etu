@@ -32,6 +32,13 @@
                 <!-- <button class="selectCellier" data-cellid="<?php echo $cel['id'] ?>"><?php echo $cel['nom_cellier'] ?></button>  -->
                 <i class="fas fa-circle b__compte"></i> <!--Nombre de bouteilles dans le cellier -->
                 <a href="" class="selectCellier" data-cellid="<?php echo $cel['id'] ?>" ><?php echo ucfirst($cel['nom_cellier']) ?></a>
+                <form  method="POST" action="index.php?requete=editCellier">
+                    <button class="c__modif" name="id" value="<?php echo $cel['id'] ?>">
+                        <i class="far fa-edit c__edit" data-cellid="<?php echo $cel['id'] ?>"></i> <!--Mise a jour d'un cellier -->
+                    </button>
+                </form>
+
+
                 <i class="far fa-edit c__edit" data-cellid="<?php echo $cel['id'] ?>"></i> <!--Mise a jour d'un cellier -->
                 <i class="far fa-trash-alt c__supp" data-cellid="<?php echo $cel['id'] ?>"></i><!--Suppression d'un cellier -->
             </article> <?php } ?>

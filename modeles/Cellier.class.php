@@ -158,7 +158,22 @@ class Cellier extends Modele {
      */
     public function modifierCellier($data)
 	{
-       // return $res;
+        $connexion = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
+		
+
+		$requete = mysqli_prepare($connexion, "UPDATE vino__cellier SET nom_cellier = ? WHERE id = ?");	
+
+        if($requete)
+        {
+            mysqli_stmt_bind_param($requete, 'si',$data->nom_cellier, $data->id);
+
+            mysqli_stmt_execute($requete);
+
+            $resultat = mysqli_stmt_get_result($requete);
+
+            
+            return $resultat;
+        }
     }   
 
     
