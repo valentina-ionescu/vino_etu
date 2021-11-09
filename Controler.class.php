@@ -249,22 +249,7 @@ class Controler
 		include("vues/modifierCellier.php");
 		include("vues/pied.php");
 	}
-	// private function getCellierId()
-	// {
-	// 	$cel = new Cellier();
-	// 	$bte = new Bouteille();
-
-	// 	$body = json_decode(file_get_contents('php://input'));
-	// 	echo $body->id;
-	// 	$id = $body->id;
-
-	// 	$_SESSION['cellier_id'] = $body->id;
-
-	// 	echo $_SESSION['cellier_id'];
-
-	// 	$dataB = $bte->getListeBouteilleCellier();
-	// 	// $dataC = $cel->getCellierId($id);
-	// }
+	
 
 	private function gestionConnexion()
 	{
@@ -300,37 +285,7 @@ class Controler
 			}
 		}
 	}
-	/*
-		private function getListeUsagers()
-		{
-			$bte = new Bouteille();
-            $listeBouteilles = $bte->getListeBouteille();
 
-			$user = new Usager();
-            $listeUsager = $user->getListeUsager();
-            //  var_dump($listeUsager);
-			$_SESSION['listeUsagers'] = $listeUsager;
-            
-            // echo json_encode($listeBouteilles);
-			  include("vues/admin_controls.php");   
-
-		}
-
-		private function getCatalogue()
-		{
-			$user = new Usager();
-            $listeUsager = $user->getListeUsager();
-
-			$bte = new Bouteille();
-            $listeBouteilles = $bte->getListeBouteille();
-            // var_dump($listeBouteilles);
-			$_SESSION['listeBouteilles'] = $listeBouteilles;
-            
-            // echo json_encode($listeBouteilles);
-			  include("vues/admin_controls.php");   
-
-		}
-*/
 
 	private function listeBouteille()
 	{
@@ -352,25 +307,7 @@ class Controler
 		echo json_encode($listeBouteille);
 	}
 
-	/*	
-		private function ajouterBouteilleNonListee()
-	{
-		$body = json_decode(file_get_contents('php://input'));
-		if(!empty($body)){
-			$bte = new Bouteille();
-			 var_dump($_POST['data']);
-			
-			var_dump($body);
-			
-			$id = $bte->getListeBouteille();
-			var_dump($id);
-		}
-		else{
-			//  include("vues/entete.php");
-			// include("vues/ajouter.php");
-			// include("vues/pied.php");
-		}
-	}*/
+	
 	private function ajouterNouvelleBouteilleCellier()
 	{
 		$body = json_decode(file_get_contents('php://input'));
