@@ -85,7 +85,7 @@
 
 				<div class="u__profile-toggle flex col">
 					<div class="u__user">Bienvenue, <?php echo ucfirst($_SESSION['prenom']);?> <?php echo ucfirst($_SESSION['nom']);?></div>
-					<a class="u__user-p" href="">Mon profile</a>
+					<a class="u__user-p" href=""><i class="far fa-user-circle"></i>Mon profile</a>
 					<a class="u__user-s" href=""><i class="fas fa-cog"></i>Paramètres</a>
 					<form  method="POST" action="index.php?requete=profileConnexion">
 					<button  name="status" value="deconnexion">Déconnexion</button>

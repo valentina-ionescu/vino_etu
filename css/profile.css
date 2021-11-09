@@ -96,6 +96,7 @@
 .u__user-s {
     padding: .75em;  
     text-decoration: none;
+    color: inherit;
 }
 .u__user-p:hover,
 .u__user-s:hover,
@@ -136,7 +137,8 @@
   border: 1px solid #f1f1f1;
   padding:.2em
 }
-.fa-cog {
+.fa-cog,
+.fa-user-circle {
     margin-right: .25rem;
 }
 
