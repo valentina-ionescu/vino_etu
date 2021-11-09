@@ -74,7 +74,7 @@ class Controler
 				case 'ajouterCellier':
 					$this->addCellier();
 					break;
-				case 'supprimerCellier':
+				case 'suppCellier':
 					$this->suppCellier();
 					break;
 				case 'creationUsager':
@@ -96,6 +96,7 @@ class Controler
             $msg = '';
 			if (isset($_SESSION['usager_id'])) {
 				$dataC = $cel->getCellierInfo();
+				
 				// include("vues/entete.php");
 				// include("vues/upanneau.php");
 				// include("vues/pied.php");
@@ -419,6 +420,7 @@ class Controler
 			$cel = new Cellier();
 			$id = $body->id;
 			$cel->supprimerCellier($id);
+			
 		}		 
 		 
 		

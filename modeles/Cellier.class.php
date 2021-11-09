@@ -138,12 +138,13 @@ class Cellier extends Modele {
     public function supprimerCellier($id)
 	{
         $connexion = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
-		$requete = mysqli_prepare($connexion, "DELETE FROM vino__cellier_has_vino__bouteille  WHERE vino__cellier_id = ?");	
+		$requete = mysqli_prepare($connexion, "DELETE FROM vino__cellier  WHERE id = ?");	
 		if($requete)
         {
             mysqli_stmt_bind_param($requete, 'i',$id);
 
             $res = mysqli_stmt_execute($requete);
+            print_r($res);
 			return $res;
 		}	
        

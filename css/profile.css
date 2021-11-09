@@ -66,6 +66,9 @@
     padding: .25em;
     border-block-end: 1px solid var(--bg-primaire-autre);
 }
+.u__article:last-child {
+    border-block-end: none;
+}
 .u__article {
     width: 100%;
     /* background-image: url("../img/klara-kulikova-CPMZguYURMw-unsplash.jpg") ; */
@@ -79,6 +82,8 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    border: 1px solid var(--bg-sombre);
+    margin-top: -11%;
 }
 
 .u__profile-toggle {
@@ -154,6 +159,9 @@
 /* ===============--------- Ajout de cellier ----------================= */
 .u__ajout {
    background: unset;
+   width: 15%;
+   background: var(--bg-clair);
+   margin-left: 70%;
 }
 .fa-plus {
     color: var(--bg-primaire-autre);
@@ -163,11 +171,19 @@
     padding: .25em;
     margin-left: auto;
 }
+form.btn__ajouter_cellier {
+    margin-top: 1.25rem;
+}
 /* ==========--------- Modifier celliers -------------========== */
 
 
 /* ==========--------- Supprimer celliers -------------========== */
-
+.c__supp {
+    pointer-events: auto;
+}
+.msg-supprime {
+    padding: 1.25rem 0 0 1.25rem;
+}
 /* ==========--------- Nbre de bouteilles -------------========== */
 .b__compte {
     font-size: .75rem;

@@ -5,8 +5,10 @@
             <h3 class="u__titre">Gestion des Celliers</h3>
         </div>
     </div>
-
-
+    <div class="msg-supprime"></div>
+    <form class="flex btn__ajouter_cellier" method="POST" action="index.php?requete=ajouterCellier">
+            <button class="u__ajout"><i class="fas fa-plus"></i></button>
+        </form>
     <div class="u__celliers_liste u__contenu">
         <p>Mes celliers</p>
         <?php foreach ($dataC as $cle => $cel) { ?>
@@ -17,9 +19,7 @@
                 <i class="far fa-edit c__edit"></i> <!--Mise a jour d'un cellier -->
                 <i class="far fa-trash-alt c__supp"></i><!--Suppression d'un cellier -->
             </article> <?php } ?>
-        <form method="POST" action="index.php?requete=ajouterCellier">
-            <button class="u__ajout"><i class="fas fa-plus"></i></button>
-        </form>
+       
 
     </div>
 </div>

@@ -309,6 +309,11 @@ color: var(--bg-primaire);
 color: var(--bg-sombre);
 }
 
+.btn__icone {
+    appearance: none;
+    padding: unset;
+    background: transparent;
+}
 @media all and (min-width:768px) {
     .btn__danger,
     .btn__annuler  {
