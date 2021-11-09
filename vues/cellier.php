@@ -75,7 +75,7 @@
                             <div class="carte__description__wrapper flex">
                                 <h3 class="carte__description-nom "> <?php echo $bouteille['nom'] ?></h3>
                                 <!-- Icone-bouton supprimer -->
-                                <button class="carte__supp btnSupprimer" data-id="<?php echo $bouteille['id'] ?>"><i class="fas fa-times"></i></button>
+                                <button class="carte__supp btnSupprimer" data-id="<?php echo $bouteille['id'] ?>"><i class="far fa-trash-alt"></i></button>
                             </div>
                             <div class="flex row justify-between mt-1">
                                 <p class="carte__description-pays"><?php echo $bouteille['pays'] ?></p>

@@ -245,7 +245,9 @@ window.addEventListener("load", function () {
       let selCell = document.querySelectorAll(".selectCellier");
       selCell.forEach((element)=> {
         element.addEventListener("click", (evt) => {
-       
+          evt.preventDefault();
+          let id = element.dataset.cellid;
+          console.log(id);
           let requete = new Request("index.php?requete=getCellier", {
             method: "POST",
             body: '{"id": ' + id + "}",
@@ -255,7 +257,7 @@ window.addEventListener("load", function () {
             .then((response) => {
               if (response.status === 200) {
                 console.log(response);
-                // window.location.href = 'index.php?requete=accueil';
+                window.location.href = 'index.php?requete=accueil';
                 return response.json();
               } else {
                 throw new Error("Erreur");
@@ -263,7 +265,7 @@ window.addEventListener("load", function () {
             })
             .then((data) => {
               console.log(data);
-              window.location.href = "index.php?requete=accueil";
+              // window.location.href = "index.php?requete=accueil";
             })
             .catch((error) => {
               console.error(error);
@@ -272,7 +274,45 @@ window.addEventListener("load", function () {
       
       })
     
+  // Modifier cellier
+  let modifCell = document.querySelectorAll(".c__edit");
+  modifCell.forEach((element)=> {
+    let id = element.dataset.cellid;
+
+    element.addEventListener("click", (evt) => {
+      evt.preventDefault();
+      console.log(element.parentElement.querySelector('.selectCellier'));
+      let nomCell = element.parentElement.querySelector('.selectCellier').innerText;
+      console.log(nomCell);
+      // element.parentElement.querySelector('.selectCellier').innerHTML = `<input type="text" value="${nomCell}" name="nom_cellier" class="inputCellier">`;
+      // let inputCellier = element.parentElement.querySelector('.inputCellier');
+     
+      //     let requete = new Request("index.php?requete=getCellier", {
+  //       method: "POST",
+  //       body: '{"id": ' + id + "}",
+  //     });
+  //     console.log(requete);
+  //     fetch(requete)
+  //       .then((response) => {
+  //         if (response.status === 200) {
+  //           console.log(response);
+  //           // window.location.href = 'index.php?requete=accueil';
+  //           return response.json();
+  //         } else {
+  //           throw new Error("Erreur");
+  //         }
+  //       })
+  //       .then((data) => {
+  //         console.log(data);
+  //         window.location.href = "index.php?requete=accueil";
+  //       })
+  //       .catch((error) => {
+  //         console.error(error);
+  //       });
+    });
   
+  })
+
 
   //////////////////////////////////////////////
   //Fonction modifier                         //
