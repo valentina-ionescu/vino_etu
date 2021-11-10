@@ -213,11 +213,9 @@ window.addEventListener("load", function () {
     });
   });
 
+
   //////////////////////////////////////////////
-  //Fonction selectionner Cellier             //
-  //////////////////////////////////////////////
-  
-  //Fonctions gestion de Celliers                  //
+  //Fonctions gestion de Celliers             //
   //////////////////////////////////////////////
 
   // Supprimer cellier

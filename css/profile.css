@@ -189,6 +189,15 @@
     padding: .25em;
     margin-left: auto;
 }
+.fa-plus-reverse {
+    color: #f1f1f1;
+    border: 1px solid #f1f1f1;
+    margin-top: -3.125vh;
+    vertical-align: middle;
+    margin-left: 65vw;
+    background: var(--bg-sombre);
+   
+}
 form.btn__ajouter_cellier {
     margin-top: 1.25rem;
 }

@@ -114,15 +114,9 @@ class Controler
 			$dataC = $cel->getCellierInfo();
 
 			
-		} else {
-			include("vues/entete.php");
-			include("vues/profile.php");
-			include("vues/pied.php");
-		}
-
 			if (isset($_SESSION['cellier_id'])) {
 				$msg = "";
-
+	
 				$bte = new Bouteille();
 				
 				$dataB = $bte->getListeBouteilleCellier();
@@ -137,6 +131,12 @@ class Controler
 			include("vues/upanneau.php");
 			include("vues/pied.php");
 		}
+		} else {
+			include("vues/entete.php");
+			include("vues/profile.php");
+			include("vues/pied.php");
+		}
+
 	}
 
 	private function home() {
@@ -313,7 +313,7 @@ class Controler
 	private function gestionConnexion()
 	{
 		$User = new Usager();
-
+    //  if(isset($_POST['status'])) {
 		if ($_POST['status'] == 'deconnexion') {
 
 			$User->deconnexion();
@@ -345,6 +345,7 @@ class Controler
 				header('Location: index.php?requete=creationUsager');
 			}
 		}
+	// }
 	}
 
 
