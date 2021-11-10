@@ -55,7 +55,7 @@
 					<span></span>
 					<ul class="header__menu__links" id="menu">
 							<?php if (isset($_SESSION['nom'])) { ?>
-							<li><a href="?requete=accueil">Mon cellier</a></li>
+							<li><a href="?requete=home">Accueil</a></li>
 							<li><a href="?requete=ajouterNouvelleBouteilleCellier">Ajouter une bouteille au cellier</a></li>
 							<li><a href="?requete=profile">Gérer mes celliers</a></li>
 							
@@ -80,6 +80,7 @@
 					<div class="u__img">
 						<img src="img/abstract-user.svg" style="color:var(--bg-primaire);"
 						alt="">
+					
 					</div>
 				<!-- <span class="petit"><?php echo $_SESSION['nom'];?></span> -->
 				<span class="petit"><?php echo $_SESSION['initiales'];?></span>

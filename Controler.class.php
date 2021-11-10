@@ -93,6 +93,9 @@ class Controler
 			case 'suppCellier':
 				$this->suppCellier();
 				break;
+			case 'home':
+				$this->home();
+				break;
 			default:
 				$this->accueil();
 				break;
@@ -134,6 +137,22 @@ class Controler
 			include("vues/upanneau.php");
 			include("vues/pied.php");
 		}
+	}
+
+	private function home() {
+		$User = new Usager();
+		$cel = new Cellier();
+		$msg = '';
+		if (isset($_SESSION['usager_id'])) {
+			$dataC = $cel->getCellierInfo();
+			include("vues/entete.php");
+			include("vues/upanneau.php");
+			include("vues/pied.php");
+		}else {
+			include("vues/entete.php");
+			include("vues/profile.php");
+			include("vues/pied.php");
+		}	
 	}
 
 	private function afficherProfile()
