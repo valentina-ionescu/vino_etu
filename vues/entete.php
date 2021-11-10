@@ -27,6 +27,7 @@
 		<link rel="stylesheet" href="css/tables.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="css/profile.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="css/admin.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="css/infoUser.css" type="text/css" media="screen">
 
 
 		<link rel="shortcut icon" type="image/png" href="./assets/img/logo/logo-verre-white-circle.png">
@@ -88,7 +89,7 @@
 
 				<div class="u__profile-toggle flex col">
 					<div class="u__user">Bienvenue, <?php echo ucfirst($_SESSION['prenom']);?> <?php echo ucfirst($_SESSION['nom']);?></div>
-					<a class="u__user-p" href=""><i class="far fa-user-circle"></i>Mon profile</a>
+					<a class="u__user-p" href="?requete=paramUsager"><i class="far fa-user-circle"></i>Mon profile</a>
 					<a class="u__user-s" href=""><i class="fas fa-cog"></i>Paramètres</a>
 					<form  method="POST" action="index.php?requete=profileConnexion">
 					<button  name="status" value="deconnexion">Déconnexion</button>

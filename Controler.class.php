@@ -52,11 +52,9 @@ class Controler
 			case 'updateSAQ':
 				$this->updateSAQ();
 				break;
-				// case 'listeUsagers':
-				// 	$this->getListeUsagers();
-				// 	break;
-
-
+			case 'paramUsager':
+				$this->paramUser();
+				break;
 			case 'creationUsager':
 				$this->addUser();
 				break;
@@ -110,28 +108,26 @@ class Controler
 		if (isset($_SESSION['usager_id'])) {
 			$dataC = $cel->getCellierInfo();
 
-			
-		} else {
-			include("vues/entete.php");
-			include("vues/profile.php");
-			include("vues/pied.php");
-		}
-
 			if (isset($_SESSION['cellier_id'])) {
 				$msg = "";
-
+	
 				$bte = new Bouteille();
 				
 				$dataB = $bte->getListeBouteilleCellier();
 				if(empty($dataB)) //pas de bouteilles dans le cellier
 				$msg = "Votre cellier est vide.";
+
 				include("vues/entete.php");
 				include("vues/cellier.php");
 				include("vues/pied.php");
-			}
-		else {
+			}else {
+				include("vues/entete.php");
+				include("vues/upanneau.php");
+				include("vues/pied.php");
+			}	
+		} else {
 			include("vues/entete.php");
-			include("vues/upanneau.php");
+			include("vues/profile.php");
 			include("vues/pied.php");
 		}
 	}
@@ -192,39 +188,46 @@ class Controler
 		include("vues/pied.php");
 		}
 	}
-		private function delUser()
-		{
+	private function delUser()
+	{
+
+		$id = $_SESSION['usager_id'];
+		
+		$user = new Usager();
+		
+		$user->supprimerUsager($id);
+
+		echo $_SESSION['usager_id'];
+		
+		session_destroy();
+
+		header('Location: index.php?');
+	}
+
+	private function modifUser()
+	{
+		$body = json_decode(file_get_contents('php://input'));
+
+		if(!empty($body)){
+
+			$User = new Usager();
 
 			$id = $_SESSION['usager_id'];
 			
-			$user = new Usager();
-			
-			$user->supprimerUsager($id);
-
-			echo $_SESSION['usager_id'];
-			
-			session_destroy();
-
-			header('Location: index.php?');
+			$resultat = $User->modifierUsager($body, $id);
 		}
+		else{
+			include("vues/entete.php");
+			include("vues/modifierUsager.php");
+			include("vues/pied.php");
+		}
+	}
 
-		private function modifUser()
-		{
-			$body = json_decode(file_get_contents('php://input'));
-
-			if(!empty($body)){
-
-				$User = new Usager();
-
-				$id = $_SESSION['usager_id'];
-				
-				$resultat = $User->modifierUsager($body, $id);
-			}
-			else{
-				include("vues/entete.php");
-				include("vues/modifierUsager.php");
-				include("vues/pied.php");
-			}
+	private function paramUser()
+	{
+		include("vues/entete.php");
+		include("vues/param_usager.php");
+		include("vues/pied.php");
 	}
 
 	private function getCellier()

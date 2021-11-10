@@ -3,8 +3,8 @@
     <div class="form__image flex">
             <h1>Mon profile</h1>
         </div>
-        <div class="form__modif flex col">
-            <h3><?php echo $_SESSION['username'];?></h3>
+        <div class="form__modif form__modif__profile flex col">
+            <br>
             <div class="form__label__md">
                 <input type="texte" name="prenom" value="<?php echo $_SESSION['prenom']; ?>">
                 <label>Prenom </label>
