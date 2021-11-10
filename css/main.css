@@ -125,6 +125,15 @@ footer p {
 .p-1{
     padding: 1em;
 }
+.m-1{
+    margin: 1em;
+}
+.my-1{
+    margin: 1em 0;
+}
+.mx-1{
+    margin: 0 1em;
+}
 .mt-1{
     margin-top: 1em;
 }
@@ -156,6 +165,9 @@ footer p {
  margin-left: auto;
  margin-right: auto;
 } 
+.text-center{
+    text-align: center;
+}
 .w-90{
     width: 90vw;
 }
@@ -219,10 +231,16 @@ a.btn {
 }
 
 /* Modal */
-.modal__wrapper {
+.modal__wrapper, 
+.confirm__modal__wrapper, .usager__supprimer__modal__wrapper {
     display: none; 
     position: fixed; 
     z-index: 1; 
+}
+.desactivation__modal__wrapper{
+    display: none; 
+    position: fixed; 
+    z-index: 1;
 }
 .modal__contenu {
     background-color: #f1f1f1;
@@ -232,6 +250,8 @@ a.btn {
     border-radius: 7px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     gap: .25rem;
+    transition: all .3ms ease;
+
 }
 .modal__overlay {
     position: fixed;
@@ -251,8 +271,14 @@ a.btn {
     margin: .25rem 1.25rem 1.25rem 1.25rem;
 }
 .modal__buttons {
-    gap: 1px;
+    flex-wrap: nowrap;
+    width: 70%;
+    margin: 0 auto;
+    padding: 1em;
+    transition: all .3ms ease;
+
 }
+
 .btn__danger,
 .btn__annuler  {
     background: var(--bg-primaire-autre);
@@ -261,17 +287,20 @@ a.btn {
     box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
     box-sizing: border-box;
     color: #FFFFFF;
-    font-size: 16px;
-    font-weight: 800;
-    line-height: 16px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 14px;
     min-height: 40px;
-    transition: all .3ms ease-in-out;
+    transition: all .3ms ease;
+    min-width: 100px;
 }
 
 .btn__annuler {
     background-color: #f4f4f4;
-    border: 1px solid var(--bg-primaire-autre);
+    border: 1px solid var(--bg-primaire);
     color: #222;
+    transition: all .3ms ease;
+
 }
 
 .btn__danger:hover,
@@ -287,11 +316,15 @@ a.btn {
 }
 .btn__annuler:hover,
 .btn__annuler:active {
-  background-color: initial;
+  background-color: var(--txt-medium);
+  border: 1px solid var(--txt-medium);
   background-position: 0 0;
-  color: #333;
+  color: #FFFFFF;
 }
+.fermer i{
+transition: all .3ms ease;
 
+}
 .modal__texte {
     text-align: center;
     font-size: clamp(1rem, -0.875rem + 8.333333vw, 1.2rem);
@@ -300,11 +333,18 @@ a.btn {
 text-align: right;
 font-size: 1.5rem;
 padding: .5em 1em 0 0;
-transition: all .3ms ease-in-out;
-color: var(--bg-primaire);
-}
-.fermer:hover {
+transition: transform .3ms ease;
 color: var(--bg-sombre);
+}
+
+.fermer:hover i{
+transform: rotate(25deg);
+transition: all .3ms ease;
+transition-duration: .3ms;
+
+color: var(--bg-primaire);
+
+
 }
 
 @media all and (min-width:768px) {

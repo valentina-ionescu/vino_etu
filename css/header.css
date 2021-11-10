@@ -173,6 +173,8 @@
     #menuToggle input:checked ~ ul {
         transform: none;
     }
+ 
+
 
    /* Men dropdown du profile usager */
    .u__profile-toggle {

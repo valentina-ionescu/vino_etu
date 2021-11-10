@@ -109,9 +109,19 @@ class Usager extends Modele {
      */
     public function getUsagerId($id)
 	{
-//        return $row;
+        //      
     }   
         
+    public function getUsagerById($id)
+	{
+       $requete = "SELECT * FROM vino__usager WHERE vino__usager.id =".$id." ";
+
+		
+		$res = $this->_db->query($requete);
+
+		// var_dump($idBouteille);
+		return $res;
+    }   
     /**
      * ajouterUsager Cette méthode ajoute un usager avec les données reçues dans $data
      *
@@ -141,7 +151,7 @@ class Usager extends Modele {
      * @param  Array $data nouvelles données du Usager à modifier
      * @return Boolean succés ou échec de l'ajout
      */
-    public function modifierUsager($data)
+    public function modifierUsager($data, $id)
 	{
   //      return $res;
     }   

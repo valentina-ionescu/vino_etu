@@ -102,7 +102,7 @@ button, label, input, select {
 
 
 
-input {
+input:not([type='radio'], [type='checkbox'] ) {
        -webkit-appearance: none;
        background-color: transparent;
 }

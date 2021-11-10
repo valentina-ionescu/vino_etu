@@ -18,8 +18,9 @@
         if (isset($_SESSION['cellier_id'])) {
             if($msg) ?>
             <h3 class="txt-blanc"><?php echo $msg;?></h3>
-
-            <?php foreach ($dataB as $cle => $bouteille) {
+           
+            <?php //var_dump($dataB);
+             foreach ($dataB as $cle => $bouteille) {
 
         ?>
 

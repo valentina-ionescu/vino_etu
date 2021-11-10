@@ -13,6 +13,7 @@
     <meta name="description" content="Un petit verre de vino">
 
     <meta name="author" content="DFV">
+    <link rel="shortcut icon" type="image/png" href="./assets/img/logo/logo-verre-white-circle.png">
 
     <!-- Iconnes importees  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -28,13 +29,8 @@
     <link rel="stylesheet" href="css/tables.css" type="text/css" media="screen">
     <link rel="stylesheet" href="css/profile.css" type="text/css" media="screen">
     <link rel="stylesheet" href="css/admin.css" type="text/css" media="screen">
-
-
-    <link rel="shortcut icon" type="image/png" href="./assets/img/logo/logo-verre-white-circle.png">
-
     <link rel="stylesheet" href="./css/grilles.css" type="text/css" media="screen">
-    <!-- <link rel="stylesheet" href="./css/utilitaires.css">
-		<link rel="stylesheet" href="./css/utilitaires.css" type="text/css" media="screen"> -->
+   
 
 
     <!-- Iconnes importees  -->
@@ -43,16 +39,16 @@
     <base href="<?php echo BASEURL; ?>">
     <!--<script src="./js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>-->
     <!-- <script src="./js/plugins.js"></script> -->
-
-
+    
+    
     <script src="./js/main.js"></script>
     <script src="./js/admin.js"></script>
-
+    
 </head>
 
 <body class="relative admin_body ">
 
-    <!-- Entete et sideBar-->
+  <!-- Entete et sideBar-->
     <header class="page-header">
         <nav>
             <!-- <span id="admin_menuToggle1" class=""> -->
@@ -150,7 +146,7 @@
             <article class="admin__tabs__content admin__tabs__content--active" data-tab="1">
 
                 <!-- Modal Desactivation bouteille -> supprimer -->
-                <div class="desactivation__modal__wrapper" id="desactivation__modal__wrapper">
+                <div class="desactivation__modal__wrapper">
                     <div class="modal__overlay">
                         <div class="modal__contenu flex col">
                             <span class="fermer"><i class="fas fa-times"></i></span>
@@ -169,15 +165,17 @@
 
 
 
-
+                
 
 
                 <h2>Catalogue</h2>
                 <p class="txt_msg-supprime"></p>
+
+               
                 <div class="mt-3">
-
-                    <!-- <span> <?php echo (count($listeBouteilles)); ?> Bouteilles </span> -->
-
+ <a class="btn btn-primaire solid" href="?requete=ajouterBouteilleCatalogue">Ajouter une bouteille Non Listée</a>
+                    <!-- <span> <?php  echo (count($listeBouteilles)); ?> Bouteilles </span> -->
+                   
 
                     <table>
                         <tr>
@@ -223,10 +221,13 @@
 
                                         </form>
 
+                                        <!-- <form action="index.php?requete=desactiverBouteilleCatalogue" method="post" class="nostyle"> -->
+                                            <!-- <input type="hidden" name="id" value="<?php echo $row['id'] ?>"> -->
+                                            <!-- <button class="trash  small btnSupprimer" data-id="<?php echo $row['id'] ?>"><i class="fas fa-trash fa-xs"></i></button> -->
 
+                                            <button class="trash  small btnSuppr" name="Delete" type="submit" data-id="<?php echo $row['id'] ?>"><i class="fas fa-trash fa-xs"></i></button>
 
-                                        <button class="trash  small btnSuppr" name="Delete" type="submit" data-id="<?php echo $row['id'] ?>"><i class="fas fa-trash fa-xs"></i></button>
-
+                                        <!-- </form> -->
 
                                     </td>
 
@@ -242,15 +243,18 @@
                         ?>
                     </table>
                 </div>
-
+                
             </article>
 
-
             <!-- Liste Usagers -->
+
+            
             <article class="admin__tabs__content" data-tab="2">
 
-                <!-- Modal suppression  Usagers  -->
-                <div class="usager__supprimer__modal__wrapper" id="usager__supprimer__modal__wrapper">
+
+  <!-- Modal Suppression Compte Usagers -> supprimer -->
+
+                <!-- <div class="usager__supprimer__modal__wrapper">
                     <div class="modal__overlay">
                         <div class="modal__contenu flex col">
                             <span class="fermer"><i class="fas fa-times"></i></span>
@@ -261,7 +265,12 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
+
+
+
+
+
 
 
 
@@ -269,7 +278,7 @@
 
 
                 <div class="mt-3">
-
+                    
                     <table>
                         <tr>
                             <th>Id</th>
@@ -291,11 +300,8 @@
                                 <!-- <td><i class="fas fa-user fa-2x" ></i></td> -->
 
 
-                                <td><?php if ($row['admin'] == 1) {
-                                        echo $row['nom'] . " " . $row['prenom'] . ' <strong >(Admin)</strong>';
-                                    } else {
-                                        echo $row['nom'] . " " . $row['prenom'];
-                                    } ?></td>
+                                <td><?php if( $row['admin']==1){echo $row['nom'] . " " . $row['prenom'].' <strong >(Admin)</strong>';} 
+                                else{  echo $row['nom'] . " " . $row['prenom']; } ?></td>
                                 <td><?php echo $row['email']; ?></td>
                                 <td><?php echo $row['username']; ?></td>
 
@@ -303,7 +309,7 @@
                                 <td class="actions">
 
 
-                                    <form action="?requete=modifierUsagerCatalogue" method="post" class="nostyle">
+                                    <form action="studentForm/showUpdateStudent" method="post" class="nostyle">
 
                                         <input type="hidden" name="id" value="<?php echo $row['id'] ?>">
 
@@ -312,10 +318,10 @@
                                     </form>
 
                                     <!-- <form action="" method="post" class="nostyle"> -->
-                                    <!-- <input type="hidden" name="id" value="<?php echo $row['id'] ?>"> -->
+                                        <!-- <input type="hidden" name="id" value="<?php echo $row['id'] ?>"> -->
 
-                                    <!-- <button class="trash  small "  name="Delete" type="submit"><i class="fas fa-trash fa-xs"></i></button> -->
-                                    <button class="trash  small btnSupprUsager" name="Delete" type="submit" data-id="<?php echo $row['id'] ?>" data-nom="<?php echo $row['prenom'] . '' . $row['nom'] ?>"><i class="fas fa-trash fa-xs"></i></button>
+                                        <!-- <button class="trash  small "  name="Delete" type="submit"><i class="fas fa-trash fa-xs"></i></button> -->
+                                        <button class="trash  small btnSupprUsager" name="Delete" type="submit" data-id="<?php echo $row['id'] ?>" data-nom="<?php echo $row['prenom'].''.$row['nom'] ?>"><i class="fas fa-trash fa-xs"></i></button>
 
                                     <!-- </form> -->
 
@@ -339,7 +345,7 @@
 
             </article>
 
-
+            
             <!-- <article class="admin__tabs__content" data-tab="3">
 
                 <h2>Statistiques</h2>

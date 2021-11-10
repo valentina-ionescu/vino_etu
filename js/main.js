@@ -91,25 +91,25 @@ window.addEventListener('load', function () {
         "nom": newCellier.nom.value,
       };
 
-      let requete = new Request("index.php?requete=ajouterCellier", { method: 'POST', body: JSON.stringify(param), headers: {'Content-Type': 'application/json', }});
+      let requete = new Request("index.php?requete=ajouterCellier", { method: 'POST', body: JSON.stringify(param), headers: { 'Content-Type': 'application/json', } });
       console.log(requete);
-      
+
       fetch(requete)
-          .then(response => {
-              if (response.status === 200) {
-                  console.log(response);
-                  window.location.href = 'index.php?requete=accueil';
-                  return response.json();
-              } else {
-                throw new Error('Erreur');
-              }
-            }).then(response => {
+        .then(response => {
+          if (response.status === 200) {
+            console.log(response);
+            window.location.href = 'index.php?requete=accueil';
+            return response.json();
+          } else {
+            throw new Error('Erreur');
+          }
+        }).then(response => {
 
-                console.log(response);
+          console.log(response);
 
-              }).catch(error => {
-        console.error(error);
-      });
+        }).catch(error => {
+          console.error(error);
+        });
     });
   }
 
@@ -137,63 +137,63 @@ window.addEventListener('load', function () {
         "password": newUser.password.value,
       };
 
-      let requete = new Request("index.php?requete=creationUsager", { method: 'POST', body: JSON.stringify(param), headers: {'Content-Type': 'application/json', }});
+      let requete = new Request("index.php?requete=creationUsager", { method: 'POST', body: JSON.stringify(param), headers: { 'Content-Type': 'application/json', } });
       console.log(requete);
-      
+
       fetch(requete)
-          .then(response => {
-              if (response.status === 200) {
-                  console.log(response);
-                  window.location.href = 'index.php?requete=profile';
-                  return response.json();
-              } else {
-                throw new Error('Erreur');
-              }
-            }).then(response => {
+        .then(response => {
+          if (response.status === 200) {
+            console.log(response);
+            window.location.href = 'index.php?requete=profile';
+            return response.json();
+          } else {
+            throw new Error('Erreur');
+          }
+        }).then(response => {
 
-                console.log(response);
+          console.log(response);
 
-              }).catch(error => {
-        console.error(error);
-      });
+        }).catch(error => {
+          console.error(error);
+        });
     });
   }
 
-//////////////////////////////////////////////
-//Fonction selectionner Cellier                  //
-//////////////////////////////////////////////
-  
+  //////////////////////////////////////////////
+  //Fonction selectionner Cellier                  //
+  //////////////////////////////////////////////
 
-  let inputSelectCellier = document.querySelectorAll(".selectCellier").forEach((element)=>{
+
+  let inputSelectCellier = document.querySelectorAll(".selectCellier").forEach((element) => {
     if (element) {
-      element.addEventListener('click', function(evt){
+      element.addEventListener('click', function (evt) {
         console.log(element)
         console.log(element.dataset.cellid);
-        let id=element.dataset.cellid;
-        let requete = new Request("index.php?requete=getCellier", {method: 'POST', body: '{"id": '+id+'}'});
+        let id = element.dataset.cellid;
+        let requete = new Request("index.php?requete=getCellier", { method: 'POST', body: '{"id": ' + id + '}' });
         console.log(requete);
         fetch(requete)
-            .then(response => {
-                if (response.status === 200) {
-                 
-                  console.log(response);
-                  // window.location.href = 'index.php?requete=accueil';
-                  return response.json();
-                } else {
-                  throw new Error('Erreur');
-                }
-              }).then((data) => {
-                console.log(data)
-                window.location.href = 'index.php?requete=accueil';
-  
-                }).catch(error => {
-          console.error(error);
-        });
-  
+          .then(response => {
+            if (response.status === 200) {
+
+              console.log(response);
+              // window.location.href = 'index.php?requete=accueil';
+              return response.json();
+            } else {
+              throw new Error('Erreur');
+            }
+          }).then((data) => {
+            console.log(data)
+            window.location.href = 'index.php?requete=accueil';
+
+          }).catch(error => {
+            console.error(error);
+          });
+
       })
-  };
-  
-  
+    };
+
+
   });
 
   //////////////////////////////////////////////
@@ -259,62 +259,60 @@ window.addEventListener('load', function () {
       let id = element.dataset.id;
       let modal = document.querySelector('.modal__wrapper');
 
-    //Afficher Modal  //  
+      //Afficher Modal  //  
       modal.classList.toggle('show');
 
-    //Fermeture du modal //
-  
-    let fermerBouton = document.querySelector('.fermer');
-    fermerBouton.addEventListener('click', function (e) {
-    let modal = document.querySelector('.modal__wrapper');
-    modal.classList.remove('show');
-    })
+      //Fermeture du modal //
 
-    let annBouton = document.querySelector('.btn__annuler');
-    annBouton.addEventListener('click', function (e) {
-      let modal = document.querySelector('.modal__wrapper');
-      modal.classList.remove('show');
+      let fermerBouton = document.querySelector('.fermer');
+      fermerBouton.addEventListener('click', function (e) {
+        let modal = document.querySelector('.modal__wrapper');
+        modal.classList.remove('show');
       })
-    
-    // Suppression de la bouteille //
 
-    let btnDanger = modal.querySelector('.btn__danger');
-    btnDanger.addEventListener('click', (e)=> {
-      console.log(id);  
-      let requete = new Request("index.php?requete=supprimerBouteilleCellier", { method: 'DELETE', body: '{"id": '+id+'}'});
-      console.log(requete);
-      fetch(requete)
-        .then(response => {
-          if (response.status === 200) {
-            //re-afficher le cellier
-            console.log(response)
-            window.location.href = "index.php?requete=accueil"
-            return response.json();
-          } else {
-            throw new Error('Erreur');
-          }
-        })
-        .then(response => {
-          console.log(response);
+      let annBouton = document.querySelector('.btn__annuler');
+      annBouton.addEventListener('click', function (e) {
+        let modal = document.querySelector('.modal__wrapper');
+        modal.classList.remove('show');
+      })
 
-        }).catch(error => {
-          console.error(error);
-        });
-    });
+      // Suppression de la bouteille //
 
-      
+      let btnDanger = modal.querySelector('.btn__danger');
+      btnDanger.addEventListener('click', (e) => {
+        console.log(id);
+        let requete = new Request("index.php?requete=supprimerBouteilleCellier", { method: 'DELETE', body: '{"id": ' + id + '}' });
+        console.log(requete);
+        fetch(requete)
+          .then(response => {
+            if (response.status === 200) {
+              //re-afficher le cellier
+              console.log(response)
+              window.location.href = "index.php?requete=accueil"
+              return response.json();
+            } else {
+              throw new Error('Erreur');
+            }
+          })
+          .then(response => {
+            console.log(response);
+
+          }).catch(error => {
+            console.error(error);
+          });
       });
+
+
+    });
   });
 
 
-  
-  
-    
-  
-  
-  
-  
-   
+
+
+
+
+
+
   // let fermerBouton = document.querySelector('.fermer');
   // fermerBouton.addEventListener('click', function (e) {
   //    let modal = document.querySelector('.modal__wrapper');
@@ -325,7 +323,7 @@ window.addEventListener('load', function () {
   //////////////////////////////////////////////
 
   let inputNomBouteille = document.querySelector("[name='nom_bouteille']");
-  console.log('inputNomBouteille',inputNomBouteille)
+  console.log('inputNomBouteille', inputNomBouteille)
   let liste = document.querySelector('.listeAutoComplete');
 
   if (inputNomBouteille) {
@@ -334,9 +332,9 @@ window.addEventListener('load', function () {
       let nom = inputNomBouteille.value;
 
       liste.innerHTML = "";
-      console.log('nom',nom)
+      console.log('nom', nom)
       if (nom) {
-        
+
         // enleve le BaseURL+ de la Request, pour la faire fonctionner
         let requete = new Request("index.php?requete=autocompleteBouteille", { method: 'POST', body: '{"nom": "' + nom + '"}' });
         console.log(requete)
@@ -373,9 +371,9 @@ window.addEventListener('load', function () {
           });
       }
 
-    //////////////////////////////////////////////
-    //Fonction Nouvelle Bouteille               //
-    //////////////////////////////////////////////
+      //////////////////////////////////////////////
+      //Fonction Nouvelle Bouteille               //
+      //////////////////////////////////////////////
 
     });
 
@@ -399,11 +397,11 @@ window.addEventListener('load', function () {
         bouteille.nom.dataset.id = evt.target.dataset.id;
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         bouteille.prix.setAttribute('value', evt.target.dataset.prix)
-         bouteille.nom.setAttribute('value', evt.target.innerText)
+        bouteille.nom.setAttribute('value', evt.target.innerText)
         console.log('nom', evt.target.innerText)
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-      // bouteille.nom.innerHTML = evt.target.innerText;
-       
+        // bouteille.nom.innerHTML = evt.target.innerText;
+
 
         // bouteille.prix.setAttribute('value', evt.target.dataset.prix)
         console.log(evt.target.dataset.prix);
@@ -426,26 +424,127 @@ window.addEventListener('load', function () {
           "millesime": bouteille.millesime.value,
         };
 
-        let requete = new Request("index.php?requete=ajouterNouvelleBouteilleCellier", 
-                          { method: 'POST', 
-                            body: JSON.stringify(param), 
-                            headers: {'Content-Type': 'application/json', }});
-                            console.log(requete);
-        
-        fetch(requete)    
-        .then(response => 
-          {console.log(response);
-            response.json();})
-        .then(json => 
+        let requete = new Request("index.php?requete=ajouterNouvelleBouteilleCellier",
           {
-            console.log(json)                    
+            method: 'POST',
+            body: JSON.stringify(param),
+            headers: { 'Content-Type': 'application/json', }
+          });
+        console.log(requete);
+
+        fetch(requete)
+          .then(response => {
+            console.log(response);
+            response.json();
+          })
+          .then(json => {
+            console.log(json)
             window.location.href = "index.php?requete=accueil"
           });
-       
+
       });
     }
   }
 
 
+
+
+
+
+
+ ////////////////////////////////////////////////////
+ //Fonction SUPPRIMER compte Usager du Catalogue   //
+ ////////////////////////////////////////////////////
+
+
+    document.querySelectorAll(".btnSupprUsager").forEach(function (element) {
+      console.log(element.parentElement.parentElement);
+      element.addEventListener("click", function (evt) {
+
+          let modalUsager = document.querySelector('.usager__supprimer__modal__wrapper');
+
+          console.log(element)
+          let id = element.dataset.id;
+          let nom = element.dataset.nom;
+
+
+          console.log(modalUsager)
+
+          //Afficher Modal  //  
+          modalUsager.classList.add('show');
+          modalUsager.querySelector('.modal__texte').innerText = 'Supprimer le Compte de l\'usager ' + nom + ' ?';
+
+          //Fermeture du modal //
+          // if (modalUsager.classList.contains('show')) {
+          //     console.log(evt.target.classList);
+          //     // if (!evt.target.classList.contains('modal__contenu')) {
+          //        //  modalUsager.classList.remove('show');
+          //     // }
+          // }
+          let fermerBouton = modalUsager.querySelector('.fermer');
+          fermerBouton.addEventListener('click', function (e) {
+              let modalUsager = document.querySelector('.usager__supprimer__modal__wrapper');
+              modalUsager.classList.remove('show');
+          })
+
+          let annBouton = modalUsager.querySelector('.btn__annuler');
+          annBouton.addEventListener('click', function (e) {
+              let modalUsager = document.querySelector('.usager__supprimer__modal__wrapper');
+              modalUsager.classList.remove('show');
+          })
+
+          // Suppression du compte usager //
+
+          /*
+          let btnDanger = modal.querySelector('.btn__danger');
+          btnDanger.addEventListener('click', (e) => {
+              console.log(id);
+              let requete = new Request("index.php?requete=supprimerUsagerCatalogue", { method: 'PUT', body: '{"id": ' + id + '}' });
+              console.log(requete);
+              fetch(requete)
+                  .then(response => {
+                      if (response.status === 200) {
+
+                          //re-afficher le catalogue
+                         // let requeteListe = new Request("index.php?requete=getCatalogue", { method: 'get' });
+                         // fetch(requeteListe)
+
+                          //fermer le modal
+                          modal.classList.remove('show');
+                          //supprimer le dom de l'element 
+                          element.parentElement.parentElement.remove();
+                          // afficher message de confirmation de la suppression de l'element du catalogue
+
+                          document.querySelector(".txt_msg-supprime").innerText = "L'usager " + nom + " supprimé avec succes !"
+
+                          return response.json();
+
+
+                      } else {
+                          throw new Error('Erreur');
+                      }
+                  })
+                  .then(response => {
+
+
+
+                  }).catch(error => {
+                      console.error(error);
+                  });
+          });*/
+
+
+      });
+  });
+
+
+ ////////////////////////////////////////////////////
+ //Fonction Modifier  compte Usager du Catalogue   //
+ ////////////////////////////////////////////////////
+
+
+
+
+  
 });
 
