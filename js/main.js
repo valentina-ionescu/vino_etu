@@ -198,7 +198,7 @@ window.addEventListener("load", function () {
         .then(response => {
           if (response.status === 200) {
             //re-afficher le cellier
-            window.location.href = "index.php?requete=profile"
+            window.location.href = "index.php?requete=paramUsager"
             return response.json();
           } else {
             throw new Error('Erreur');
@@ -597,7 +597,7 @@ window.addEventListener("load", function () {
   
   
   //////////////////////////////////////////////
-  // Fonction modifier cellier               //
+  // Fonction modifier cellier                //
   //////////////////////////////////////////////
 
   // let cedit = document.querySelectorAll('.c__edit');
@@ -606,4 +606,57 @@ window.addEventListener("load", function () {
   //     console.log(element);
   //   })
   //   });
+
+  //////////////////////////////////////////////
+  // Fonction supprimer usager                //
+  //////////////////////////////////////////////
+
+  let element = document.querySelector(".btnSupprimerProfile");
+    element.addEventListener("click", function (evt) {
+      let modal = document.querySelector(".modal__wrapper");
+
+      //Afficher Modal  //
+      modal.classList.toggle("show");
+
+      //Fermeture du modal //
+
+      let fermerBouton = document.querySelector(".fermer");
+      fermerBouton.addEventListener("click", function (e) {
+        let modal = document.querySelector(".modal__wrapper");
+        modal.classList.remove("show");
+      });
+
+      let annBouton = document.querySelector(".btn__annuler");
+      annBouton.addEventListener("click", function (e) {
+        let modal = document.querySelector(".modal__wrapper");
+        modal.classList.remove("show");
+      });
+
+      // Suppression de la bouteille //
+
+      let btnDanger = modal.querySelector(".btn__danger");
+      btnDanger.addEventListener("click", (e) => {
+        let requete = new Request("index.php?requete=suppUsager");
+        console.log(requete);
+        fetch(requete)
+          .then((response) => {
+            if (response.status === 200) {
+              //re-afficher le cellier
+              console.log(response);
+              window.location.href = "index.php?requete=accueil";
+              return response.json();
+            } else {
+              throw new Error("Erreur");
+            }
+          })
+          .then((response) => {
+            console.log(response);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      });
+    });
+  
+
 }); //fin window load
