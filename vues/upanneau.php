@@ -26,7 +26,11 @@
             <button class="u__ajout"><i class="fas fa-plus"></i></button>
         </form>
         <div class="u__celliers_liste u__contenu">
+            <?php if(!$dataC) {?>
+            <h3>Vous n'avez pas de celliers</h3>
+            <?php } else { ?>
             <p>Mes celliers</p>
+            <?php } ?>
             <?php foreach ($dataC as $cle => $cel) { ?>
                 <article class="u__article" data-cellid="<?php echo $cel['id'] ?>">
                     

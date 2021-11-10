@@ -32,6 +32,8 @@
 }
 
 /* Panneau de gestion d'un  usager */
+
+
 .u__profile__wrapper {
    background-color: var(--bg-clair);
    color: var(--txt-primary);
@@ -65,6 +67,7 @@
     gap: 1.25rem;
     padding: .25em;
     border-block-end: 1px solid var(--bg-primaire-autre);
+    align-items: center;
 }
 .u__article:last-child {
     border-block-end: none;
@@ -87,9 +90,13 @@
 }
 
 .u__profile-toggle {
+    display: none;
     left: 10rem;
     border: 1px solid #ccc;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.show {
+    display: flex;
 }
 
 .u__user-p,
@@ -157,6 +164,8 @@
 
 .selectCellier {
     width: calc(85% - 1.25rem);
+    color: #222;
+    font-size: clamp(.75rem, -0.875rem + 8.333333vw, 1rem);
 }
 /* ===============--------- Ajout de cellier ----------================= */
 .u__ajout {

@@ -75,28 +75,26 @@
 				</div>
 				<a href="?requete=accueil" class="flex"><img class="header__logo" src="assets/img/logo/logo.svg" alt=""></a>
 				<?php if (isset($_SESSION['nom'])) { ?>
-				<a class="u__profile_img flex col">
+				<div class="u__profile_img flex col">
 					<!-- <i class="fa fa-user-circle header__icon__user"></i> -->
 					<div class="u__img">
-
-						<!-- icone de: <a href='https://pngtree.com/so/Profile'>Profile png from pngtree.com/</a> -->
 						<img src="img/abstract-user.svg" style="color:var(--bg-primaire);"
 						alt="">
 					</div>
 				<!-- <span class="petit"><?php echo $_SESSION['nom'];?></span> -->
 				<span class="petit"><?php echo $_SESSION['initiales'];?></span>
 
-				<div class="u__profile-toggle flex col">
+				<div class="u__profile-toggle  col">
 					<div class="u__user">Bienvenue, <?php echo ucfirst($_SESSION['prenom']);?> <?php echo ucfirst($_SESSION['nom']);?></div>
 					<a class="u__user-p" href=""><i class="far fa-user-circle"></i>Mon profile</a>
-					<a class="u__user-s" href=""><i class="fas fa-cog"></i>Paramètres</a>
+					<!-- <a class="u__user-s" href=""><i class="fas fa-cog"></i>Paramètres</a> -->
 					<form  method="POST" action="index.php?requete=profileConnexion">
 					<button  name="status" value="deconnexion">Déconnexion</button>
                     </form>
 				</div>
 				<?php 
 				}?>
-			    </a>
+			    </div>
 			</nav>
 		</header>
 		<main >	
