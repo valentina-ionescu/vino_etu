@@ -9,70 +9,72 @@
 
 
 
- //const BaseURL = document.baseURI;
+// const BaseURL = document.baseURI;
 
 console.log(BaseURL);
 window.addEventListener('load', function () {
 
+  
 
 
 
 
 
-    ////////////////////////////////////////////////////////////////////////
-    //Fonction afficher le contenu en fonction de bouton/tab selectionnee //
-    ////////////////////////////////////////////////////////////////////////
+//     ////////////////////////////////////////////////////////////////////////
+//     //Fonction afficher le contenu en fonction de bouton/tab selectionnee //
+//     ////////////////////////////////////////////////////////////////////////
 
-    document.querySelectorAll(".tabs__button").forEach(function (element) {
-        console.log(element);
-        let sideBar = element.parentElement;
-        //    if ( sideBar.style=("transform: translate(-100%, 0)")){
-        //     sideBar.style= (" ");
-        //    }
-        element.addEventListener("click", function (evt) {
-            console.log(element);
+//     document.querySelectorAll(".tabs__button").forEach(function (element) {
+//         console.log(element);
+//         let sideBar = element.parentElement;
+//         //    if ( sideBar.style=("transform: translate(-100%, 0)")){
+//         //     sideBar.style= (" ");
+//         //    }
+//         element.addEventListener("click", function (evt) {
+//             console.log(element);
 
-            let mainContenant = document.querySelector('.admin_contenu_page');
-            console.log(sideBar)
-            let tabNumber = element.dataset.forTab;
-            let contentActivate = mainContenant.querySelector(`.admin__tabs__content[data-tab="${tabNumber}"]`);
-            console.log(contentActivate);
+//             let mainContenant = document.querySelector('.admin_contenu_page');
+//             console.log(sideBar)
+//             let tabNumber = element.dataset.forTab;
+//             let contentActivate = mainContenant.querySelector(`.admin__tabs__content[data-tab="${tabNumber}"]`);
+//             console.log(contentActivate);
+//             sessionStorage.setItem("activeLocation", contentActivate);
+            
+//             sideBar.querySelectorAll('.tabs__button').forEach(button => {
+//                 button.classList.remove('tabs__button--active');
+//             })
+//             mainContenant.querySelectorAll('.admin__tabs__content').forEach(tab => {
+//                 tab.classList.remove('admin__tabs__content--active');
+//             })
 
-            sideBar.querySelectorAll('.tabs__button').forEach(button => {
-                button.classList.remove('tabs__button--active');
-            })
-            mainContenant.querySelectorAll('.admin__tabs__content').forEach(tab => {
-                tab.classList.remove('admin__tabs__content--active');
-            })
+//            console.log(sessionStorage.getItem("activeLocation"))
 
-           
+//             //cacher le "x" et re-afficher le menu burger
+//             // document.getElementById("admin_menuToggle").nextElementSibling.classList.add('hidden')
+//             //  document.getElementById("admin_menuToggle").lastElementChild.previousElementSibling.classList.remove('hidden');
 
-            //cacher le "x" et re-afficher le menu burger
-            // document.getElementById("admin_menuToggle").nextElementSibling.classList.add('hidden')
-            //  document.getElementById("admin_menuToggle").lastElementChild.previousElementSibling.classList.remove('hidden');
+//             element.classList.add('tabs__button--active');
+//             contentActivate.classList.add('admin__tabs__content--active');
+//  //retracter la side-bare
+//  //sideBar.classList.remove('sideBar-ferme'); 
 
-            element.classList.add('tabs__button--active');
-            contentActivate.classList.add('admin__tabs__content--active');
- //retracter la side-bare
- //sideBar.classList.remove('sideBar-ferme'); 
-
-        })
-    })
+//         })
+//     })
 
 
 
     ////////////////////////////////////////////////////////////////////////
     //Fonction Toggle de class pour le bouton menu                       //
     ////////////////////////////////////////////////////////////////////////
-    /*
-        let menuToggle = document.getElementById("admin_menuToggle");
+    
+        /*  let menuToggle = document.getElementById("admin_menuToggle");
        
         sideBar = document.querySelector('.admin-menu');
         console.log(menuToggle)
-    
+   
         menuToggle.querySelectorAll('.menu_icon').forEach(icon => {
             sideBar.classList.remove("hidden");
-             
+            
             menuToggle.addEventListener("click", function (evt) {
     
                 if (icon.classList.contains('hidden')) {
@@ -125,7 +127,7 @@ window.addEventListener('load', function () {
 
             //Afficher Modal  //  
             modal.classList.toggle('show');
-            modal.querySelector('.modal__texte').innerText = 'Supprimer la bouteille No. ' + id + ' ?';
+            modal.querySelector('.modal__texte').innerText = 'Supprimer la bouteille No.' + id + ' ?';
 
             //Fermeture du modal //
             
