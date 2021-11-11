@@ -120,9 +120,11 @@
                                                 <form class="mt-1" action="?requete=modifierBouteilleCellier" method="POST">
                                                     <button name="id" class="btnCellierModif btn btn-accent solid" value="<?php echo $bouteille['id']; ?>" type="submit"> Modifier</button>
                                                 </form>
+                                                      
+                                                       
+                                                    
                                             </div>
                                         </div>
-                                    </div>
                                 </div>
 
                                 <a class="carte__lien" href="<?php echo $bouteille['url_saq'] ?>">Voir SAQ</a>

@@ -21,11 +21,39 @@
         </div>
         <!--Fin de modal  -->
 
+        <!-- Modal d'ajout de cellier -->
+        <div class="modal__ajout-wrapper">
+            <div class="modal__overlay">
+                <div class="modal__contenu flex col">
+                    <span class="fermer x__annuler"><i class="fas fa-times"></i></span>
+                    <div class="form">
+                        <div class="form__label__aj">
+                            <input type="texte" name="nomCellier" required>
+                            <label>Nom du cellier </label>
+                            <input type="hidden" name="id">
+                        </div>
+                    <button class="btn btn-accent solid btnAjout" name="ajoutCellier">Ajouter le cellier</button>
+                    <div class="msg-erreur"></div>
+
+                    <!-- <button class="btn__annuler">Annuler</button> -->
+                </div>
+                        
+            </div>
+        </div>
+            <!-- </div> -->
+        </div>
+        <!--Fin de modal  -->
+
+
+
         <div class="msg-supprime"></div>
-        <form class="flex btn__ajouter_cellier" method="POST" action="index.php?requete=ajouterCellier">
+       
+        <!-- <form class="flex btn__ajouter_cellier" method="POST" action="index.php?requete=ajouterCellier"> -->
+        <div class="flex btn__ajouter_cellier">
             <button class="u__ajout"><i class="fas fa-plus"></i></button>
-        </form>
+        </div>
         <div class="u__celliers_liste u__contenu">
+            
             <?php if(!$dataC) {?>
             <h4>Vous n'avez pas de celliers</h4>
             <?php } else { ?>

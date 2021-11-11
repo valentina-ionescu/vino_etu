@@ -172,14 +172,11 @@
 }
 
 .carte__quantite {
-    /* display: block;  */
     text-align: center;
     min-width: 50px;
-    /* display: block; */
     justify-content: center;
     align-items: center;
-    FONT-WEIGHT: 100;
-    /* padding: 15px 0; */
+    font-weight: 100;
 }
 
 .carte__quantite.column {
