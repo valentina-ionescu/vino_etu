@@ -127,13 +127,17 @@ window.addEventListener("load", function () {
       .then((response) => {
         if (response.status === 200) {
           console.log(response);
-          window.location.href = "index.php?requete=profile";
+          
+          setTimeout(function(){
+            window.location.href = "index.php?requete=profile";
+         }, 1500); 
           return response.json();
         } else {
           throw new Error("Erreur");
         }
       })
-      .then((response) => {})
+      .then((response) => {console.log(response)
+      document.querySelector('.msg-erreur').innerHTML=`<p>${response}</p>`})
       .catch((error) => {
         console.error(error);
       });

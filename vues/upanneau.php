@@ -33,6 +33,8 @@
                             <input type="hidden" name="id">
                         </div>
                     <button class="btn btn-accent solid btnAjout" name="ajoutCellier">Ajouter le cellier</button>
+                    <div class="msg-erreur"></div>
+
                     <!-- <button class="btn__annuler">Annuler</button> -->
                 </div>
                         
@@ -45,6 +47,7 @@
 
 
         <div class="msg-supprime"></div>
+       
         <!-- <form class="flex btn__ajouter_cellier" method="POST" action="index.php?requete=ajouterCellier"> -->
         <div class="flex btn__ajouter_cellier">
             <button class="u__ajout"><i class="fas fa-plus"></i></button>
