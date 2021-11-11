@@ -1,7 +1,7 @@
 .light__wrapper {
     background-color: var(--bg-clair);
     min-height: 100vh;
-    padding-top: 1.25rem;
+    padding-top: 2.50rem;
 }
 
 .profile__wrapper__bg {
@@ -32,6 +32,8 @@
 }
 
 /* Panneau de gestion d'un  usager */
+
+
 .u__profile__wrapper {
    background-color: var(--bg-clair);
    color: var(--txt-primary);
@@ -58,6 +60,9 @@
     font-size: clamp(1.5rem, -0.875rem + 8.333333vw, 1.75rem);
 }
 
+.u__titre-m {
+    margin: var(--vspace-3) 0 var(--vspace-3) 0;
+}
 /* ==========--------- Liste de celliers -------------========== */
 
 .u__article {
@@ -65,6 +70,7 @@
     gap: 1.25rem;
     padding: .25em;
     border-block-end: 1px solid var(--bg-primaire-autre);
+    align-items: center;
 }
 .u__article:last-child {
     border-block-end: none;
@@ -87,9 +93,13 @@
 }
 
 .u__profile-toggle {
+    display: none;
     left: 10rem;
     border: 1px solid #ccc;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.show {
+    display: flex;
 }
 
 .u__user-p,
@@ -137,6 +147,10 @@
   border: 1px solid #f1f1f1;
   padding:.2em
 }
+.u__profile_img {
+    justify-content: center;
+}
+
 .fa-cog,
 .fa-user-circle {
     margin-right: .25rem;
@@ -157,6 +171,8 @@
 
 .selectCellier {
     width: calc(85% - 1.25rem);
+    color: #222;
+    font-size: clamp(.75rem, -0.875rem + 8.333333vw, 1rem);
 }
 /* ===============--------- Ajout de cellier ----------================= */
 .u__ajout {
@@ -173,6 +189,15 @@
     padding: .25em;
     margin-left: auto;
 }
+.fa-plus-reverse {
+    color: #f1f1f1;
+    border: 1px solid #f1f1f1;
+    margin-top: -3.125vh;
+    vertical-align: middle;
+    margin-left: 65vw;
+    background: var(--bg-sombre);
+   
+}
 form.btn__ajouter_cellier {
     margin-top: 1.25rem;
 }
@@ -183,7 +208,6 @@ form.btn__ajouter_cellier {
     padding: unset;
     color: var(--txt-primary);
     font-size: clamp(.75rem, -0.875rem + 8.333333vw, 1rem);
-    line-height: unset;
 }
 
 /* ==========--------- Supprimer celliers -------------========== */

@@ -3,7 +3,7 @@
         <div class="form__image flex">
             <h1>Inscription</h1>
         </div>
-        <form class="form__connexion flex col" method="POST" action="index.php?requete=profileConnexion">   
+        <form class="form__connexion flex col" method="POST" action="index.php?requete=accueil">   
             <div class="form__label__connexion">
                 <label>Nom </label>
                 <input type="" name="nomUser" required value="">

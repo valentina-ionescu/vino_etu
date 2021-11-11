@@ -1,26 +1,30 @@
 <div class="cellier">
     <div class="cellier__information">
-        <div class="cellier__information__wrapper flex row justify-start">
-            <!-- <i class="fa fa-user cellier__information__icon"></i> -->
-            <div class="nomCellier"></div>
+        <div class="cellier__information__wrapper flex row">
+            <div class="nomCellier">
+                <?php if ($msg) { ?>
+                    <h3 class="txt-blanc"><?php echo $msg; ?></h3>
+                <?php  } else { ?>
+                    <h3 class="txt-blanc capit"><?php echo 'Votre cellier: ' . $_SESSION['cellier_nom'];
+                                            } ?></h3>
+            </div>
         </div>
         <div class="cellier__information__wrapper">
-           
+            
+            </div>
         </div>
-    </div>
-
-
-    <div class="gallerie portail">
+        
+        
+        <div class="gallerie portail">
+        <a href="?requete=ajouterNouvelleBouteilleCellier"><i class="fas fa-plus fa-plus-reverse"></i></a>
 
 
         <?php
 
         if (isset($_SESSION['cellier_id'])) {
-            if($msg) {?>
-            <h3 class="txt-blanc"><?php echo $msg;?></h3>
-            <?php  }else { ?>
-            <h3 class="txt-blanc capit"><?php echo 'Votre cellier: ' . $_SESSION['cellier_nom'];}?></h3>
-            <?php foreach ($dataB as $cle => $bouteille) {
+
+
+            foreach ($dataB as $cle => $bouteille) {
 
         ?>
 

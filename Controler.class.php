@@ -52,11 +52,9 @@ class Controler
 			case 'updateSAQ':
 				$this->updateSAQ();
 				break;
-				// case 'listeUsagers':
-				// 	$this->getListeUsagers();
-				// 	break;
-
-
+			case 'paramUsager':
+				$this->paramUser();
+				break;
 			case 'creationUsager':
 				$this->addUser();
 				break;
@@ -114,6 +112,9 @@ class Controler
 			case 'suppCellier':
 				$this->suppCellier();
 				break;
+			case 'home':
+				$this->home();
+				break;
 			default:
 				$this->accueil();
 				break;
@@ -133,25 +134,44 @@ class Controler
 
 			if (isset($_SESSION['cellier_id'])) {
 				$msg = "";
-
+	
 				$bte = new Bouteille();
 
 				$dataB = $bte->getListeBouteilleCellier();
-				if (empty($dataB)) //pas de bouteilles dans le cellier
-					$msg = "Votre cellier est vide.";
+				if(empty($dataB)) //pas de bouteilles dans le cellier
+				$msg = "Votre cellier est vide.";
+
 				include("vues/entete.php");
 				include("vues/cellier.php");
 				include("vues/pied.php");
-			} else {
+			}else {
 				include("vues/entete.php");
 				include("vues/upanneau.php");
 				include("vues/pied.php");
-			}
+			}	
 		} else {
 			include("vues/entete.php");
 			include("vues/profile.php");
 			include("vues/pied.php");
 		}
+		
+
+	}
+
+	private function home() {
+		$User = new Usager();
+		$cel = new Cellier();
+		$msg = '';
+		if (isset($_SESSION['usager_id'])) {
+			$dataC = $cel->getCellierInfo();
+			include("vues/entete.php");
+			include("vues/upanneau.php");
+			include("vues/pied.php");
+		}else {
+			include("vues/entete.php");
+			include("vues/profile.php");
+			include("vues/pied.php");
+		}	
 	}
 
 	private function afficherProfile()
@@ -214,13 +234,13 @@ class Controler
 	{
 
 		$id = $_SESSION['usager_id'];
-
+		
 		$user = new Usager();
-
+		
 		$user->supprimerUsager($id);
 
 		echo $_SESSION['usager_id'];
-
+		
 		session_destroy();
 
 		header('Location: index.php?');
@@ -230,18 +250,26 @@ class Controler
 	{
 		$body = json_decode(file_get_contents('php://input'));
 
-		if (!empty($body)) {
+		if(!empty($body)){
 
-			$user = new Usager();
+			$User = new Usager();
 
 			$id = $_SESSION['usager_id'];
-
-			$resultat = $user->modifierUsager($body, $id);
-		} else {
+			
+			$resultat = $User->modifierUsager($body, $id);
+		}
+		else{
 			include("vues/entete.php");
 			include("vues/modifierUsager.php");
 			include("vues/pied.php");
 		}
+	}
+
+	private function paramUser()
+	{
+		include("vues/entete.php");
+		include("vues/param_usager.php");
+		include("vues/pied.php");
 	}
 
 	private function getCellier()
@@ -305,12 +333,13 @@ class Controler
 		include("vues/modifierCellier.php");
 		include("vues/pied.php");
 	}
+	
 
 
 	private function gestionConnexion()
 	{
 		$User = new Usager();
-
+    //  if(isset($_POST['status'])) {
 		if ($_POST['status'] == 'deconnexion') {
 
 			$User->deconnexion();
@@ -343,23 +372,10 @@ class Controler
 				header('Location: index.php?requete=creationUsager');
 			}
 		}
+	// }
 	}
-	/*
-		private function getListeUsagers()
-		{
-			$bte = new Bouteille();
-            $listeBouteilles = $bte->getListeBouteille();
 
-			$user = new Usager();
-            $listeUsager = $user->getListeUsager();
-            //  var_dump($listeUsager);
-			$_SESSION['listeUsagers'] = $listeUsager;
-            
-            // echo json_encode($listeBouteilles);
-			  include("vues/admin_controls.php");   
 
-		}
-*/
 	private function getCatalogue()
 	{
 		$user = new Usager();
@@ -395,25 +411,7 @@ class Controler
 		echo json_encode($listeBouteille);
 	}
 
-	/*	
-		private function ajouterBouteilleNonListee()
-	{
-		$body = json_decode(file_get_contents('php://input'));
-		if(!empty($body)){
-			$bte = new Bouteille();
-			 var_dump($_POST['data']);
-			
-			var_dump($body);
-			
-			$id = $bte->getListeBouteille();
-			var_dump($id);
-		}
-		else{
-			//  include("vues/entete.php");
-			// include("vues/ajouter.php");
-			// include("vues/pied.php");
-		}
-	}*/
+	
 	private function ajouterNouvelleBouteilleCellier()
 	{
 		$body = json_decode(file_get_contents('php://input'));

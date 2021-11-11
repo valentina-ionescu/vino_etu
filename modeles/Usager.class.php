@@ -37,7 +37,7 @@ class Usager extends Modele {
 
             if (isset($usager['nom'])) {
                 $initiales = $this->initials($usager['prenom'].' '.$usager['nom']);
-                print_r($initiales);
+                
                 $_SESSION['initiales']=$initiales;
                 $_SESSION['nom'] = $usager['nom'];
                 $_SESSION['usager_id'] = $usager['id'];
@@ -213,6 +213,7 @@ class Usager extends Modele {
                 $_SESSION['username'] = $data->username;
                 $_SESSION['email'] = $data->email;
                 $_SESSION['password'] = $data->password;
+                $_SESSION['initiales'] = $this->initials($data->prenom.' '.$data->nom);
             }
         }
     }
