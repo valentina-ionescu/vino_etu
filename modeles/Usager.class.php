@@ -104,7 +104,7 @@ class Usager extends Modele {
      */
     public function inscription($data, $hashPass){
 
-        $requete = "INSERT INTO vino__usager (nom, prenom, username, email, password) VALUE ('".$data->nom."', '".$data->prenom."', '".$data->username."', '".$data->email."', '".$hashPass."')";
+        $requete = "INSERT INTO vino__usager (nom, prenom, username, email, password,admin ) VALUE ('".$data->nom."', '".$data->prenom."', '".$data->username."', '".$data->email."', '".$hashPass."', '0')";
    
         $res = $this->_db->query($requete);
 
@@ -135,6 +135,41 @@ class Usager extends Modele {
     }
 
     
+    /**
+     * getUsagerId  - Cette méthode récupere les données d'un seul usager identifié par $id
+     *
+     * @param  mixed $id
+     * @return void
+     */
+    public function getUsagerId($id)
+	{
+        //      
+    }   
+        
+    public function getUsagerById($id)
+	{
+       $requete = "SELECT * FROM vino__usager WHERE vino__usager.id =".$id." ";
+
+		
+		$res = $this->_db->query($requete);
+
+		
+		return $res;
+    }   
+    /**
+     * ajouterUsager Cette méthode ajoute un usager avec les données reçues dans $data
+     *
+     * @param  Array $data Tableau des données du usager à inserer
+     * @return int   $id du nouveau usager inséré
+     */
+    public function ajouterUsager($data)
+	{
+//        return $id;
+    }   
+        
+
+        
+  
     public function supprimerUsager($id)
 	{
         $requete = "DELETE FROM vino__usager WHERE id = '".$id."'";
@@ -146,7 +181,12 @@ class Usager extends Modele {
 		return $res;
     }
 
-
+  /**
+     * modifierUsager met à jour les informations d'un usager existant
+     *
+     * @param  Array $data nouvelles données du Usager à modifier
+     * @return Boolean succés ou échec de l'ajout
+     */
     public function modifierUsager($data, $id)
 	{
         $connexion = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
@@ -178,6 +218,44 @@ class Usager extends Modele {
         }
     }
 
+/**
+     * modifierUsagerCatalogue met à jour les informations d'un usager existant par l'administrateur
+     *
+     * @param  Array $data nouvelles données du Usager à modifier
+     * @return Boolean succés ou échec de l'ajout
+     */
+
+    public function modifierUsagerCatalogue($data, $id)
+	{
+        $connexion = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
+
+        $options = [
+            'cost' => 12,
+        ];
+
+        $hashPassword= password_hash($data->password, PASSWORD_BCRYPT, $options);
+
+		$requete = mysqli_prepare($connexion, "UPDATE vino__usager SET nom = ?, email =? , prenom =? , username =? , password = ?, admin=? WHERE id = ?");	
+
+        if($requete)
+        {
+            mysqli_stmt_bind_param($requete, 'ssssssi', $data->nom, $data->email, $data->prenom, $data->username, $hashPassword, $data->admin, $id);
+
+            mysqli_stmt_execute($requete);
+
+            $resultat = mysqli_stmt_get_result($requete);
+
+            if(!$resultat){
+				var_dump($resultat);
+			}
+			else{
+
+			}
+        }
+    }
+
+
+
     /**
     * initials retourne les initiales d'un usager à partir des nom et prénom
     *
@@ -187,4 +265,9 @@ class Usager extends Modele {
         preg_match('/(?:\w+\. )?(\w+).*?(\w+)(?: \w+\.)?$/', $nomc, $result);
         return strtoupper($result[1][0].$result[2][0]);
     }
+
+
+
+
+
 }

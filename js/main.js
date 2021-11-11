@@ -213,7 +213,6 @@ window.addEventListener("load", function () {
     });
   });
 
-
   //////////////////////////////////////////////
   //Fonctions gestion de Celliers             //
   //////////////////////////////////////////////
@@ -412,23 +411,23 @@ window.addEventListener("load", function () {
       let id = element.dataset.id;
       let modal = document.querySelector(".modal__wrapper");
 
-      //Afficher Modal  //
-      modal.classList.toggle("show");
+       //Afficher Modal  //
+       modal.classList.toggle("show");
 
-      //Fermeture du modal //
-
-      let fermerBouton = document.querySelector(".fermer");
-      fermerBouton.addEventListener("click", function (e) {
-        let modal = document.querySelector(".modal__wrapper");
-        modal.classList.remove("show");
-      });
-
-      let annBouton = document.querySelector(".btn__annuler");
-      annBouton.addEventListener("click", function (e) {
-        let modal = document.querySelector(".modal__wrapper");
-        modal.classList.remove("show");
-      });
-
+       //Fermeture du modal //
+ 
+       let fermerBouton = document.querySelector(".fermer");
+       fermerBouton.addEventListener("click", function (e) {
+         let modal = document.querySelector(".modal__wrapper");
+         modal.classList.remove("show");
+       });
+ 
+       let annBouton = document.querySelector(".btn__annuler");
+       annBouton.addEventListener("click", function (e) {
+         let modal = document.querySelector(".modal__wrapper");
+         modal.classList.remove("show");
+       });
+     
       // Suppression de la bouteille //
 
       let btnDanger = modal.querySelector(".btn__danger");
@@ -588,9 +587,10 @@ window.addEventListener("load", function () {
   uimage.addEventListener("click", (e) => {
     umenu.classList.toggle('show');
   });
-  
-  
-  
+
+
+
+
   //////////////////////////////////////////////
   // Fonction supprimer usager                //
   //////////////////////////////////////////////

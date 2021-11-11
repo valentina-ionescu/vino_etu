@@ -43,6 +43,9 @@
                 </div>
 
                 <button class="btn btn-accent solid" name="ajouterBouteilleCellier">Ajouter la bouteille</button>
+                <form method="POST" action="index.php?requete=accueil">
+                    <button class="btn btn-primaire btnAnnul" >Annuler</button>
+                </form>
 
             </div>
         </div>

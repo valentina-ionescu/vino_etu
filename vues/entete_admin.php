@@ -42,10 +42,15 @@
 		<base href="<?php echo BASEURL; ?>">
 		<!--<script src="./js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>-->
 		<!-- <script src="./js/plugins.js"></script> -->
+
 		<script src="./js/main.js"></script>
+    	<script src="./js/admin.js"></script>
+    	<script src="./js/admin_usager.js"></script>
+
+
 	</head>
 	<body class="relative admin_body" >
-    <header class="header__wrapper admin">
+    <header class="header__wrapper  admin">
 			<nav class="nav__wrapper flex row align-item-center" role="navigation">
 				<!-- <div id="menuToggle">
 					<input type="checkbox" />
@@ -62,13 +67,13 @@
 					<?//php } ?> 
 						</ul>
 				</div> -->
-                <a href="?requete=accueil" class="flex"><img class="header__logo" src="assets/img/logo/logo.svg" alt=""></a>
+                <a href="?requete=accueil" class="flex logo"><img class="header__logo" src="assets/img/logo/logo.svg" alt=""></a>
 				<a href="?requete=admin" class="btn solid">Retournez a l'admin! </a>
                 <div class="admin_content-title ">
                 <h2><i class="fas fa-tachometer-alt"></i> Panneau Administration</h2>
             </div>
 				
-				<a href="?requete=profile"><i class="fa fa-user-circle header__icon__user"></i></a>
+				<!-- <a href="?requete=profile"><i class="fa fa-user-circle header__icon__user"></i></a> -->
 			</nav>
 		</header>
 		<main class="admin_main">	

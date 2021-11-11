@@ -72,7 +72,7 @@ class Bouteille extends Modele {
 					$row['nom'] = trim(htmlspecialchars($row['nom']));
 					$rows[] = $row;
 				}
-			}
+			 }
 		}
 		else 
 		{
@@ -141,10 +141,31 @@ class Bouteille extends Modele {
 	 * @return integer id de la derniere bouteille inserree dans le catalogue
 	 */
        
-	public function lastBouteilleId()
+/**
+	 * Cette méthode selectionne les infos d'une bouteille  en particulier dans le catalogue
+	 * 
+	 * @param int $idBouteille id de la bouteille
+	 * @param int $idCellier id du cellier
+	 * 
+	 */
+	public function getBouteilleById($idBouteille)
 	{
-		
 
+		$requete = "SELECT nom, image, code_saq, pays, description, prix_saq, url_saq, format, vino__type_id FROM vino__bouteille JOIN vino__type ON vino__bouteille.vino__type_id = vino__type.id WHERE vino__bouteille.id =".$idBouteille." ";
+
+		
+		$res = $this->_db->query($requete);
+
+		// var_dump($idBouteille);
+		return $res;
+
+		/*	$idCellier = $_SESSION['cellier_id'];
+
+		$requete = "SELECT date_achat, garde_jusqua, notes, prix, millesime, vino__bouteille.nom,vino__bouteille.image FROM vino__cellier_has_vino__bouteille JOIN vino__bouteille ON vino__cellier_has_vino__bouteille.vino__bouteille_id = vino__bouteille.id WHERE vino__bouteille_id = ".$idBouteille." AND vino__cellier_id = ".$idCellier."";
+
+		$res = $this->_db->query($requete);
+
+		return $res; */
 	}
 	
 	/**
@@ -296,8 +317,114 @@ class Bouteille extends Modele {
 		return $valeur;
 	}
 
+/**
+	 * Cette méthode supprime/ajoute le statut desactive d'une bouteille en particulier dans le catalogue
+	 * 
+	 * @param int $id id de la bouteille
+	 * 
+	 *  
+	 * @return int $quantité la quantité pour une bouteille($id) dans un cellier
+	 */
+	public function supprimerBouteilleCatalogue($id)
+	{
+		$msg = "";
+		$statut = 1;
+
+		$requete = "UPDATE vino__bouteille SET statut_desactive =1 WHERE vino__bouteille.id = ".$id."";
+	
+		$res = $this->_db->query($requete);
+
+		if($res){
+			$msg = "La bouteille no.".$id." a été supprimée avec succès!";
+		}
+		return $res;
+
+	}
 
 
+
+
+	
+	/**
+	 * Cette méthode change la quantité d'une bouteille en particulier dans le cellier
+	 * 
+	 * @param int $id id de la bouteille
+	 * @param int $nombre Nombre de bouteille a ajouter ou retirer
+	 * 
+	 * @return Boolean Succès ou échec de l'ajout.
+	 */
+	public function modifierBouteilleCatalogue($data, $id)
+	{
+		$connexion = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
+		str_replace($data->prix, ",", ".");
+		//UPDATE `vino__bouteille` SET `nom` = '7Colores Gran Reserva Valle Casablanca 2016 ', `url_saq` = 'URL', `vino__type_id` = '2', `statut_desactive` = '0' WHERE `vino__bouteille`.`id` = 1;
+		$requete = mysqli_prepare($connexion, "UPDATE vino__bouteille SET nom=? ,image = ?, code_saq =? , pays = ?, prix_saq =? , url_saq =? , format = ?  WHERE vino__bouteille.id = ?");	
+
+        if($requete)
+        {
+            mysqli_stmt_bind_param($requete, 'sssssssi',$data->nom, $data->image, $data->code_saq, $data->pays, $data->prix_saq, $data->url_saq, $data->format, $id);
+
+            mysqli_stmt_execute($requete);
+
+            $resultat = mysqli_stmt_get_result($requete);
+
+            if(!$resultat){
+				var_dump($resultat);
+			}
+        }
+
+
+
+		
+	}
+
+		/**
+	 * Cette méthode ajoute une ou des bouteilles au cellier
+	 * 
+	 * @param Array $data Tableau des données représentants la bouteille.
+	 * 
+	 * @return Boolean Succès ou échec de l'ajout.
+	 */
+	public function ajouterBouteilleNonListee($data)
+	{
+		var_dump($data);
+		/*$connexion = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
+
+		$requete =  mysqli_prepare($connexion, "INSERT INTO vino__bouteille( nom,   pays,  prix_saq, format, vino__type_id ) 
+        VALUES (".
+        "'".$data->nom."',".
+		// "'".$data->image."',".
+        "'".$data->pays."',".
+        // "'".$data->description."',".
+        "'".$data->prix_saq."',".
+        "'".$data->format."',".
+        "'".$data->vino__type_id."')");
+
+        
+		if($requete)
+        {
+            mysqli_stmt_bind_param($requete, 'ssssi',$data->nom,   $data->pays,  $data->prix_saq, $data->format, $data->vino__type_id);
+
+            mysqli_stmt_execute($requete);
+
+            $resultat = mysqli_stmt_get_result($requete);
+
+            if(!$resultat){
+				var_dump($resultat);
+			}
+			else{
+
+			}
+        }
+		var_dump($resultat);
+
+		return $resultat;*/
+	}
+	
+
+
+
+	
 }
 
 
