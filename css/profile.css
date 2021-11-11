@@ -77,10 +77,8 @@
 }
 .u__article {
     width: 100%;
-    /* background-image: url("../img/klara-kulikova-CPMZguYURMw-unsplash.jpg") ; */
     background-position: center;
     background-size: cover;
-    /* border-radius: 5px; */
     margin-right: 1.25rem;
 }
 .u__celliers_liste {
@@ -125,12 +123,7 @@
     border-bottom: 1px solid #333;
 }
 /* Icone pour usager(initiales) */
-/* .user__avatar {
-    background-color: #fff ;
-    color: var(--bg-sombre);
-    font-weight: 700;
-    border-radius: 50%;
-} */
+
 /* Image de profile */
 .u__img {
   width: 50px;

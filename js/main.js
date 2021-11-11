@@ -521,14 +521,12 @@ window.addEventListener("load", function () {
     });
 
     let bouteille = {
-      //nom: document.querySelector(".nom_bouteille"),
       nom: document.querySelector("[name='nom']"),
       millesime: document.querySelector("[name='millesime']"),
       quantite: document.querySelector("[name='quantite']"),
       date_achat: document.querySelector("[name='date_achat']"),
       prix: document.querySelector("[name='prix']"),
       garde_jusqua: document.querySelector("[name='garde_jusqua']"),
-      // notes : document.querySelector("[name='notes']"),
     };
 
     liste.addEventListener("click", function (evt) {
@@ -541,10 +539,7 @@ window.addEventListener("load", function () {
         bouteille.nom.setAttribute("value", evt.target.innerText);
         console.log("nom", evt.target.innerText);
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // bouteille.nom.innerHTML = evt.target.innerText;
-
-        // bouteille.prix.setAttribute('value', evt.target.dataset.prix)
-        console.log(evt.target.dataset.prix);
+        
 
         liste.innerHTML = "";
         inputNomBouteille.value = "";
@@ -586,27 +581,16 @@ window.addEventListener("load", function () {
     }
   }
 
-  // let uimage = document.querySelector('.u__img');
+  
   let uimage = document.querySelector(".u__profile_img");
   let umenu = document.querySelector(".u__profile-toggle");
   console.log(umenu);
   uimage.addEventListener("click", (e) => {
-    // umenu.style.display = umenu.style.display === "none" ? "flex" : "none";
     umenu.classList.toggle('show');
   });
   
   
-  //////////////////////////////////////////////
-  // Fonction modifier cellier                //
-  //////////////////////////////////////////////
-
-  // let cedit = document.querySelectorAll('.c__edit');
-  // cedit.forEach((element) => {
-  //   element.addEventListener("click", function (evt) {
-  //     console.log(element);
-  //   })
-  //   });
-
+  
   //////////////////////////////////////////////
   // Fonction supprimer usager                //
   //////////////////////////////////////////////
