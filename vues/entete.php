@@ -32,16 +32,13 @@
 		<link rel="shortcut icon" type="image/png" href="./assets/img/logo/logo-verre-white-circle.png">
 
 		<link rel="stylesheet" href="./css/grilles.css" type="text/css" media="screen">
-		<!-- <link rel="stylesheet" href="./css/utilitaires.css">
-		<link rel="stylesheet" href="./css/utilitaires.css" type="text/css" media="screen"> -->
+		
 
 
 		<!-- Iconnes importees  -->
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
 
 		<base href="<?php echo BASEURL; ?>">
-		<!--<script src="./js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>-->
-		<!-- <script src="./js/plugins.js"></script> -->
 		<script src="./js/async.js"></script>
 		<script src="./js/main.js"></script>
 	</head>
@@ -56,19 +53,17 @@
 					<ul class="header__menu__links" id="menu">
 							<?php if (isset($_SESSION['nom'])) { ?>
 							<li><a href="?requete=home">Accueil</a></li>
-							<!-- <li><a href="?requete=ajouterNouvelleBouteilleCellier">Ajouter une bouteille au cellier</a></li> -->
 							<li><a href="?requete=profile">Gérer mes celliers</a></li>
 							
 							<?php
 								if(isset($_SESSION['admin']) && $_SESSION['admin'] == 1){
 							?>
-							<!-- <li><a href="?requete=updateSAQ">Importation du SAQ</a></li> -->
+						
 							<li><a href="?requete=admin">Admin - tableau de bord </a></li>
-
-						<?php
-						}
-						?>
-					<?php } else { ?>
+							<?php
+								}
+							?>
+					<?php }else { ?>
 						<li><a href="?requete=profile">Se connecter</a></li>
 					<?php } ?>
 						</ul>
@@ -76,18 +71,17 @@
 				<a href="?requete=home" class="flex"><img class="header__logo" src="assets/img/logo/logo.svg" alt=""></a>
 				<?php if (isset($_SESSION['nom'])) { ?>
 				<div class="u__profile_img flex col">
-					<!-- <i class="fa fa-user-circle header__icon__user"></i> -->
+					
 					<div class="u__img">
 						<img src="img/abstract-user.svg" style="color:var(--bg-primaire);"
 						alt="">
 					
 					</div>
-				<!-- <span class="petit"><?php echo $_SESSION['nom'];?></span> -->
+			
 				<span class="petit"><?php echo $_SESSION['initiales'];?></span>
 
 				<div class="u__profile-toggle  col">
 					<div class="u__user">Bienvenue, <?php echo ucfirst($_SESSION['prenom']);?> <?php echo ucfirst($_SESSION['nom']);?></div>
-					<!-- <a class="u__user-p" href=""><i class="far fa-user-circle"></i>Mon profile</a> -->
 					<a class="u__user-p" href="?requete=paramUsager"><i class="far fa-user-circle"></i>Mon profile</a>
 					<form  method="POST" action="index.php?requete=profileConnexion">
 					<button  name="status" value="deconnexion">Déconnexion</button>

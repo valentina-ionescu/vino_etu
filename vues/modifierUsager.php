@@ -26,6 +26,9 @@
                 <label>Mot de passe </label>
             </div>
             <button class="btnModifierUser">Modifier les informations</button>
+            <form method="POST" action="index.php?requete=paramUsager">
+                <button class="btn btn-primaire btnAnnul" >Annuler</button>
+            </form>
         </div>
     </div>
 </div>

@@ -211,6 +211,7 @@ class Controler
 	private function addCellier()
 	{
 		$body = json_decode(file_get_contents('php://input'));
+        $err_msg = "";
 
 		if (!empty($body)) {
 
@@ -220,15 +221,23 @@ class Controler
 			$cel = new Cellier();
 
 			$NouveauNomCel = $body->nom;
+			// Validation du nom de cellier non vide
+			if (empty($NouveauNomCel)) {
+				$err_msg = "Le nom de cellier ne doit pas être vide.";
+				echo json_encode($err_msg);
+			}else {
+				$resultat = $cel->ajouterCellier($NouveauNomCel);
+				echo json_encode("");
+			}
 
-			echo $NouveauNomCel;
-			$resultat = $cel->ajouterCellier($NouveauNomCel);
-			echo json_encode($resultat);
-		} else {
-			include("vues/entete.php");
-			include("vues/ajouterCellier.php");
-			include("vues/pied.php");
+			// echo $NouveauNomCel;
+			
 		}
+		// } else {
+		// 	include("vues/entete.php");
+		// 	include("vues/ajouterCellier.php");
+		// 	include("vues/pied.php");
+		// }
 	}
 	private function delUser()
 	{
