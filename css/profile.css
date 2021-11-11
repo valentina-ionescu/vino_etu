@@ -224,3 +224,14 @@ form.btn__ajouter_cellier {
     font-size: .75rem;
 }
 
+/* ==========----------Media queries---------=========== */
+@media (min-width: 750px)  {
+    .u__profile__wrapper {
+        max-width: 50vw;
+    } 
+}
+@media (min-width: 1240px)  {
+    .u__profile__wrapper {
+        max-width: 40vw;
+    } 
+}
