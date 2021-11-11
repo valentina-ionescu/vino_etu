@@ -579,13 +579,20 @@ window.addEventListener("load", function () {
     let btnAjouter = document.querySelector("[name='ajouterBouteilleCellier']");
     if (btnAjouter) {
       btnAjouter.addEventListener("click", function (evt) {
+
+        if (bouteille.millesime.value == '') {
+          newMilesime = '';
+        }else {
+          newMilesime = bouteille.millesime.value;
+        }
+
         var param = {
           vino__bouteille_id: bouteille.nom.dataset.id,
           date_achat: bouteille.date_achat.value,
           garde_jusqua: bouteille.garde_jusqua.value,
           prix: bouteille.prix.value,
           quantite: bouteille.quantite.value,
-          millesime: bouteille.millesime.value,
+          millesime: newMilesime,
         };
 
         let requete = new Request(
