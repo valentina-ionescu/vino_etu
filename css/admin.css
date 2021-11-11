@@ -316,6 +316,7 @@ hr {
     flex-direction: column;
     flex-grow: 1;
     margin-top: 35px;
+    transform: none;
 }
 
 .page-header .admin-menu li:nth-last-child(2) {
@@ -417,11 +418,11 @@ hr {
     transform-origin: 0% 0%;
     transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
 }
-
+/*
 .toggle__input~i:nth-child(3) {
     visibility: hidden;
     opacity: 0;
-    /* margin-top: -25px; */
+   
 }
 
 .toggle__input:checked~i:nth-child(3) {
@@ -439,17 +440,15 @@ hr {
     visibility: hidden;
     opacity: 0;
 
-} */
+} 
 
-.toggle__input:checked~ul {
+ .toggle__input:checked~ul {
     visibility: visible;
     opacity: 1;
-    /* display: block; 
-    transform: translate(0%,0);*/
+
     transform: none;
-    /* transform: translate(0%, 0);
-     transform: translate(-100%, 0) */
-}
+    
+} */
 
 .toggle__input:checked~ul {}
 

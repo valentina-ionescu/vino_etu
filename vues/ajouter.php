@@ -1,7 +1,8 @@
 <div class="form__contenant flex col form__contenant--espacevertical" vertical layout>
     <div class="form__recherche form__recherche--clair">
+        <span class="fas fa-search iconne"></span>
         <input class="form__recherche--clair" type="text" placeholder="Entrer le nom de la bouteille..." name="nom_bouteille">
-
+        
 
 
         <ul class="listeAutoComplete form__contenant__liste">
@@ -42,9 +43,9 @@
                     <label>Garde </label>
                 </div>
 
-                <button class="btn btn-accent solid" name="ajouterBouteilleCellier">Ajouter la bouteille</button>
+                <button class="mt-1 btn btn-accent solid" name="ajouterBouteilleCellier">Ajouter la bouteille</button>
                 <form method="POST" action="index.php?requete=accueil">
-                    <button class="btn btn-primaire btnAnnul" >Annuler</button>
+                    <button class="btn btn-primaire btnAnnul mt-10px" >Annuler</button>
                 </form>
 
             </div>
