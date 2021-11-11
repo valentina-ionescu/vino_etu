@@ -93,35 +93,62 @@ window.addEventListener("load", function () {
     nom: document.querySelector("[name='nomCellier']"),
   };
 
-  let btnAjouter = document.querySelector("[name='ajouterCellier']");
+  let btnAjouter = document.querySelector(".u__ajout");
   if (btnAjouter) {
     btnAjouter.addEventListener("click", function (evt) {
-      var param = {
-        nom: newCellier.nom.value,
-      };
+       //Afficher Modal  //
+       let modal = document.querySelector(".modal__ajout-wrapper");
+       modal.classList.toggle("show");
+ 
+       //Fermeture du modal //
+       let fermerBouton = document.querySelector(".fermer");
+       fermerBouton.addEventListener("click", function (e) {
+         let modal = document.querySelector(".modal__wrapper");
+         modal.classList.remove("show");
+       });
+ 
+       let annBouton = document.querySelector(".x__annuler");
+       annBouton.addEventListener("click", function (e) {
+         let modal = document.querySelector(".modal__ajout-wrapper");
+         modal.classList.remove("show");
+       });
+ 
+  let btnAjout = document.querySelector('.btnAjout');
+  btnAjout.addEventListener('click', (evt)=> {
+    var param = {
+      nom: newCellier.nom.value,
+    };
 
-      let requete = new Request("index.php?requete=ajouterCellier", {
-        method: "POST",
-        body: JSON.stringify(param),
-        headers: { "Content-Type": "application/json" },
-      });
-      console.log(requete);
 
-      fetch(requete)
-        .then((response) => {
-          if (response.status === 200) {
-            console.log(response);
-            window.location.href = "index.php?requete=profile";
-            return response.json();
-          } else {
-            throw new Error("Erreur");
-          }
-        })
-        .then((response) => {})
-        .catch((error) => {
-          console.error(error);
-        });
+    let requete = new Request("index.php?requete=ajouterCellier", {
+      method: "POST",
+      body: JSON.stringify(param),
+      headers: { "Content-Type": "application/json" },
     });
+    console.log(requete);
+
+    fetch(requete)
+      .then((response) => {
+        if (response.status === 200) {
+          console.log(response);
+          
+          setTimeout(function(){
+            window.location.href = "index.php?requete=profile";
+         }, 1500); 
+          return response.json();
+        } else {
+          throw new Error("Erreur");
+        }
+      })
+      .then((response) => {console.log(response)
+      document.querySelector('.msg-erreur').innerHTML=`<p>${response}</p>`})
+      .catch((error) => {
+        console.error(error);
+      });
+  });
+  })
+
+     
   }
 
   //////////////////////////////////////////////
@@ -524,14 +551,12 @@ window.addEventListener("load", function () {
     });
 
     let bouteille = {
-      //nom: document.querySelector(".nom_bouteille"),
       nom: document.querySelector("[name='nom']"),
       millesime: document.querySelector("[name='millesime']"),
       quantite: document.querySelector("[name='quantite']"),
       date_achat: document.querySelector("[name='date_achat']"),
       prix: document.querySelector("[name='prix']"),
       garde_jusqua: document.querySelector("[name='garde_jusqua']"),
-      // notes : document.querySelector("[name='notes']"),
     };
 
     liste.addEventListener("click", function (evt) {
@@ -544,10 +569,7 @@ window.addEventListener("load", function () {
         bouteille.nom.setAttribute("value", evt.target.innerText);
         console.log("nom", evt.target.innerText);
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // bouteille.nom.innerHTML = evt.target.innerText;
-
-        // bouteille.prix.setAttribute('value', evt.target.dataset.prix)
-        console.log(evt.target.dataset.prix);
+        
 
         liste.innerHTML = "";
         inputNomBouteille.value = "";
@@ -589,12 +611,11 @@ window.addEventListener("load", function () {
     }
   }
 
-  // let uimage = document.querySelector('.u__img');
+  
   let uimage = document.querySelector(".u__profile_img");
   let umenu = document.querySelector(".u__profile-toggle");
   console.log(umenu);
   uimage.addEventListener("click", (e) => {
-    // umenu.style.display = umenu.style.display === "none" ? "flex" : "none";
     umenu.classList.toggle('show');
   });
 
