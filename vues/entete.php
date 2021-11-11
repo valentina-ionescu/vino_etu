@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="fr">
-	<head>
-		<title>Un petit verre de vino</title>
 
-		<meta charset="utf-8">
-		<meta http-equiv="cache-control" content="no-cache">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, minimum-scale=0.5, initial-scale=1.0, user-scalable=yes">
+<head>
+	<title>Un petit verre de vino</title>
+
+	<meta charset="utf-8">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, minimum-scale=0.5, initial-scale=1.0, user-scalable=yes">
 
 
-		<meta name="description" content="Un petit verre de vino">
-
-		<meta name="author" content="DFV">
+	<meta name="description" content="Un petit verre de vino">
 
 		<!-- Iconnes importees  -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -66,15 +65,15 @@
 							<!-- <li><a href="?requete=updateSAQ">Importation du SAQ</a></li> -->
 							<li><a href="?requete=admin">Admin - tableau de bord </a></li>
 
-							<?php
-								}
-							?>
-					<?php }else { ?>
+						<?php
+						}
+						?>
+					<?php } else { ?>
 						<li><a href="?requete=profile">Se connecter</a></li>
 					<?php } ?>
 						</ul>
 				</div>
-				<a href="?requete=accueil" class="flex"><img class="header__logo" src="assets/img/logo/logo.svg" alt=""></a>
+				<a href="?requete=home" class="flex"><img class="header__logo" src="assets/img/logo/logo.svg" alt=""></a>
 				<?php if (isset($_SESSION['nom'])) { ?>
 				<div class="u__profile_img flex col">
 					<!-- <i class="fa fa-user-circle header__icon__user"></i> -->
