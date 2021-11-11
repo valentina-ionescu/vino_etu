@@ -46,7 +46,7 @@
 
  
     <script src="./js/main.js"></script>
-   <script src="./js/admin.js"></script>
+    <script src="./js/admin.js"></script>
     <script src="./js/admin_usager.js"></script>
 
 

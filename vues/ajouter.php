@@ -43,9 +43,9 @@
                     <label>Garde </label>
                 </div>
 
-                <button class="btn btn-accent solid" name="ajouterBouteilleCellier">Ajouter la bouteille</button>
+                <button class="mt-1 btn btn-accent solid" name="ajouterBouteilleCellier">Ajouter la bouteille</button>
                 <form method="POST" action="index.php?requete=accueil">
-                    <button class="btn btn-primaire btnAnnul" >Annuler</button>
+                    <button class="btn btn-primaire btnAnnul mt-10px" >Annuler</button>
                 </form>
 
             </div>

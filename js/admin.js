@@ -9,7 +9,7 @@
 
 
 
-// const BaseURL = document.baseURI;
+ //const BaseURL = document.baseURI;
 
 console.log(BaseURL);
 
