@@ -173,6 +173,7 @@ class Usager extends Modele {
                 $_SESSION['username'] = $data->username;
                 $_SESSION['email'] = $data->email;
                 $_SESSION['password'] = $data->password;
+                $_SESSION['initiales'] = $this->initials($data->prenom.' '.$data->nom);
             }
         }
     }
