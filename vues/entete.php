@@ -57,7 +57,7 @@
 					<ul class="header__menu__links" id="menu">
 							<?php if (isset($_SESSION['nom'])) { ?>
 							<li><a href="?requete=home">Accueil</a></li>
-							<li><a href="?requete=ajouterNouvelleBouteilleCellier">Ajouter une bouteille au cellier</a></li>
+							<!-- <li><a href="?requete=ajouterNouvelleBouteilleCellier">Ajouter une bouteille au cellier</a></li> -->
 							<li><a href="?requete=profile">Gérer mes celliers</a></li>
 							
 							<?php
