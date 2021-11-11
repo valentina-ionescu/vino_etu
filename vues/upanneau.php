@@ -25,7 +25,7 @@
         <div class="modal__ajout-wrapper">
             <div class="modal__overlay">
                 <div class="modal__contenu flex col">
-                    <span class="fermer"><i class="fas fa-times"></i></span>
+                    <span class="fermer x__annuler"><i class="fas fa-times"></i></span>
                     <div class="form">
                 <div class="form__label__aj">
                     <input type="texte" name="nomCellier" required>
@@ -33,7 +33,7 @@
                     <input type="hidden" name="id">
                 </div>
                     <button class="btn btn-accent solid btnAjout" name="ajoutCellier">Ajouter le cellier</button>
-                    <button class="btn__annuler">Annuler</button>
+                    <!-- <button class="btn__annuler">Annuler</button> -->
                 </div>
                         
                     </div>

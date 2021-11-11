@@ -103,9 +103,9 @@ window.addEventListener("load", function () {
          modal.classList.remove("show");
        });
  
-       let annBouton = document.querySelector(".btn__annuler");
+       let annBouton = document.querySelector(".x__annuler");
        annBouton.addEventListener("click", function (e) {
-         let modal = document.querySelector(".modal__wrapper");
+         let modal = document.querySelector(".modal__ajout-wrapper");
          modal.classList.remove("show");
        });
  
