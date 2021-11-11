@@ -44,9 +44,9 @@
     <!--<script src="./js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>-->
     <!-- <script src="./js/plugins.js"></script> -->
 
-
+ 
     <script src="./js/main.js"></script>
-    <script src="./js/admin.js"></script>
+   <script src="./js/admin.js"></script>
     <script src="./js/admin_usager.js"></script>
 
 
@@ -156,7 +156,7 @@
                     <div class="modal__overlay">
                         <div class="modal__contenu flex col">
                             <span class="fermer"><i class="fas fa-times"></i></span>
-                            <h3 class="modal__texte">Supprimer la bouteille?</h3>
+                            <p class="modal__texte">Supprimer la bouteille?</p>
                             <div class="modal__buttons flex">
                                 <button class="btn__annuler">Annuler</button>
                                 <button class="btn__danger">Supprimer</button>
@@ -259,7 +259,7 @@
                     <div class="modal__overlay">
                         <div class="modal__contenu flex col">
                             <span class="fermer"><i class="fas fa-times"></i></span>
-                            <h3 class="modal__texte">Supprimer la bouteille?</h3>
+                            <p class="modal__texte">Supprimer la bouteille?</p>
                             <div class="modal__buttons flex">
                                 <button class="btn__annuler">Annuler</button>
                                 <button class="btn__danger">Supprimer</button>
