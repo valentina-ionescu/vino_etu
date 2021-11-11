@@ -89,35 +89,58 @@ window.addEventListener("load", function () {
     nom: document.querySelector("[name='nomCellier']"),
   };
 
-  let btnAjouter = document.querySelector("[name='ajouterCellier']");
+  let btnAjouter = document.querySelector(".u__ajout");
   if (btnAjouter) {
     btnAjouter.addEventListener("click", function (evt) {
-      var param = {
-        nom: newCellier.nom.value,
-      };
+       //Afficher Modal  //
+       let modal = document.querySelector(".modal__ajout-wrapper");
+       modal.classList.toggle("show");
+ 
+       //Fermeture du modal //
+       let fermerBouton = document.querySelector(".fermer");
+       fermerBouton.addEventListener("click", function (e) {
+         let modal = document.querySelector(".modal__wrapper");
+         modal.classList.remove("show");
+       });
+ 
+       let annBouton = document.querySelector(".btn__annuler");
+       annBouton.addEventListener("click", function (e) {
+         let modal = document.querySelector(".modal__wrapper");
+         modal.classList.remove("show");
+       });
+ 
+  let btnAjout = document.querySelector('.btnAjout');
+  btnAjout.addEventListener('click', (evt)=> {
+    var param = {
+      nom: newCellier.nom.value,
+    };
 
-      let requete = new Request("index.php?requete=ajouterCellier", {
-        method: "POST",
-        body: JSON.stringify(param),
-        headers: { "Content-Type": "application/json" },
-      });
-      console.log(requete);
 
-      fetch(requete)
-        .then((response) => {
-          if (response.status === 200) {
-            console.log(response);
-            window.location.href = "index.php?requete=profile";
-            return response.json();
-          } else {
-            throw new Error("Erreur");
-          }
-        })
-        .then((response) => {})
-        .catch((error) => {
-          console.error(error);
-        });
+    let requete = new Request("index.php?requete=ajouterCellier", {
+      method: "POST",
+      body: JSON.stringify(param),
+      headers: { "Content-Type": "application/json" },
     });
+    console.log(requete);
+
+    fetch(requete)
+      .then((response) => {
+        if (response.status === 200) {
+          console.log(response);
+          window.location.href = "index.php?requete=profile";
+          return response.json();
+        } else {
+          throw new Error("Erreur");
+        }
+      })
+      .then((response) => {})
+      .catch((error) => {
+        console.error(error);
+      });
+  });
+  })
+
+     
   }
 
   //////////////////////////////////////////////
