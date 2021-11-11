@@ -579,6 +579,7 @@ window.addEventListener("load", function () {
     let btnAjouter = document.querySelector("[name='ajouterBouteilleCellier']");
     if (btnAjouter) {
       btnAjouter.addEventListener("click", function (evt) {
+        
         var param = {
           vino__bouteille_id: bouteille.nom.dataset.id,
           date_achat: bouteille.date_achat.value,

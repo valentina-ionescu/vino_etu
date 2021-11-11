@@ -105,7 +105,7 @@ class Bouteille extends Modele {
 		 
 		//echo $nom;
 		
-		$requete ='SELECT id, nom, prix_saq FROM vino__bouteille where LOWER(nom) like LOWER("%'. $nom .'%") AND statut_desactive !=1  OR  statut_desactive is NULL LIMIT 0,'. $nb_resultat; 
+		$requete ='SELECT id, nom, prix_saq FROM vino__bouteille where LOWER(nom) like LOWER("%'. $nom .'%") AND statut_desactive !=1 OR  statut_desactive is NULL LIMIT 0,'. $nb_resultat; 
 		
 		//var_dump($requete);
 		if(($res = $this->_db->query($requete)) ==	 true)
