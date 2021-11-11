@@ -1,7 +1,8 @@
-<div class="form__contenant flex col mt-9" vertical layout>
+<div class="form__contenant flex col mt-1" vertical layout>
+<h4 class='m-1 text-center'> Modification du compte Usager - <?php  echo $row['nom']." ".$row['prenom']  ?>.</h4>
     <div class="admin_form__carte">
         <!-- <?php var_dump($row)  ?> -->
-      
+       
         <div class="admin_form__modif flex col  ">
 
             <input type="hidden" name="id" value="<?php echo $_POST['id']; ?>">
@@ -45,6 +46,8 @@
                 </div>
 
             <button class="btnModifierUsagerCatalogue">Modifier le profil Usager</button>
+            <button class="btn btn-primaire btnAnnul" type="reset">Annuler</button>
+
         </div>
     </div>
 </div>

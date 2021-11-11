@@ -47,6 +47,8 @@
 
     <script src="./js/main.js"></script>
     <script src="./js/admin.js"></script>
+    <script src="./js/admin_usager.js"></script>
+
 
 </head>
 
@@ -174,6 +176,9 @@
 
                 <h2>Catalogue</h2>
                 <p class="txt_msg-supprime"></p>
+
+                <!-- <a class="btn btn-accent solid" href="?requete=ajouterBouteilleNonListeeCatalogue">Ajouter une bouteille Non Listée</a> -->
+
                 <div class="mt-3">
 
                     <!-- <span> <?php echo (count($listeBouteilles)); ?> Bouteilles </span> -->
@@ -266,7 +271,9 @@
 
 
                 <h2>Liste Usagers </h2>
+                <!-- <span> <?php  var_dump($_SESSION['admin']) ?> Bouteilles </span> -->
 
+                <p class="txt_msg-usg-supprime"></p>
 
                 <div class="mt-3">
 
@@ -277,7 +284,7 @@
                             <th>Nom </th>
                             <th>Email</th>
 
-                            <th>Username</th>
+                            <!-- <th>Username</th> -->
                             <th>Actions</th>
 
                         </tr>
@@ -297,25 +304,25 @@
                                         echo $row['nom'] . " " . $row['prenom'];
                                     } ?></td>
                                 <td><?php echo $row['email']; ?></td>
-                                <td><?php echo $row['username']; ?></td>
+                                <!-- <td><?php //echo $row['username']; ?></td> -->
 
 
                                 <td class="actions">
 
 
-                                    <form action="?requete=modifierUsagerCatalogue" method="post" class="nostyle">
+                                    <!-- <form action="?requete=modifierUsagerCatalogue" method="post" class="nostyle">
 
                                         <input type="hidden" name="id" value="<?php echo $row['id'] ?>">
 
                                         <button class="edit  small" name="Update" type="submit"><i class="fas fa-pen fa-xs"></i></button>
 
-                                    </form>
+                                    </form> -->
 
                                     <!-- <form action="" method="post" class="nostyle"> -->
                                     <!-- <input type="hidden" name="id" value="<?php echo $row['id'] ?>"> -->
 
                                     <!-- <button class="trash  small "  name="Delete" type="submit"><i class="fas fa-trash fa-xs"></i></button> -->
-                                    <button class="trash  small btnSupprUsager" name="Delete" type="submit" data-id="<?php echo $row['id'] ?>" data-nom="<?php echo $row['prenom'] . '' . $row['nom'] ?>"><i class="fas fa-trash fa-xs"></i></button>
+                                    <button class="trash  small btnSupprUsager" name="Delete" type="submit" data-id="<?php echo $row['id'] ?>" data-nom="<?php echo $row['prenom'] . ' ' . $row['nom'] ?>"><i class="fas fa-trash fa-xs"></i></button>
 
                                     <!-- </form> -->
 

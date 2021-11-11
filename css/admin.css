@@ -630,7 +630,7 @@ hr {
     background-color: rgb(167, 142, 142);
     
 }
-.txt_msg-supprime, .txt_msg-modif{
+.txt_msg-supprime,.txt_msg-usg-supprime, .txt_msg-modif{
     color: var(--bg-primaire);
     font-size: 14px;
     font-weight: bold;

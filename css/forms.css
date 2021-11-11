@@ -149,7 +149,8 @@ textarea {
     color: #f1f1f1;
 }
 
-.listeAutoComplete {
+.listeAutoComplete,
+.u__profile-toggle  {
     background: #F4F4F4;
     color: var(--bg-primaire-autre);
     position: absolute;

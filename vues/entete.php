@@ -37,35 +37,32 @@
 		<link rel="stylesheet" href="./css/utilitaires.css" type="text/css" media="screen"> -->
 
 
-	<!-- Iconnes importees  -->
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+		<!-- Iconnes importees  -->
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
 
-	<base href="<?php echo BASEURL; ?>">
-	<!--<script src="./js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>-->
-	<!-- <script src="./js/plugins.js"></script> -->
-	<script src="./js/main.js"></script>
-	<script src="./js/admin.js"></script>
-
-</head>
-
-<body class="relative">
-	<header class="header__wrapper">
-		<nav class="nav__wrapper flex" role="navigation">
-			<div id="menuToggle">
-				<input type="checkbox" />
-				<span></span>
-				<span></span>
-				<span></span>
-
-				<ul class="header__menu__links" id="menu">
-					<?php if (isset($_SESSION['nom'])) { ?>
-						<li><a href="?requete=accueil">Mon cellier</a></li>
-						<li><a href="?requete=ajouterNouvelleBouteilleCellier">Ajouter une bouteille au cellier</a></li>
-						<li><a href="?requete=profile">Gérer mes celliers</a></li>
-
-						<?php
-						if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1) {
-						?>
+		<base href="<?php echo BASEURL; ?>">
+		<!--<script src="./js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>-->
+		<!-- <script src="./js/plugins.js"></script> -->
+		<script src="./js/async.js"></script>
+		<script src="./js/main.js"></script>
+	</head>
+	<body class="relative" >
+		<header class="header__wrapper">
+			<nav class="nav__wrapper flex" role="navigation">
+				<div id="menuToggle">
+					<input type="checkbox" />
+					<span></span>
+					<span></span>
+					<span></span>
+					<ul class="header__menu__links" id="menu">
+							<?php if (isset($_SESSION['nom'])) { ?>
+							<li><a href="?requete=accueil">Mon cellier</a></li>
+							<li><a href="?requete=ajouterNouvelleBouteilleCellier">Ajouter une bouteille au cellier</a></li>
+							<li><a href="?requete=profile">Gérer mes celliers</a></li>
+							
+							<?php
+								if(isset($_SESSION['admin']) && $_SESSION['admin'] == 1){
+							?>
 							<!-- <li><a href="?requete=updateSAQ">Importation du SAQ</a></li> -->
 							<li><a href="?requete=admin">Admin - tableau de bord </a></li>
 
@@ -75,22 +72,32 @@
 					<?php } else { ?>
 						<li><a href="?requete=profile">Se connecter</a></li>
 					<?php } ?>
-				</ul>
-				
-			</div>
-			<a href="?requete=accueil" class="flex"><img class="header__logo" src="assets/img/logo/logo.svg" alt=""></a>
-			<?php if (isset($_SESSION['nom'])) { ?>
-				<a class="u__profile_img flex col"><i class="fa fa-user-circle header__icon__user"></i>
-					<span class="petit"><?php echo $_SESSION['nom']; ?></span>
-					<div class="u__profile-toggle flex col">
-						<a href="">Mon profile</a>
-						<form method="POST" action="index.php?requete=profileConnexion">
-							<button class='lienModifier' name="status" value="deconnexion">Déconnexion</button>
-						</form>
+						</ul>
+				</div>
+				<a href="?requete=accueil" class="flex"><img class="header__logo" src="assets/img/logo/logo.svg" alt=""></a>
+				<?php if (isset($_SESSION['nom'])) { ?>
+				<a class="u__profile_img flex col">
+					<!-- <i class="fa fa-user-circle header__icon__user"></i> -->
+					<div class="u__img">
+
+						<!-- icone de: <a href='https://pngtree.com/so/Profile'>Profile png from pngtree.com/</a> -->
+						<img src="img/abstract-user.svg" style="color:var(--bg-primaire);"
+						alt="">
 					</div>
-				<?php
-			} ?>
-				</a>
-		</nav>
-	</header>
-	<main>
+				<!-- <span class="petit"><?php echo $_SESSION['nom'];?></span> -->
+				<span class="petit"><?php echo $_SESSION['initiales'];?></span>
+
+				<div class="u__profile-toggle flex col">
+					<div class="u__user">Bienvenue, <?php echo ucfirst($_SESSION['prenom']);?> <?php echo ucfirst($_SESSION['nom']);?></div>
+					<a class="u__user-p" href=""><i class="far fa-user-circle"></i>Mon profile</a>
+					<a class="u__user-s" href=""><i class="fas fa-cog"></i>Paramètres</a>
+					<form  method="POST" action="index.php?requete=profileConnexion">
+					<button  name="status" value="deconnexion">Déconnexion</button>
+                    </form>
+				</div>
+				<?php 
+				}?>
+			    </a>
+			</nav>
+		</header>
+		<main >	

@@ -173,8 +173,9 @@
 
                
                 <div class="mt-3">
- <a class="btn btn-primaire solid" href="?requete=ajouterBouteilleCatalogue">Ajouter une bouteille Non Listée</a>
-                    <!-- <span> <?php  echo (count($listeBouteilles)); ?> Bouteilles </span> -->
+ <a class="btn btn-primaire solid" href="?requete=ajouterBouteilleNonListeeCatalogue">Ajouter une bouteille Non Listée</a>
+                    <!-- <span> <?php  echo (count($listeBouteilles)); $_SESSION['listeUsagers'] ?> Bouteilles </span> -->
+
                    
 
                     <table>

@@ -16,31 +16,34 @@
 
 const BaseURL = document.baseURI;
 console.log(BaseURL);
-window.addEventListener('load', function () {
+window.addEventListener("load", function () {
   console.log("load");
+
   document.querySelectorAll(".btnBoire").forEach(function (element) {
     element.addEventListener("click", function (evt) {
       let id = evt.target.parentElement.dataset.id;
-      let requete = new Request("index.php?requete=boireBouteilleCellier", { method: 'POST', body: '{"id": ' + id + '}' });
+      let requete = new Request("index.php?requete=boireBouteilleCellier", {
+        method: "POST",
+        body: '{"id": ' + id + "}",
+      });
       fetch(requete)
-        .then(response => {
+        .then((response) => {
           if (response.status === 200) {
             return response.json();
           } else {
-            throw new Error('Erreur');
+            throw new Error("Erreur");
           }
         })
         .then((data) => {
           console.log(data);
           let el = document.querySelector(`[data-js-cellier="${id}"]`);
-          el.innerHTML = '';
+          el.innerHTML = "";
           el.innerHTML = `<strong>${data} </strong> `;
-
-        }).catch(error => {
+        })
+        .catch((error) => {
           console.error(error);
         });
-    })
-
+    });
   });
 
   //////////////////////////////////////////////
@@ -52,27 +55,30 @@ window.addEventListener('load', function () {
     element.addEventListener("click", function (evt) {
       let id = evt.target.parentElement.dataset.id;
       console.log(id);
-      let requete = new Request("index.php?requete=ajouterBouteilleCellier", { method: 'POST', body: '{"id": ' + id + '}' });
+      let requete = new Request("index.php?requete=ajouterBouteilleCellier", {
+        method: "POST",
+        body: '{"id": ' + id + "}",
+      });
 
       fetch(requete)
-        .then(response => {
+        .then((response) => {
           if (response.status === 200) {
             console.log(response);
             return response.json();
           } else {
-            throw new Error('Erreur');
+            throw new Error("Erreur");
           }
         })
-        .then(data => {
+        .then((data) => {
           let el = document.querySelector(`[data-js-cellier="${id}"]`);
-          console.log(el)
-          el.innerHTML = '';
+          console.log(el);
+          el.innerHTML = "";
           el.innerHTML = `<strong>${data} </strong> `;
-        }).catch(error => {
+        })
+        .catch((error) => {
           console.error(error);
         });
-    })
-
+    });
   });
 
   //////////////////////////////////////////////
@@ -86,28 +92,29 @@ window.addEventListener('load', function () {
   let btnAjouter = document.querySelector("[name='ajouterCellier']");
   if (btnAjouter) {
     btnAjouter.addEventListener("click", function (evt) {
-
       var param = {
-        "nom": newCellier.nom.value,
+        nom: newCellier.nom.value,
       };
 
-      let requete = new Request("index.php?requete=ajouterCellier", { method: 'POST', body: JSON.stringify(param), headers: { 'Content-Type': 'application/json', } });
+      let requete = new Request("index.php?requete=ajouterCellier", {
+        method: "POST",
+        body: JSON.stringify(param),
+        headers: { "Content-Type": "application/json" },
+      });
       console.log(requete);
 
       fetch(requete)
-        .then(response => {
+        .then((response) => {
           if (response.status === 200) {
             console.log(response);
-            window.location.href = 'index.php?requete=accueil';
+            window.location.href = "index.php?requete=profile";
             return response.json();
           } else {
-            throw new Error('Erreur');
+            throw new Error("Erreur");
           }
-        }).then(response => {
-
-          console.log(response);
-
-        }).catch(error => {
+        })
+        .then((response) => {})
+        .catch((error) => {
           console.error(error);
         });
     });
@@ -128,108 +135,70 @@ window.addEventListener('load', function () {
   let btnAjouterUser = document.querySelector("[name='ajouterUser']");
   if (btnAjouterUser) {
     btnAjouterUser.addEventListener("click", function (evt) {
-
       var param = {
-        "nom": newUser.nom.value,
-        "prenom": newUser.prenom.value,
-        "username": newUser.username.value,
-        "email": newUser.email.value,
-        "password": newUser.password.value,
+        nom: newUser.nom.value,
+        prenom: newUser.prenom.value,
+        username: newUser.username.value,
+        email: newUser.email.value,
+        password: newUser.password.value,
       };
 
-      let requete = new Request("index.php?requete=creationUsager", { method: 'POST', body: JSON.stringify(param), headers: { 'Content-Type': 'application/json', } });
+      let requete = new Request("index.php?requete=creationUsager", {
+        method: "POST",
+        body: JSON.stringify(param),
+        headers: { "Content-Type": "application/json" },
+      });
       console.log(requete);
 
       fetch(requete)
-        .then(response => {
+        .then((response) => {
           if (response.status === 200) {
             console.log(response);
-            window.location.href = 'index.php?requete=profile';
+            window.location.href = "index.php?requete=profile";
             return response.json();
           } else {
-            throw new Error('Erreur');
+            throw new Error("Erreur");
           }
-        }).then(response => {
-
+        })
+        .then((response) => {
           console.log(response);
-
-        }).catch(error => {
+        })
+        .catch((error) => {
           console.error(error);
         });
     });
   }
 
   //////////////////////////////////////////////
-  //Fonction selectionner Cellier                  //
+  //Fonction modifier Usager                  //
   //////////////////////////////////////////////
 
-
-  let inputSelectCellier = document.querySelectorAll(".selectCellier").forEach((element) => {
-    if (element) {
-      element.addEventListener('click', function (evt) {
-        console.log(element)
-        console.log(element.dataset.cellid);
-        let id = element.dataset.cellid;
-        let requete = new Request("index.php?requete=getCellier", { method: 'POST', body: '{"id": ' + id + '}' });
-        console.log(requete);
-        fetch(requete)
-          .then(response => {
-            if (response.status === 200) {
-
-              console.log(response);
-              // window.location.href = 'index.php?requete=accueil';
-              return response.json();
-            } else {
-              throw new Error('Erreur');
-            }
-          }).then((data) => {
-            console.log(data)
-            window.location.href = 'index.php?requete=accueil';
-
-          }).catch(error => {
-            console.error(error);
-          });
-
-      })
-    };
-
-
-  });
-
-  //////////////////////////////////////////////
-  //Fonction modifier                         //
-  //////////////////////////////////////////////
-  let modifBouteille = {
-    millesime: document.querySelector("[name='millesime']"),
-    date_achat: document.querySelector("[name='date_achat']"),
-    prix: document.querySelector("[name='prix']"),
-    garde_jusqua: document.querySelector("[name='garde_jusqua']"),
-    notes: document.querySelector("[name='notes']"),
+  let modifUsager = {
+    nom: document.querySelector("[name='nom']"),
+    prenom: document.querySelector("[name='prenom']"),
+    email: document.querySelector("[name='email']"),
+    username: document.querySelector("[name='username']"),
+    password: document.querySelector("[name='password']"),
   };
 
-  document.querySelectorAll(".btnModifier").forEach(function (element) {
+  document.querySelectorAll(".btnModifierUser").forEach(function (element) {
     console.log(element);
     element.addEventListener("click", function (evt) {
 
-      let id = document.querySelector('[data-id]').dataset.id;
-
       var param = {
-        "id": id,
-        "millesime": modifBouteille.millesime.value,
-        "date_achat": modifBouteille.date_achat.value,
-        "garde_jusqua": modifBouteille.garde_jusqua.value,
-        "notes": modifBouteille.notes.value,
-        "prix": modifBouteille.prix.value,
+        "nom": modifUsager.nom.value,
+        "prenom": modifUsager.prenom.value,
+        "email": modifUsager.email.value,
+        "username": modifUsager.username.value,
+        "password": modifUsager.password.value,
       };
-      console.log(param);
-      console.log('prix', modifBouteille.prix.value)
-      let requete = new Request("index.php?requete=modifierBouteilleCellier", { method: 'PUT', body: JSON.stringify(param) });
+      let requete = new Request("index.php?requete=modifUsager", { method: 'PUT', body: JSON.stringify(param) });
       console.log(requete);
       fetch(requete)
         .then(response => {
           if (response.status === 200) {
             //re-afficher le cellier
-            window.location.href = "index.php?requete=accueil"
+            window.location.href = "index.php?requete=profile"
             return response.json();
           } else {
             throw new Error('Erreur');
@@ -243,88 +212,261 @@ window.addEventListener('load', function () {
         });
     });
   });
+
+ 
+  //////////////////////////////////////////////
+  //Fonctions gestion de Celliers             //
+  //////////////////////////////////////////////
+
+  // Supprimer cellier
+
+  let supprimerCellier = document.querySelectorAll(".c__supp");
+  supprimerCellier.forEach((element) => {
+    let id = element.dataset.cellid;
+    console.log(id);
+
+    element.addEventListener("click", (e) => {
+      //Afficher Modal  //
+      let modal = document.querySelector(".modal__wrapper");
+      modal.classList.toggle("show");
+
+      //Fermeture du modal //
+      let fermerBouton = document.querySelector(".fermer");
+      fermerBouton.addEventListener("click", function (e) {
+        let modal = document.querySelector(".modal__wrapper");
+        modal.classList.remove("show");
+      });
+
+      let annBouton = document.querySelector(".btn__annuler");
+      annBouton.addEventListener("click", function (e) {
+        let modal = document.querySelector(".modal__wrapper");
+        modal.classList.remove("show");
+      });
+
+      // Supprimer cellier apres confirmation
+
+      let suppCell = document.querySelector(".btn__danger");
+      console.log(suppCell);
+      suppCell.addEventListener("click", (evt) => {
+        console.log(id);
+        let requete = new Request("index.php?requete=suppCellier", {
+          method: "DELETE",
+          body: '{"id": ' + id + "}",
+        });
+        console.log(requete);
+
+        fetch(requete)
+          .then((response) => {
+            if (response.status === 200) {
+              console.log(response);
+              // window.location.href = 'index.php?requete=accueil';
+              return response.json();
+            } else {
+              throw new Error("Erreur");
+            }
+          })
+          .then((data) => {
+            console.log(data);
+            modal.classList.remove("show"); //fermeture du modal.
+            element.parentElement.remove();
+            document.querySelector(".msg-supprime").innerText =
+              "Cellier supprimé.";
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      });
+    });
+  });
+
+  //Ouvrir cellier
+
+  let selCell = document.querySelectorAll(".selectCellier");
+  selCell.forEach((element) => {
+    element.addEventListener("click", (evt) => {
+      evt.preventDefault();
+      let id = element.dataset.cellid;
+      console.log(id);
+      let requete = new Request("index.php?requete=getCellier", {
+        method: "POST",
+        body: '{"id": ' + id + "}",
+      });
+      console.log(requete);
+      fetch(requete)
+        .then((response) => {
+          if (response.status === 200) {
+            console.log(response);
+            window.location.href = "index.php?requete=accueil";
+            return response.json();
+          } else {
+            throw new Error("Erreur");
+          }
+        })
+        .then((data) => {
+          console.log(data);
+          // window.location.href = "index.php?requete=accueil";
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    });
+  });
+
+  // Modifier cellier
+
+  let modifCellier = {
+    id: document.querySelector("[name='id']"),
+    nom_cellier: document.querySelector("[name='nom_cellier']")
+  }
+  console.log(modifCellier)
+  let btnModifier = document.querySelector("[name='btnModifier']");
+  if (btnModifier) {
+      
+     btnModifier.addEventListener("click", function (evt) {
+      var param = {
+        id: modifCellier.id.value,
+        nom_cellier: modifCellier.nom_cellier.value,
+      };
+      console.log(param)
+      let requete = new Request("index.php?requete=editCellier", {
+        method: "PUT",
+        body: JSON.stringify(param),
+      });
+      console.log(param);
+      fetch(requete)
+        .then((response) => {
+          if (response.status === 200) {
+            //re-afficher le cellier
+            window.location.href = "index.php?requete=profile";
+            return response.json();
+          } else {
+            throw new Error("Erreur");
+          }
+        })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    });
+  
+  
+  }
+
+  //////////////////////////////////////////////
+  //Fonction modifier bouteille               //
+  //////////////////////////////////////////////
+  let modifBouteille = {
+    millesime: document.querySelector("[name='millesime']"),
+    date_achat: document.querySelector("[name='date_achat']"),
+    prix: document.querySelector("[name='prix']"),
+    garde_jusqua: document.querySelector("[name='garde_jusqua']"),
+    notes: document.querySelector("[name='notes']"),
+  };
+
+  document.querySelectorAll(".btnModifier").forEach(function (element) {
+    console.log(element);
+    element.addEventListener("click", function (evt) {
+      let id = document.querySelector("[data-id]").dataset.id;
+
+      var param = {
+        id: id,
+        millesime: modifBouteille.millesime.value,
+        date_achat: modifBouteille.date_achat.value,
+        garde_jusqua: modifBouteille.garde_jusqua.value,
+        notes: modifBouteille.notes.value,
+        prix: modifBouteille.prix.value,
+      };
+      console.log(param);
+      console.log("prix", modifBouteille.prix.value);
+      let requete = new Request("index.php?requete=modifierBouteilleCellier", {
+        method: "PUT",
+        body: JSON.stringify(param),
+      });
+      console.log(requete);
+      fetch(requete)
+        .then((response) => {
+          if (response.status === 200) {
+            //re-afficher le cellier
+            window.location.href = "index.php?requete=accueil";
+            return response.json();
+          } else {
+            throw new Error("Erreur");
+          }
+        })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    });
+  });
   //////////////////////////////////////////////
   //Fonction SUPPRIMER Bouteille du cellier   //
   //////////////////////////////////////////////
-  // let modifBouteille = {
-  //   millesime: document.querySelector("[name='millesime']"),
-  //   date_achat: document.querySelector("[name='date_achat']"),
-  //   prix: document.querySelector("[name='prix']"),
-  //   garde_jusqua: document.querySelector("[name='garde_jusqua']"),
-  //   notes: document.querySelector("[name='notes']"),
-  // };
 
   document.querySelectorAll(".btnSupprimer").forEach(function (element) {
     element.addEventListener("click", function (evt) {
       let id = element.dataset.id;
-      let modal = document.querySelector('.modal__wrapper');
+      let modal = document.querySelector(".modal__wrapper");
 
-      //Afficher Modal  //  
-      modal.classList.toggle('show');
+       //Afficher Modal  //
+       modal.classList.toggle("show");
 
-      //Fermeture du modal //
-
-      let fermerBouton = document.querySelector('.fermer');
-      fermerBouton.addEventListener('click', function (e) {
-        let modal = document.querySelector('.modal__wrapper');
-        modal.classList.remove('show');
-      })
-
-      let annBouton = document.querySelector('.btn__annuler');
-      annBouton.addEventListener('click', function (e) {
-        let modal = document.querySelector('.modal__wrapper');
-        modal.classList.remove('show');
-      })
-
+       //Fermeture du modal //
+ 
+       let fermerBouton = document.querySelector(".fermer");
+       fermerBouton.addEventListener("click", function (e) {
+         let modal = document.querySelector(".modal__wrapper");
+         modal.classList.remove("show");
+       });
+ 
+       let annBouton = document.querySelector(".btn__annuler");
+       annBouton.addEventListener("click", function (e) {
+         let modal = document.querySelector(".modal__wrapper");
+         modal.classList.remove("show");
+       });
+     
       // Suppression de la bouteille //
 
-      let btnDanger = modal.querySelector('.btn__danger');
-      btnDanger.addEventListener('click', (e) => {
+      let btnDanger = modal.querySelector(".btn__danger");
+      btnDanger.addEventListener("click", (e) => {
         console.log(id);
-        let requete = new Request("index.php?requete=supprimerBouteilleCellier", { method: 'DELETE', body: '{"id": ' + id + '}' });
+        let requete = new Request(
+          "index.php?requete=supprimerBouteilleCellier",
+          { method: "DELETE", body: '{"id": ' + id + "}" }
+        );
         console.log(requete);
         fetch(requete)
-          .then(response => {
+          .then((response) => {
             if (response.status === 200) {
               //re-afficher le cellier
-              console.log(response)
-              window.location.href = "index.php?requete=accueil"
+              console.log(response);
+              window.location.href = "index.php?requete=accueil";
               return response.json();
             } else {
-              throw new Error('Erreur');
+              throw new Error("Erreur");
             }
           })
-          .then(response => {
+          .then((response) => {
             console.log(response);
-
-          }).catch(error => {
+          })
+          .catch((error) => {
             console.error(error);
           });
       });
-
-
     });
   });
 
-
-
-
-
-
-
-
-  // let fermerBouton = document.querySelector('.fermer');
-  // fermerBouton.addEventListener('click', function (e) {
-  //    let modal = document.querySelector('.modal__wrapper');
-  //    modal.classList.remove('show');
-  // })
   //////////////////////////////////////////////
   //Fonction autoComplete                     //
   //////////////////////////////////////////////
 
   let inputNomBouteille = document.querySelector("[name='nom_bouteille']");
-  console.log('inputNomBouteille', inputNomBouteille)
-  let liste = document.querySelector('.listeAutoComplete');
+  console.log("inputNomBouteille", inputNomBouteille);
+  let liste = document.querySelector(".listeAutoComplete");
 
   if (inputNomBouteille) {
     inputNomBouteille.addEventListener("keyup", function (evt) {
@@ -332,41 +474,43 @@ window.addEventListener('load', function () {
       let nom = inputNomBouteille.value;
 
       liste.innerHTML = "";
-      console.log('nom', nom)
+      console.log("nom", nom);
       if (nom) {
-
         // enleve le BaseURL+ de la Request, pour la faire fonctionner
-        let requete = new Request("index.php?requete=autocompleteBouteille", { method: 'POST', body: '{"nom": "' + nom + '"}' });
-        console.log(requete)
+        let requete = new Request("index.php?requete=autocompleteBouteille", {
+          method: "POST",
+          body: '{"nom": "' + nom + '"}',
+        });
+        console.log(requete);
         fetch(requete)
-
-
-          .then(response => {
-
+          .then((response) => {
             if (response.status === 200) {
-              console.log(response)
+              console.log(response);
 
               return response.json();
-
+            } else {
+              throw new Error("Erreur");
             }
-            else {
-              throw new Error('Erreur');
-            }
-
           })
-          .then(data => {
+          .then((data) => {
             data.forEach(function (element) {
-              console.log(element)
+              console.log(element);
               // console.log(liste.innerHTML)
 
               //liste.innerHTML += "<li data-id='"+element.id+"'>"+element.nom+"</li>";
               //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-              liste.innerHTML += "<li data-id='" + element.id + "' data-prix='" + element.prix_saq + "'>" + element.nom + "</li>";
+              liste.innerHTML +=
+                "<li data-id='" +
+                element.id +
+                "' data-prix='" +
+                element.prix_saq +
+                "'>" +
+                element.nom +
+                "</li>";
               //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-            })
+            });
           })
-          .catch(error => {
+          .catch((error) => {
             console.error(error);
           });
       }
@@ -374,7 +518,6 @@ window.addEventListener('load', function () {
       //////////////////////////////////////////////
       //Fonction Nouvelle Bouteille               //
       //////////////////////////////////////////////
-
     });
 
     let bouteille = {
@@ -388,27 +531,23 @@ window.addEventListener('load', function () {
       // notes : document.querySelector("[name='notes']"),
     };
 
-
     liste.addEventListener("click", function (evt) {
-      console.dir(evt.target)
+      console.dir(evt.target);
 
       if (evt.target.tagName == "LI") {
-
         bouteille.nom.dataset.id = evt.target.dataset.id;
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        bouteille.prix.setAttribute('value', evt.target.dataset.prix)
-        bouteille.nom.setAttribute('value', evt.target.innerText)
-        console.log('nom', evt.target.innerText)
+        bouteille.prix.setAttribute("value", evt.target.dataset.prix);
+        bouteille.nom.setAttribute("value", evt.target.innerText);
+        console.log("nom", evt.target.innerText);
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // bouteille.nom.innerHTML = evt.target.innerText;
-
 
         // bouteille.prix.setAttribute('value', evt.target.dataset.prix)
         console.log(evt.target.dataset.prix);
 
         liste.innerHTML = "";
         inputNomBouteille.value = "";
-
       }
     });
 
@@ -416,126 +555,50 @@ window.addEventListener('load', function () {
     if (btnAjouter) {
       btnAjouter.addEventListener("click", function (evt) {
         var param = {
-          "vino__bouteille_id": bouteille.nom.dataset.id,
-          "date_achat": bouteille.date_achat.value,
-          "garde_jusqua": bouteille.garde_jusqua.value,
-          "prix": bouteille.prix.value,
-          "quantite": bouteille.quantite.value,
-          "millesime": bouteille.millesime.value,
+          vino__bouteille_id: bouteille.nom.dataset.id,
+          date_achat: bouteille.date_achat.value,
+          garde_jusqua: bouteille.garde_jusqua.value,
+          prix: bouteille.prix.value,
+          quantite: bouteille.quantite.value,
+          millesime: bouteille.millesime.value,
         };
 
-        let requete = new Request("index.php?requete=ajouterNouvelleBouteilleCellier",
+        let requete = new Request(
+          "index.php?requete=ajouterNouvelleBouteilleCellier",
           {
-            method: 'POST',
+            method: "POST",
             body: JSON.stringify(param),
-            headers: { 'Content-Type': 'application/json', }
-          });
+            headers: { "Content-Type": "application/json" },
+          }
+        );
         console.log(requete);
 
         fetch(requete)
-          .then(response => {
+          .then((response) => {
             console.log(response);
             response.json();
           })
-          .then(json => {
-            console.log(json)
-            window.location.href = "index.php?requete=accueil"
+          .then((json) => {
+            console.log(json);
+            window.location.href = "index.php?requete=accueil";
           });
-
       });
     }
   }
 
-
-
-
-
-
-
- ////////////////////////////////////////////////////
- //Fonction SUPPRIMER compte Usager du Catalogue   //
- ////////////////////////////////////////////////////
-
-
-    document.querySelectorAll(".btnSupprUsager").forEach(function (element) {
-      console.log(element.parentElement.parentElement);
-      element.addEventListener("click", function (evt) {
-
-          let modalUsager = document.querySelector('.usager__supprimer__modal__wrapper');
-
-          console.log(element)
-          let id = element.dataset.id;
-          let nom = element.dataset.nom;
-
-
-          console.log(modalUsager)
-
-          //Afficher Modal  //  
-          modalUsager.classList.add('show');
-          modalUsager.querySelector('.modal__texte').innerText = 'Supprimer le Compte de l\'usager ' + nom + ' ?';
-
-          //Fermeture du modal //
-          // if (modalUsager.classList.contains('show')) {
-          //     console.log(evt.target.classList);
-          //     // if (!evt.target.classList.contains('modal__contenu')) {
-          //        //  modalUsager.classList.remove('show');
-          //     // }
-          // }
-          let fermerBouton = modalUsager.querySelector('.fermer');
-          fermerBouton.addEventListener('click', function (e) {
-              let modalUsager = document.querySelector('.usager__supprimer__modal__wrapper');
-              modalUsager.classList.remove('show');
-          })
-
-          let annBouton = modalUsager.querySelector('.btn__annuler');
-          annBouton.addEventListener('click', function (e) {
-              let modalUsager = document.querySelector('.usager__supprimer__modal__wrapper');
-              modalUsager.classList.remove('show');
-          })
-
-          // Suppression du compte usager //
-
-          /*
-          let btnDanger = modal.querySelector('.btn__danger');
-          btnDanger.addEventListener('click', (e) => {
-              console.log(id);
-              let requete = new Request("index.php?requete=supprimerUsagerCatalogue", { method: 'PUT', body: '{"id": ' + id + '}' });
-              console.log(requete);
-              fetch(requete)
-                  .then(response => {
-                      if (response.status === 200) {
-
-                          //re-afficher le catalogue
-                         // let requeteListe = new Request("index.php?requete=getCatalogue", { method: 'get' });
-                         // fetch(requeteListe)
-
-                          //fermer le modal
-                          modal.classList.remove('show');
-                          //supprimer le dom de l'element 
-                          element.parentElement.parentElement.remove();
-                          // afficher message de confirmation de la suppression de l'element du catalogue
-
-                          document.querySelector(".txt_msg-supprime").innerText = "L'usager " + nom + " supprimé avec succes !"
-
-                          return response.json();
-
-
-                      } else {
-                          throw new Error('Erreur');
-                      }
-                  })
-                  .then(response => {
-
-
-
-                  }).catch(error => {
-                      console.error(error);
-                  });
-          });*/
-
-
-      });
+  // let uimage = document.querySelector('.u__img');
+  let uimage = document.querySelector(".u__profile_img");
+  let umenu = document.querySelector(".u__profile-toggle");
+  console.log(umenu);
+  uimage.addEventListener("click", (e) => {
+    umenu.style.display = umenu.style.display === "none" ? "flex" : "none";
   });
+
+
+
+
+
+
 
 
  ////////////////////////////////////////////////////
@@ -546,5 +609,14 @@ window.addEventListener('load', function () {
 
 
   
-});
 
+  // let cedit = document.querySelectorAll('.c__edit');
+  // cedit.forEach((element) => {
+  //   element.addEventListener("click", function (evt) {
+  //     console.log(element);
+  //   })
+  //   });
+
+
+
+ });//fin window load

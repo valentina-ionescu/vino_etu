@@ -129,28 +129,7 @@ window.addEventListener('load', function () {
 
             //Fermeture du modal //
             
-            //     if (evt.target.matches(".fermer") || !evt.target.closest(".desactivation__modal__wrapper")) {
-            //         //  modal.classList.remove('show');
-            //         console.log('evt outside');
-               
-            //  } 
-
-             
-              /*  if (evt.target != modal.querySelector(".modal__contenu")) {
-            console.log("fermer modal")
-                   
-                  modal.classList.remove('show');
-                }*/
-            
-        if (modal.classList.contains('show')) {
-                 console.log("click outside!");
-               /* modal.querySelector('.modal__contenu').addEventListener('click', function (e) {
-               
-                  //  let modal = document.querySelector('.desactivation__modal__wrapper');
-                    modal.classList.remove('show');
-                 })
-                 */
-            }
+           
 
             let fermerBouton = modal.querySelector('.fermer');
             fermerBouton.addEventListener('click', function (e) {
@@ -280,6 +259,7 @@ window.addEventListener('load', function () {
   });
 
 
+  
 
 
    

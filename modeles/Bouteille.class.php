@@ -357,7 +357,7 @@ class Bouteille extends Modele {
 	{
 		$connexion = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
 		str_replace($data->prix, ",", ".");
-//UPDATE `vino__bouteille` SET `nom` = '7Colores Gran Reserva Valle Casablanca 2016 ', `url_saq` = 'URL', `vino__type_id` = '2', `statut_desactive` = '0' WHERE `vino__bouteille`.`id` = 1;
+		//UPDATE `vino__bouteille` SET `nom` = '7Colores Gran Reserva Valle Casablanca 2016 ', `url_saq` = 'URL', `vino__type_id` = '2', `statut_desactive` = '0' WHERE `vino__bouteille`.`id` = 1;
 		$requete = mysqli_prepare($connexion, "UPDATE vino__bouteille SET nom=? ,image = ?, code_saq =? , pays = ?, prix_saq =? , url_saq =? , format = ?  WHERE vino__bouteille.id = ?");	
 
         if($requete)
@@ -377,6 +377,53 @@ class Bouteille extends Modele {
 
 		
 	}
+
+		/**
+	 * Cette méthode ajoute une ou des bouteilles au cellier
+	 * 
+	 * @param Array $data Tableau des données représentants la bouteille.
+	 * 
+	 * @return Boolean Succès ou échec de l'ajout.
+	 */
+	public function ajouterBouteilleNonListee($data)
+	{
+		var_dump($data);
+		/*$connexion = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
+
+		$requete =  mysqli_prepare($connexion, "INSERT INTO vino__bouteille( nom,   pays,  prix_saq, format, vino__type_id ) 
+        VALUES (".
+        "'".$data->nom."',".
+		// "'".$data->image."',".
+        "'".$data->pays."',".
+        // "'".$data->description."',".
+        "'".$data->prix_saq."',".
+        "'".$data->format."',".
+        "'".$data->vino__type_id."')");
+
+        
+		if($requete)
+        {
+            mysqli_stmt_bind_param($requete, 'ssssi',$data->nom,   $data->pays,  $data->prix_saq, $data->format, $data->vino__type_id);
+
+            mysqli_stmt_execute($requete);
+
+            $resultat = mysqli_stmt_get_result($requete);
+
+            if(!$resultat){
+				var_dump($resultat);
+			}
+			else{
+
+			}
+        }
+		var_dump($resultat);
+
+		return $resultat;*/
+	}
+	
+
+
+
 	
 }
 

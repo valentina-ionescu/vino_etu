@@ -11,7 +11,7 @@
         <div class="form__conteneur">
 
 
-            <div class="form">
+            <div action="" class="form"  enctype="multipart/form-data">
 
                 <div class="form__label__aj">
                     <input type="text" id="nom" name="nom" required data-id="" class="nouvelle_bouteille" value="">
@@ -25,9 +25,9 @@
 
                 <div class="form__label__md">
                     <label>Vin rouge</label>
-                    <input type="checkbox" name="vino__type_id"  value="1">
+                    <input type="checkbox" name="vino__type_id" value="1">
                     <label>Vin blank</label>
-                    <input type="checkbox" name="vino__type_id"  value="2">
+                    <input type="checkbox" name="vino__type_id" value="2">
                 </div>
 
                 <div class="form__label__aj">
@@ -52,9 +52,10 @@
                     <label>Description </label>
                 </div>
 
-                <button class="btn btn-accent solid" name="ajouterBouteilleCatalogue">Ajouter la bouteille</button>
+                <!-- <button class="btn btn-accent solid" type="submit">Ajouter la bouteille</button> -->
+                <a href="?requete=ajouterBouteilleNonListeeCatalogue" class="btn btn-accent solid" type="submit">Ajouter la bouteille</a>
 
-            </div>
+</div>
         </div>
 
     </div>
