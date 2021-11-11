@@ -52,7 +52,7 @@
 
 </head>
 
-<body class="relative admin_body ">
+<body class="relative admin_body " id='admin_body'>
 
     <!-- Entete et sideBar-->
     <header class="page-header">
@@ -60,7 +60,7 @@
             <!-- <span id="admin_menuToggle1" class=""> -->
             <input id="admin_menuToggle1" type="checkbox" class="toggle__input" />
             <i class="fas fa-bars burger menu_icon "></i>
-            <i class="fas fa-times close menu_icon "></i>
+            <i class="fas fa-times close menu_icon hidden"></i>
 
             <!-- </span> -->
             <a href="?requete=accueil" aria-label="logo" class="logo">
@@ -69,7 +69,7 @@
             </a>
 
 
-            <ul class="admin-menu admin__tabs__sidebar " id="admin_menu1">
+            <ul class="admin-menu admin__tabs__sidebar sideBar-ferme " id="admin_menu1">
                 <li class="menu-heading">
                     <h3>Admin</h3>
                 </li>

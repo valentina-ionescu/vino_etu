@@ -1,7 +1,8 @@
 <div class="form__contenant flex col form__contenant--espacevertical" vertical layout>
     <div class="form__recherche form__recherche--clair">
+        <span class="fas fa-search iconne"></span>
         <input class="form__recherche--clair" type="text" placeholder="Entrer le nom de la bouteille..." name="nom_bouteille">
-
+        
 
 
         <ul class="listeAutoComplete form__contenant__liste">

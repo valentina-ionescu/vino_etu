@@ -12,181 +12,217 @@
 // const BaseURL = document.baseURI;
 
 console.log(BaseURL);
+
+window.addEventListener('scroll', function () {
+  //When scroll change, you save it on localStorage.
+  localStorage.setItem('scrollPosition', window.scrollY);
+}, false);
+
 window.addEventListener('load', function () {
 
-  
 
 
 
 
 
-//     ////////////////////////////////////////////////////////////////////////
-//     //Fonction afficher le contenu en fonction de bouton/tab selectionnee //
-//     ////////////////////////////////////////////////////////////////////////
-
-//     document.querySelectorAll(".tabs__button").forEach(function (element) {
-//         console.log(element);
-//         let sideBar = element.parentElement;
-//         //    if ( sideBar.style=("transform: translate(-100%, 0)")){
-//         //     sideBar.style= (" ");
-//         //    }
-//         element.addEventListener("click", function (evt) {
-//             console.log(element);
-
-//             let mainContenant = document.querySelector('.admin_contenu_page');
-//             console.log(sideBar)
-//             let tabNumber = element.dataset.forTab;
-//             let contentActivate = mainContenant.querySelector(`.admin__tabs__content[data-tab="${tabNumber}"]`);
-//             console.log(contentActivate);
-//             sessionStorage.setItem("activeLocation", contentActivate);
-            
-//             sideBar.querySelectorAll('.tabs__button').forEach(button => {
-//                 button.classList.remove('tabs__button--active');
-//             })
-//             mainContenant.querySelectorAll('.admin__tabs__content').forEach(tab => {
-//                 tab.classList.remove('admin__tabs__content--active');
-//             })
-
-//            console.log(sessionStorage.getItem("activeLocation"))
-
-//             //cacher le "x" et re-afficher le menu burger
-//             // document.getElementById("admin_menuToggle").nextElementSibling.classList.add('hidden')
-//             //  document.getElementById("admin_menuToggle").lastElementChild.previousElementSibling.classList.remove('hidden');
-
-//             element.classList.add('tabs__button--active');
-//             contentActivate.classList.add('admin__tabs__content--active');
-//  //retracter la side-bare
-//  //sideBar.classList.remove('sideBar-ferme'); 
-
-//         })
-//     })
 
 
+  ////////////////////////////////////////////////////////////////////////
+  //Fonction afficher le contenu en fonction de bouton/tab selectionnee //
+  ////////////////////////////////////////////////////////////////////////
 
-    ////////////////////////////////////////////////////////////////////////
-    //Fonction Toggle de class pour le bouton menu                       //
-    ////////////////////////////////////////////////////////////////////////
-    
-        /*  let menuToggle = document.getElementById("admin_menuToggle");
-       
-        sideBar = document.querySelector('.admin-menu');
-        console.log(menuToggle)
-   
-        menuToggle.querySelectorAll('.menu_icon').forEach(icon => {
-            sideBar.classList.remove("hidden");
-            
-            menuToggle.addEventListener("click", function (evt) {
-    
-                if (icon.classList.contains('hidden')) {
-                    icon.classList.remove('hidden')
-                    if (sideBar.classList.contains("hidden")) {
-                        sideBar.classList.remove("hidden");
-                    }
-    
-                    sideBar.style = "transform: none;"
-    
-                    console.log(document.querySelector('.admin-menu'))
-                   
-    
-    
-                } else {
-    
-    
-    
-    
-                    icon.classList.add('hidden')
-                    sideBar.style = "transform: translate(-100%, 0);"
-                    
-    
-                }
-    
-    
-            })
-    
-        })
-    
-    */
+  document.querySelectorAll(".tabs__button").forEach(function (element) {
+    console.log(element);
+    let sideBar = element.parentElement;
+    //    if ( sideBar.style=("transform: translate(-100%, 0)")){
+    //     sideBar.style= (" ");
+    //    }
+    element.addEventListener("click", function (evt) {
+      console.log(element);
 
+      let mainContenant = document.querySelector('.admin_contenu_page');
+      console.log(sideBar)
+      let tabNumber = element.dataset.forTab;
+      let contentActivate = mainContenant.querySelector(`.admin__tabs__content[data-tab="${tabNumber}"]`);
+      console.log(contentActivate);
+      sessionStorage.setItem("activeLocation", tabNumber);
 
-    //////////////////////////////////////////////
-    //Fonction SUPPRIMER Bouteille du Catalogue   //
-    //////////////////////////////////////////////
- 
+      sideBar.querySelectorAll('.tabs__button').forEach(button => {
+        button.classList.remove('tabs__button--active');
+      })
+      mainContenant.querySelectorAll('.admin__tabs__content').forEach(tab => {
+        tab.classList.remove('admin__tabs__content--active');
+      })
+      console.log(sessionStorage.getItem("activeLocation"))
 
-    document.querySelectorAll(".btnSuppr").forEach(function (element) {
-       
-        console.log(element.parentElement.parentElement);
-        element.addEventListener("click", function (evt) {
- console.log('click', evt.target);
-            let modal = document.querySelector(".desactivation__modal__wrapper");
+      //cacher le "x" et re-afficher le menu burger
+      // document.getElementById("admin_menuToggle").nextElementSibling.classList.add('hidden')
+      //  document.getElementById("admin_menuToggle").lastElementChild.previousElementSibling.classList.remove('hidden');
 
-            console.log(element)
-            let id = element.dataset.id;
+      element.classList.add('tabs__button--active');
+      contentActivate.classList.add('admin__tabs__content--active');
+      //retracter la side-bare
+       sideBar.classList.toggle('sideBar-ferme');
 
-            console.log(modal)
+      document.querySelectorAll('.menu_icon').forEach(icon => {
 
-            //Afficher Modal  //  
-            modal.classList.toggle('show');
-            modal.querySelector('.modal__texte').innerText = 'Supprimer la bouteille No.' + id + ' ?';
+        if (icon.classList.contains('hidden')) {
+          icon.classList.remove('hidden')
+          
+      } else {
 
-            //Fermeture du modal //
-            
-           
+        icon.classList.add('hidden')
+       //  sideBar.classList.remove('sideBar-ferme');
 
-            let fermerBouton = modal.querySelector('.fermer');
-            fermerBouton.addEventListener('click', function (e) {
-               
-                let modal = document.querySelector('.desactivation__modal__wrapper');
-                modal.classList.remove('show');
-             })
+      }
 
-            let annBouton = modal.querySelector('.btn__annuler');
-            annBouton.addEventListener('click', function (e) {
-                let modal = document.querySelector('.desactivation__modal__wrapper');
-                modal.classList.remove('show');
-            })
- 
-            // Suppression de la bouteille //
+      })
 
-          let btnDanger = modal.querySelector('.btn__danger');
-            btnDanger.addEventListener('click', (e) => {
-                console.log(id);
-                let requete = new Request("index.php?requete=desactiverBouteilleCatalogue", { method: 'PUT', body: '{"id": ' + id + ', "statut_desactive": "1"}' });
-                console.log(requete);
-                fetch(requete)
-                    .then(response => {
-                        if (response.status === 200) {
-
-                            //re-afficher le catalogue
-                           
-
-                            //fermer le modal
-                            modal.classList.remove('show');
-                            //supprimer le dom de l'element 
-                            element.parentElement.parentElement.remove();
-                            // afficher message de confirmation de la suppression de l'element du catalogue
-
-                            document.querySelector(".txt_msg-supprime").innerText = "La bouteille No" + id + " supprimée avec succes !"
-
-                            return response.json();
-
-
-                        } else {
-                            throw new Error('Erreur');
-                        }
-                    })
-                    .then(response => {
+    })
+  })
 
 
 
-                    }).catch(error => {
-                        console.error(error);
-                    });
-            });
+  ////////////////////////////////////////////////////////////////////////
+  //Fonction Toggle de class pour le bouton menu                       //
+  ////////////////////////////////////////////////////////////////////////
+
+  let menuToggle = document.getElementById("admin_menuToggle1");
+
+  sideBar = document.querySelector('.admin-menu');
+  console.log(menuToggle)
+
+  document.querySelectorAll('.menu_icon').forEach(icon => {
+
+    console.log(menuToggle)
 
 
-        });
+    console.log(icon)
+
+    menuToggle.addEventListener("click", function (evt) {
+
+      //
+
+
+
+      if (icon.classList.contains('hidden')) {
+        icon.classList.remove('hidden')
+
+        if (sideBar.classList.contains("sideBar-ferme")) {
+          sideBar.classList.remove('sideBar-ferme');
+
+        }
+
+        console.log(document.querySelector('.admin-menu'))
+
+
+
+      } else {
+
+
+
+
+        icon.classList.add('hidden')
+        sideBar.classList.add('sideBar-ferme');
+
+
+      }
+
+
+
+    })
+
+
+
+
+
+  })
+
+
+
+
+
+
+
+  //////////////////////////////////////////////
+  //Fonction SUPPRIMER Bouteille du Catalogue   //
+  //////////////////////////////////////////////
+
+
+  document.querySelectorAll(".btnSuppr").forEach(function (element) {
+
+    console.log(element.parentElement.parentElement);
+    element.addEventListener("click", function (evt) {
+      console.log('click', evt.target);
+      let modal = document.querySelector(".desactivation__modal__wrapper");
+
+      console.log(element)
+      let id = element.dataset.id;
+
+      console.log(modal)
+
+      //Afficher Modal  //  
+      modal.classList.toggle('show');
+      modal.querySelector('.modal__texte').innerText = 'Supprimer la bouteille No.' + id + ' ?';
+
+      //Fermeture du modal //
+
+
+
+      let fermerBouton = modal.querySelector('.fermer');
+      fermerBouton.addEventListener('click', function (e) {
+
+        let modal = document.querySelector('.desactivation__modal__wrapper');
+        modal.classList.remove('show');
+      })
+
+      let annBouton = modal.querySelector('.btn__annuler');
+      annBouton.addEventListener('click', function (e) {
+        let modal = document.querySelector('.desactivation__modal__wrapper');
+        modal.classList.remove('show');
+      })
+
+      // Suppression de la bouteille //
+
+      let btnDanger = modal.querySelector('.btn__danger');
+      btnDanger.addEventListener('click', (e) => {
+        console.log(id);
+        let requete = new Request("index.php?requete=desactiverBouteilleCatalogue", { method: 'PUT', body: '{"id": ' + id + ', "statut_desactive": "1"}' });
+        console.log(requete);
+        fetch(requete)
+          .then(response => {
+            if (response.status === 200) {
+
+              //re-afficher le catalogue
+
+
+              //fermer le modal
+              modal.classList.remove('show');
+              //supprimer le dom de l'element 
+              element.parentElement.parentElement.remove();
+              // afficher message de confirmation de la suppression de l'element du catalogue
+
+              document.querySelector(".txt_msg-supprime").innerText = "La bouteille No" + id + " supprimée avec succes !"
+
+              return response.json();
+
+
+            } else {
+              throw new Error('Erreur');
+            }
+          })
+          .then(response => {
+
+
+
+          }).catch(error => {
+            console.error(error);
+          });
+      });
+
+
     });
+  });
 
 
 
@@ -195,7 +231,7 @@ window.addEventListener('load', function () {
   ///////////////////////////////////////////////////////
   //Fonction modifier  Bouteille dans le Catalogue     //
   ///////////////////////////////////////////////////////
-  
+
   // console.log(document.querySelector(".btnAnnul"));
 
   // console.log(document.querySelector(".btnModifierBouteilleCatalogue"));
@@ -213,9 +249,9 @@ window.addEventListener('load', function () {
   };
 
   document.querySelector(".btnAnnul").addEventListener("click", function (evt) {
-    window.location.assign("index.php?requete=admin") 
+    window.location.assign("index.php?requete=admin")
   })
-    console.log(document.querySelector(".btnModifierBouteilleCatalogue"));
+  console.log(document.querySelector(".btnModifierBouteilleCatalogue"));
   document.querySelector(".btnModifierBouteilleCatalogue").addEventListener("click", function (evt) {
     console.log(document.querySelector(".btnModifierBouteilleCatalogue"));
 
@@ -240,31 +276,27 @@ window.addEventListener('load', function () {
       .then(response => {
         if (response.status === 200) {
           //re-afficher le catalogue
-          console.log(response);  
+          console.log(response);
           modal.classList.add('show');
           modal.querySelector('.txt_msg-modif').innerText = 'La bouteille No' + id + ' modifiée avec succes !';
 
-          setTimeout(function(){
+          setTimeout(function () {
             window.location.href = 'index.php?requete=admin';
-         }, 2000);
-            
+          }, 2000);
+
           return response.json();
         } else {
           throw new Error('Erreur');
         }
       })
 
-    .catch(error => {
-       console.error(error);
-     });
+      .catch(error => {
+        console.error(error);
+      });
 
   });
 
 
-  
-
-
-   
 
 
 
@@ -272,4 +304,9 @@ window.addEventListener('load', function () {
 
 
 
-});
+
+
+
+  if (localStorage.getItem('scrollPosition') !== null)
+    window.scrollTo(0, localStorage.getItem('scrollPosition'));
+}, false);

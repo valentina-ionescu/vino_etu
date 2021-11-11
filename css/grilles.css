@@ -196,7 +196,14 @@
 .carte__description p {
     margin: unset;
 }
-
+.carte__details-row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-content: center;
+    gap: 20px;
+    width: 100%;
+}
 .carte__description-nom {
     font-family: var(--ff-serif);
     padding: 5px 0;
