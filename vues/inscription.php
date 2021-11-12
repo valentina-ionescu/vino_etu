@@ -3,30 +3,29 @@
         <div class="form__image flex">
             <h1>Inscription</h1>
         </div>
-        <!-- <form class="form__connexion flex col" method="POST" action="index.php?requete=accueil"> -->
-      
-            <div class="form__connexion flex col">
-                <div class="form__label__connexion">
-                    <label>Nom </label>
-                    <input type="" name="nomUser" required value="">
-                </div>
-                <div class="form__label__connexion">
-                    <label>Prenom </label>
-                    <input type="" name="prenomUser" required value="">
-                </div>
-                <div class="form__label__connexion">
-                    <label>Username </label>
-                    <input type="" step="any" name="usernameUser" required value="">
-                </div>
-                <div class="form__label__connexion">
-                    <label>Adresse courriel</label>
-                    <input type="email" name="emailUser" required value="">
-                </div>
-                <div class="form__label__connexion">
-                    <label>Mot de passe</label>
-                    <input type="password" name="passwordUser" required value="">
-                </div>
-                <button class='btnModifier' name="ajouterUser" value="inscription">S'inscrire</button>
+        <div class="form__connexion flex col" method="POST">   
+            <div class="form__label__connexion">
+                <label>Nom
+                <input data-js-champ-inscription type="" name="nomUser" required value="">
+                </label>
             </div>
+            <div class="form__label__connexion">
+                <label>Prenom
+                <input data-js-champ-inscription type="" name="prenomUser" required value="">
+                </label>
+            </div>
+            <div class="form__label__connexion">
+                <label>Adresse courriel
+                <input data-js-champ-inscription type="email" name="emailUser" required value="">
+                </label>
+            </div>
+            <div class="form__label__connexion">
+                <label>Mot de passe
+                <input data-js-champ-inscription type="password" name="passwordUser" required value="">
+                </label>
+            </div>
+            <p data-js-msgError class="message__erreur__inscription display__none">Champ incorrect</p>
+            <button class='btnModifier' name="ajouterUser" value="inscription">S'inscrire</button>
+        </div>
     </div>
 </div>
