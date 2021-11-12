@@ -82,9 +82,6 @@ class Controler
 			case 'getCellier':
 				$this->getCellier();
 				break;
-			case 'creationUsager':
-				$this->addUser();
-				break;
 			case 'getCatalogue':
 				$this->getCatalogue();
 				break;
@@ -115,12 +112,11 @@ class Controler
 			case 'home':
 				$this->home();
 				break;
+
 			default:
 				$this->accueil();
 				break;
-				// case 'getCatalogue':
-				// 	$this->getCatalogue();
-				// 	break;
+				
 		}
 	}
 
@@ -262,9 +258,7 @@ class Controler
 		if(!empty($body)){
 
 			$User = new Usager();
-
 			$id = $_SESSION['usager_id'];
-			
 			$resultat = $User->modifierUsager($body, $id);
 		}
 		else{

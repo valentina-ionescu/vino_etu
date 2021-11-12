@@ -215,7 +215,7 @@
 .carte__description-pays {
     font-size: 18px;
     font-weight: 600;
-    color: var(--bg-primaire-autre);
+    color: var(--bg-primaire);
 }
 
 .carte__prix {
@@ -405,13 +405,17 @@ details[open] summary {
     .carte {
         min-width: 95vw;
     }
-    .carte__description-nom {
+    h3{
+        letter-spacing: .03em;
+    }
+    .carte__description-nom{
         font-size: 1em;
         padding: 0;
+        letter-spacing: .03em;
     }
     .carte__description-pays {
-        font-size: 1em;
-        font-weight: 600;
+        font-size: 1.05em;
+        font-weight: 500;
     }
     .btnAjouter, .btnBoire {
         /* border-radius: 50%; */

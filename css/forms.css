@@ -21,7 +21,7 @@
     width: 100%;
     min-height: 50vh;
     padding: 1.5em;
-  
+
 } */
 .form__image {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -43,7 +43,7 @@
     align-self: center;
     flex-basis: 8%;
     width: 90vw;
-   
+
 }
 
 /* Fond clair */
@@ -82,7 +82,7 @@
    /* Style des input et label */
 
 input, button {
-    margin: var(--vspace) 0; 
+    margin: var(--vspace) 0;
     line-height: var(--vspace);
     font-family: 'Roboto Condensed', sans-serif;
     font-size: clamp(1rem, -0.875rem + 8.333333vw, 1.25rem);
@@ -111,7 +111,7 @@ input:not([type='radio']) {
 input {
     border: none;
     border-bottom: 1px solid var(--bg-medium);
- 
+
 }
 
 label, input {
@@ -123,7 +123,7 @@ label, input {
 label {
     font-size: clamp(1rem, -0.875rem + 8.333333vw, 1.5rem);;
     color: var(--txt-medium);
-    padding-bottom: .75em; 
+    padding-bottom: .75em;
 }
 textarea {
     width: 95%;
@@ -142,11 +142,12 @@ textarea {
 }
 
 .form__recherche input {
-    width: 90vw;
+    /* width: 90vw; */
         background: var(--bg-clair);
         padding: 0.3em 0;
         padding-left: 2em;
-        border-radius: 4px;
+        padding-right: 1em;
+        /* border-radius: 4px; */
         color: black;
 }
 .form__recherche .iconne {
@@ -157,14 +158,18 @@ textarea {
     height: 2.375rem;
     line-height: 2.375rem;
     text-align: center;
-    pointer-events: none;
+    /* pointer-events: none; */
     color: #aaa;
+    margin-left: -10px;
 }
 
 .form__recherche ::placeholder {
     /* color: #f1f1f1; */
 }
+.clearSearchBtn{
+    pointer-events: unset;
 
+}
 .listeAutoComplete,
 .u__profile-toggle  {
     background: #F4F4F4;
@@ -184,12 +189,12 @@ textarea {
     list-style: none;
     padding: 10px;
     cursor: pointer;
-    border-bottom: 1px solid var(--bg-sombre); 
+    border-bottom: 1px solid var(--bg-sombre);
 }
 
 .listeAutoComplete li:hover {
     background-color: var(--bg-medium);
-    color: #f1f1f1; 
+    color: #f1f1f1;
   }
 
 .form__contenant--espacevertical {
@@ -314,7 +319,7 @@ form.nostyle{
       width: auto;
       min-width: unset;
       box-shadow: unset;
-      border-radius: unset; 
+      border-radius: unset;
       text-align: unset;
       display: inline-block;
   }
