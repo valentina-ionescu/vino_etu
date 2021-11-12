@@ -112,7 +112,34 @@ window.addEventListener('load', function () {
     });
 });
 
+///////////////////////////////////////////////////////
+//Fonction Effet Hover de l'id Bouteilles et Usagers //
+///////////////////////////////////////////////////////
+/*
+let items = document.querySelectorAll(".item");
+// console.log(items)
 
+
+items.forEach(function(element){
+    element.addEventListener("mouseover", function () {
+        // console.log(element)
+        let id = element.dataset.rowId;
+      //  console.log(id)
+        let hoverIdCooltip = document.querySelector('[data-id-hover="'+id+'"]');
+        hoverIdCooltip.classList.remove("hidden");
+    //    console.log(hoverIdCooltip)
+
+    });
+    element.addEventListener("mouseout", function () {
+        // console.log(element)
+         let id = element.dataset.rowId;
+       //  console.log(id)
+         let hoverIdCooltip = document.querySelector('[data-id-hover="'+id+'"]');
+         hoverIdCooltip.classList.add("hidden");
+        // console.log(hoverIdCooltip)
+ 
+     });
+})*/
 
 
 

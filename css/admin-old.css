@@ -668,14 +668,3 @@ hr {
 .show__modal{
     display: block;
 }
-
-.vino__id-hover {
-    background: rgba(5, 5, 5, 0.8);
-    color: #ffffff;
-    margin-right: -100px;
-    padding: 10px;
-    position: absolute;
-    z-index: 1000;
-    font-size: 11px;
-    right: 0;
-}

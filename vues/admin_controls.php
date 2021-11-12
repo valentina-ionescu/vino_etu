@@ -186,7 +186,7 @@
 
                     <table>
                         <tr>
-                            <th>Id</th>
+                            <!-- <th>Id</th> -->
                             <th>Type</th>
 
                             <th>Nom Bouteille</th>
@@ -202,9 +202,9 @@
                             if (!$row['statut_desactive'] == 1) {
 
                         ?>
-                                <tr data-row-id="<?php echo $row['id'] ?>">
-                                    <td><?php echo $row['id'] ?></td>
-                                    <td><i class="fas fa-wine-glass fa-2x" style="color:var(<?php if ($row['vino__type_id'] == 1) { ?>--bg-primaire <?php } else { ?>--bg-doree <?php } ?>); "></i></td>
+                                <tr data-row-id="<?php echo $row['id'] ?>" class="item ">
+                                    <!-- <td><?php echo $row['id'] ?></td> -->
+                                    <td ><i class="fas fa-wine-glass fa-2x" style="color:var(<?php if ($row['vino__type_id'] == 1) { ?>--bg-primaire <?php } else { ?>--bg-doree <?php } ?>); "></i></td>
 
 
                                     <td><?php echo $row['nom'] ?></td>
@@ -217,7 +217,8 @@
                                                 Non-listé <?php } ?>
                                     </td>
 
-                                    <td class="actions">
+                                    <td class="actions relative"><span class="vino__id-hover hidden" data-id-hover=<?php echo $row['id'] ?>>Usager id - <?php echo $row['id'] ?></span>
+
 
 
                                         <form action="?requete=modifierBouteilleCatalogue" method="post" class="nostyle">
@@ -236,9 +237,10 @@
                                     </td>
 
 
-
+                                
 
                                 </tr>
+                               
 
                         <?php
                             }
@@ -279,7 +281,7 @@
 
                     <table>
                         <tr>
-                            <th>Id</th>
+                            <!-- <th>Id</th> -->
                             <!-- <th>Image</th> -->
                             <th>Nom </th>
                             <th>Email</th>
@@ -293,8 +295,8 @@
                         foreach ($listeUsager as $row) {
 
                         ?>
-                            <tr>
-                                <td><?php echo $row['id'] ?></td>
+                            <tr data-row-id="<?php echo $row['id'] ?>" class="item">
+                                <!-- <td><?php echo $row['id'] ?></td> -->
                                 <!-- <td><i class="fas fa-user fa-2x" ></i></td> -->
 
 
@@ -307,7 +309,7 @@
                                 <!-- <td><?php //echo $row['username']; ?></td> -->
 
 
-                                <td class="actions">
+                                <td class="actions relative"><span class="vino__id-hover hidden" data-id-hover=<?php echo $row['id'] ?>>Usager id - <?php echo $row['id'] ?></span>
 
 
                                     <!-- <form action="?requete=modifierUsagerCatalogue" method="post" class="nostyle">

@@ -152,7 +152,9 @@ window.addEventListener("load", function () {
   //////////////////////////////////////////////
   //Fonction ajouter Usager                   //
   //////////////////////////////////////////////
-
+  let formulaireRegistration = document.querySelector('.form__connexion');
+  let modalConfirmRegistration = formulaireRegistration.querySelector('.confirm__modal__wrapper')
+  console.log(modalConfirmRegistration)
   let newUser = {
     nom: document.querySelector("[name='nomUser']"),
     prenom: document.querySelector("[name='prenomUser']"),

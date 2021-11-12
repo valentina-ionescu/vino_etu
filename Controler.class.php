@@ -377,7 +377,7 @@ class Controler
 
 				// header('Location: index.php?requete=profile');
 			} else {
-			#	header('Location: index.php?requete=creationUsager');
+				header('Location: index.php?requete=creationUsager');
 			}
 		}
 	// }
