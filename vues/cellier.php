@@ -1,11 +1,11 @@
 <div class="cellier">
     <div class="cellier__information">
-        <div class="cellier__information__wrapper flex row">
+        <div class="cellier__information-wrapper">
             <div class="nomCellier">
                 <?php if ($msg) { ?>
                     <h3 class="txt-blanc"><?php echo $msg; ?></h3>
                 <?php  } else { ?>
-                    <h3 class="txt-blanc capit"><?php echo 'Votre cellier: ' . $_SESSION['cellier_nom'];
+                    <h3 class="tag-gauche txt-blanc capit"><?php echo  $_SESSION['cellier_nom'];
                                             } ?></h3>
             </div>
         </div>
@@ -16,8 +16,8 @@
         
         
         <div class="gallerie portail">
+        <a href="?requete=profile" ><i class="fas fa-angle-double-left fa-plus-reverse gauche"></i></a>
         <a href="?requete=ajouterNouvelleBouteilleCellier"><i class="fas fa-plus fa-plus-reverse"></i></a>
-
 
         <?php
 
