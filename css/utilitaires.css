@@ -173,3 +173,22 @@ sup {
 .capit {
     text-transform: capitalize;
 }
+
+.error {
+    border-color: red;
+    color: red;
+}
+
+.message__erreur__inscription {
+    font-size: 1.3em;
+    margin: 0 0 10px 0;
+    color: red;
+}
+
+.display__none {
+    display: none;
+}
+
+.display {
+    display: initial;
+}

@@ -20,7 +20,7 @@
             <div>
                 <hr>
                 <div class="profile__status__wrapper">
-                    <p>Status du profile : <?php if ($_SESSION['admin'] == '1') {
+                    <p>Statut du profile : <?php if ($_SESSION['admin'] == '1') {
                         ?>Administrateur</p><?php
                     }else{ ?>
                         Utilisateur</p>

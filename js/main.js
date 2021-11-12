@@ -156,18 +156,61 @@ window.addEventListener("load", function () {
   let newUser = {
     nom: document.querySelector("[name='nomUser']"),
     prenom: document.querySelector("[name='prenomUser']"),
-    username: document.querySelector("[name='usernameUser']"),
     email: document.querySelector("[name='emailUser']"),
     password: document.querySelector("[name='passwordUser']"),
   };
 
+  let validation = document.querySelectorAll('[data-js-champ-inscription]')
+
+  for (let i = 0; i < validation.length; i++) {
+    validation[i].addEventListener('keyup', (e) => {
+      if (validation[i].value.length < 1 || validation[i].value.length > 45) {
+        validation[i].classList.add("error");
+        validation[i].parentElement.classList.add("error");
+      }else {
+        validation[i].classList.remove("error");
+        validation[i].parentElement.classList.remove("error");
+      }
+    });
+    validation[i].addEventListener('click', (e) => {
+      if (validation[i].value.length < 1 || validation[i].value.length > 45) {
+        validation[i].classList.add("error");
+        validation[i].parentElement.classList.add("error");
+      }else {
+        validation[i].classList.remove("error");
+        validation[i].parentElement.classList.remove("error");
+      }
+    })
+  }
+
   let btnAjouterUser = document.querySelector("[name='ajouterUser']");
+
+  let msgError = document.querySelector("[data-js-msgError]");
+
   if (btnAjouterUser) {
     btnAjouterUser.addEventListener("click", function (evt) {
+      for (let i = 0; i < validation.length; i++) {
+        if (validation[i].value.length < 1 || validation[i].value.length > 45) {
+          validation[i].classList.add("error");
+          validation[i].parentElement.classList.add("error");
+        }
+      }
+      const re = /\S+@\S+\.\S+/;
+      if(re.test(validation[2].value) == false){
+        validation[2].classList.add("error");
+        validation[2].parentElement.classList.add("error");
+      }else {
+        validation[2].classList.remove("error");
+        validation[2].parentElement.classList.remove("error");
+      }
+      let erreur = document.getElementsByClassName('error');
+      if (erreur.length > 0) {
+        msgError.classList.add("display");
+      }else {
+      console.log('adduser');
       var param = {
         nom: newUser.nom.value,
         prenom: newUser.prenom.value,
-        username: newUser.username.value,
         email: newUser.email.value,
         password: newUser.password.value,
       };
@@ -195,6 +238,7 @@ window.addEventListener("load", function () {
         .catch((error) => {
           console.error(error);
         });
+      }
     });
   }
 
@@ -604,6 +648,7 @@ window.addEventListener("load", function () {
     let btnAjouter = document.querySelector("[name='ajouterBouteilleCellier']");
     if (btnAjouter) {
       btnAjouter.addEventListener("click", function (evt) {
+
         var param = {
           vino__bouteille_id: bouteille.nom.dataset.id,
           date_achat: bouteille.date_achat.value,
