@@ -55,9 +55,6 @@ class Controler
 			case 'paramUsager':
 				$this->paramUser();
 				break;
-			case 'creationUsager':
-				$this->addUser();
-				break;
 			case 'suppUsager':
 				$this->delUser();
 				break;

@@ -12,49 +12,13 @@
  //const BaseURL = document.baseURI;
 
 console.log(BaseURL);
+window.addEventListener('scroll',function() {
+    //When scroll change, you save it on localStorage.
+    localStorage.setItem('scrollPosition',window.scrollY);
+},false);
+
 window.addEventListener('load', function () {
 
- 
-
-  ////////////////////////////////////////////////////////////////////////
-    //Fonction afficher le contenu en fonction de bouton/tab selectionnee //
-    ////////////////////////////////////////////////////////////////////////
-
-    document.querySelectorAll(".tabs__button").forEach(function (element) {
-        console.log(element);
-        let sideBar = element.parentElement;
-        //    if ( sideBar.style=("transform: translate(-100%, 0)")){
-        //     sideBar.style= (" ");
-        //    }
-        element.addEventListener("click", function (evt) {
-            console.log(element);
-
-            let mainContenant = document.querySelector('.admin_contenu_page');
-            console.log(sideBar)
-            let tabNumber = element.dataset.forTab;
-            let contentActivate = mainContenant.querySelector(`.admin__tabs__content[data-tab="${tabNumber}"]`);
-            console.log(contentActivate);
-            sessionStorage.setItem("activeLocation", tabNumber);
-            
-            sideBar.querySelectorAll('.tabs__button').forEach(button => {
-                button.classList.remove('tabs__button--active');
-            })
-            mainContenant.querySelectorAll('.admin__tabs__content').forEach(tab => {
-                tab.classList.remove('admin__tabs__content--active');
-            })
-           console.log(sessionStorage.getItem("activeLocation"))
-
-            //cacher le "x" et re-afficher le menu burger
-            // document.getElementById("admin_menuToggle").nextElementSibling.classList.add('hidden')
-            //  document.getElementById("admin_menuToggle").lastElementChild.previousElementSibling.classList.remove('hidden');
-
-            element.classList.add('tabs__button--active');
-            contentActivate.classList.add('admin__tabs__content--active');
- //retracter la side-bare
- //sideBar.classList.remove('sideBar-ferme'); 
-
-        })
-    })
 
  ////////////////////////////////////////////////////
  //Fonction SUPPRIMER compte Usager du Catalogue   //
@@ -117,9 +81,9 @@ window.addEventListener('load', function () {
 
                         document.querySelector(".txt_msg-usg-supprime").innerText = "L'usager " + nom.toUpperCase() + " supprimé avec succes !";
                         setTimeout(function(){
-                        document.querySelector(".txt_msg-usg-supprime").innerText = "";
+                        document.querySelector(".txt_msg-usg-supprime").innerText = " ";
                     }, 2000);
-                    
+
                       setTimeout(function(){
                         //    window.location.href = 'index.php?requete=admin';
                     //    history.replaceState('index.php?requete=admin#listeUsagers', null, 'index.php?requete=admin' );
@@ -149,14 +113,10 @@ window.addEventListener('load', function () {
 });
 
 
-  
 
 
 
 
-
-
-
-
-
-});
+if(localStorage.getItem('scrollPosition') !== null)
+window.scrollTo(0, localStorage.getItem('scrollPosition'));
+},false);

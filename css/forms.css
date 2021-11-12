@@ -51,6 +51,7 @@
     background-color: var(--bg-clair);
     color: var(--bg-primaire-autre);
     border-radius: 5px;
+    padding: 0.2em;
 }
 
 .form__modif {
@@ -141,12 +142,27 @@ textarea {
 }
 
 .form__recherche input {
- width: 85vw;
- background: transparent;
- padding-left: 0;
+    width: 90vw;
+        background: var(--bg-clair);
+        padding: 0.3em 0;
+        padding-left: 2em;
+        border-radius: 4px;
+        color: black;
 }
+.form__recherche .iconne {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+
 .form__recherche ::placeholder {
-    color: #f1f1f1;
+    /* color: #f1f1f1; */
 }
 
 .listeAutoComplete,
@@ -192,6 +208,7 @@ button {
     background-color: var(--bg-primaire-autre);
     color: #f1f1f1;
     padding: .5em 0;
+    border-radius: 3px;
 }
 
 @media (min-width: 850px)  {
@@ -206,7 +223,7 @@ button {
 /* les labels  flottants */
 
 .form {
-  padding: .25em 1.25em;
+  padding: 1em 1.25em;
 }
 
 .form__label__aj>input,
