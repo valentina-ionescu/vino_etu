@@ -130,7 +130,7 @@ window.addEventListener("load", function () {
 
           setTimeout(function(){
             window.location.href = "index.php?requete=profile";
-         }, 1500); 
+         }, 1100); 
           return response.json();
         } else {
           throw new Error("Erreur");
@@ -624,6 +624,7 @@ window.addEventListener("load", function () {
     let btnAjouter = document.querySelector("[name='ajouterBouteilleCellier']");
     if (btnAjouter) {
       btnAjouter.addEventListener("click", function (evt) {
+        
 
         var param = {
           vino__bouteille_id: bouteille.nom.dataset.id,
