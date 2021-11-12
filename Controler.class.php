@@ -55,6 +55,9 @@ class Controler
 			case 'paramUsager':
 				$this->paramUser();
 				break;
+			case 'creationUsager':
+				$this->addUser();
+				break;
 			case 'suppUsager':
 				$this->delUser();
 				break;
@@ -194,11 +197,11 @@ class Controler
 			$user = new Usager();
 
 			$hashPass = $user->hashPassword($body->password);
-			$inscriptionValide = $user->inscription($body, $hashPass);
+			$user->inscription($body, $hashPass);
 
-			if ($inscriptionValide) {
-				echo 'marche';
-			}
+			// if ($inscriptionValide) {
+			// 	echo 'marche';
+			// }
 
 		} else {
 			include("vues/entete.php");
@@ -377,7 +380,7 @@ class Controler
 
 				// header('Location: index.php?requete=profile');
 			} else {
-			#	header('Location: index.php?requete=creationUsager');
+				header('Location: index.php?requete=creationUsager');
 			}
 		}
 	// }
