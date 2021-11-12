@@ -82,9 +82,6 @@ class Controler
 			case 'getCellier':
 				$this->getCellier();
 				break;
-			case 'creationUsager':
-				$this->addUser();
-				break;
 			case 'getCatalogue':
 				$this->getCatalogue();
 				break;
@@ -200,7 +197,12 @@ class Controler
 			$user = new Usager();
 
 			$hashPass = $user->hashPassword($body->password);
-			$user->inscription($body, $hashPass);
+			$inscriptionValide = $user->inscription($body, $hashPass);
+
+			if ($inscriptionValide) {
+				echo 'marche';
+			}
+
 		} else {
 			include("vues/entete.php");
 			include("vues/inscription.php");
@@ -378,7 +380,7 @@ class Controler
 
 				// header('Location: index.php?requete=profile');
 			} else {
-				header('Location: index.php?requete=creationUsager');
+			#	header('Location: index.php?requete=creationUsager');
 			}
 		}
 	// }

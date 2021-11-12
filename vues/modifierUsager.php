@@ -15,11 +15,7 @@
             </div>
             <div class="form__label__md">
                 <input type="texte" name="email" value="<?php echo $_SESSION['email']; ?>">
-                <label>Email </label>
-            </div>
-            <div class="form__label__md">
-                <input type="texte" name="username" value="<?php echo $_SESSION['username']; ?>">
-                <label>Nom d'utilisateur </label>
+                <label>Adresse courriel </label>
             </div>
             <div class="form__label__md">
                 <input type="password" name="password" value="<?php echo $_SESSION['password']; ?>">
