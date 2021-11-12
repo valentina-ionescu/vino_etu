@@ -23,7 +23,7 @@ class Usager extends Modele {
 
         $email = $_POST['email'];
 
-        $requete = mysqli_prepare($connexion, "SELECT vino__usager.email, vino__usager.id, vino__usager.password, vino__usager.nom, vino__usager.prenom, vino__usager.username, vino__usager.admin FROM vino__usager WHERE email = ?");
+        $requete = mysqli_prepare($connexion, "SELECT vino__usager.email, vino__usager.id, vino__usager.password, vino__usager.nom, vino__usager.prenom, vino__usager.admin FROM vino__usager WHERE email = ?");
 
         if($requete) 
         {
@@ -44,7 +44,6 @@ class Usager extends Modele {
                 $_SESSION['admin'] = $usager['admin'];
                 $_SESSION['prenom'] = $usager['prenom'];
                 $_SESSION['email'] = $usager['email'];
-                $_SESSION['username'] = $usager['username'];
             }
         }
     }
@@ -104,7 +103,7 @@ class Usager extends Modele {
      */
     public function inscription($data, $hashPass){
 
-        $requete = "INSERT INTO vino__usager (nom, prenom, username, email, password,admin ) VALUE ('".$data->nom."', '".$data->prenom."', '".$data->username."', '".$data->email."', '".$hashPass."', '0')";
+        $requete = "INSERT INTO vino__usager (nom, prenom, email, password,admin ) VALUE ('".$data->nom."', '".$data->prenom."', '".$data->email."', '".$hashPass."', '0')";
    
         $res = $this->_db->query($requete);
 
@@ -197,11 +196,11 @@ class Usager extends Modele {
 
         $hashPassword= password_hash($data->password, PASSWORD_BCRYPT, $options);
 
-		$requete = mysqli_prepare($connexion, "UPDATE vino__usager SET nom = ?, email =? , prenom =? , username =? , password = ? WHERE id = ?");	
+		$requete = mysqli_prepare($connexion, "UPDATE vino__usager SET nom = ?, email =? , prenom =? , password = ? WHERE id = ?");	
 
         if($requete)
         {
-            mysqli_stmt_bind_param($requete, 'sssssi', $data->nom, $data->email, $data->prenom, $data->username, $hashPassword, $id);
+            mysqli_stmt_bind_param($requete, 'sssssi', $data->nom, $data->email, $data->prenom, $hashPassword, $id);
 
             mysqli_stmt_execute($requete);
 
@@ -210,7 +209,6 @@ class Usager extends Modele {
             if ($requete) {
                 $_SESSION['nom'] = $data->nom;
                 $_SESSION['prenom'] = $data->prenom;
-                $_SESSION['username'] = $data->username;
                 $_SESSION['email'] = $data->email;
                 $_SESSION['password'] = $data->password;
                 $_SESSION['initiales'] = $this->initials($data->prenom.' '.$data->nom);
