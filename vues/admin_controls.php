@@ -33,16 +33,14 @@
     <link rel="shortcut icon" type="image/png" href="./assets/img/logo/logo-verre-white-circle.png">
 
     <link rel="stylesheet" href="./css/grilles.css" type="text/css" media="screen">
-    <!-- <link rel="stylesheet" href="./css/utilitaires.css">
-		<link rel="stylesheet" href="./css/utilitaires.css" type="text/css" media="screen"> -->
+   
 
 
     <!-- Iconnes importees  -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
 
     <base href="<?php echo BASEURL; ?>">
-    <!--<script src="./js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>-->
-    <!-- <script src="./js/plugins.js"></script> -->
+    
 
  
     <script src="./js/main.js"></script>
@@ -177,7 +175,6 @@
                 <h2>Catalogue</h2>
                 <p class="txt_msg-supprime"></p>
 
-                <!-- <a class="btn btn-accent solid" href="?requete=ajouterBouteilleNonListeeCatalogue">Ajouter une bouteille Non Listée</a> -->
 
                 <div class="mt-3">
 
@@ -186,9 +183,7 @@
 
                     <table>
                         <tr>
-                            <!-- <th>Id</th> -->
                             <th>Type</th>
-
                             <th>Nom Bouteille</th>
                             <th class="hidden">Description </th>
                             <th>Url SAQ</th>
@@ -198,12 +193,10 @@
                         <?php
 
                         foreach ($listeBouteilles as $row) {
-                            //  var_dump($row);
                             if (!$row['statut_desactive'] == 1) {
 
                         ?>
                                 <tr data-row-id="<?php echo $row['id'] ?>" class="item ">
-                                    <!-- <td><?php echo $row['id'] ?></td> -->
                                     <td ><i class="fas fa-wine-glass fa-2x" style="color:var(<?php if ($row['vino__type_id'] == 1) { ?>--bg-primaire <?php } else { ?>--bg-doree <?php } ?>); "></i></td>
 
 
@@ -217,7 +210,7 @@
                                                 Non-listé <?php } ?>
                                     </td>
 
-                                    <td class="actions relative"><span class="vino__id-hover hidden" data-id-hover=<?php echo $row['id'] ?>>Usager id - <?php echo $row['id'] ?></span>
+                                    <td class="actions relative"><span class="vino__id-hover hidden" data-id-hover=<?php echo $row['id'] ?>>Bouteille id - <?php echo $row['id'] ?></span>
 
 
 
@@ -273,7 +266,6 @@
 
 
                 <h2>Liste Usagers </h2>
-                <!-- <span> <?php  var_dump($_SESSION['admin']) ?> Bouteilles </span> -->
 
                 <p class="txt_msg-usg-supprime"></p>
 
@@ -281,12 +273,9 @@
 
                     <table>
                         <tr>
-                            <!-- <th>Id</th> -->
-                            <!-- <th>Image</th> -->
+                           
                             <th>Nom </th>
                             <th>Email</th>
-
-                            <!-- <th>Username</th> -->
                             <th>Actions</th>
 
                         </tr>
@@ -296,8 +285,7 @@
 
                         ?>
                             <tr data-row-id="<?php echo $row['id'] ?>" class="item">
-                                <!-- <td><?php echo $row['id'] ?></td> -->
-                                <!-- <td><i class="fas fa-user fa-2x" ></i></td> -->
+                              
 
 
                                 <td><?php if ($row['admin'] == 1) {
@@ -306,27 +294,14 @@
                                         echo $row['nom'] . " " . $row['prenom'];
                                     } ?></td>
                                 <td><?php echo $row['email']; ?></td>
-                                <!-- <td><?php //echo $row['username']; ?></td> -->
 
 
                                 <td class="actions relative"><span class="vino__id-hover hidden" data-id-hover=<?php echo $row['id'] ?>>Usager id - <?php echo $row['id'] ?></span>
 
 
-                                    <!-- <form action="?requete=modifierUsagerCatalogue" method="post" class="nostyle">
-
-                                        <input type="hidden" name="id" value="<?php echo $row['id'] ?>">
-
-                                        <button class="edit  small" name="Update" type="submit"><i class="fas fa-pen fa-xs"></i></button>
-
-                                    </form> -->
-
-                                    <!-- <form action="" method="post" class="nostyle"> -->
-                                    <!-- <input type="hidden" name="id" value="<?php echo $row['id'] ?>"> -->
-
-                                    <!-- <button class="trash  small "  name="Delete" type="submit"><i class="fas fa-trash fa-xs"></i></button> -->
+                                  
                                     <button class="trash  small btnSupprUsager" name="Delete" type="submit" data-id="<?php echo $row['id'] ?>" data-nom="<?php echo $row['prenom'] . ' ' . $row['nom'] ?>"><i class="fas fa-trash fa-xs"></i></button>
 
-                                    <!-- </form> -->
 
                                 </td>
 
@@ -344,7 +319,6 @@
                     </table>
                 </div>
 
-                <!-- php pour generer table catalogue-->
 
             </article>
 

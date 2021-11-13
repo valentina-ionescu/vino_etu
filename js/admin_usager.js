@@ -115,7 +115,7 @@ window.addEventListener('load', function () {
 ///////////////////////////////////////////////////////
 //Fonction Effet Hover de l'id Bouteilles et Usagers //
 ///////////////////////////////////////////////////////
-/*
+
 let items = document.querySelectorAll(".item");
 // console.log(items)
 
@@ -139,7 +139,7 @@ items.forEach(function(element){
         // console.log(hoverIdCooltip)
  
      });
-})*/
+})
 
 
 

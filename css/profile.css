@@ -32,7 +32,10 @@
 }
 
 /* Panneau de gestion d'un  usager */
-
+.cellier__information-wrapper {
+    display:flex;
+    justify-self: left;
+}
 
 .u__profile__wrapper {
    background-color: var(--bg-clair);
@@ -188,9 +191,24 @@
     border: 1px solid #f1f1f1;
     margin-top: -3.125vh;
     vertical-align: middle;
-    margin-left: 65vw;
-    background: var(--bg-sombre);
-   
+    margin-left: 58vw;
+    background: var(--bg-sombre);  
+}
+.gauche {
+    margin-left: 0;
+    font-size: clamp(2rem, -0.875rem + 8.333333vw, 2.75rem);
+    padding: .25em;
+}
+.tag-gauche {
+    margin-top: 0;
+    margin-left: 0;
+    font-size: 1.5rem;
+    background: var(--bg-clair);
+    color: var(--bg-primaire-autre);
+    padding: 0.25em .5em;
+}
+.nomCellier {
+    padding-top: .75em;
 }
 form.btn__ajouter_cellier {
     margin-top: 1.25rem;

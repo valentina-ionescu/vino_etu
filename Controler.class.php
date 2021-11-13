@@ -196,12 +196,9 @@ class Controler
 			$user = new Usager();
 
 			$hashPass = $user->hashPassword($body->password);
-			$inscriptionValide = $user->inscription($body, $hashPass);
+			$user->inscription($body, $hashPass);
 
-			if ($inscriptionValide) {
-				echo 'marche';
-			}
-
+			
 		} else {
 			include("vues/entete.php");
 			include("vues/inscription.php");

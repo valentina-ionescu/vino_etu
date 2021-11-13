@@ -152,9 +152,8 @@ window.addEventListener("load", function () {
   //////////////////////////////////////////////
   //Fonction ajouter Usager                   //
   //////////////////////////////////////////////
-  let formulaireRegistration = document.querySelector('.form__connexion');
-  let modalConfirmRegistration = formulaireRegistration.querySelector('.confirm__modal__wrapper')
-  console.log(modalConfirmRegistration)
+
+  // console.log(modalConfirmRegistration)
   let newUser = {
     nom: document.querySelector("[name='nomUser']"),
     prenom: document.querySelector("[name='prenomUser']"),
@@ -227,8 +226,17 @@ window.addEventListener("load", function () {
       fetch(requete)
         .then((response) => {
           if (response.status === 200) {
-            console.log(response);
-            window.location.href = "index.php?requete=profile";
+          console.log(response);
+          let formulaireRegistration = document.querySelector('.form__connexion');
+          let modalConfirmRegistration = formulaireRegistration.querySelector('.confirm__modal__wrapper')
+          modalConfirmRegistration.classList.add('show');
+          modalConfirmRegistration.querySelector('.txt_msg-modif').innerText = 'Votre compte a été créé avec succes!';
+  
+            setTimeout(function () {
+              window.location.href = 'index.php?requete=profile';
+            }, 1500);
+            
+            // window.location.href = "index.php?requete=profile";
             return response.json();
           } else {
             throw new Error("Erreur");
@@ -650,6 +658,7 @@ window.addEventListener("load", function () {
     let btnAjouter = document.querySelector("[name='ajouterBouteilleCellier']");
     if (btnAjouter) {
       btnAjouter.addEventListener("click", function (evt) {
+        
 
         var param = {
           vino__bouteille_id: bouteille.nom.dataset.id,

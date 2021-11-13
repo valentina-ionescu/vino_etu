@@ -254,18 +254,15 @@ summary:hover {
 }
 
 details[open] summary {
-    /* border-bottom: 1px solid #aaa; */
     color: var(--bg-primaire);
     margin-bottom: .5em;
 }
 
 
 .cellier__information {
-    /* background-color: #FFFFFF; */
     width: 95vw;
     border-radius: 3px;
-    padding: 20px;
-    margin: 0 auto;
+    padding-bottom: 3em;
     display: flex;
     flex-direction: column;
     gap: 20px;
