@@ -112,12 +112,11 @@ class Controler
 			case 'home':
 				$this->home();
 				break;
+
 			default:
 				$this->accueil();
 				break;
-				// case 'getCatalogue':
-				// 	$this->getCatalogue();
-				// 	break;
+				
 		}
 	}
 
@@ -199,10 +198,7 @@ class Controler
 			$hashPass = $user->hashPassword($body->password);
 			$user->inscription($body, $hashPass);
 
-			// if ($inscriptionValide) {
-			// 	echo 'marche';
-			// }
-
+			
 		} else {
 			include("vues/entete.php");
 			include("vues/inscription.php");
@@ -264,9 +260,7 @@ class Controler
 		if(!empty($body)){
 
 			$User = new Usager();
-
 			$id = $_SESSION['usager_id'];
-			
 			$resultat = $User->modifierUsager($body, $id);
 		}
 		else{

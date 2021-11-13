@@ -83,7 +83,7 @@
                             </div>
                             <div class="flex row justify-between mt-1">
                                 <p class="carte__description-pays"><?php echo $bouteille['pays'] ?></p>
-                                <span class=" carte__format"><?php echo $bouteille['format'] ?> </span>
+                                <p class=" carte__format"><?php echo $bouteille['format'] ?> </p>
                             </div>
                             <p class="carte__description-millesime"><strong>Millesime:</strong> <?php echo $bouteille['millesime'] ?></p>
 
