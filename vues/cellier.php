@@ -3,7 +3,7 @@
         <div class="cellier__information-wrapper">
             <div class="nomCellier">
                 <?php if ($msg) { ?>
-                    <h3 class="txt-blanc"><?php echo $msg; ?></h3>
+                    <h3 class="ml txt-blanc"><?php echo $msg; ?></h3>
                 <?php  } else { ?>
                     <h3 class="tag-gauche txt-blanc capit"><?php echo  $_SESSION['cellier_nom'];
                                             } ?></h3>
