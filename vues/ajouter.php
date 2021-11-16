@@ -1,7 +1,18 @@
-<div class="form__contenant flex col form__contenant--espacevertical" vertical layout>
+<div class="form__contenant flex col form__contenant--espacevertical form__ajout_bouteille" vertical layout>
    
 
-    <div class="form__carte">
+ <!-- Modal confirmation modification bouteille Catalogue-->
+            
+    <div class="confirm__modal__wrapper">
+                                <div class="modal__overlay">
+                        <div class="modal__contenu ">
+                            <h3 class="modal__texte txt_msg-modif"></h3>
+                        </div>
+                    </div>
+    </div>
+            
+            
+<div class="form__carte">
 
      
 

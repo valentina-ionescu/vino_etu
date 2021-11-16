@@ -688,8 +688,15 @@ window.addEventListener("load", function () {
           })
           .then((json) => {
             console.log(json);
-
-            window.location.href = "index.php?requete=accueil";
+            let formulaireRegistration = document.querySelector('.form__ajout_bouteille');
+            let modalConfirmRegistration = formulaireRegistration.querySelector('.confirm__modal__wrapper')
+            modalConfirmRegistration.classList.add('show');
+            modalConfirmRegistration.querySelector('.txt_msg-modif').innerText = 'La bouteille a été ajoutée avec succès!';
+    
+              setTimeout(function () {
+                window.location.href = "index.php?requete=accueil";
+              }, 1500);
+            
           });
       });
     }
