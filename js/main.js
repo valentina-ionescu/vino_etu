@@ -711,7 +711,12 @@ window.addEventListener("load", function () {
     umenu.classList.toggle('show');
   });
 
-
+// click en dehors du menu le fermera
+document.addEventListener('click',(e)=>{
+  if(!e.target.matches('.u__profile_img img'))
+  if(umenu.classList.contains('show'))
+   umenu.classList.remove('show');
+})
 
 
   //////////////////////////////////////////////
