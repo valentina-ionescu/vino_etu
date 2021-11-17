@@ -89,9 +89,12 @@ class Usager extends Modele {
 
         $row = $res->fetch_assoc();
 
-        $dbpassword = $row['password'];
+        if ($row) {
 
-        return password_verify($password, $dbpassword);
+            $dbpassword = $row['password'];
+            
+            return password_verify($password, $dbpassword);
+        }
     }
     
     /**

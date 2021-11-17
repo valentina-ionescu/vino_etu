@@ -183,6 +183,7 @@ sup {
     font-size: 1.3em;
     margin: 0 0 10px 0;
     color: red;
+    text-align: center;
 }
 
 .display__none {
@@ -191,4 +192,9 @@ sup {
 
 .display {
     display: initial;
+}
+
+.msgErreur {
+    color: red;
+    margin: 0;
 }

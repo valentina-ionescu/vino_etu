@@ -380,7 +380,10 @@ class Controler
 
 				// header('Location: index.php?requete=profile');
 			} else {
-				header('Location: index.php?requete=creationUsager');
+				$erreurMsg = TRUE;
+				include("vues/entete.php");
+				include("vues/profile.php");
+				include("vues/pied.php");
 			}
 		}
 	// }

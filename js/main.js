@@ -115,7 +115,6 @@ window.addEventListener("load", function () {
       nom: newCellier.nom.value,
     };
 
-
     let requete = new Request("index.php?requete=ajouterCellier", {
       method: "POST",
       body: JSON.stringify(param),
@@ -248,19 +247,61 @@ window.addEventListener("load", function () {
     nom: document.querySelector("[name='nom']"),
     prenom: document.querySelector("[name='prenom']"),
     email: document.querySelector("[name='email']"),
-    username: document.querySelector("[name='username']"),
     password: document.querySelector("[name='password']"),
   };
+
+  let validationModif = document.querySelectorAll('[data-js-champ-inscription]')
+
+  let msgErrorModif = document.querySelector("[data-js-msgError]");
+
+  for (let i = 0; i < validationModif.length; i++) {
+    validationModif[i].addEventListener('keyup', (e) => {
+      if (validationModif[i].value.length < 1 || validationModif[i].value.length > 45) {
+        validationModif[i].classList.add("error");
+        validationModif[i].parentElement.classList.add("error");
+      }else {
+        validationModif[i].classList.remove("error");
+        validationModif[i].parentElement.classList.remove("error");
+      }
+    });
+    validationModif[i].addEventListener('click', (e) => {
+      if (validationModif[i].value.length < 1 || validationModif[i].value.length > 45) {
+        validationModif[i].classList.add("error");
+        validationModif[i].parentElement.classList.add("error");
+      }else {
+        validationModif[i].classList.remove("error");
+        validationModif[i].parentElement.classList.remove("error");
+      }
+    })
+  }
 
   document.querySelectorAll(".btnModifierUser").forEach(function (element) {
     console.log(element);
     element.addEventListener("click", function (evt) {
 
+      for (let i = 0; i < validation.length; i++) {
+        if (validation[i].value.length < 1 || validation[i].value.length > 45) {
+          validation[i].classList.add("error");
+          validation[i].parentElement.classList.add("error");
+        }
+      }
+      const re = /\S+@\S+\.\S+/;
+      if(re.test(validation[2].value) == false){
+        validation[2].classList.add("error");
+        validation[2].parentElement.classList.add("error");
+      }else {
+        validation[2].classList.remove("error");
+        validation[2].parentElement.classList.remove("error");
+      }
+      let erreur = document.getElementsByClassName('error');
+      if (erreur.length > 0) {
+        msgError.classList.add("display");
+      }else {
+      console.log('adduser');
       var param = {
         "nom": modifUsager.nom.value,
         "prenom": modifUsager.prenom.value,
         "email": modifUsager.email.value,
-        "username": modifUsager.username.value,
         "password": modifUsager.password.value,
       };
       let requete = new Request("index.php?requete=modifUsager", { method: 'PUT', body: JSON.stringify(param) });
@@ -281,6 +322,7 @@ window.addEventListener("load", function () {
         }).catch(error => {
           console.error(error);
         });
+      }
     });
   });
 

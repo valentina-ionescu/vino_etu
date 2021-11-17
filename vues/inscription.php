@@ -24,7 +24,7 @@
                 <input data-js-champ-inscription type="password" name="passwordUser" required value="">
                 </label>
             </div>
-            <p data-js-msgError class="message__erreur__inscription display__none">Champ incorrect</p>
+            <p data-js-msgError class="message__erreur__inscription display__none">Champ(s) incorrect(s)</p>
             <button class='btnModifier' name="ajouterUser" value="inscription">S'inscrire</button>
         </div>
     </div>
