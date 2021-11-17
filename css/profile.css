@@ -238,11 +238,29 @@ form.btn__ajouter_cellier {
 .msg-supprime {
     padding: 1.25rem 0 0 1.25rem;
 }
+
+/* ==========--------- Tri de celliers -----------============== */
+.u__cellier-tri {
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+    gap:.75em;
+    margin-left: 2.25rem;
+}
+
+.fas.fa-sort-up {
+    margin-top: .6rem;
+}
+
+
 /* ==========--------- Nbre de bouteilles -------------========== */
 .b__compte {
     font-size: .75rem;
 }
-
+.fas.fa-sort-up,
+.fas.fa-sort-down {
+    font-size: clamp(1rem, -0.875rem + 8.333333vw, 1.25rem); 
+} 
 /* ==========----------Media queries---------=========== */
 @media (min-width: 540px)  {
     .u__profile__wrapper {

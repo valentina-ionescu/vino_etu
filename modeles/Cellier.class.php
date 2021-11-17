@@ -25,6 +25,7 @@ class Cellier extends Modele {
         
 		$rows = Array();
 
+       
         $requete = "SELECT id, nom_cellier, usager_id FROM vino__cellier WHERE usager_id = ".$idUser."";
 
 		if(($res = $this->_db->query($requete)) == true)
@@ -93,9 +94,27 @@ class Cellier extends Modele {
      * @return void
      */    
 
-    public function getListeCellier()
+    public function getListeCellier($order)
 	{
-       
+        $idUser = $_SESSION['usager_id'];
+        
+		$rows = Array();
+
+        
+        $requete = "SELECT  nom_cellier FROM vino__cellier WHERE usager_id = ".$idUser." ORDER BY nom_cellier ".$order . "";
+   
+		if(($res = $this->_db->query($requete)) == true)
+        {
+            if($res->num_rows)
+            {
+                while($row = $res->fetch_assoc())
+                {
+                    $rows[] = $row;
+                }
+            }
+        }
+        
+        return $rows;
        
     }  
     
