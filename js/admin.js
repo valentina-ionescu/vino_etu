@@ -154,20 +154,16 @@ window.addEventListener('load', function () {
     console.log(element.parentElement.parentElement);
     element.addEventListener("click", function (evt) {
       console.log('click', evt.target);
+    
       let modal = document.querySelector(".desactivation__modal__wrapper");
-
-      console.log(element)
       let id = element.dataset.id;
 
-      console.log(modal)
 
       //Afficher Modal  //  
       modal.classList.toggle('show');
       modal.querySelector('.modal__texte').innerText = 'Supprimer la bouteille No.' + id + ' ?';
 
       //Fermeture du modal //
-
-
 
       let fermerBouton = modal.querySelector('.fermer');
       fermerBouton.addEventListener('click', function (e) {
@@ -204,6 +200,13 @@ window.addEventListener('load', function () {
 
               document.querySelector(".txt_msg-supprime").innerText = "La bouteille No" + id + " supprimée avec succes !"
 
+              setTimeout(function () {
+
+                document.querySelector(".txt_msg-supprime").innerText = " ";
+
+
+            }, 3000);
+
               return response.json();
 
 
@@ -229,14 +232,14 @@ window.addEventListener('load', function () {
 
 
   ///////////////////////////////////////////////////////
-  //Fonction modifier  Bouteille dans le Catalogue     //
+  //Fonction modifier  Bouteille dans le Catalogue     // 
   ///////////////////////////////////////////////////////
 
   // console.log(document.querySelector(".btnAnnul"));
 
   // console.log(document.querySelector(".btnModifierBouteilleCatalogue"));
 
-  let modal = document.querySelector('.confirm__modal__wrapper');
+  
 
   let modifBouteilleCatalogue = {
     nom: document.querySelector("[name='nom']"),
@@ -277,8 +280,9 @@ window.addEventListener('load', function () {
         if (response.status === 200) {
           //re-afficher le catalogue
           console.log(response);
+          let modal = document.querySelector('.confirm__modal__wrapper');
           modal.classList.add('show');
-          modal.querySelector('.txt_msg-modif').innerText = 'La bouteille No' + id + ' modifiée avec succes !';
+          modal.querySelector('.txt_msg-modif').innerText = 'La bouteille «' + modifBouteilleCatalogue.nom.value + '» modifiée avec succes !';
 
           setTimeout(function () {
             window.location.href = 'index.php?requete=admin';
@@ -299,10 +303,9 @@ window.addEventListener('load', function () {
 
 
 
-
-
-
-
+  
+ 
+  
 
 
 

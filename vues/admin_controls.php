@@ -33,16 +33,16 @@
     <link rel="shortcut icon" type="image/png" href="./assets/img/logo/logo-verre-white-circle.png">
 
     <link rel="stylesheet" href="./css/grilles.css" type="text/css" media="screen">
-   
+
 
 
     <!-- Iconnes importees  -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
 
     <base href="<?php echo BASEURL; ?>">
-    
 
- 
+
+
     <script src="./js/main.js"></script>
     <script src="./js/admin.js"></script>
     <script src="./js/admin_usager.js"></script>
@@ -197,7 +197,7 @@
 
                         ?>
                                 <tr data-row-id="<?php echo $row['id'] ?>" class="item ">
-                                    <td ><i class="fas fa-wine-glass fa-2x" style="color:var(<?php if ($row['vino__type_id'] == 1) { ?>--bg-primaire <?php } else { ?>--bg-doree <?php } ?>); "></i></td>
+                                    <td><i class="fas fa-wine-glass fa-2x" style="color:var(<?php if ($row['vino__type_id'] == 1) { ?>--bg-primaire <?php } else { ?>--bg-doree <?php } ?>); "></i></td>
 
 
                                     <td><?php echo $row['nom'] ?></td>
@@ -230,10 +230,10 @@
                                     </td>
 
 
-                                
+
 
                                 </tr>
-                               
+
 
                         <?php
                             }
@@ -273,7 +273,7 @@
 
                     <table>
                         <tr>
-                           
+
                             <th>Nom </th>
                             <th>Email</th>
                             <th>Actions</th>
@@ -285,7 +285,7 @@
 
                         ?>
                             <tr data-row-id="<?php echo $row['id'] ?>" class="item">
-                              
+
 
 
                                 <td><?php if ($row['admin'] == 1) {
@@ -294,12 +294,17 @@
                                         echo $row['nom'] . " " . $row['prenom'];
                                     } ?></td>
                                 <td><?php echo $row['email']; ?></td>
+                               
+
 
 
                                 <td class="actions relative"><span class="vino__id-hover hidden" data-id-hover=<?php echo $row['id'] ?>>Usager id - <?php echo $row['id'] ?></span>
 
+                                    <label class="switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider round"></span>
+                                    </label>
 
-                                  
                                     <button class="trash  small btnSupprUsager" name="Delete" type="submit" data-id="<?php echo $row['id'] ?>" data-nom="<?php echo $row['prenom'] . ' ' . $row['nom'] ?>"><i class="fas fa-trash fa-xs"></i></button>
 
 

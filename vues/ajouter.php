@@ -16,6 +16,9 @@
                     <label>Nom </label>
                 </div>
                 <div class="form__label__aj">
+                    <input id="image" type="file" name="image" class="form-control">
+                </div>
+                <div class="form__label__aj">
                     <input type="texte" name="pays" required>
                     <label>Pays </label>
                 </div>

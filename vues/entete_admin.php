@@ -20,7 +20,7 @@
 		<link rel="stylesheet" href="css/normalize.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="css/base_h5bp.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="css/utilitaires.css" type="text/css" media="screen">
-		<link rel="stylesheet" href="./css/forms.css">
+		<link rel="stylesheet" href="css/forms.css">
 		<link rel="stylesheet" href="css/main.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="css/header.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="css/footer.css" type="text/css" media="screen">
@@ -50,6 +50,24 @@
 
 	</head>
 	<body class="relative admin_body" >
+		
+	<div class="loader hidden">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <div>
+            <div class="wineglass left">
+                <div class="top"></div>
+            </div>
+            <div class="wineglass right">
+                <div class="top"></div>
+            </div>
+        </div>
+    </div>
+
+
     <header class="header__wrapper  admin">
 			<nav class="nav__wrapper flex row align-item-center" role="navigation">
 				<!-- <div id="menuToggle">
