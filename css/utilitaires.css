@@ -183,6 +183,7 @@ sup {
     font-size: 1.3em;
     margin: 0 0 10px 0;
     color: red;
+    text-align: center;
 }
 
 .display__none {
@@ -191,4 +192,51 @@ sup {
 
 .display {
     display: initial;
+}
+
+.msgErreur {
+    color: red;
+    margin: 0;
+}
+
+.checkAjout[type=checkbox]{
+	height: 0;
+	width: 0;
+	visibility: hidden;
+}
+
+.checkLabel {
+	cursor: pointer;
+	text-indent: -9999px;
+	width: 50px;
+	height: 25px;
+	background: grey;
+	display: block;
+	border-radius: 100px;
+	position: relative;
+}
+
+.checkLabel:after {
+	content: '';
+	position: absolute;
+	top: 4px;
+	left: 4px;
+	width: 18px;
+	height: 18px;
+	background: #fff;
+	border-radius: 90px;
+	transition: 0.3s;
+}
+
+.checkAjout:checked + label {
+	background: var(--bg-primaire);
+}
+
+.checkAjout:checked + label:after {
+	left: calc(100% - 5px);
+	transform: translateX(-100%);
+}
+
+label:active:after {
+	width: 30px;
 }

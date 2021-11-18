@@ -261,19 +261,61 @@ window.addEventListener("load", function () {
     nom: document.querySelector("[name='nom']"),
     prenom: document.querySelector("[name='prenom']"),
     email: document.querySelector("[name='email']"),
-    username: document.querySelector("[name='username']"),
     password: document.querySelector("[name='password']"),
   };
+
+  let validationModif = document.querySelectorAll('[data-js-champ-inscription]')
+
+  let msgErrorModif = document.querySelector("[data-js-msgError]");
+
+  for (let i = 0; i < validationModif.length; i++) {
+    validationModif[i].addEventListener('keyup', (e) => {
+      if (validationModif[i].value.length < 1 || validationModif[i].value.length > 45) {
+        validationModif[i].classList.add("error");
+        validationModif[i].parentElement.classList.add("error");
+      }else {
+        validationModif[i].classList.remove("error");
+        validationModif[i].parentElement.classList.remove("error");
+      }
+    });
+    validationModif[i].addEventListener('click', (e) => {
+      if (validationModif[i].value.length < 1 || validationModif[i].value.length > 45) {
+        validationModif[i].classList.add("error");
+        validationModif[i].parentElement.classList.add("error");
+      }else {
+        validationModif[i].classList.remove("error");
+        validationModif[i].parentElement.classList.remove("error");
+      }
+    })
+  }
 
   document.querySelectorAll(".btnModifierUser").forEach(function (element) {
     console.log(element);
     element.addEventListener("click", function (evt) {
 
+      for (let i = 0; i < validation.length; i++) {
+        if (validation[i].value.length < 1 || validation[i].value.length > 45) {
+          validation[i].classList.add("error");
+          validation[i].parentElement.classList.add("error");
+        }
+      }
+      const re = /\S+@\S+\.\S+/;
+      if(re.test(validation[2].value) == false){
+        validation[2].classList.add("error");
+        validation[2].parentElement.classList.add("error");
+      }else {
+        validation[2].classList.remove("error");
+        validation[2].parentElement.classList.remove("error");
+      }
+      let erreur = document.getElementsByClassName('error');
+      if (erreur.length > 0) {
+        msgError.classList.add("display");
+      }else {
+      console.log('adduser');
       var param = {
         "nom": modifUsager.nom.value,
         "prenom": modifUsager.prenom.value,
         "email": modifUsager.email.value,
-        "username": modifUsager.username.value,
         "password": modifUsager.password.value,
       };
       let requete = new Request("index.php?requete=modifUsager", { method: 'PUT', body: JSON.stringify(param) });
@@ -294,6 +336,7 @@ window.addEventListener("load", function () {
         }).catch(error => {
           console.error(error);
         });
+      }
     });
   });
 
@@ -712,60 +755,128 @@ window.addEventListener("load", function () {
   //////////////////////////////////////////////
 
   let element = document.querySelector(".btnSupprimerProfile");
-  element.addEventListener("click", function (evt) {
-    let modal = document.querySelector(".modal__wrapper");
-
-    //Afficher Modal  //
-    modal.classList.toggle("show");
-
-    //Fermeture du modal //
-
-    let fermerBouton = document.querySelector(".fermer");
-    fermerBouton.addEventListener("click", function (e) {
+  if (element) {
+    element.addEventListener("click", function (evt) {
       let modal = document.querySelector(".modal__wrapper");
-      modal.classList.remove("show");
-    });
 
-    let annBouton = document.querySelector(".btn__annuler");
-    annBouton.addEventListener("click", function (e) {
-      let modal = document.querySelector(".modal__wrapper");
-      modal.classList.remove("show");
-    });
+      //Afficher Modal  //
+      modal.classList.toggle("show");
 
-    // Suppression de la bouteille //
+      //Fermeture du modal //
 
-    let btnDanger = modal.querySelector(".btn__danger");
-    btnDanger.addEventListener("click", (e) => {
-      let requete = new Request("index.php?requete=suppUsager");
-      console.log(requete);
-      fetch(requete)
-        .then((response) => {
-          if (response.status === 200) {
-            //re-afficher le cellier
+      let fermerBouton = document.querySelector(".fermer");
+      fermerBouton.addEventListener("click", function (e) {
+        let modal = document.querySelector(".modal__wrapper");
+        modal.classList.remove("show");
+      });
+
+      let annBouton = document.querySelector(".btn__annuler");
+      annBouton.addEventListener("click", function (e) {
+        let modal = document.querySelector(".modal__wrapper");
+        modal.classList.remove("show");
+      });
+
+      // Suppression de la bouteille //
+
+      let btnDanger = modal.querySelector(".btn__danger");
+      btnDanger.addEventListener("click", (e) => {
+        let requete = new Request("index.php?requete=suppUsager");
+        console.log(requete);
+        fetch(requete)
+          .then((response) => {
+            if (response.status === 200) {
+              //re-afficher le cellier
+              console.log(response);
+              window.location.href = "index.php?requete=accueil";
+              return response.json();
+            } else {
+              throw new Error("Erreur");
+            }
+          })
+          .then((response) => {
             console.log(response);
-            window.location.href = "index.php?requete=accueil";
-            return response.json();
-          } else {
-            throw new Error("Erreur");
-          }
-        })
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      });
     });
+  }
+
+  //////////////////////////////////////////////
+  // Fonction Formulaire Non-Listé            //
+  //////////////////////////////////////////////
+
+  let checkbox = document.querySelector("input[name=checkbox]");
+  let formPerso = document.querySelector("[data-js-form-personel]");
+  let formPublic = document.querySelector("[data-js-form-public]");
+
+  checkbox.addEventListener('change', function(e) {
+    if (this.checked) {
+      formPerso.classList.remove('hidden');
+      formPublic.classList.add('hidden');
+    } else {
+      formPerso.classList.add('hidden');
+      formPublic.classList.remove('hidden');
+    }
   });
 
 
+  //////////////////////////////////////////////
+  //Fonction Nouvelle Bouteille Personnalisé  //
+  //////////////////////////////////////////////
+
+  let btnAjoutBouteillePerso = document.querySelector("[name='ajouterBouteillePersonnalisé']");
+
+  btnAjoutBouteillePerso.addEventListener('click', (e) => {
+
+    let bouteillePerso = {
+      nom: document.querySelector("[name='nom']"),
+      image: document.querySelector("[type=file]").files,
+      pays: document.querySelector("[name='pays']"),
+      prix: document.querySelector("[name='prix_perso']"),
+      format: document.querySelector("[name='format']"),
+      type: document.querySelector("[name='type']"),
+    };
+    
+    let formData = new FormData();
 
 
+    formData.append('file', image.files[0])
+    console.log(image.files[0]);
 
+    var param = {
+      nom: bouteillePerso.nom.value,
+      image: "./assets/img/bouteillePersonnalise/" + image.files[0].name,
+      pays: bouteillePerso.pays.value,
+      prix: bouteillePerso.prix.value,
+      format: bouteillePerso.format.value,
+      type: bouteillePerso.type.options[bouteillePerso.type.selectedIndex].value,
+    };
 
+    
+    let requete = new Request(
+      "index.php?requete=ajouterBouteillePerso",
+      {
+        method: "POST",
+        body: JSON.stringify(param),
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+    console.log(requete);
 
-
-  let formNonListee =  document.querySelector('.form_ajout_nonlistee');
- console.log(formNonListee)
+    fetch(requete)
+      .then((response) => {
+        let requete = new Request("index.php?requete=ajouterImagePerso", {
+          method: "POST",
+          body: formData,
+      });
+      fetch(requete)
+      .then((response) => {
+        window.location.href = "index.php?requete=ajouterNouvelleBouteilleCellier";
+        response.json();
+      });
+      })
+  })
 
 }); //fin window load

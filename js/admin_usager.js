@@ -307,37 +307,7 @@ window.addEventListener('load', function () {
 
     //  $info->prix = preg_replace("/[^0-9\,]/", " ", $info->prix);
     console.log(formNonListee.querySelector('[type=file]').files);
-    formNonListee.querySelector('[type=file]').addEventListener("change", function (evt) {
-
-        // let paramImage = {
-        //     image: formNonListee.querySelector('[type=file]').files,
-        // }
-        //  let paramUploadImage=paramImage.image[0]
-
-        // console.log(bouteilleNonlistee.image)
-        // if (paramImage.image[0].size > 1048576) {
-        //     console.log("Taille Image trop grande")
-        // }
-
-      /*  let formData = new FormData();
-
-        formData.append('file', image.files[0])
-        console.log(image.files[0]);
-
-        let requete = new Request("index.php?requete=ajouterImageLocal", {
-            method: "POST",
-            body: formData,
-        });
-
-        fetch(requete)
-            .then(function (response) {
-               
-                console.log(response.text());
-            });*/
-
-
-        // bouteilleNonlistee.image = paramImage.image[0].lastModified + "-" + paramImage.image[0].name
-    });
+ 
     //ajouterImageLocal
 
     if (btnAjoutNonListeeCatalogue) {

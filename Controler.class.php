@@ -40,6 +40,9 @@ class Controler
 			case 'ajouterBouteilleCellier':
 				$this->ajouterBouteilleCellier();
 				break;
+			case 'ajouterBouteillePerso':
+				$this->ajouterBouteillePerso();
+				break;
 			case 'boireBouteilleCellier':
 				$this->boireBouteilleCellier();
 				break;
@@ -101,8 +104,11 @@ class Controler
 				$this->ajouterBouteilleCatalogue();
 				break;
 			case 'ajouterImageLocal':
-			$this->ajouterImageLocal();
-			break;
+				$this->ajouterImageLocal();
+				break;
+			case 'ajouterImagePerso':
+				$this->ajouterImagePerso();
+				break;
 			case 'formAjouterBouteilleNonListee':
 				$this->formAjouterBouteilleNonListee();
 				break;
@@ -383,7 +389,10 @@ class Controler
 
 				// header('Location: index.php?requete=profile');
 			} else {
-				header('Location: index.php?requete=creationUsager');
+				$erreurMsg = TRUE;
+				include("vues/entete.php");
+				include("vues/profile.php");
+				include("vues/pied.php");
 			}
 		}
 	// }
@@ -458,6 +467,19 @@ class Controler
 			include("vues/entete.php");
 			include("vues/ajouter.php");
 			include("vues/pied.php");
+		}
+	}
+
+	private function ajouterBouteillePerso()
+	{
+		$body = json_decode(file_get_contents('php://input'));
+
+		if (!empty($body)) {
+			$bte = new Bouteille();
+
+			$resultat = $bte->ajouterBouteillePerso($body);
+
+			echo json_encode($resultat);
 		}
 	}
 
@@ -767,6 +789,29 @@ class Controler
 
 
 	}
+
+	private function ajouterImagePerso()
+	{
+		var_dump($_FILES['file']);
+		$imgFileName = $_FILES['file']['name'];
+
+		$location = "assets/img/bouteillePersonnalise/";
+		
+		$finalImg = '';
+		var_dump($imgFileName);
+
+		var_dump($location);
+	
+			if (move_uploaded_file($_FILES['file']['tmp_name'], $location.$imgFileName)){
+				$finalImg = $location.$imgFileName;
+			echo "Reussi!";
+			}else{
+			echo "Pas Reussi!!";
+			}
+	return $finalImg;
+	}
+
+
 	private function ajouterImageLocal() // en developpement!!!
 	{
 		var_dump($_FILES['file']);

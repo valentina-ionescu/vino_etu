@@ -136,7 +136,7 @@
    align-self: baseline;
 }
 .carte__description__wrapper {
-
+    justify-content: space-between;
 }
 
 .btnAjouter, .btnBoire {

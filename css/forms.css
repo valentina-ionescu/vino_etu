@@ -261,7 +261,6 @@ button {
 
 .form div label {
 	position: absolute;
-	left: 0;
 	top: 20px;
 	color: var(--bg-sombre);
 	pointer-events: none;
@@ -305,8 +304,7 @@ select {
     color: var(--bg-clair);
     border-radius: 5px;
     padding: 10px;
-    width: 20em;
-    margin: 10px;
+    width: 100%;
 }
 
 .petit {
@@ -332,6 +330,18 @@ form.nostyle{
       display: inline-block;
   }
 
+.checkbox__wrapper {
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    justify-content: space-around;
+}
+
+.checkbox__wrapper>p {
+    margin: 0;
+    font-size: 1.3em;
+    font-weight: bold;
+}
   .form_ajout_nonlistee .form__label__md, .form_ajout_nonlistee .form__nonlistee-check{
       margin: 0.3em 0;
   }

@@ -105,7 +105,7 @@ class Bouteille extends Modele {
 		 
 		//echo $nom;
 		
-		$requete ='SELECT id, nom, prix_saq FROM vino__bouteille where LOWER(nom) like LOWER("%'. $nom .'%") AND statut_desactive !=1 OR  statut_desactive is NULL LIMIT 0,'. $nb_resultat; 
+		$requete ='SELECT id, nom, prix_saq FROM vino__bouteille WHERE usager_id = '.$_SESSION['usager_id'].' AND LOWER(nom) like LOWER("%'. $nom .'%") AND statut_desactive !=1 OR statut_desactive is NULL OR usager_id is NULL AND LOWER(nom) like LOWER("%'. $nom .'%") AND statut_desactive !=1 OR statut_desactive is NULL LIMIT 0,'. $nb_resultat; 
 		
 		//var_dump($requete);
 		if(($res = $this->_db->query($requete)) ==	 true)
@@ -422,6 +422,27 @@ class Bouteille extends Modele {
 		var_dump($resultat);
 
 		return $resultat;
+	}
+
+
+	public function ajouterBouteillePerso($data)
+	{
+		$usager_id = $_SESSION['usager_id'];
+
+        $connexion = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
+
+		$requete = mysqli_prepare($connexion, "INSERT INTO vino__bouteille(nom, image, pays, prix_saq, format, vino__type_id, usager_id) VALUES (?, ?, ?, ?, ?, ?, ?)");	
+
+        if($requete)
+        {
+			mysqli_stmt_bind_param($requete, 'sssssii', $data->nom, $data->image, $data->pays, $data->prix, $data->format, $data->type, $usager_id);
+
+            mysqli_stmt_execute($requete);
+
+            $resultat = mysqli_stmt_get_result($requete);
+
+			var_dump($resultat);
+		}
 	}
 	
 

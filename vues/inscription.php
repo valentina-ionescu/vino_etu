@@ -24,6 +24,7 @@
                 <input data-js-champ-inscription type="password" name="passwordUser" required value="">
                 </label>
             </div>
+            <p data-js-msgError class="message__erreur__inscription display__none">Champ(s) incorrect(s)</p>
             <!-- Modal confirmation modification bouteille Catalogue-->
             
             <div class="confirm__modal__wrapper">
