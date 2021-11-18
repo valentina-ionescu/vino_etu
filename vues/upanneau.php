@@ -111,7 +111,7 @@
                     <!-- </td> -->
                 </tr>
  
-                    <?php  $noms[] = [$qte, $nomCell]; ?>
+                  
                  
                     <?php } ?>
                  
