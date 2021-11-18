@@ -65,6 +65,7 @@ class Bouteille extends Modele {
 						'; 
 		if(($res = $this->_db->query($requete)) ==	 true)
 		{
+
 			if($res->num_rows)
 			{
 				while($row = $res->fetch_assoc())
@@ -376,7 +377,6 @@ class Bouteille extends Modele {
         }
 
 
-
 		
 	}
 
@@ -457,8 +457,5 @@ class Bouteille extends Modele {
 
 	
 }
-
-
-
-
 ?>
+

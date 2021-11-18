@@ -731,8 +731,15 @@ window.addEventListener("load", function () {
           })
           .then((json) => {
             console.log(json);
-
-            window.location.href = "index.php?requete=accueil";
+            let formulaireRegistration = document.querySelector('.form__ajout_bouteille');
+            let modalConfirmRegistration = formulaireRegistration.querySelector('.confirm__modal__wrapper')
+            modalConfirmRegistration.classList.add('show');
+            modalConfirmRegistration.querySelector('.txt_msg-modif').innerText = 'La bouteille a été ajoutée avec succès!';
+    
+              setTimeout(function () {
+                window.location.href = "index.php?requete=accueil";
+              }, 1500);
+            
           });
       });
     }
@@ -747,7 +754,12 @@ window.addEventListener("load", function () {
     umenu.classList.toggle('show');
   });
 
-
+// click en dehors du menu le fermera
+document.addEventListener('click',(e) => {
+  if(!e.target.matches('.u__profile_img img'))
+  if(umenu.classList.contains('show'))
+   umenu.classList.remove('show');
+})
 
 
   //////////////////////////////////////////////

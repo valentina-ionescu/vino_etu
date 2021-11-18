@@ -60,7 +60,8 @@
     text-transform: none;
     color: #f1f1f1;
     align-self: center;
-    font-size: clamp(1.5rem, -0.875rem + 8.333333vw, 1.75rem);
+    font-size: clamp(1.5rem, -0.875rem + 8.333333vw, 2rem);
+    margin: unset;
 }
 
 .u__titre-m {
@@ -91,7 +92,8 @@
     justify-content: flex-start;
     border: 1px solid var(--bg-sombre);
     margin-top: -11%;
-    padding: 2.5em;
+    padding: 1em;
+    min-height: 40vh;
 }
 
 .u__profile-toggle {
@@ -155,7 +157,7 @@
 
 .u__entete {
     width: 100%;
-    height: 40vh;
+    height: 20vh;
     background-image: url("../img/bg2.jpg");
     background-size: cover; 
 }
@@ -169,7 +171,7 @@
 .selectCellier {
     width: calc(85% - 1.25rem);
     color: #222;
-    font-size: clamp(.75rem, -0.875rem + 8.333333vw, 1rem);
+    font-size: clamp(.85rem, -0.875rem + 8.333333vw, 1rem);
 }
 /* ===============--------- Ajout de cellier ----------================= */
 .u__ajout {
@@ -237,19 +239,109 @@ form.btn__ajouter_cellier {
 .msg-supprime {
     padding: 1.25rem 0 0 1.25rem;
 }
+
+/* ==========--------- Tri de celliers -----------============== */
+.u__cellier-tri {
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+    gap:.75em;
+    margin-left: 2.25rem;
+}
+
+.fas.fa-sort-up {
+    margin-top: .6rem;
+}
+
+
 /* ==========--------- Nbre de bouteilles -------------========== */
 .b__compte {
     font-size: .75rem;
 }
+.fas.fa-sort-up,
+.fas.fa-sort-down {
+    font-size: clamp(1rem, -0.875rem + 8.333333vw, 1.25rem); 
+} 
 
+
+/* ==========----------Tables---------=========== */
+
+.cell__col {
+    background-color: var(--bg-primaire);
+    padding: .25em .7em;
+    padding: 5px;
+   
+}
+.cell__col-nom {
+    padding: 1em;
+}
+
+.cell__actions {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 1.65em 0;
+}
+#qte {
+    max-width: fit-content;
+}
+#cell_rech {
+    border: 1px solid var(--bg-medium);
+    border-radius: 3px;
+    margin: 1.25rem 0 .5rem 0;
+    font-size: inherit;
+}
+.form__recherche .cell__icon {
+    margin-left: unset;
+    top: 30%;
+}
 /* ==========----------Media queries---------=========== */
-@media (min-width: 750px)  {
+@media (min-width: 540px)  {
     .u__profile__wrapper {
         max-width: 50vw;
     } 
+    .u__celliers_liste {
+        margin-top: -13%;
+    }
+    .u__ajout {
+        width: 17%;
+     }
+     .u__profile-toggle {
+        left: 65vw;
+    }
 }
-@media (min-width: 1240px)  {
+@media (min-width: 768px)  {
+    .u__profile__wrapper {
+        max-width: 50vw;
+    } 
+    .u__celliers_liste {
+        margin-top: -11%;
+    }
+}
+@media (min-width: 900px)  {
     .u__profile__wrapper {
         max-width: 40vw;
     } 
+    .u__ajout {
+        width: 15%;
+    }
+    .u__celliers_liste {
+        margin-top: -9%;
+    }
+    .u__profile-toggle {
+        left: 80vw;
+    }
+}
+@media (min-width: 1024px)  {
+    .u__profile__wrapper {
+        max-width: 40vw;
+    } 
+    .u__ajout {
+        width: 9%;
+    }
+    .u__celliers_liste {
+        margin-top: -6%;
+    }
+   .u__titre {
+    letter-spacing: .15em;
+   }
 }

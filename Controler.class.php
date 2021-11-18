@@ -112,6 +112,9 @@ class Controler
 			case 'formAjouterBouteilleNonListee':
 				$this->formAjouterBouteilleNonListee();
 				break;
+			case 'listeCelliers':
+				$this->listeCelliers();
+				break;
 			case 'ajouterCellier':
 				$this->addCellier();
 				break;
@@ -149,6 +152,8 @@ class Controler
 				$bte = new Bouteille();
 
 				$dataB = $bte->getListeBouteilleCellier();
+				
+			
 				if(empty($dataB)) //pas de bouteilles dans le cellier
 				$msg = "Votre cellier est vide.";
 
@@ -156,6 +161,7 @@ class Controler
 				include("vues/cellier.php");
 				include("vues/pied.php");
 			}else {
+				
 				include("vues/entete.php");
 				include("vues/upanneau.php");
 				include("vues/pied.php");
@@ -291,7 +297,12 @@ class Controler
 		include("vues/param_usager.php");
 		include("vues/pied.php");
 	}
-
+	
+	/**
+	 * getCellier retourne l'information sur un cellier donné
+	 *
+	 * @return void
+	 */
 	private function getCellier()
 	{
 		$cel = new Cellier();
@@ -788,6 +799,29 @@ class Controler
 		}
 
 
+	}
+	
+	/**
+	 * listeCelliers
+	 *
+	 * @return $dataC
+	 */
+	private function listeCelliers() {
+		// $order = json_decode(file_get_contents('php://input'));
+		$order = $_GET['order'];
+		// $User = new Usager();
+		$cel = new Cellier();
+		$msg = '';
+		if (isset($_SESSION['usager_id'])) {
+			$dataC = $cel->getListeCellier($order);
+		
+			echo json_encode($dataC);
+		}else {
+			include("vues/entete.php");
+			include("vues/profile.php");
+			include("vues/pied.php");
+		}
+		
 	}
 
 	private function ajouterImagePerso()

@@ -101,6 +101,10 @@ h4 {
 a {
     text-decoration: none;
 }
+
+table th {
+    background-color: var(--bg-sombre);
+}
 .bigtitle, h1 {
     /* font-size: 5.2917em; */
     word-break: break-word;

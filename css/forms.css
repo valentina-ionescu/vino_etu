@@ -147,6 +147,7 @@ textarea {
 .form__recherche {
     align-self: center;
     position: relative;
+    width: 100%;
 }
 
 .form__recherche input {
@@ -169,6 +170,7 @@ textarea {
     /* pointer-events: none; */
     color: #aaa;
     margin-left: -10px;
+   
 }
 
 .form__recherche ::placeholder {
@@ -330,6 +332,17 @@ form.nostyle{
       display: inline-block;
   }
 
+  /* Media queries pour grand ecrans */
+  @media all and (min-width: 540px) {
+    .u__celliers_liste {
+        margin-top: -8%;
+    }
+}
+@media all and (min-width: 735px) {
+    .u__celliers_liste {
+        margin-top: -10%;
+    }
+}
 .checkbox__wrapper {
     display: flex;
     margin-top: 10px;
