@@ -1,26 +1,57 @@
 <div class="form__contenant flex col form__contenant--espacevertical" vertical layout>
-    <div class="form__recherche form__recherche--clair">
-        <span class="fas fa-search iconne"></span>
-        <input class="form__recherche--clair" type="text" placeholder="Entrer le nom de la bouteille..." name="nom_bouteille">
-        
+   
 
-
-        <ul class="listeAutoComplete form__contenant__liste">
-
-        </ul>
-    </div>
-
-    <div class="form__carte">
-
-        <!-- <h3 data-id="" class="nom_bouteille carte__description-nom"></h3> -->
+        <div class="form__carte">
+            <span class="checkbox__wrapper">
+                <p>Bouteille personnalisé</p>
+                <span><input class="checkAjout" name="checkbox" type="checkbox" id="switch" /><label class="checkLabel" for="switch">Toggle</label></span>
+            </span>
+        </div>
+        <div class="form__carte">
 
         <div class="form__conteneur">
-
-            <div class="form">
+            <div data-js-form-personel class="form hidden">
                 <div class="form__label__aj">
-                    <input type="text" id="nom" name="nom" required data-id="" class="nouvelle_bouteille" value="">
-                    <label for="nom">Nom Bouteille </label>
-                </div> 
+                    <input type="texte" name="nom" required>
+                    <label>Nom </label>
+                </div>
+                <div class="form__label__aj">
+                    <input type="texte" name="pays" required>
+                    <label>Pays </label>
+                </div>
+                <div class="form__label__aj">
+                    <input type="texte" name="prix" required>
+                    <label>Prix </label>
+                </div>
+                <div class="form__label__aj">
+                    <input type="texte" name="format" required>
+                    <label>Format </label>
+                </div>
+                <div class="form__label__aj">
+                    <select required name="type" id="">
+                        <option value="" disabled selected>Type</option>
+                        <option value="2">Blanc</option>
+                        <option value="1">Rouge</option>
+                    </select>
+                </div>
+                <button class="mt-1 btn btn-accent solid" name="ajouterBouteillePersonnalisé">Inserer la bouteille</button>
+                <form method="POST" action="index.php?requete=ajouterNouvelleBouteilleCellier">
+                    <button class="btn btn-primaire btnAnnul mt-10px">Annuler</button>
+                </form>
+            </div>
+            <div data-js-form-public class="form">
+                <div class="form__label__aj">
+                    <div class="form__recherche form__recherche--clair">
+                        <span class="fas fa-search iconne searchIconeBtn"></span>
+                        <i class="fas fa-close iconne clearSearchBtn hidden"></i>
+                        <input class="form__recherche--clair" type="text" placeholder="Entrer le nom de la bouteille..." name="nom_bouteille" data-id="" >
+
+                        <ul class="listeAutoComplete form__contenant__liste">
+
+                        </ul>
+                    </div>
+                 
+                </div>
 
                 <div class="form__label__aj">
                     <input type="number" name="millesime" required>
@@ -45,7 +76,7 @@
 
                 <button class="mt-1 btn btn-accent solid" name="ajouterBouteilleCellier">Ajouter la bouteille</button>
                 <form method="POST" action="index.php?requete=accueil">
-                    <button class="btn btn-primaire btnAnnul mt-10px" >Annuler</button>
+                    <button class="btn btn-primaire btnAnnul mt-10px">Annuler</button>
                 </form>
 
             </div>

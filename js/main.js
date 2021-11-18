@@ -92,56 +92,59 @@ window.addEventListener("load", function () {
   let btnAjouter = document.querySelector(".u__ajout");
   if (btnAjouter) {
     btnAjouter.addEventListener("click", function (evt) {
-       //Afficher Modal  //
-       let modal = document.querySelector(".modal__ajout-wrapper");
-       modal.classList.toggle("show");
- 
-       //Fermeture du modal //
-       let fermerBouton = document.querySelector(".fermer");
-       fermerBouton.addEventListener("click", function (e) {
-         let modal = document.querySelector(".modal__wrapper");
-         modal.classList.remove("show");
-       });
- 
-       let annBouton = document.querySelector(".x__annuler");
-       annBouton.addEventListener("click", function (e) {
-         let modal = document.querySelector(".modal__ajout-wrapper");
-         modal.classList.remove("show");
-       });
- 
-  let btnAjout = document.querySelector('.btnAjout');
-  btnAjout.addEventListener('click', (evt)=> {
-    var param = {
-      nom: newCellier.nom.value,
-    };
+      //Afficher Modal  //
+      let modal = document.querySelector(".modal__ajout-wrapper");
+      modal.classList.toggle("show");
 
-    let requete = new Request("index.php?requete=ajouterCellier", {
-      method: "POST",
-      body: JSON.stringify(param),
-      headers: { "Content-Type": "application/json" },
-    });
-    console.log(requete);
-
-    fetch(requete)
-      .then((response) => {
-        if (response.status === 200) {
-          console.log(response);
-
-          setTimeout(function(){
-            window.location.href = "index.php?requete=profile";
-         }, 1100); 
-          return response.json();
-        } else {
-          throw new Error("Erreur");
-        }
-      })
-      .then((response) => {console.log(response)
-      document.querySelector('.msg-erreur').innerHTML=`<p>${response}</p>`})
-      .catch((error) => {
-        console.error(error);
+      //Fermeture du modal //
+      let fermerBouton = document.querySelector(".fermer");
+      fermerBouton.addEventListener("click", function (e) {
+        let modal = document.querySelector(".modal__wrapper");
+        modal.classList.remove("show");
       });
-  });
-  })
+
+      let annBouton = document.querySelector(".x__annuler");
+      annBouton.addEventListener("click", function (e) {
+        let modal = document.querySelector(".modal__ajout-wrapper");
+        modal.classList.remove("show");
+      });
+
+      let btnAjout = document.querySelector('.btnAjout');
+      btnAjout.addEventListener('click', (evt) => {
+        var param = {
+          nom: newCellier.nom.value,
+        };
+
+
+        let requete = new Request("index.php?requete=ajouterCellier", {
+          method: "POST",
+          body: JSON.stringify(param),
+          headers: { "Content-Type": "application/json" },
+        });
+        console.log(requete);
+
+        fetch(requete)
+          .then((response) => {
+            if (response.status === 200) {
+              console.log(response);
+
+              setTimeout(function () {
+                window.location.href = "index.php?requete=profile";
+              }, 1500);
+              return response.json();
+            } else {
+              throw new Error("Erreur");
+            }
+          })
+          .then((response) => {
+            console.log(response)
+            document.querySelector('.msg-erreur').innerHTML = `<p>${response}</p>`
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      });
+    })
 
 
   }
@@ -150,6 +153,7 @@ window.addEventListener("load", function () {
   //Fonction ajouter Usager                   //
   //////////////////////////////////////////////
 
+  // console.log(modalConfirmRegistration)
   let newUser = {
     nom: document.querySelector("[name='nomUser']"),
     prenom: document.querySelector("[name='prenomUser']"),
@@ -222,8 +226,17 @@ window.addEventListener("load", function () {
       fetch(requete)
         .then((response) => {
           if (response.status === 200) {
-            console.log(response);
-            window.location.href = "index.php?requete=profile";
+          console.log(response);
+          let formulaireRegistration = document.querySelector('.form__connexion');
+          let modalConfirmRegistration = formulaireRegistration.querySelector('.confirm__modal__wrapper')
+          modalConfirmRegistration.classList.add('show');
+          modalConfirmRegistration.querySelector('.txt_msg-modif').innerText = 'Votre compte a été créé avec succes!';
+  
+            setTimeout(function () {
+              window.location.href = 'index.php?requete=profile';
+            }, 1500);
+            
+            // window.location.href = "index.php?requete=profile";
             return response.json();
           } else {
             throw new Error("Erreur");
@@ -433,8 +446,8 @@ window.addEventListener("load", function () {
   console.log(modifCellier)
   let btnModifier = document.querySelector("[name='btnModifier']");
   if (btnModifier) {
-      
-     btnModifier.addEventListener("click", function (evt) {
+
+    btnModifier.addEventListener("click", function (evt) {
       var param = {
         id: modifCellier.id.value,
         nom_cellier: modifCellier.nom_cellier.value,
@@ -462,8 +475,8 @@ window.addEventListener("load", function () {
           console.error(error);
         });
     });
-  
-  
+
+
   }
 
   //////////////////////////////////////////////
@@ -524,23 +537,23 @@ window.addEventListener("load", function () {
       let id = element.dataset.id;
       let modal = document.querySelector(".modal__wrapper");
 
-       //Afficher Modal  //
-       modal.classList.toggle("show");
+      //Afficher Modal  //
+      modal.classList.toggle("show");
 
-       //Fermeture du modal //
- 
-       let fermerBouton = document.querySelector(".fermer");
-       fermerBouton.addEventListener("click", function (e) {
-         let modal = document.querySelector(".modal__wrapper");
-         modal.classList.remove("show");
-       });
- 
-       let annBouton = document.querySelector(".btn__annuler");
-       annBouton.addEventListener("click", function (e) {
-         let modal = document.querySelector(".modal__wrapper");
-         modal.classList.remove("show");
-       });
-     
+      //Fermeture du modal //
+
+      let fermerBouton = document.querySelector(".fermer");
+      fermerBouton.addEventListener("click", function (e) {
+        let modal = document.querySelector(".modal__wrapper");
+        modal.classList.remove("show");
+      });
+
+      let annBouton = document.querySelector(".btn__annuler");
+      annBouton.addEventListener("click", function (e) {
+        let modal = document.querySelector(".modal__wrapper");
+        modal.classList.remove("show");
+      });
+
       // Suppression de la bouteille //
 
       let btnDanger = modal.querySelector(".btn__danger");
@@ -633,8 +646,8 @@ window.addEventListener("load", function () {
     });
 
     let bouteille = {
-      //nom: document.querySelector(".nom_bouteille"),
-      nom: document.querySelector("[name='nom']"),
+      nom: document.querySelector("[name='nom_bouteille']"),
+      // nom: document.querySelector("[name='nom']"),
       millesime: document.querySelector("[name='millesime']"),
       quantite: document.querySelector("[name='quantite']"),
       date_achat: document.querySelector("[name='date_achat']"),
@@ -642,11 +655,15 @@ window.addEventListener("load", function () {
       garde_jusqua: document.querySelector("[name='garde_jusqua']"),
       // notes : document.querySelector("[name='notes']"),
     };
+    let videSearchBtn = document.querySelector('.clearSearchBtn ');
+    let searchIconeBtn = document.querySelector('.searchIconeBtn ');
 
     liste.addEventListener("click", function (evt) {
-      console.dir(evt.target);
+      console.dir(bouteille.nom);
 
       if (evt.target.tagName == "LI") {
+        console.dir(evt.target);
+
         bouteille.nom.dataset.id = evt.target.dataset.id;
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         bouteille.prix.setAttribute("value", evt.target.dataset.prix);
@@ -659,9 +676,27 @@ window.addEventListener("load", function () {
         console.log(evt.target.dataset.prix);
 
         liste.innerHTML = "";
-        inputNomBouteille.value = "";
+        inputNomBouteille.value = evt.target.innerText;
+        videSearchBtn.classList.remove('hidden');
+        searchIconeBtn.classList.add('hidden');
+
+
+        console.log(videSearchBtn)
+
       }
+
     });
+
+    videSearchBtn.addEventListener('click', function (evt) {
+
+      inputNomBouteille.value = "";
+      bouteille.prix.setAttribute("value", " ");
+
+      videSearchBtn.classList.add('hidden');
+      searchIconeBtn.classList.remove('hidden');
+
+    })
+
 
     let btnAjouter = document.querySelector("[name='ajouterBouteilleCellier']");
     if (btnAjouter) {
@@ -677,6 +712,8 @@ window.addEventListener("load", function () {
           millesime: bouteille.millesime.value,
         };
 
+
+ 
         let requete = new Request(
           "index.php?requete=ajouterNouvelleBouteilleCellier",
           {
@@ -694,6 +731,7 @@ window.addEventListener("load", function () {
           })
           .then((json) => {
             console.log(json);
+
             window.location.href = "index.php?requete=accueil";
           });
       });
@@ -717,6 +755,7 @@ window.addEventListener("load", function () {
   //////////////////////////////////////////////
 
   let element = document.querySelector(".btnSupprimerProfile");
+  if (element) {
     element.addEventListener("click", function (evt) {
       let modal = document.querySelector(".modal__wrapper");
 
@@ -762,6 +801,71 @@ window.addEventListener("load", function () {
           });
       });
     });
-  
+  }
+
+  //////////////////////////////////////////////
+  // Fonction Formulaire Non-Listé            //
+  //////////////////////////////////////////////
+
+  let checkbox = document.querySelector("input[name=checkbox]");
+  let formPerso = document.querySelector("[data-js-form-personel]");
+  let formPublic = document.querySelector("[data-js-form-public]");
+
+  checkbox.addEventListener('change', function(e) {
+    if (this.checked) {
+      formPerso.classList.remove('hidden');
+      formPublic.classList.add('hidden');
+    } else {
+      formPerso.classList.add('hidden');
+      formPublic.classList.remove('hidden');
+    }
+  });
+
+
+  //////////////////////////////////////////////
+  //Fonction Nouvelle Bouteille Personnalisé  //
+  //////////////////////////////////////////////
+
+  let btnAjoutBouteillePerso = document.querySelector("[name='ajouterBouteillePersonnalisé']");
+
+  btnAjoutBouteillePerso.addEventListener('click', (e) => {
+
+    let bouteillePerso = {
+      nom: document.querySelector("[name='nom']"),
+      pays: document.querySelector("[name='pays']"),
+      prix: document.querySelector("[name='prix']"),
+      format: document.querySelector("[name='format']"),
+      type: document.querySelector("[name='type']"),
+    };
+    
+    var param = {
+      nom: bouteillePerso.nom.value,
+      pays: bouteillePerso.pays.value,
+      prix: bouteillePerso.prix.value,
+      format: bouteillePerso.format.value,
+      type: bouteillePerso.type.options[bouteillePerso.type.selectedIndex].value,
+    };
+
+    let requete = new Request(
+      "index.php?requete=ajouterBouteillePerso",
+      {
+        method: "POST",
+        body: JSON.stringify(param),
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+    console.log(requete);
+
+    fetch(requete)
+      .then((response) => {
+        console.log(response);
+        response.json();
+      })
+      .then((json) => {
+        console.log(json);
+
+        window.location.href = "index.php?requete=ajouterNouvelleBouteilleCellier";
+      });
+  })
 
 }); //fin window load

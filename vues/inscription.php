@@ -25,7 +25,20 @@
                 </label>
             </div>
             <p data-js-msgError class="message__erreur__inscription display__none">Champ(s) incorrect(s)</p>
+            <!-- Modal confirmation modification bouteille Catalogue-->
+            
+            <div class="confirm__modal__wrapper">
+                                <div class="modal__overlay">
+                        <div class="modal__contenu ">
+                            <h3 class="modal__texte txt_msg-modif"></h3>
+                        </div>
+                    </div>
+            </div>
+
+            <p data-js-msgError class="message__erreur__inscription display__none">Champ incorrect</p>
             <button class='btnModifier' name="ajouterUser" value="inscription">S'inscrire</button>
+
+
         </div>
     </div>
 </div>
