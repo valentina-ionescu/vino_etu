@@ -149,6 +149,7 @@ window.addEventListener("load", function () {
 
   }
 
+
   //////////////////////////////////////////////
   //Fonction ajouter Usager                   //
   //////////////////////////////////////////////
@@ -597,21 +598,21 @@ window.addEventListener("load", function () {
           });
       }
 
-      //////////////////////////////////////////////
-      //Fonction Nouvelle Bouteille               //
-      //////////////////////////////////////////////
+//////////////////////////////////////////////
+//Fonction Nouvelle Bouteille               //
+//////////////////////////////////////////////
     });
 
     let bouteille = {
       nom: document.querySelector("[name='nom_bouteille']"),
-      // nom: document.querySelector("[name='nom']"),
       millesime: document.querySelector("[name='millesime']"),
       quantite: document.querySelector("[name='quantite']"),
       date_achat: document.querySelector("[name='date_achat']"),
       prix: document.querySelector("[name='prix']"),
       garde_jusqua: document.querySelector("[name='garde_jusqua']"),
-      // notes : document.querySelector("[name='notes']"),
+
     };
+
     let videSearchBtn = document.querySelector('.clearSearchBtn ');
     let searchIconeBtn = document.querySelector('.searchIconeBtn ');
 
@@ -668,7 +669,6 @@ window.addEventListener("load", function () {
           quantite: bouteille.quantite.value,
           millesime: bouteille.millesime.value,
         };
-
 
  
         let requete = new Request(
@@ -758,5 +758,14 @@ window.addEventListener("load", function () {
     });
   });
 
+
+
+
+
+
+
+
+  let formNonListee =  document.querySelector('.form_ajout_nonlistee');
+ console.log(formNonListee)
 
 }); //fin window load

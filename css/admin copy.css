@@ -498,9 +498,6 @@ hr {
     #admin_menuToggle1:hover i {
         color: #e7e6e6;
     }
-    .vino__id-hover{
-        display: none;
-     }
 }
 
 @media screen and (max-width: 426px) {}
@@ -575,9 +572,6 @@ hr {
     .search-and-user .admin-profile i {
         color: #FFFFFF;
     }
-    .vino__id-hover{
-        display: none;
-     }
 }
 
 .sideBar-ferme {
@@ -600,7 +594,7 @@ h3.txt_msg-modif{
     font-weight: normal;
     line-height: 1.5;
 }
-p.txt_msg-supprime, p.txt_msg-usg-supprime{
+p.txt_msg-supprime{
     height: 20px;
     margin-top: unset;
 
