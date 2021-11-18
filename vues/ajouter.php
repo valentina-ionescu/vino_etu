@@ -20,7 +20,7 @@
                     <label>Pays </label>
                 </div>
                 <div class="form__label__aj">
-                    <input type="texte" name="prix" required>
+                    <input type="texte" name="prix_perso" required>
                     <label>Prix </label>
                 </div>
                 <div class="form__label__aj">

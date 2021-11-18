@@ -449,6 +449,7 @@ class Controler
 			$bte = new Bouteille();
 
 			$resultat = $bte->ajouterBouteillePerso($body);
+
 			echo json_encode($resultat);
 		}
 	}

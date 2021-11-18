@@ -833,7 +833,7 @@ window.addEventListener("load", function () {
     let bouteillePerso = {
       nom: document.querySelector("[name='nom']"),
       pays: document.querySelector("[name='pays']"),
-      prix: document.querySelector("[name='prix']"),
+      prix: document.querySelector("[name='prix_perso']"),
       format: document.querySelector("[name='format']"),
       type: document.querySelector("[name='type']"),
     };
@@ -845,6 +845,8 @@ window.addEventListener("load", function () {
       format: bouteillePerso.format.value,
       type: bouteillePerso.type.options[bouteillePerso.type.selectedIndex].value,
     };
+
+    console.log(param);
 
     let requete = new Request(
       "index.php?requete=ajouterBouteillePerso",
@@ -858,14 +860,9 @@ window.addEventListener("load", function () {
 
     fetch(requete)
       .then((response) => {
-        console.log(response);
+        window.location.href = "index.php?requete=ajouterNouvelleBouteilleCellier";
         response.json();
       })
-      .then((json) => {
-        console.log(json);
-
-        window.location.href = "index.php?requete=ajouterNouvelleBouteilleCellier";
-      });
   })
 
 }); //fin window load
