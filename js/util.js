@@ -130,11 +130,12 @@ window.addEventListener("load", function () {
     for (let data of tableData) {
       let row = table.insertRow(-1);
 
-      let qte = row.insertCell(0);
-      qte.innerHTML = `<td class="cell__col-qte"><i class="fas fa-circle b__compte"></i>${data.qte}</td>`;
-
-      let nomCellier = row.insertCell(1);
+      
+      let nomCellier = row.insertCell(0);
       nomCellier.innerHTML = `<td class="cell__col-nom"><a href="" class="selectCellier" data-cellid="<?php echo $cel['id'] ?>">${data.nom}</a></td>`;
+     
+      let qte = row.insertCell(1);
+      qte.innerHTML = `<td class="cell__col-qte b__compte">${data.qte}</td>`;
     }
 
     filterTable();

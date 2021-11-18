@@ -139,6 +139,7 @@ textarea {
 .form__recherche {
     align-self: center;
     position: relative;
+    width: 100%;
 }
 
 .form__recherche input {
@@ -161,6 +162,7 @@ textarea {
     /* pointer-events: none; */
     color: #aaa;
     margin-left: -10px;
+   
 }
 
 .form__recherche ::placeholder {

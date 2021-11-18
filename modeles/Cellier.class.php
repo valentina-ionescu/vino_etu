@@ -26,7 +26,12 @@ class Cellier extends Modele {
 		$rows = Array();
 
        
-        $requete = "SELECT id, nom_cellier, usager_id FROM vino__cellier WHERE usager_id = ".$idUser."";
+        // $requete = "SELECT id, nom_cellier, usager_id FROM vino__cellier WHERE usager_id = ".$idUser."";
+        $requete = "SELECT id, nom_cellier, usager_id, sum(v.quantite) bqte FROM vino__cellier 
+                    join vino__cellier_has_vino__bouteille v on vino__cellier_id = id
+                    WHERE usager_id = ".$idUser." GROUP BY id, nom_cellier,usager_id";
+        
+    
 
 		if(($res = $this->_db->query($requete)) == true)
         {
@@ -39,6 +44,7 @@ class Cellier extends Modele {
             }
         }
         
+       
         return $rows;
     }
     
@@ -197,12 +203,27 @@ class Cellier extends Modele {
         }
     }   
 
-    public function bouteillesCellier($id) {
-        // Nombre de bouteilles pour ce cellier
-        $requete = "SELECT count(*) FROM vino__cellier_has_vino__bouteille WHERE vino__cellier_id = ".$id." group by vino__cellier_id";
-        $res =  $this->_db->query($requete);
-        $count = $res->fetch_assoc();
-        return $count;
-    }
+    // public function bouteillesCellier($id) {
+    //     // Nombre de bouteilles pour ce cellier
+    //     $requete = "SELECT count(*) FROM vino__cellier_has_vino__bouteille WHERE vino__cellier_id = ".$id." group by vino__cellier_id";
+    //     $res =  $this->_db->query($requete);
+    //     $count = $res->fetch_assoc();
+    //     return $count;
+    // }
 
+
+/**
+ * sQuantiteBouteillesCellier
+ *
+ * @return void
+ */
+public function sQuantiteBouteillesCellier($id) {
+
+	$requete = "SELECT sum(quantite) FROM `vino__cellier_has_vino__bouteille` where vino__cellier_id = ". $id ."";
+	$res = $this->_db->query($requete);
+	$row = $res->fetch_row();
+	$valeur = $row[0] ?? false;
+	return $valeur;
 }
+
+ } //fin cellier

@@ -57,7 +57,7 @@
             <?php if(!$dataC) {?>
             <h4>Vous n'avez pas de celliers</h4>
             <?php } else { ?>
-            <h4 class="u__titre-m">Mes celliers</h4>
+            <!-- <h4 class="u__titre-m">Mes celliers</h4> -->
             <!-- <div class="u__cellier-tri"> -->
                 <!-- <button class="u__tri-up"> -->
                     <!-- <i class="fas fa-sort-up"></i> -->
@@ -67,52 +67,50 @@
                 <!-- </button> -->
             <!-- </div> -->
             <?php } ?>
-            <input type="text" id="cell_rech" placeholder="Recherche..." title="Nom de cellier">
-            
+            <div class="form__recherche form__recherche--clair">
+                <span class="fas fa-search iconne cell__icon"></span>
+                <input type="text" id="cell_rech" class="form__recherche--clair" placeholder="Recherche..." title="Nom de cellier">
+            </div>
             
             <!-- Table de celliers -->
             <table>
                 <thead>
-            <tr>
-                <th class="cell__col"><span id="qte" class="w3-button table-column">Quantité <i class="caret"></span></th>
-                <th class="cell__col"><span id="nom" class="w3-button table-column">Nom <i class="caret"></span></th>
-            </tr>
-     </thead>
-      <tbody id="cell__table">
+                    <tr>
+                        <th class="cell__col"><span id="nom" class="w3-button table-column">Nom cellier<i class="caret"></span></th>
+                        <th class="cell__col"><span id="qte" class="w3-button table-column"><i class="fas fa-wine-bottle"></i><i class="caret"></span></th>
+                        <th class="cell__col"></th>
+                        
+                    </tr>
+                </thead>
+                <tbody id="cell__table">
       
             <?php foreach ($dataC as $cle => $cel) { ?>
-              
+             
+
                 <tr class="cell__ligne" data-cellid="<?php echo $cel['id'] ?>">
-                    <td class="cell__col-qte"><i class="fas fa-circle b__compte"></i><?php #echo $cel['count'];?></td>
-                    <td class="cell__col-nom"><a href="" class="selectCellier" data-cellid="<?php echo $cel['id'] ?>"><?php echo ucfirst($cel['nom_cellier']) ?></a></td>
+                    <td class="cell__col-nom"><a href="" class="selectCellier" data-cellid="<?php echo $cel['id'] ?>"><?php echo ucfirst($cel['nom_cellier']) ?></a>
+                    </td>
+                    <td class="cell__col-qte b__compte"><?php echo $cel['bqte'];?></td>
+                    <td class="cell__actions">
+                        <form method="POST" action="index.php?requete=editCellier">
+                            <button class="c__modif" name="id" value="<?php echo $cel['id'] ?>">
+                                <i class="far fa-edit c__edit" data-cellid="<?php echo $cel['id'] ?>"></i>
+                            </button>
+                        </form>
+                        <i class="far fa-trash-alt c__supp" data-cellid="<?php echo $cel['id'] ?>"></i>
+                    </td>
+                    <!-- <td class="cell__col-maj"> -->
+                        <!-- Mise à jour de cellier -->
+                        <!-- <form method="POST" action="index.php?requete=editCellier">
+                            <button class="c__modif" name="id" value="<?php echo $cel['id'] ?>">
+                                <i class="far fa-edit c__edit" data-cellid="<?php echo $cel['id'] ?>"></i>
+                            </button>
+                        </form> -->
+                    <!-- Suppression de cellier -->
+                        <!-- <i class="far fa-trash-alt c__supp" data-cellid="<?php echo $cel['id'] ?>"></i>  -->
+                    <!-- </td> -->
                 </tr>
-                
-                <!-- <article class="u__article" data-cellid="<?php echo $cel['id'] ?>"> -->
-                    
-                
-                    <!--Nombre de bouteilles dans le cellier -->
-                    <!-- <i class="fas fa-circle b__compte"></i><?php #echo $cel['count'];?> -->
-                    
-                    <!-- Nom du cellier -->
-                    <!-- <a href="" class="selectCellier" data-cellid="<?php echo $cel['id'] ?>"><?php echo ucfirst($cel['nom_cellier']) ?></a> -->
-                    
-                    <!--Mise a jour d'un cellier -->
-                    <!-- <form method="POST" action="index.php?requete=editCellier">
-                        <button class="c__modif" name="id" value="<?php echo $cel['id'] ?>">
-                            <i class="far fa-edit c__edit" data-cellid="<?php echo $cel['id'] ?>"></i>
-                        </button>
-                    </form> -->
-
-
-                      <!--Suppression d'un cellier -->
-                    <!-- <i class="far fa-trash-alt c__supp" data-cellid="<?php echo $cel['id'] ?>"></i> -->
-
-                  
-                <!-- </article> -->
-                <div>
-   
-   
-                   
+ 
                     <?php  $noms[] = [$qte, $nomCell]; ?>
                  
                     <?php } ?>

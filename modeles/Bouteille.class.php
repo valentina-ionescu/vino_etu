@@ -65,6 +65,7 @@ class Bouteille extends Modele {
 						'; 
 		if(($res = $this->_db->query($requete)) ==	 true)
 		{
+
 			if($res->num_rows)
 			{
 				while($row = $res->fetch_assoc())
@@ -376,7 +377,6 @@ class Bouteille extends Modele {
         }
 
 
-
 		
 	}
 
@@ -390,46 +390,12 @@ class Bouteille extends Modele {
 	public function ajouterBouteilleNonListee($data)
 	{
 		var_dump($data);
-		/*$connexion = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
-
-		$requete =  mysqli_prepare($connexion, "INSERT INTO vino__bouteille( nom,   pays,  prix_saq, format, vino__type_id ) 
-        VALUES (".
-        "'".$data->nom."',".
-		// "'".$data->image."',".
-        "'".$data->pays."',".
-        // "'".$data->description."',".
-        "'".$data->prix_saq."',".
-        "'".$data->format."',".
-        "'".$data->vino__type_id."')");
-
-        
-		if($requete)
-        {
-            mysqli_stmt_bind_param($requete, 'ssssi',$data->nom,   $data->pays,  $data->prix_saq, $data->format, $data->vino__type_id);
-
-            mysqli_stmt_execute($requete);
-
-            $resultat = mysqli_stmt_get_result($requete);
-
-            if(!$resultat){
-				var_dump($resultat);
-			}
-			else{
-
-			}
-        }
-		var_dump($resultat);
-
-		return $resultat;*/
+		
 	}
 	
 
 
 
-	
 }
-
-
-
-
 ?>
+
