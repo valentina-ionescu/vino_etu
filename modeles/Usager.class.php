@@ -89,9 +89,12 @@ class Usager extends Modele {
 
         $row = $res->fetch_assoc();
 
-        $dbpassword = $row['password'];
+        if ($row) {
 
-        return password_verify($password, $dbpassword);
+            $dbpassword = $row['password'];
+            
+            return password_verify($password, $dbpassword);
+        }
     }
     
     /**
@@ -238,6 +241,38 @@ class Usager extends Modele {
         if($requete)
         {
             mysqli_stmt_bind_param($requete, 'ssssssi', $data->nom, $data->email, $data->prenom, $data->username, $hashPassword, $data->admin, $id);
+
+            mysqli_stmt_execute($requete);
+
+            $resultat = mysqli_stmt_get_result($requete);
+
+            if(!$resultat){
+				var_dump($resultat);
+			}
+			else{
+
+			}
+        }
+    }
+
+
+    /**
+     * statutAdminUsager donne le statut d'admin a un usager existant -- par l'administrateur
+     *
+     * @param  Array $data nouvelles données du Usager à modifier
+     * @param  Int $id le id de l'Usager à modifier
+     * @return Boolean succés ou échec de l'ajout
+     */
+
+    public function statutAdminUsager($data, $id)
+	{ var_dump($data->admin);
+        $connexion = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
+
+		$requete = mysqli_prepare($connexion, "UPDATE vino__usager SET admin=? WHERE id = ?");	
+
+        if($requete)
+        {
+            mysqli_stmt_bind_param($requete, 'si', $data->admin, $id);
 
             mysqli_stmt_execute($requete);
 

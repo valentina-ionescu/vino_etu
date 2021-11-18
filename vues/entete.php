@@ -45,6 +45,24 @@
 		<script src="./js/util.js"></script>
 	</head>
 	<body class="relative" >
+
+	<div class="loader hidden">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <div>
+            <div class="wineglass left">
+                <div class="top"></div>
+            </div>
+            <div class="wineglass right">
+                <div class="top"></div>
+            </div>
+        </div>
+    </div>
+
+
 		<header class="header__wrapper">
 			<nav class="nav__wrapper flex" role="navigation">
 				<div id="menuToggle">

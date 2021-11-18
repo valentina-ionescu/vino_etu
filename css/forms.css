@@ -103,9 +103,13 @@ button, label, input, select {
 
 
 
-input:not([type='radio']) {
+input:not([type='radio'], .form__nonlistee-check [type='checkbox']) {
        -webkit-appearance: none;
        background-color: transparent;
+}
+
+.admin_form__modif .form__nonlistee-check input[type='checkbox']{
+    width: 30%;
 }
 
 input {
@@ -130,6 +134,10 @@ textarea {
     margin: .5rem;
 }
 
+.form__nonlistee-check label{
+   padding-bottom: unset;
+
+}
 /* Recherche et autocomplete */
 
 .form__recherche--clair {
@@ -255,7 +263,6 @@ button {
 
 .form div label {
 	position: absolute;
-	left: 0;
 	top: 20px;
 	color: var(--bg-sombre);
 	pointer-events: none;
@@ -299,8 +306,7 @@ select {
     color: var(--bg-clair);
     border-radius: 5px;
     padding: 10px;
-    width: 20em;
-    margin: 10px;
+    width: 100%;
 }
 
 .petit {
@@ -337,3 +343,18 @@ form.nostyle{
         margin-top: -10%;
     }
 }
+.checkbox__wrapper {
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    justify-content: space-around;
+}
+
+.checkbox__wrapper>p {
+    margin: 0;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+  .form_ajout_nonlistee .form__label__md, .form_ajout_nonlistee .form__nonlistee-check{
+      margin: 0.3em 0;
+  }

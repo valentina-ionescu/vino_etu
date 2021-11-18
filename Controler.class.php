@@ -34,11 +34,14 @@ class Controler
 			case 'ajouterNouvelleBouteilleCellier':
 				$this->ajouterNouvelleBouteilleCellier();
 				break;
-				/*case 'ajouterBouteilleNonListee':
-					$this->ajouterBouteilleNonListee();
-					break;*/
+			/*case 'ajouterBouteilleNonListee':
+				$this->ajouterBouteilleNonListee();
+				break;*/
 			case 'ajouterBouteilleCellier':
 				$this->ajouterBouteilleCellier();
+				break;
+			case 'ajouterBouteillePerso':
+				$this->ajouterBouteillePerso();
 				break;
 			case 'boireBouteilleCellier':
 				$this->boireBouteilleCellier();
@@ -85,14 +88,26 @@ class Controler
 			case 'getCatalogue':
 				$this->getCatalogue();
 				break;
+			case 'getUsagersListe':
+				$this->getUsagersListe();
+				break;
 			case 'supprimerUsagerCatalogue':
 				$this->supprimerUsagerCatalogue();
+				break;
+			case 'changerUsagerStatutAdmin':
+				$this->changerUsagerStatutAdmin();
 				break;
 			case 'modifierUsagerCatalogue':
 				$this->modifierUsagerCatalogue();
 				break;
 			case 'ajouterBouteilleNonListeeCatalogue':
 				$this->ajouterBouteilleCatalogue();
+				break;
+			case 'ajouterImageLocal':
+				$this->ajouterImageLocal();
+				break;
+			case 'ajouterImagePerso':
+				$this->ajouterImagePerso();
 				break;
 			case 'formAjouterBouteilleNonListee':
 				$this->formAjouterBouteilleNonListee();
@@ -385,7 +400,10 @@ class Controler
 
 				// header('Location: index.php?requete=profile');
 			} else {
-				header('Location: index.php?requete=creationUsager');
+				$erreurMsg = TRUE;
+				include("vues/entete.php");
+				include("vues/profile.php");
+				include("vues/pied.php");
 			}
 		}
 	// }
@@ -403,9 +421,26 @@ class Controler
 		$_SESSION['listeBouteilles'] = $listeBouteilles;
 
 		// echo json_encode($listeBouteilles);
-		include("vues/admin_controls.php");
+		// include("vues/admin_controls.php");
+		include("vues/admin_entetePrincipale.php");
+		include("vues/admin_listeBouteilles.php");
+		include("vues/admin_pied.php");
 	}
+	private function getUsagersListe()
+	{
+		$user = new Usager();
+		$listeUsager = $user->getListeUsager();
 
+		// $bte = new Bouteille();
+		// $listeBouteilles = $bte->getListeBouteille();
+		// // var_dump($listeBouteilles);
+		$_SESSION['listeUsager'] = $listeUsager;
+
+		include("vues/admin_entetePrincipale.php");
+		include("vues/admin_listeUsagers.php");
+		include("vues/admin_pied.php");
+
+	}
 
 	private function listeBouteille()
 	{
@@ -443,6 +478,19 @@ class Controler
 			include("vues/entete.php");
 			include("vues/ajouter.php");
 			include("vues/pied.php");
+		}
+	}
+
+	private function ajouterBouteillePerso()
+	{
+		$body = json_decode(file_get_contents('php://input'));
+
+		if (!empty($body)) {
+			$bte = new Bouteille();
+
+			$resultat = $bte->ajouterBouteillePerso($body);
+
+			echo json_encode($resultat);
 		}
 	}
 
@@ -537,7 +585,10 @@ class Controler
 
 
 		// echo json_encode($listeBouteilles);
-		include("vues/admin_controls.php");
+		// include("vues/admin_controls.php");
+		include("vues/admin_entetePrincipale.php");
+		include("vues/admin_listeBouteilles.php");
+		include("vues/admin_pied.php");
 	}else{
 		$ctrl = new Controler;
 		$ctrl->accueil();
@@ -629,6 +680,31 @@ class Controler
 
 	}
 
+/**
+	 * changerUsagerStatutAdmin
+	 *
+	 * @return void
+	 */
+	
+
+	private function changerUsagerStatutAdmin()
+	{	
+
+		// var_dump($_POST);
+		$body = json_decode(file_get_contents('php://input'));
+
+		// var_dump($body);
+		$id = $body->id;
+
+
+
+		$user = new Usager();
+
+		$user->statutAdminUsager($body,$id);
+
+
+	}
+
 
 	/**
 	 * modifierUsagerCatalogue
@@ -700,15 +776,14 @@ class Controler
 	{
 
 		$body = json_decode(file_get_contents('php://input'));
-	
-
+		// var_dump($body);
+		// var_dump($_POST);
 		if (!empty($body)) {
-
-			var_dump($_POST);
+			var_dump($_FILES['files']['name']);
+			echo($body->image);
 
 			$bte = new Bouteille();
 
-			var_dump($_POST['data']);
 
 			$id = $body->id;
 
@@ -718,8 +793,7 @@ class Controler
 			echo json_encode($resultat);
 		} else {
 
-
-
+			 include("vues/admin_entetePrincipale.php");
 			include("vues/ajouter_nonListees.php");
 
 		}
@@ -749,4 +823,62 @@ class Controler
 		}
 		
 	}
+
+	private function ajouterImagePerso()
+	{
+		var_dump($_FILES['file']);
+		$imgFileName = $_FILES['file']['name'];
+
+		$location = "assets/img/bouteillePersonnalise/";
+		
+		$finalImg = '';
+		var_dump($imgFileName);
+
+		var_dump($location);
+	
+			if (move_uploaded_file($_FILES['file']['tmp_name'], $location.$imgFileName)){
+				$finalImg = $location.$imgFileName;
+			echo "Reussi!";
+			}else{
+			echo "Pas Reussi!!";
+			}
+	return $finalImg;
+	}
+
+
+	private function ajouterImageLocal() // en developpement!!!
+	{
+		var_dump($_FILES['file']);
+		$imgFileName = $_FILES['file']['name'];
+
+		$location = "assets/img/bouteillesNonlistees/";
+
+		
+		$finalImg = '';
+		var_dump($imgFileName);
+
+		var_dump($location);
+	
+		//if (!file_exists($location . $imgFileName)) {
+			if (move_uploaded_file($_FILES['file']['tmp_name'], $location.$imgFileName)){
+				$finalImg = $location.$imgFileName;
+			// var_dump($finalImg, "No");
+			echo "Reussi!";
+
+			}else{
+			echo "Pas Reussi!!";
+				
+			}
+			
+		//} else {
+			// $newFileName = time().'-'. $imgFileName;
+			// move_uploaded_file($_FILES['file']['tmp_name'],  $location.$newFileName);
+			// $finalImg = $newFileName;
+
+		//}
+	//	var_dump($finalImg);
+	return $finalImg;
+
+	}
+
 }
