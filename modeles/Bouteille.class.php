@@ -389,15 +389,16 @@ class Bouteille extends Modele {
 	 */
 	public function ajouterBouteilleNonListee($data)
 	{
-		var_dump($data);
-		/*$connexion = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
+		//var_dump($data);
+		$connexion = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
 
-		$requete =  mysqli_prepare($connexion, "INSERT INTO vino__bouteille( nom,   pays,  prix_saq, format, vino__type_id ) 
+		$requete =  mysqli_prepare($connexion, "INSERT INTO vino__bouteille( nom, image,  pays, description, prix_saq, format, vino__type_id ) 
         VALUES (".
         "'".$data->nom."',".
-		// "'".$data->image."',".
+		 "'".$data->image."',".
+		//  "'".$data->code_saq."',".
         "'".$data->pays."',".
-        // "'".$data->description."',".
+         "'".$data->description."',".
         "'".$data->prix_saq."',".
         "'".$data->format."',".
         "'".$data->vino__type_id."')");
@@ -405,7 +406,7 @@ class Bouteille extends Modele {
         
 		if($requete)
         {
-            mysqli_stmt_bind_param($requete, 'ssssi',$data->nom,   $data->pays,  $data->prix_saq, $data->format, $data->vino__type_id);
+            mysqli_stmt_bind_param($requete, 'sssssssi',$data->nom, $data->image, $data->pays, $data->description, $data->prix_saq, $data->format, $data->vino__type_id);
 
             mysqli_stmt_execute($requete);
 
@@ -420,11 +421,18 @@ class Bouteille extends Modele {
         }
 		var_dump($resultat);
 
-		return $resultat;*/
+		return $resultat;
 	}
 	
 
 
+
+	public function ajouterImageFichierLocal($image)
+	{
+       
+
+    }
+  
 
 	
 }
