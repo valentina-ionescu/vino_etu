@@ -394,7 +394,7 @@ window.addEventListener("load", function () {
           .then((data) => {
             console.log(data);
             modal.classList.remove("show"); //fermeture du modal.
-            element.parentElement.remove();
+            element.closest('tr').remove();
             document.querySelector(".msg-supprime").innerText =
               "Cellier supprimé.";
           })
