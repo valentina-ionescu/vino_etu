@@ -1,7 +1,7 @@
 /* Ajouté par Félix - Entête*/
 
     .header__logo {
-        width: 5em;
+        width: 3em;
         margin-left: 20px;
     }
 
@@ -29,6 +29,8 @@
         width: 100%;
         z-index: 99;
         gap: unset;
+        padding: .5em;
+        padding-top: .7em;
     }
     .nav__wrapper>a {
         gap: unset;
