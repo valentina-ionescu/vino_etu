@@ -429,6 +429,10 @@ class Bouteille extends Modele {
 	{
 		$usager_id = $_SESSION['usager_id'];
 
+		if ($data->type == NULL) {
+			$data->type = 1;
+		}
+
         $connexion = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
 
 		$requete = mysqli_prepare($connexion, "INSERT INTO vino__bouteille(nom, image, pays, prix_saq, format, vino__type_id, usager_id) VALUES (?, ?, ?, ?, ?, ?, ?)");	
