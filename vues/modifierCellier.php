@@ -5,7 +5,8 @@
       
         <div class="form__conteneur">
            
-            <div class="form">
+            <div class="form  flex col">
+                <a href="?requete=profile" class="x-href"><span><i class="fas fa-times"></i></span></a>
                 <div class="form__label__aj">
                     <input type="texte" name="nom_cellier" value="<?php echo $dataC['nom_cellier']; ?>" required>
                     <label>Nom du cellier </label>
