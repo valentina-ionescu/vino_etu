@@ -29,7 +29,8 @@ class Cellier extends Modele {
         // $requete = "SELECT id, nom_cellier, usager_id FROM vino__cellier WHERE usager_id = ".$idUser."";
         $requete = "SELECT id, nom_cellier, usager_id, sum(v.quantite) bqte FROM vino__cellier 
                     left join vino__cellier_has_vino__bouteille v on vino__cellier_id = id
-                    WHERE usager_id = ".$idUser." GROUP BY id, nom_cellier,usager_id";
+                    WHERE usager_id = ".$idUser." GROUP BY id, nom_cellier,usager_id 
+                    ORDER BY nom_cellier";
         
     
 

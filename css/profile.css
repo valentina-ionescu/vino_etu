@@ -211,6 +211,15 @@
 }
 .nomCellier {
     padding-top: .75em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.nomCellier > * {
+    width: 30ch;
+    align-self: center;
 }
 form.btn__ajouter_cellier {
     margin-top: 1.25rem;
@@ -267,15 +276,18 @@ form.btn__ajouter_cellier {
 /* ==========----------Tables---------=========== */
 
 .cell__col {
+    text-align: left;
     background-color: var(--bg-primaire);
     padding: .25em .7em;
     padding: 5px;
    
 }
-.cell__col-nom {
+/* .cell__col-nom {
     padding: 1em;
+} */
+.caret {
+    margin-left: .25em;
 }
-
 .cell__actions {
     display: flex;
     justify-content: space-evenly;
@@ -293,6 +305,11 @@ form.btn__ajouter_cellier {
 .form__recherche .cell__icon {
     margin-left: unset;
     top: 30%;
+    z-index: unset;
+}
+.actions {
+    display: flex;
+    justify-content: space-around;
 }
 /* ==========----------Media queries---------=========== */
 @media (min-width: 540px)  {

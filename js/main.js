@@ -413,28 +413,85 @@ window.addEventListener("load", function () {
       evt.preventDefault();
       let id = element.dataset.cellid;
       console.log(id);
-      let requete = new Request("index.php?requete=getCellier", {
-        method: "POST",
-        body: '{"id": ' + id + "}",
-      });
-      console.log(requete);
-      fetch(requete)
-        .then((response) => {
-          if (response.status === 200) {
-            console.log(response);
-            window.location.href = "index.php?requete=accueil";
-            return response.json();
-          } else {
-            throw new Error("Erreur");
-          }
-        })
-        .then((data) => {
-          console.log(data);
-          // window.location.href = "index.php?requete=accueil";
-        })
-        .catch((error) => {
-          console.error(error);
+      let qte = element.closest('tr').querySelector('.b__compte').textContent;
+      
+      // Si le cellier est vide, afficher un modal de confirmation de bouteilles
+      if(qte == 0) {
+        console.log('Cellier vide')
+       
+        // element.addEventListener("click", (e) => {
+          //Afficher Modal  //
+          let modal = document.querySelector(".modal__wrapper_ajout-bouteille");
+          modal.classList.toggle("show");
+    
+          //Fermeture du modal //
+          let fermerBouton = modal.querySelector(".fermer");
+          fermerBouton.addEventListener("click", function (e) {
+            // let lemodal = modal.querySelector(".modal__wrapper_ajout-bouteille");
+            modal.classList.remove("show");
+            
+          });
+    
+          let annBouton = modal.querySelector(".btn__annuler");
+          annBouton.addEventListener("click", function (e) {
+            let modal = document.querySelector(".modal__wrapper_ajout-bouteille");
+            modal.classList.remove("show");
+           
+          });
+          let btnAjoutBouteille = modal.querySelector('.btn__ajout-bouteille');
+          console.log(btnAjoutBouteille);
+          btnAjoutBouteille.addEventListener('click', (e) => {
+            let requete = new Request("index.php?requete=getCellier", {
+              method: "POST",
+              body: '{"id": ' + id + "}",
+            });
+            console.log(requete);
+            fetch(requete)
+              .then((response) => {
+                if (response.status === 200) {
+                  console.log(response);
+        
+                  return response.json();
+                } else {
+                  throw new Error("Erreur");
+                }
+              })
+              .then((data) => {
+                console.log(data);
+                window.location.href = "index.php?requete=ajouterNouvelleBouteilleCellier";
+              })
+              .catch((error) => {
+                console.error(error);
+              });
+          })
+      }else {
+        let btnAjoutBouteille = element;
+        console.log(btnAjoutBouteille);
+        let requete = new Request("index.php?requete=getCellier", {
+          method: "POST",
+          body: '{"id": ' + id + "}",
         });
+        console.log(requete);
+        fetch(requete)
+          .then((response) => {
+            if (response.status === 200) {
+              console.log(response);
+    
+              return response.json();
+            } else {
+              throw new Error("Erreur");
+            }
+          })
+          .then((data) => {
+            console.log(data);
+            window.location.href = "index.php?requete=accueil";
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
+     
+     
     });
   });
 

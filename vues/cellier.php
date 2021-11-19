@@ -3,7 +3,9 @@
         <div class="cellier__information-wrapper">
             <div class="nomCellier">
                 <?php if ($msg) { ?>
-                    <h3 class="ml txt-blanc"><?php echo $msg; ?></h3>
+                    <!-- <h3 class="ml txt-blanc"> -->
+                        <?php echo $msg; ?>
+                    <!-- </h3> -->
                 <?php  } else { ?>
                     <h3 class="tag-gauche txt-blanc capit"><?php echo  $_SESSION['cellier_nom'];
                                             } ?></h3>
@@ -12,12 +14,21 @@
         <div class="cellier__information__wrapper">
             
             </div>
-        </div>
+    </div>
         
+    <!-- Modal de messages -->
+    <div class="confirm__modal__wrapper">
+                    <div class="modal__overlay">
+                        <div class="modal__contenu ">
+                            <h3 class="modal__texte txt_msg-modif"></h3>
+                        </div>
+                    </div>
+    </div>
+    <!-- ================ -->
         
         <div class="gallerie portail">
-        <a href="?requete=profile" ><i class="fas fa-angle-double-left fa-plus-reverse gauche"></i></a>
-        <a href="?requete=ajouterNouvelleBouteilleCellier"><i class="fas fa-plus fa-plus-reverse"></i></a>
+            <a href="?requete=profile" ><i class="fas fa-angle-double-left fa-plus-reverse gauche"></i></a>
+            <a href="?requete=ajouterNouvelleBouteilleCellier"><i class="fas fa-plus fa-plus-reverse"></i></a>
 
         <?php
 

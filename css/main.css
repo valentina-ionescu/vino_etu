@@ -242,7 +242,8 @@ a.btn {
 .modal__wrapper, 
 .confirm__modal__wrapper, 
 .usager__supprimer__modal__wrapper,
-.modal__ajout-wrapper {
+.modal__ajout-wrapper,
+.modal__wrapper_ajout-bouteille {
     display: none; 
     position: fixed; 
     z-index: 1; 
