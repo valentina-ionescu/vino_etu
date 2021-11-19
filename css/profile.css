@@ -93,7 +93,7 @@
     border: 1px solid var(--bg-sombre);
     margin-top: -11%;
     padding: 1em;
-    min-height: 40vh;
+    min-height: 30vh;
 }
 
 .u__profile-toggle {
@@ -218,7 +218,6 @@
 }
 
 .nomCellier > * {
-    width: 30ch;
     align-self: center;
 }
 form.btn__ajouter_cellier {
@@ -238,7 +237,15 @@ form.btn__ajouter_cellier {
     color: var(--txt-primary);
     font-size: clamp(.75rem, -0.875rem + 8.333333vw, 1rem);
 }
+.x-href,
+.x-href:visited {
+    color: inherit;
+    margin-left: auto;
+    font-size: 1.5rem;
+    padding-right: 1em;
 
+}
+ 
 /* ==========--------- Supprimer celliers -------------========== */
 .c__supp {
     pointer-events: auto;

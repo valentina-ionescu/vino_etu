@@ -73,15 +73,6 @@
             <?php if (!$dataC) { ?>
                 <h4>Vous n'avez pas de celliers</h4>
             <?php } else { ?>
-                <!-- <h4 class="u__titre-m">Mes celliers</h4> -->
-                <!-- <div class="u__cellier-tri"> -->
-                <!-- <button class="u__tri-up"> -->
-                <!-- <i class="fas fa-sort-up"></i> -->
-                <!-- </button> -->
-                <!-- <button class="u__tri-down"> -->
-                <!-- <i class="fas fa-sort-down"></i> -->
-                <!-- </button> -->
-                <!-- </div> -->
             <?php } ?>
             <div class="form__recherche form__recherche--clair">
                 <span class="fas fa-search iconne cell__icon"></span>
