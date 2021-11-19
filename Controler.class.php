@@ -155,7 +155,7 @@ class Controler
 				
 			
 				if(empty($dataB)) //pas de bouteilles dans le cellier
-				$msg = "Votre cellier est vide.";
+				$msg = "<h3 class='ml txt-blanc'>Votre cellier est vide.</h3>" . "<p class='txt-blanc'>Ajoutez des bouteilles</p>";
 
 				include("vues/entete.php");
 				include("vues/cellier.php");
@@ -313,12 +313,14 @@ class Controler
 
 		$_SESSION['cellier_id'] = $body->id;
 
-		echo $_SESSION['cellier_id'];
+		 echo $_SESSION['cellier_id'];
 
 		$dataB = $bte->getListeBouteilleCellier();
 		$dataC = $cel->getCellierInfo();
 		$celNom = $cel->getCellierNom($_SESSION['cellier_id']);
 		$_SESSION['cellier_nom'] = $celNom['nom_cellier'];
+
+		
 	}
 
 

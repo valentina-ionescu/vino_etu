@@ -394,7 +394,7 @@ window.addEventListener("load", function () {
           .then((data) => {
             console.log(data);
             modal.classList.remove("show"); //fermeture du modal.
-            element.parentElement.remove();
+            element.closest('tr').remove();
             document.querySelector(".msg-supprime").innerText =
               "Cellier supprimé.";
           })
@@ -413,28 +413,85 @@ window.addEventListener("load", function () {
       evt.preventDefault();
       let id = element.dataset.cellid;
       console.log(id);
-      let requete = new Request("index.php?requete=getCellier", {
-        method: "POST",
-        body: '{"id": ' + id + "}",
-      });
-      console.log(requete);
-      fetch(requete)
-        .then((response) => {
-          if (response.status === 200) {
-            console.log(response);
-            window.location.href = "index.php?requete=accueil";
-            return response.json();
-          } else {
-            throw new Error("Erreur");
-          }
-        })
-        .then((data) => {
-          console.log(data);
-          // window.location.href = "index.php?requete=accueil";
-        })
-        .catch((error) => {
-          console.error(error);
+      let qte = element.closest('tr').querySelector('.b__compte').textContent;
+      
+      // Si le cellier est vide, afficher un modal de confirmation de bouteilles
+      if(qte == 0) {
+        console.log('Cellier vide')
+       
+        // element.addEventListener("click", (e) => {
+          //Afficher Modal  //
+          let modal = document.querySelector(".modal__wrapper_ajout-bouteille");
+          modal.classList.toggle("show");
+    
+          //Fermeture du modal //
+          let fermerBouton = modal.querySelector(".fermer");
+          fermerBouton.addEventListener("click", function (e) {
+            // let lemodal = modal.querySelector(".modal__wrapper_ajout-bouteille");
+            modal.classList.remove("show");
+            
+          });
+    
+          let annBouton = modal.querySelector(".btn__annuler");
+          annBouton.addEventListener("click", function (e) {
+            let modal = document.querySelector(".modal__wrapper_ajout-bouteille");
+            modal.classList.remove("show");
+           
+          });
+          let btnAjoutBouteille = modal.querySelector('.btn__ajout-bouteille');
+          console.log(btnAjoutBouteille);
+          btnAjoutBouteille.addEventListener('click', (e) => {
+            let requete = new Request("index.php?requete=getCellier", {
+              method: "POST",
+              body: '{"id": ' + id + "}",
+            });
+            console.log(requete);
+            fetch(requete)
+              .then((response) => {
+                if (response.status === 200) {
+                  console.log(response);
+        
+                  return response.json();
+                } else {
+                  throw new Error("Erreur");
+                }
+              })
+              .then((data) => {
+                console.log(data);
+                window.location.href = "index.php?requete=ajouterNouvelleBouteilleCellier";
+              })
+              .catch((error) => {
+                console.error(error);
+              });
+          })
+      }else {
+        let btnAjoutBouteille = element;
+        console.log(btnAjoutBouteille);
+        let requete = new Request("index.php?requete=getCellier", {
+          method: "POST",
+          body: '{"id": ' + id + "}",
         });
+        console.log(requete);
+        fetch(requete)
+          .then((response) => {
+            if (response.status === 200) {
+              console.log(response);
+    
+              return response.json();
+            } else {
+              throw new Error("Erreur");
+            }
+          })
+          .then((data) => {
+            console.log(data);
+            window.location.href = "index.php?requete=accueil";
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
+     
+     
     });
   });
 
@@ -646,6 +703,9 @@ window.addEventListener("load", function () {
 //////////////////////////////////////////////
     });
 
+    let validationAjout = false;
+    let msgErr = document.querySelector('[data-js-erreur_ajout]');
+
     let bouteille = {
       nom: document.querySelector("[name='nom_bouteille']"),
       millesime: document.querySelector("[name='millesime']"),
@@ -658,12 +718,16 @@ window.addEventListener("load", function () {
 
     let videSearchBtn = document.querySelector('.clearSearchBtn ');
     let searchIconeBtn = document.querySelector('.searchIconeBtn ');
+    let searchbar = document.querySelector('[data-js-search]');
 
     liste.addEventListener("click", function (evt) {
       console.dir(bouteille.nom);
 
       if (evt.target.tagName == "LI") {
         console.dir(evt.target);
+
+        validationAjout = true;
+        searchbar.setAttribute("disabled", true);
 
         bouteille.nom.dataset.id = evt.target.dataset.id;
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -690,6 +754,9 @@ window.addEventListener("load", function () {
 
     videSearchBtn.addEventListener('click', function (evt) {
 
+      validationAjout = false;
+      searchbar.removeAttribute("disabled", true);
+
       inputNomBouteille.value = "";
       bouteille.prix.setAttribute("value", " ");
 
@@ -704,43 +771,48 @@ window.addEventListener("load", function () {
       btnAjouter.addEventListener("click", function (evt) {
         
 
-        var param = {
-          vino__bouteille_id: bouteille.nom.dataset.id,
-          date_achat: bouteille.date_achat.value,
-          garde_jusqua: bouteille.garde_jusqua.value,
-          prix: bouteille.prix.value,
-          quantite: bouteille.quantite.value,
-          millesime: bouteille.millesime.value,
-        };
+        if (validationAjout == true) {
 
- 
-        let requete = new Request(
-          "index.php?requete=ajouterNouvelleBouteilleCellier",
-          {
-            method: "POST",
-            body: JSON.stringify(param),
-            headers: { "Content-Type": "application/json" },
-          }
-        );
-        console.log(requete);
+          var param = {
+            vino__bouteille_id: bouteille.nom.dataset.id,
+            date_achat: bouteille.date_achat.value,
+            garde_jusqua: bouteille.garde_jusqua.value,
+            prix: bouteille.prix.value,
+            quantite: bouteille.quantite.value,
+            millesime: bouteille.millesime.value,
+          };
 
-        fetch(requete)
-          .then((response) => {
-            console.log(response);
-            response.json();
-          })
-          .then((json) => {
-            console.log(json);
-            let formulaireRegistration = document.querySelector('.form__ajout_bouteille');
-            let modalConfirmRegistration = formulaireRegistration.querySelector('.confirm__modal__wrapper')
-            modalConfirmRegistration.classList.add('show');
-            modalConfirmRegistration.querySelector('.txt_msg-modif').innerText = 'La bouteille a été ajoutée avec succès!';
-    
-              setTimeout(function () {
-                window.location.href = "index.php?requete=accueil";
-              }, 1500);
-            
-          });
+  
+          let requete = new Request(
+            "index.php?requete=ajouterNouvelleBouteilleCellier",
+            {
+              method: "POST",
+              body: JSON.stringify(param),
+              headers: { "Content-Type": "application/json" },
+            }
+          );
+          console.log(requete);
+
+          fetch(requete)
+            .then((response) => {
+              console.log(response);
+              response.json();
+            })
+            .then((json) => {
+              console.log(json);
+              let formulaireRegistration = document.querySelector('.form__ajout_bouteille');
+              let modalConfirmRegistration = formulaireRegistration.querySelector('.confirm__modal__wrapper')
+              modalConfirmRegistration.classList.add('show');
+              modalConfirmRegistration.querySelector('.txt_msg-modif').innerText = 'La bouteille a été ajoutée avec succès!';
+      
+                setTimeout(function () {
+                  window.location.href = "index.php?requete=accueil";
+                }, 1500);
+              
+            });
+        }else {
+          msgErr.classList.remove('hidden');
+        }
       });
     }
   }
@@ -839,6 +911,7 @@ document.addEventListener('click',(e) => {
   //////////////////////////////////////////////
 
   let btnAjoutBouteillePerso = document.querySelector("[name='ajouterBouteillePersonnalisé']");
+  let msgErreur = document.querySelector('[data-js-erreur-inserer]');
 
   btnAjoutBouteillePerso.addEventListener('click', (e) => {
 
@@ -854,41 +927,53 @@ document.addEventListener('click',(e) => {
     let formData = new FormData();
 
 
-    formData.append('file', image.files[0])
+    formData.append('file', image.files[0]);
     console.log(image.files[0]);
+
+    if (image.files[0]) {
+      imageContenue = image.files[0].name;
+    }else {
+      imageContenue = 'image_holder.png';
+    }
 
     var param = {
       nom: bouteillePerso.nom.value,
-      image: "./assets/img/bouteillePersonnalise/" + image.files[0].name,
+      image: "./assets/img/bouteillePersonnalise/" + imageContenue,
       pays: bouteillePerso.pays.value,
       prix: bouteillePerso.prix.value,
       format: bouteillePerso.format.value,
       type: bouteillePerso.type.options[bouteillePerso.type.selectedIndex].value,
     };
 
-    
-    let requete = new Request(
-      "index.php?requete=ajouterBouteillePerso",
-      {
-        method: "POST",
-        body: JSON.stringify(param),
-        headers: { "Content-Type": "application/json" },
-      }
-    );
-    console.log(requete);
+    console.log(param.image);
 
-    fetch(requete)
-      .then((response) => {
-        let requete = new Request("index.php?requete=ajouterImagePerso", {
+    if (param.nom !== '' && param.nom.length > 3) {
+
+      let requete = new Request(
+        "index.php?requete=ajouterBouteillePerso",
+        {
           method: "POST",
-          body: formData,
-      });
+          body: JSON.stringify(param),
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      console.log(requete);
+
       fetch(requete)
-      .then((response) => {
-        window.location.href = "index.php?requete=ajouterNouvelleBouteilleCellier";
-        response.json();
-      });
-      })
+        .then((response) => {
+          let requete = new Request("index.php?requete=ajouterImagePerso", {
+            method: "POST",
+            body: formData,
+        });
+        fetch(requete)
+        .then((response) => {
+          //window.location.href = "index.php?requete=ajouterNouvelleBouteilleCellier";
+          response.json();
+        });
+        })
+      }else {
+        msgErreur.classList.remove('hidden');
+      }
   })
 
 }); //fin window load
