@@ -135,3 +135,26 @@ table {
     .slider.round:before {
       border-radius: 50%;
     }
+
+    .table_triable th {
+      cursor: pointer;
+    }
+    
+    .table_triable .th-tri-asc::after {
+      content: "\25b4";
+    }
+    
+    .table_triable .th-tri-desc::after {
+      content: "\25be";
+    }
+    
+    .table_triable .th-tri-asc::after,
+    .table_triable .th-tri-desc::after {
+      margin-left: 5px;
+    }
+    
+    .table_triable .th-tri-asc,
+    .table_triable .th-tri-desc {
+      background: rgba(0, 0, 0, 0.1);
+    }
+    

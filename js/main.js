@@ -10,6 +10,14 @@
 
 //const BaseURL = "https://jmartel.webdev.cmaisonneuve.qc.ca/n61/vino/";
 
+
+
+
+
+
+
+
+
 //////////////////////////////////////////////
 //Fonction boire bouteille                  //
 //////////////////////////////////////////////

@@ -22,6 +22,51 @@ window.addEventListener('load', function () {
 
 
 
+/**
+ * Triage de la table HTML .
+ * 
+ * @param {HTMLTableElement} table La table a trier
+ * @param {number} colonne Le index de la  colonne a trier
+ * @param {boolean} asc Determine la direction du triage asc ou desc
+ */
+ function triageColonneTable(table, colonne, asc = true) {
+  let dirModifier = asc ? 1 : -1;
+  let tBody = table.tBodies[0];
+  let rows = Array.from(tBody.querySelectorAll("tr"));
+  console.log(rows)
+
+  // Sort each row
+  let sortedRows = rows.sort((a, b) => {
+      let aColText = a.querySelector(`td:nth-child(${ colonne + 1 })`).textContent.trim();
+      let bColText = b.querySelector(`td:nth-child(${ colonne + 1 })`).textContent.trim();
+
+      return aColText > bColText ? (1 * dirModifier) : (-1 * dirModifier);
+  });
+
+  // Remove all existing TRs from the table
+  while (tBody.firstChild) {
+      tBody.removeChild(tBody.firstChild);
+  }
+
+  // Re-add the newly sorted rows
+  tBody.append(...sortedRows);
+
+  // Remember how the colonne is currently sorted
+  table.querySelectorAll("th").forEach(th => th.classList.remove("th-tri-asc", "th-tri-desc"));
+  table.querySelector(`th:nth-child(${ colonne + 1})`).classList.toggle("th-tri-asc", asc);
+  table.querySelector(`th:nth-child(${ colonne + 1})`).classList.toggle("th-tri-desc", !asc);
+}
+
+document.querySelectorAll(".table_triable th").forEach(headerCell => {
+    console.log(headerCell)
+  headerCell.addEventListener("click", () => {
+      let tableElement = headerCell.parentElement.parentElement.parentElement;
+      let headerIndex = Array.prototype.indexOf.call(headerCell.parentElement.children, headerCell);
+      let currentIsAscending = headerCell.classList.contains("th-sort-asc");
+
+      triageColonneTable(tableElement, headerIndex, !currentIsAscending);
+  });
+});
 
 
 
@@ -151,7 +196,7 @@ window.addEventListener('load', function () {
 
   document.querySelectorAll(".btnSuppr").forEach(function (element) {
 
-    console.log(element.parentElement.parentElement);
+    // console.log(element.parentElement.parentElement);
     element.addEventListener("click", function (evt) {
       console.log('click', evt.target);
     
@@ -299,7 +344,6 @@ window.addEventListener('load', function () {
       });
 
   });
-
 
 
 

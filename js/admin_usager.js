@@ -1,5 +1,5 @@
 /**
- * @file Script contenant les fonctions necessaires pour le panneau admin
+ * @file Script contenant les fonctions necessaires pour le panneau admin_usager
  * @author DFV - "les Devs en Pyjamas"
  * @version 0.1
  *
@@ -410,6 +410,7 @@ window.addEventListener('load', function () {
 
 
 
+  
 
 
     if (localStorage.getItem('scrollPosition') !== null)
