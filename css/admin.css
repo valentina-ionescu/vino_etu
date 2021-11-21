@@ -75,7 +75,7 @@ hr {
     height: 3px;
     margin: 10px auto;
     border: 0;
-    background: var(--bg-primaire);
+    background: var(--bg-accent-admin);
 }
 
 .intro {
@@ -210,7 +210,7 @@ hr {
 .tabs__button--active {
     background: var(--bg-sombre);
     font-weight: bold;
-    border-right: 2px solid var(--bg-primaire);
+    border-right: 2px solid var(--bg-accent-admin);
 }
 
 .admin__tabs__content {
@@ -239,13 +239,13 @@ hr {
     padding-top: 20px;
     width: 220px;
     color: #ffffff;
-    background: var(--bg-primaire-autre);
+    background: var(--bg-sombre-admin);
 }
 
 .page-header nav {
     display: flex;
     flex-direction: column;
-    min-height: 100%;
+    /* min-height: 100%; */
 }
 
 .page-header .logo {
@@ -452,19 +452,19 @@ hr {
 
 .admin__tabs__sidebar {
     width: 150px;
-    position: absolute;
+    position: fixed;
     left: 0px;
     /* top: 75px; */
     margin-top: 0;
     z-index: 2;
-    background: var(--bg-primaire-autre);
+    background: var(--bg-sombre-admin);
     /* visibility: hidden;
     opacity: 0; */
     transform-origin: 0% 0%;
     transform: translate(-100%, 0);
     transition: all 0.2s;
     height: 100%;
-    padding: 10px;
+    padding: 1em;
 }
 
 
@@ -515,12 +515,21 @@ hr {
     .page-header {
         padding: 10px;
         padding: 1.5em;
+        position: fixed;
+        height: 70px;
+        z-index: 1;
     }
     .page-header nav {
         flex-direction: row;
+        position: absolute;
+        left: 0;
+        padding-left: 1.5em;
+
     }
     .page-header .logo {
         margin: 0;
+        height: fit-content;
+        box-sizing: border-box;
     }
     .page-header .logo img, .admin .logo img {
         width: 83px;
@@ -546,7 +555,7 @@ hr {
         grid-gap: 10px;
     }
     .admin__profile {
-        position: absolute;
+        position: fixed;
         /* background: var(--bg-primaire-autre); */
         right: 0;
         color: #ffffff;
@@ -558,6 +567,7 @@ hr {
         padding-top: 2em;
         padding-right: 1.5em;
         top: 0;
+        z-index: 2;
     }
     /* .search-and-user {
         position: absolute;
@@ -583,6 +593,7 @@ hr {
 .sideBar-ferme {
     /* transform: none; */
     transform: translate(-100%, 0) !important;
+    z-index: -1;
 }
 .desactive{
     background-color: rgb(167, 142, 142);
@@ -601,7 +612,7 @@ h3.txt_msg-modif{
     line-height: 1.5;
 }
 p.txt_msg-supprime, p.txt_msg-usg-supprime{
-    height: 20px;
+    /* height: 20px; */
     margin-top: unset;
 
 
@@ -614,7 +625,11 @@ p.txt_msg-supprime, p.txt_msg-usg-supprime{
 .admin_form__modif > .form__label__md{
     display: flex;
     flex-direction: column;
-    padding: 0 0.5em;
+    /* padding: 0 0.5em; */
+}
+
+.admin_form__modif > .input_file{
+    flex-direction: row;
 }
 
 .admin_form__modif .form__label__md>input{
@@ -651,3 +666,13 @@ p.txt_msg-supprime, p.txt_msg-usg-supprime{
     right: 0;
 }
 
+.ajoute-bouteille.btn{
+    position: sticky;
+    position: -webkit-sticky;
+    /* margin-right: -1em; */
+    top: 60px;
+    z-index: 1;
+    margin-left: 140px;
+    width: 200px;
+    right: 0.8em;
+}

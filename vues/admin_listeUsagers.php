@@ -25,7 +25,7 @@
 
                 <div class="mt-1">
 
-                    <table>
+                    <table  class="table_triable table_admin">
                         <tr>
 
                             <th>Nom </th>

@@ -22,6 +22,64 @@ window.addEventListener('load', function () {
 
 
 
+
+
+ ////////////////////////////////////////////////////////
+ //Fonction Recherche Catalogue par nom de bouteille   //
+ ////////////////////////////////////////////////////////
+
+
+ /**
+ * Recherche Catalogue par nom de bouteille .
+ * 
+ * @param {HTMLTableElement} table La table a rechercher
+ * @param {HTMLTableElement} searchColumn La colone a rechercher
+ * @param {HTMLInputElement} rechercheInput champs de recherche
+ */  
+
+
+  function rechercheCatalogue(table, rechercheInput, searchColumn){
+
+  
+       let tableRows = table.querySelectorAll("tbody > tr")
+         console.log(tableRows);
+         //;
+       let headerCell = searchColumn ;
+       let otherHeaderCells = headerCell.closest("tr").children;
+       let columnIndex = Array.from(otherHeaderCells).indexOf(headerCell);
+       let searchableCells = Array.from(tableRows).map(
+         (row) => row.querySelectorAll("td")[columnIndex]
+       );
+   
+       rechercheInput.addEventListener("input", () => {
+         let searchQuery = rechercheInput.value.toLowerCase();
+   
+         for (let tableCell of searchableCells) {
+           let row = tableCell.closest("tr");
+           let value = tableCell.textContent.toLowerCase().replace(",", "");
+   
+           row.style.visibility = null;
+   
+           if (value.search(searchQuery) === -1) {
+             row.style.visibility = "collapse";
+           }
+         }
+        
+     });
+   
+   }
+
+ 
+   
+ 
+
+
+
+  ///////////////////////////////////////////////////
+  //Fonction Trier Bouteilles du Catalogue par nom  //
+  ///////////////////////////////////////////////////
+
+
 /**
  * Triage de la table HTML .
  * 
@@ -33,7 +91,7 @@ window.addEventListener('load', function () {
   let dirModifier = asc ? 1 : -1;
   let tBody = table.tBodies[0];
   let rows = Array.from(tBody.querySelectorAll("tr"));
-  console.log(rows)
+  console.log(tBody)
 
   // Sort each row
   let sortedRows = rows.sort((a, b) => {
@@ -57,8 +115,7 @@ window.addEventListener('load', function () {
   table.querySelector(`th:nth-child(${ colonne + 1})`).classList.toggle("th-tri-desc", !asc);
 }
 
-document.querySelectorAll(".table_triable th").forEach(headerCell => {
-    console.log(headerCell)
+document.querySelectorAll(".table_triable th.trier").forEach(headerCell => {
   headerCell.addEventListener("click", () => {
       let tableElement = headerCell.parentElement.parentElement.parentElement;
       let headerIndex = Array.prototype.indexOf.call(headerCell.parentElement.children, headerCell);
@@ -77,19 +134,15 @@ document.querySelectorAll(".table_triable th").forEach(headerCell => {
   ////////////////////////////////////////////////////////////////////////
 
   document.querySelectorAll(".tabs__button").forEach(function (element) {
-    console.log(element);
     let sideBar = element.parentElement;
     //    if ( sideBar.style=("transform: translate(-100%, 0)")){
     //     sideBar.style= (" ");
     //    }
     element.addEventListener("click", function (evt) {
-      console.log(element);
 
       let mainContenant = document.querySelector('.admin_contenu_page');
-      console.log(sideBar)
       let tabNumber = element.dataset.forTab;
       let contentActivate = mainContenant.querySelector(`.admin__tabs__content[data-tab="${tabNumber}"]`);
-      console.log(contentActivate);
       sessionStorage.setItem("activeLocation", tabNumber);
 
       sideBar.querySelectorAll('.tabs__button').forEach(button => {
@@ -98,7 +151,7 @@ document.querySelectorAll(".table_triable th").forEach(headerCell => {
       mainContenant.querySelectorAll('.admin__tabs__content').forEach(tab => {
         tab.classList.remove('admin__tabs__content--active');
       })
-      console.log(sessionStorage.getItem("activeLocation"))
+      // console.log(sessionStorage.getItem("activeLocation"))
 
       //cacher le "x" et re-afficher le menu burger
       // document.getElementById("admin_menuToggle").nextElementSibling.classList.add('hidden')
@@ -135,21 +188,18 @@ document.querySelectorAll(".table_triable th").forEach(headerCell => {
   let menuToggle = document.getElementById("admin_menuToggle1");
 
   sideBar = document.querySelector('.admin-menu');
-  console.log(menuToggle)
 
   document.querySelectorAll('.menu_icon').forEach(icon => {
 
-    console.log(menuToggle)
 
 
-    console.log(icon)
 
     menuToggle.addEventListener("click", function (evt) {
 
       //
 
 
-
+console.log(icon);
       if (icon.classList.contains('hidden')) {
         icon.classList.remove('hidden')
 
@@ -158,7 +208,6 @@ document.querySelectorAll(".table_triable th").forEach(headerCell => {
 
         }
 
-        console.log(document.querySelector('.admin-menu'))
 
 
 
@@ -185,7 +234,12 @@ document.querySelectorAll(".table_triable th").forEach(headerCell => {
 
 
 
+//appele de la fonction Recherche Catalogue Bouteilles 
+//rechercheCatalogue(table, rechercheInput, searchColumn)
 
+if(document.querySelector('.recherche_bouteille')!=""){
+  rechercheCatalogue(document.querySelector('.table_bouteilles'), document.querySelector(".recherche_bouteille"), document.querySelector(".nom_bouteille"));
+}
 
 
 
@@ -196,7 +250,7 @@ document.querySelectorAll(".table_triable th").forEach(headerCell => {
 
   document.querySelectorAll(".btnSuppr").forEach(function (element) {
 
-    // console.log(element.parentElement.parentElement);
+    //  console.log(element.parentElement.parentElement);
     element.addEventListener("click", function (evt) {
       console.log('click', evt.target);
     
@@ -227,9 +281,9 @@ document.querySelectorAll(".table_triable th").forEach(headerCell => {
 
       let btnDanger = modal.querySelector('.btn__danger');
       btnDanger.addEventListener('click', (e) => {
-        console.log(id);
+
         let requete = new Request("index.php?requete=desactiverBouteilleCatalogue", { method: 'PUT', body: '{"id": ' + id + ', "statut_desactive": "1"}' });
-        console.log(requete);
+
         fetch(requete)
           .then(response => {
             if (response.status === 200) {
@@ -240,8 +294,9 @@ document.querySelectorAll(".table_triable th").forEach(headerCell => {
               //fermer le modal
               modal.classList.remove('show');
               //supprimer le dom de l'element 
-              element.parentElement.parentElement.remove();
+              element.parentElement.parentElement.parentElement.remove();
               // afficher message de confirmation de la suppression de l'element du catalogue
+
 
               document.querySelector(".txt_msg-supprime").innerText = "La bouteille No" + id + " supprimée avec succes !"
 
@@ -347,9 +402,8 @@ document.querySelectorAll(".table_triable th").forEach(headerCell => {
 
 
 
-  
- 
-  
+    
+   
 
 
 

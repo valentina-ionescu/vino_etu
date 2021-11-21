@@ -92,7 +92,7 @@
                 </div>
 
                 <button class="mt-1 btn btn-accent solid" name="ajouterBouteilleCellier">Ajouter la bouteille</button>
-                <form method="POST" action="index.php?requete=accueil">
+                <form method="POST" action="index.php?requete=home">
                     <button class="btn btn-primaire btnAnnul mt-10px">Annuler</button>
                 </form>
 

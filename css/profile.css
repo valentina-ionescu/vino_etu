@@ -93,7 +93,7 @@
     border: 1px solid var(--bg-sombre);
     margin-top: -11%;
     padding: 1em;
-    min-height: 40vh;
+    min-height: 30vh;
 }
 
 .u__profile-toggle {
@@ -101,6 +101,16 @@
     left: 10rem;
     border: 1px solid #ccc;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.u__profile-toggle_admin {
+   top: 55px;
+   padding: 1.5em 1em 0.6em 1em;
+    background: #1a202e;
+    z-index: 100;
+}
+.u__profile-toggle_admin button {
+    background-color: var(--bg-accent-admin);
+    font-size: 13px;
 }
 .show {
     display: flex;
@@ -211,6 +221,14 @@
 }
 .nomCellier {
     padding-top: .75em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.nomCellier > * {
+    align-self: center;
 }
 form.btn__ajouter_cellier {
     margin-top: 1.25rem;
@@ -229,7 +247,15 @@ form.btn__ajouter_cellier {
     color: var(--txt-primary);
     font-size: clamp(.75rem, -0.875rem + 8.333333vw, 1rem);
 }
+.x-href,
+.x-href:visited {
+    color: inherit;
+    margin-left: auto;
+    font-size: 1.5rem;
+    padding-right: 1em;
 
+}
+ 
 /* ==========--------- Supprimer celliers -------------========== */
 .c__supp {
     pointer-events: auto;
@@ -267,15 +293,18 @@ form.btn__ajouter_cellier {
 /* ==========----------Tables---------=========== */
 
 .cell__col {
+    text-align: left;
     background-color: var(--bg-primaire);
     padding: .25em .7em;
     padding: 5px;
    
 }
-.cell__col-nom {
+/* .cell__col-nom {
     padding: 1em;
+} */
+.caret {
+    margin-left: .25em;
 }
-
 .cell__actions {
     display: flex;
     justify-content: space-evenly;
@@ -283,6 +312,7 @@ form.btn__ajouter_cellier {
 }
 #qte {
     max-width: fit-content;
+    max-width: -moz-fit-content;
 }
 #cell_rech {
     border: 1px solid var(--bg-medium);
@@ -293,6 +323,12 @@ form.btn__ajouter_cellier {
 .form__recherche .cell__icon {
     margin-left: unset;
     top: 30%;
+    z-index: unset;
+}
+.actions {
+    display: flex;
+    justify-content: space-around;
+    gap: 1rem;
 }
 /* ==========----------Media queries---------=========== */
 @media (min-width: 540px)  {
@@ -305,7 +341,7 @@ form.btn__ajouter_cellier {
     .u__ajout {
         width: 17%;
      }
-     .u__profile-toggle {
+     .u__profile-toggle,.u__profile-toggle_admin {
         left: 65vw;
     }
 }
@@ -327,7 +363,7 @@ form.btn__ajouter_cellier {
     .u__celliers_liste {
         margin-top: -9%;
     }
-    .u__profile-toggle {
+    .u__profile-toggle,.u__profile-toggle_admin {
         left: 80vw;
     }
 }

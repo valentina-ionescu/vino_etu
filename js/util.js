@@ -9,8 +9,8 @@
 window.addEventListener("load", function () {
   // Fonctions de tri, inspiration.: https://betterprogramming.pub/sort-and-filter-dynamic-data-in-table-with-javascript-e7a1d2025e3c
 
-  let triUp = "fa fa-caret-up",
-    triDown = "fa fa-caret-down",
+  let triUp = "fa fa-caret-down",
+    triDown = "fa fa-caret-up",
     tableData = Array();
 
   let table = document.querySelector("#cell__table"),
@@ -22,8 +22,17 @@ window.addEventListener("load", function () {
   cellLigne.forEach((element) => {
     (cellNom = element.querySelector(".cell__col-nom")),
       (cellQte = element.querySelector(".cell__col-qte"));
-    console.log(cellNom.textContent);
-    tableData.push({ qte: cellQte.textContent, nom: cellNom.textContent });
+      let cellId = element.dataset.cellid;
+    console.log(cellId);
+   
+    let qte = cellQte.textContent;
+
+    // Si le cellier est vide, afficher 0
+    if (!qte) qte = 0;
+    else qte = parseInt(qte);
+    
+    // Populer la table tableData a partir du DOM
+    tableData.push({ qte: qte, nom: cellNom.textContent, cellId: cellId });
   });
 
   console.log(tableData);
@@ -48,7 +57,7 @@ window.addEventListener("load", function () {
           return primer(x[field]);
         }
       : function (x) {
-          console.log(x);
+          
           return x[field];
         };
 
@@ -132,10 +141,31 @@ window.addEventListener("load", function () {
 
       
       let nomCellier = row.insertCell(0);
-      nomCellier.innerHTML = `<td class="cell__col-nom"><a href="" class="selectCellier" data-cellid="<?php echo $cel['id'] ?>">${data.nom}</a></td>`;
+      // nomCellier.innerHTML = `<td class="cell__col-nom"><a href="" class="selectCellier" data-cellid="${data.cellId}">${data.nom}</a></td>`;
+      nomCellier.innerHTML = `<a href="" class="selectCellier" data-cellid="${data.cellId}">${data.nom}</a>`;
      
       let qte = row.insertCell(1);
-      qte.innerHTML = `<td class="cell__col-qte b__compte">${data.qte}</td>`;
+      // qte.innerHTML = `<td class="cell__col-qte b__compte">${data.qte}</td>`;
+      qte.innerHTML = data.qte;
+      
+      let actions = row.insertCell(2);
+      // actions.innerHTML = `<td class="cell__actions">
+      //                       <form method="POST" action="index.php?requete=editCellier">
+      //                         <button class="c__modif" name="id" value="${data.cellId}">
+      //                             <i class="far fa-edit c__edit" data-cellid="${data.cellId}"></i>
+      //                         </button>
+      //                       </form>
+      //                         <i class="far fa-trash-alt c__supp" data-cellid="${data.cellId}"></i>
+      //                     </td>`
+      actions.innerHTML = ` <div class="actions">
+                            <form method="POST" action="index.php?requete=editCellier">
+                              <button class="c__modif" name="id" value="${data.cellId}">
+                                  <i class="far fa-edit c__edit" data-cellid="${data.cellId}"></i>
+                              </button>
+                            </form>
+                              <i class="far fa-trash-alt c__supp" data-cellid="${data.cellId}"></i>
+                              </div>
+                          `
     }
 
     filterTable();

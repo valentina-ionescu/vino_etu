@@ -22,7 +22,7 @@
                 </div>
 
 
-                <div class="form__nonlistee-check flex row ">
+                <div class="form__nonlistee-check flex row gap-3 justify-start">
                     <div class="flex column align-item-center">
                        
                         <input type="radio" name="vino__type_id" value="1"> 
@@ -36,11 +36,13 @@
                     </div>
                 </div>
 
-                <div class="form__label__md">
-                    <label for="image" class=" ">Ajouter L'image</label>
+                <div class="form__label__md flex row align-item-center justify-start input_file">
+                    <label for="image" class="btn_ajout_image"  id="btn_ajout_image">Image <i class="fas fa-upload"></i> </label>
                     <input id="image" type="file" name="image" class="form-control">
+                    <span id="nom_image"></span>
                     
                 </div>
+            
 
                
 

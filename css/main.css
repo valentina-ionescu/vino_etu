@@ -145,6 +145,9 @@ footer p {
 .mt-3{
     margin-top: 3em;
 }
+.mt-5{
+    margin-top: 5em;
+}
 .mt-9{
     margin-top: 9em;
 }
@@ -224,6 +227,12 @@ a.btn {
     color: var(--bg-sombre);
     border: 2px solid var(--bg-primaire);
   }
+  .admin.btn-primaire.solid{
+    background-color: var(--bg-accent-admin); 
+    color: #ffffff;
+    border: 1px solid var(--bg-accent-admin);
+    font-size: 12px;
+  }
 
 .btn-accent.solid{
     background-color: var(--txt-medium); 
@@ -242,7 +251,8 @@ a.btn {
 .modal__wrapper, 
 .confirm__modal__wrapper, 
 .usager__supprimer__modal__wrapper,
-.modal__ajout-wrapper {
+.modal__ajout-wrapper,
+.modal__wrapper_ajout-bouteille {
     display: none; 
     position: fixed; 
     z-index: 1; 
@@ -254,13 +264,14 @@ a.btn {
 }
 .modal__contenu {
     background-color: #f1f1f1;
-    margin: 50% auto;
+    /* margin: 50% auto; */
     border: 1px solid #888;
     width: 80%; 
     border-radius: 7px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     gap: .25rem;
     transition: all .3ms ease;
+
 
 }
 .modal__overlay {
@@ -272,6 +283,11 @@ a.btn {
     bottom: 0;
     background: rgba(0,0,0,.85);
     z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center
 }
 
 .show {

@@ -20,6 +20,30 @@ window.addEventListener('scroll', function () {
 window.addEventListener('load', function () {
 
 
+    
+  
+
+///////////////////////////////////////////////////////
+//Fonction affichage modal Deconnexion Admin         // 
+///////////////////////////////////////////////////////
+
+   // let uimage = document.querySelector('.u__img');
+   let aimage = document.querySelector(".u__profile_img_admin");
+   let amenu = document.querySelector(".u__profile-toggle_admin");
+   console.log(amenu);
+   console.log(aimage);
+   aimage.addEventListener("click", (e) => {
+     // umenu.style.display = umenu.style.display === "none" ? "flex" : "none";
+   console.log(amenu);
+     amenu.classList.toggle('show');
+   });
+ 
+ // click en dehors du menu le fermera
+ document.addEventListener('click',(e) => {
+   if(!e.target.matches('.u__profile_img_admin i'))
+   if(amenu.classList.contains('show'))
+   amenu.classList.remove('show');
+ })
 
 
     ////////////////////////////////////////////////////
@@ -333,73 +357,55 @@ window.addEventListener('load', function () {
             };
 
                 ////////////////////Ajouter Image dans le dossier local /////////////////////
-                
-            // let formData = new FormData();
-
-            // formData.append('file', image.files[0])
-            // console.log(image.files[0]);
-    
-            let requete = new Request("index.php?requete=ajouterImageLocal", {
-                method: "POST",
-                body: formData,
-            });
+                let requete = new Request("index.php?requete=ajouterBouteilleNonListeeCatalogue", {
+                    method: "POST",
+                    body: JSON.stringify(param),
+                    headers: { "Content-Type": "application/json" },
+                });
+           
     
             fetch(requete)
                 .then(function (response) {
 
-                    let requete = new Request("index.php?requete=ajouterBouteilleNonListeeCatalogue", {
+                    document.getElementById("image").addEventListener("change", function(){
+                        var fullPath = this.value; // fetched value = C:\fakepath\fileName.extension
+                        var fileName = fullPath.split(/(\\|\/)/g).pop();  // fetch the file name
+                        document.getElementById("nom_image").innerHTML = fileName;  // display the file name
+                      }, false);
+
+                    let requete = new Request("index.php?requete=ajouterImageLocal", {
                         method: "POST",
-                        body: JSON.stringify(param),
-                        headers: { "Content-Type": "application/json" },
+                        body: formData,
                     });
         
                     fetch(requete)
                         .then(response => {
-                            if (response.status === 200) {
-                                console.log(response);
-        
-        
-        
-                            }
-        
-                        })
-                        .then((response) => {
-                            console.log(response);
+                           
                         })
                         .catch((error) => {
                             console.error(error);
                         });
-                    console.log(response.text());
+                    
+                        if (response.status === 200) {
+
+                            document.querySelector(".loader").classList.remove('hidden');
+                          
+                    
+                            setTimeout(function () {
+                                document.querySelector(".loader").classList.add('hidden');
+                    window.location.href = "index.php?requete=getCatalogue";
+                            }, 2000);
+                            
+    
+                        }
                 });
 
-                ////////////////////Fin ajouter Image dans le dossier local /////////////////////
-
-
-            console.log(param.image)
-            console.log(param)
-            // let requete = new Request("index.php?requete=ajouterBouteilleNonListeeCatalogue", {
-            //     method: "POST",
-            //     body: JSON.stringify(param),
-            //     headers: { "Content-Type": "application/json" },
-            // });
-
-            // fetch(requete)
-            //     .then(response => {
-            //         if (response.status === 200) {
-            //             console.log(response);
 
 
 
-            //         }
 
-            //     })
-            //     .then((response) => {
-            //         console.log(response);
-            //     })
-            //     .catch((error) => {
-            //         console.error(error);
-            //     });
-
+                
+                ////////////////////Fin ajouter Image dans le dossier local ////////////////////
 
 
 
@@ -407,10 +413,17 @@ window.addEventListener('load', function () {
 
     }//end If(btnAjoutNonListeeCatalogue)
 
+   
+      
+    
 
 
 
-  
+
+
+
+
+
 
 
     if (localStorage.getItem('scrollPosition') !== null)
