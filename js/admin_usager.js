@@ -332,7 +332,20 @@ window.addEventListener('load', function () {
     //  $info->prix = preg_replace("/[^0-9\,]/", " ", $info->prix);
     console.log(formNonListee.querySelector('[type=file]').files);
  
+
+
+    
+
+
     //ajouterImageLocal
+console.log(document.getElementById("nom_image"));
+
+document.getElementById("image").addEventListener("change", function(){
+    console.log(document.getElementById("image"))
+    let fullPath = this.value; // fetched value = C:\fakepath\fileName.extension
+    let fileName = fullPath.split(/(\\|\/)/g).pop();  // fetch the file name
+    document.getElementById("nom_image").innerHTML = fileName;  // display the file name
+  }, false);
 
     if (btnAjoutNonListeeCatalogue) {
         btnAjoutNonListeeCatalogue.addEventListener("click", function (evt) {
@@ -367,11 +380,7 @@ window.addEventListener('load', function () {
             fetch(requete)
                 .then(function (response) {
 
-                    document.getElementById("image").addEventListener("change", function(){
-                        var fullPath = this.value; // fetched value = C:\fakepath\fileName.extension
-                        var fileName = fullPath.split(/(\\|\/)/g).pop();  // fetch the file name
-                        document.getElementById("nom_image").innerHTML = fileName;  // display the file name
-                      }, false);
+                      
 
                     let requete = new Request("index.php?requete=ajouterImageLocal", {
                         method: "POST",

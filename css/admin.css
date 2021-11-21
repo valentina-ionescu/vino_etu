@@ -644,13 +644,8 @@ p.txt_msg-supprime, p.txt_msg-usg-supprime{
 .admin_form__modif input[type='radio'], .admin_form__modif input[type='checkbox']{
     width: 10%;
 }
-.admin_form__modif fieldset label{
-    padding:0.4em;
-    /* width: 50%; */
-}
-.admin_form__modif fieldset {
-    justify-content: space-around;
-}
+
+
 .show__modal{
     display: block;
 }

@@ -763,7 +763,7 @@ class Controler
 	private function formAjouterBouteilleNonListee()
 	{
 		include("vues/entete.php");
-		include("vues/ajouter_nonListees.php");
+		include("vues/admin_ajoutNonListees.php");
 	}
 
 
@@ -796,7 +796,7 @@ class Controler
 		} else {
 
 			 include("vues/admin_entetePrincipale.php");
-			include("vues/ajouter_nonListees.php");
+			include("vues/admin_ajoutNonListees.php");
 
 		}
 
