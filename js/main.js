@@ -10,6 +10,14 @@
 
 //const BaseURL = "https://jmartel.webdev.cmaisonneuve.qc.ca/n61/vino/";
 
+
+
+
+
+
+
+
+
 //////////////////////////////////////////////
 //Fonction boire bouteille                  //
 //////////////////////////////////////////////
@@ -821,6 +829,7 @@ window.addEventListener("load", function () {
   let uimage = document.querySelector(".u__profile_img");
   let umenu = document.querySelector(".u__profile-toggle");
   console.log(umenu);
+  console.log(uimage);
   uimage.addEventListener("click", (e) => {
     // umenu.style.display = umenu.style.display === "none" ? "flex" : "none";
     umenu.classList.toggle('show');
@@ -913,6 +922,16 @@ document.addEventListener('click',(e) => {
   let btnAjoutBouteillePerso = document.querySelector("[name='ajouterBouteillePersonnalisé']");
   let msgErreur = document.querySelector('[data-js-erreur-inserer]');
 
+  // document.querySelector('.btn_ajout_image').addEventListener('click', () => {
+  //   document.querySelector('#imagePerso').click();
+  // });
+  document.getElementById("imagePerso").addEventListener("change", function(){
+    let fullPath = this.value; // fetched value = C:\fakepath\fileName.extension
+    let fileName = fullPath.split(/(\\|\/)/g).pop();  // fetch the file name
+    document.getElementById("nom_imagePerso").innerHTML = fileName;  // display the file name
+  }, false);
+
+
   btnAjoutBouteillePerso.addEventListener('click', (e) => {
 
     let bouteillePerso = {
@@ -961,6 +980,8 @@ document.addEventListener('click',(e) => {
 
       fetch(requete)
         .then((response) => {
+    
+
           let requete = new Request("index.php?requete=ajouterImagePerso", {
             method: "POST",
             body: formData,

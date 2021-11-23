@@ -27,7 +27,7 @@
         position: fixed;
         top:0;
         width: 100%;
-        z-index: 99;
+        z-index: 1;
         gap: unset;
         padding: .5em;
         padding-top: .7em;
@@ -150,8 +150,10 @@
 
     #menu {
         position: absolute;
-        width: 32em;
-        height: 1000px;
+        /* width: 32em; */
+        width: 110vw;
+        height: 110vh;
+        /* height: 1000px; */
         margin: -100px 0 0 -50px;
         padding: 50px;
         padding-top: 125px;
@@ -179,7 +181,7 @@
 
 
    /* Men dropdown du profile usager */
-   .u__profile-toggle {
+   .u__profile-toggle, .u__profile-toggle_admin {
        display: none;
        transition: all .2ms ease-in-out;
    }

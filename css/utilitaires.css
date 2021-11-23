@@ -24,8 +24,13 @@
     --bg-doree: #98813D;
     --txt-primary:#7B033D;
     --txt-medium: #7a476e;
-    --bg-input: rgba(30, 18, 33, 0.434);
-    --bg-primary-admin: #07364d;
+    --bg-input: rgba(30, 18, 33, 0.435);
+    --bg-primaire-admin: #195B5B;
+    --bg-primaire-foncee-admin: #022e2e;
+    --bg-sombre-admin: #181E2D;
+    --bg-accent-admin: #a14a03;
+    --bg-secondaire-admin:#E5B25C;
+
 
 
 
@@ -203,13 +208,13 @@ sup {
     margin: 0;
 }
 
-.checkAjout[type=checkbox]{
+.checkbox__wrapper .checkAjout[type=checkbox]{
 	height: 0;
 	width: 0;
 	visibility: hidden;
 }
 
-.checkLabel {
+.checkbox__wrapper .checkLabel {
 	cursor: pointer;
 	text-indent: -9999px;
 	width: 50px;
@@ -220,7 +225,7 @@ sup {
 	position: relative;
 }
 
-.checkLabel:after {
+.checkbox__wrapper .checkLabel:after {
 	content: '';
 	position: absolute;
 	top: 4px;
@@ -232,11 +237,11 @@ sup {
 	transition: 0.3s;
 }
 
-.checkAjout:checked + label {
+.checkbox__wrapper .checkAjout:checked + label {
 	background: var(--bg-primaire);
 }
 
-.checkAjout:checked + label:after {
+.checkbox__wrapper .checkAjout:checked + label:after {
 	left: calc(100% - 5px);
 	transform: translateX(-100%);
 }

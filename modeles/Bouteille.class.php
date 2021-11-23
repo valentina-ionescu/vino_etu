@@ -452,11 +452,140 @@ class Bouteille extends Modele {
 
 
 
-	public function ajouterImageFichierLocal($image)
+	public function redimmensionImage($image, $ext, $maxDimL, $maxDimH)
 	{
-       
 
-    }
+	/*	$imageCadreH = 550;
+		$imageCadreL = 367;
+		$qualite =100;
+		
+	list($largeur, $hauteur, $type, $attr) = getimagesize( $image );
+	  //set dimensions
+	  if($largeur> $hauteur) {
+	$ratio = $imageCadreH/$hauteur;
+		$nouvL = $imageCadreH;
+		//respecter la ratio
+		$nouvH = round($hauteur/$largeur*$imageCadreH);
+		 //set the offset
+		//  $off_y=ceil(($nouvL-$nouvH)/2);
+		//  $off_x=0;
+		} else if($hauteur> $largeur) {
+			$nouvH=$imageCadreH;
+			$nouvL=round($largeur/$hauteur*$imageCadreH);
+			// $off_x=ceil(($nouvH-$nouvL)/2);
+			// $off_y=0;
+	}
+	else {
+			$nouvL=$nouvH=$imageCadreH;
+			// $off_x=$off_y=0;
+	}
+	$src = imagecreatefromstring(file_get_contents($image));
+	$imageRedim = imagecreatetruecolor( $imageCadreL, $imageCadreH );
+	$target_filename =$image;
+//default background is black
+$bg_imageRedim = imagecolorallocate ( $imageRedim, 255, 255, 255 );
+// imagefill ( $imageRedim, 0, 0, $bg_imageRedim );
+imagecopyresampled($imageRedim, $src, 0, 0, 0, 0, $nouvL, $nouvH, $largeur, $hauteur);
+
+$resultImg = imagejpeg($imageRedim, $target_filename,$qualite); // adjust format as needed
+return $resultImg;*/
+
+
+		chmod($image, 0777);
+		list($largeur, $hauteur, $type, $attr) = getimagesize( $image );
+
+		// $maxDimL = 367;
+		// $maxDimH = 550;
+		$redimImg = '';
+		$origHauteur = $hauteur;
+		$origLargeur = $largeur;
+
+		//recuperer l'extension/type de l'images
+		switch ($ext)
+        {
+            case 1;
+                $source = imagecreatefromjpeg($image);
+            break;
+
+            case 2;
+                $source = imagecreatefromgif($image);
+            break;
+
+            case 3;
+                $source = imagecreatefrompng($image);
+            break;
+        }
+
+		//creer le canevas de l'image
+		$resultImg = imagecreatetruecolor($maxDimL, $maxDimH);
+
+        $bgcolor = imagecolorallocate($resultImg, 255, 255, 255); // couleur de fond si l'image ne vouvre pas l'entieretee du canevas
+        imagefill($resultImg, 0, 0, $bgcolor);       // resetter la couleur de fond a blanc. 
+
+		if ( $largeur > $maxDimL || $hauteur > $maxDimH ) {
+        // Verifier la largeur vs la hauteur de l'image et la centrer
+        if($origHauteur<$origLargeur) // si la largeur d'origine est plus grande que l'hauteur
+        {
+            $nouvImgHauteur = $maxDimH; 
+            $nouvImgLargeur = ceil(($maxDimH*$origLargeur)/$origHauteur);
+            imagecopyresampled($resultImg,$source,-ceil(($nouvImgLargeur-$maxDimL)/2),0,0,0,$nouvImgLargeur,$nouvImgHauteur,$origLargeur,$origHauteur);
+        }
+        else
+        {
+            $nouvImgHauteur = ceil(($maxDimL*$origHauteur)/$origLargeur);
+            $nouvImgLargeur = $maxDimL; 
+            imagecopyresampled($resultImg,$source,0,-ceil(($nouvImgHauteur-$maxDimH)/2),0,0,$nouvImgLargeur,$nouvImgHauteur,$origLargeur,$origHauteur);
+        }
+
+        //we save the image as jpg resized to 110x110 px and cropped to the center. the old image will be replaced
+        imagejpeg($resultImg,$image,90);
+}
+        return $image;
+
+    
+}
+
+
+
+
+/*
+
+		if ( $largeur > $maxDimL || $hauteur > $maxDimH ) {
+			$target_filename =  $image;
+			$fn =  $image;
+			$size = getimagesize( $fn );
+			$ratio = $size[0]/$size[1];// largeur/hauteur
+			if( $largeur > $hauteur) {
+				$nouvL = $maxDimL;
+				// $nouvH = $maxDimH/$ratio;
+				$nouvH = round($hauteur/$largeur*$maxDimH);
+
+				$off_y=ceil($nouvL-$nouvH/2);
+				$off_x=ceil($nouvL-$nouvH/2);
+			} else{
+				// $nouvL = $maxDimL*$ratio;
+				$nouvL = round($largeur/$hauteur*$maxDimH);
+				$nouvH = $maxDimH;
+				$off_x=ceil(($nouvH-$nouvL)/2);
+				$off_y=0;
+			}
+
+			$src = imagecreatefromstring(file_get_contents($fn));
+			$dst = imagecreatetruecolor( $maxDimL, $maxDimH );
+			$bg_imageRedim = imagecolorallocate ( $dst, 255, 255, 255 );
+		 imagefill ( $dst, 0, 0, $bg_imageRedim );
+
+			imagecopyresampled($dst, $src, $off_x, $off_y, 0, 0, $nouvL, $nouvH, $largeur, $hauteur );
+		
+			$redimImg = imagejpeg($dst, $target_filename,100); // adjust format as needed
+		
+		
+		}
+
+		echo($redimImg);
+		return $redimImg;
+	*/
+   // }
   
 
 	

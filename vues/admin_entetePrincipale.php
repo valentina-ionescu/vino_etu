@@ -49,7 +49,9 @@
 
     <script src="./js/main.js"></script>
     <script src="./js/admin.js"></script>
+    <script src="./js/admin_recherche_triage.js"></script>
     <script src="./js/admin_usager.js"></script>
+
 
 
 </head>
@@ -87,7 +89,7 @@
             <i class="fas fa-times close menu_icon hidden"></i>
 
             <!-- </span> -->
-            <a href="?requete=accueil" aria-label="logo" class="logo">
+            <a href="?requete=home" aria-label="logo" class="logo">
                 <img src="assets/img/logo/logo_verre.svg" height="40" alt="">
 
             </a>
@@ -98,7 +100,7 @@
                     <h3>Admin</h3>
                 </li>
 
-                <li class="tabs__button  tabs__button--active  admin_carte" data-for-tab="1">
+                <li class="tabs__button  admin_carte" data-for-tab="1">
                     <!-- <a href="#Catalogue"> -->
                     <a href="?requete=getCatalogue">
                         <picture class="admin_carte_img">
@@ -159,16 +161,23 @@
     </header>
 
 
-    <section class="">
+    <section class="mt-5">
 
         <section class="search-and-user">
 
             <div class="admin__profile">
                 <span class="greeting">Bonjour admin!</span>
-                <div class="notifications">
-                    <i class="fas fa-user-tie"></i>
+                <div class="notifications u__profile_img_admin">
+                    <i class="fas fa-user-tie "></i>
+                </div>
+
+                <div class=" u__profile-toggle_admin  col">
+                    <form method="POST" action="index.php?requete=profileConnexion">
+                        <button name="status" value="deconnexion">Déconnexion</button>
+                    </form>
                 </div>
             </div>
+
         </section>
 
 

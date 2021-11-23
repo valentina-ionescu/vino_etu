@@ -102,6 +102,16 @@
     border: 1px solid #ccc;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
+.u__profile-toggle_admin {
+   top: 55px;
+   padding: 1.5em 1em 0.6em 1em;
+    background: #1a202e;
+    z-index: 100;
+}
+.u__profile-toggle_admin button {
+    background-color: var(--bg-accent-admin);
+    font-size: 13px;
+}
 .show {
     display: flex;
 }
@@ -301,6 +311,7 @@ form.btn__ajouter_cellier {
 }
 #qte {
     max-width: fit-content;
+    max-width: -moz-fit-content;
 }
 #cell_rech {
     border: 1px solid var(--bg-medium);
@@ -329,7 +340,7 @@ form.btn__ajouter_cellier {
     .u__ajout {
         width: 17%;
      }
-     .u__profile-toggle {
+     .u__profile-toggle,.u__profile-toggle_admin {
         left: 65vw;
     }
 }
@@ -351,7 +362,7 @@ form.btn__ajouter_cellier {
     .u__celliers_liste {
         margin-top: -9%;
     }
-    .u__profile-toggle {
+    .u__profile-toggle,.u__profile-toggle_admin {
         left: 80vw;
     }
 }
