@@ -73,7 +73,7 @@
 
                 <button class="btn btn-accent solid ajoutNonlisteeBtn" type="submit">Ajouter la bouteille</button> 
                 <!-- <a href="?requete=ajouterBouteilleNonListeeCatalogue" class="btn btn-accent solid" type="submit">Ajouter la bouteille</a> -->
-
+                <button class="btn btn-primaire btnAnnul" type="reset">Annuler</button>
             </div>
         </div>
         <!-- </div> -->

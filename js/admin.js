@@ -9,7 +9,7 @@
 
 
 
- //const BaseURL = document.baseURI;
+//const BaseURL = document.baseURI;
 
 console.log(BaseURL);
 
@@ -24,155 +24,81 @@ window.addEventListener('load', function () {
 
 
 
- ////////////////////////////////////////////////////////
- //Fonction Recherche Catalogue par nom de bouteille   //
- ////////////////////////////////////////////////////////
-
-
- /**
- * Recherche Catalogue par nom de bouteille .
- * 
- * @param {HTMLTableElement} table La table a rechercher
- * @param {HTMLTableElement} searchColumn La colone a rechercher
- * @param {HTMLInputElement} rechercheInput champs de recherche
- */  
-
-
-  function rechercheCatalogue(table, rechercheInput, searchColumn){
-
-  
-       let tableRows = table.querySelectorAll("tbody > tr")
-         console.log(tableRows);
-         //;
-       let headerCell = searchColumn ;
-       let otherHeaderCells = headerCell.closest("tr").children;
-       let columnIndex = Array.from(otherHeaderCells).indexOf(headerCell);
-       let searchableCells = Array.from(tableRows).map(
-         (row) => row.querySelectorAll("td")[columnIndex]
-       );
-   
-       rechercheInput.addEventListener("input", () => {
-         let searchQuery = rechercheInput.value.toLowerCase();
-   
-         for (let tableCell of searchableCells) {
-           let row = tableCell.closest("tr");
-           let value = tableCell.textContent.toLowerCase().replace(",", "");
-   
-           row.style.visibility = null;
-   
-           if (value.search(searchQuery) === -1) {
-             row.style.visibility = "collapse";
-           }
-         }
-        
-     });
-   
-   }
-
- 
-   
- 
-
-
-
-  ///////////////////////////////////////////////////
-  //Fonction Trier Bouteilles du Catalogue par nom  //
-  ///////////////////////////////////////////////////
-
-
-/**
- * Triage de la table HTML .
- * 
- * @param {HTMLTableElement} table La table a trier
- * @param {number} colonne Le index de la  colonne a trier
- * @param {boolean} asc Determine la direction du triage asc ou desc
- */
- function triageColonneTable(table, colonne, asc = true) {
-  let dirModifier = asc ? 1 : -1;
-  let tBody = table.tBodies[0];
-  let rows = Array.from(tBody.querySelectorAll("tr"));
-  console.log(tBody)
-
-  // Sort each row
-  let sortedRows = rows.sort((a, b) => {
-      let aColText = a.querySelector(`td:nth-child(${ colonne + 1 })`).textContent.trim();
-      let bColText = b.querySelector(`td:nth-child(${ colonne + 1 })`).textContent.trim();
-
-      return aColText > bColText ? (1 * dirModifier) : (-1 * dirModifier);
-  });
-
-  // Remove all existing TRs from the table
-  while (tBody.firstChild) {
-      tBody.removeChild(tBody.firstChild);
-  }
-
-  // Re-add the newly sorted rows
-  tBody.append(...sortedRows);
-
-  // Remember how the colonne is currently sorted
-  table.querySelectorAll("th").forEach(th => th.classList.remove("th-tri-asc", "th-tri-desc"));
-  table.querySelector(`th:nth-child(${ colonne + 1})`).classList.toggle("th-tri-asc", asc);
-  table.querySelector(`th:nth-child(${ colonne + 1})`).classList.toggle("th-tri-desc", !asc);
-}
-
-document.querySelectorAll(".table_triable th.trier").forEach(headerCell => {
-  headerCell.addEventListener("click", () => {
-      let tableElement = headerCell.parentElement.parentElement.parentElement;
-      let headerIndex = Array.prototype.indexOf.call(headerCell.parentElement.children, headerCell);
-      let currentIsAscending = headerCell.classList.contains("th-sort-asc");
-
-      triageColonneTable(tableElement, headerIndex, !currentIsAscending);
-  });
-});
-
-
-
-
 
   ////////////////////////////////////////////////////////////////////////
   //Fonction afficher le contenu en fonction de bouton/tab selectionnee //
   ////////////////////////////////////////////////////////////////////////
 
-  document.querySelectorAll(".tabs__button").forEach(function (element) {
+  document.querySelectorAll(".tabs__button").forEach((element)=> {
+    console.log(element)
     let sideBar = element.parentElement;
     //    if ( sideBar.style=("transform: translate(-100%, 0)")){
     //     sideBar.style= (" ");
     //    }
     element.addEventListener("click", function (evt) {
+      document.querySelectorAll(".tabs__button").forEach(tab=>tab.classList.remove('tabs__button--active'))
 
-      let mainContenant = document.querySelector('.admin_contenu_page');
-      let tabNumber = element.dataset.forTab;
-      let contentActivate = mainContenant.querySelector(`.admin__tabs__content[data-tab="${tabNumber}"]`);
-      sessionStorage.setItem("activeLocation", tabNumber);
+       
+        element.classList.add('tabs__button--active');
+     
+     
+      // let mainContenant = document.querySelector('.admin_contenu_page');
+      // let tabNumber = element.dataset.forTab;
+      // let contentActivate = mainContenant.querySelector(`.admin__tabs__content[data-tab="${tabNumber}"]`);
 
-      sideBar.querySelectorAll('.tabs__button').forEach(button => {
-        button.classList.remove('tabs__button--active');
-      })
-      mainContenant.querySelectorAll('.admin__tabs__content').forEach(tab => {
-        tab.classList.remove('admin__tabs__content--active');
-      })
+      // sideBar.querySelectorAll('.tabs__button').forEach(button => {
+      //   button.classList.remove('tabs__button--active');
+      // })
+      // mainContenant.querySelectorAll('.admin__tabs__content').forEach(tab => {
+      //   tab.classList.remove('admin__tabs__content--active');
+      // })
       // console.log(sessionStorage.getItem("activeLocation"))
 
       //cacher le "x" et re-afficher le menu burger
       // document.getElementById("admin_menuToggle").nextElementSibling.classList.add('hidden')
       //  document.getElementById("admin_menuToggle").lastElementChild.previousElementSibling.classList.remove('hidden');
 
-      element.classList.add('tabs__button--active');
-      contentActivate.classList.add('admin__tabs__content--active');
+      // element.classList.add('tabs__button--active');
+      // contentActivate.classList.add('admin__tabs__content--active');
       //retracter la side-bare
-       sideBar.classList.toggle('sideBar-ferme');
+      sideBar.classList.toggle('sideBar-ferme');
 
       document.querySelectorAll('.menu_icon').forEach(icon => {
 
         if (icon.classList.contains('hidden')) {
           icon.classList.remove('hidden')
-          
-      } else {
 
-        icon.classList.add('hidden')
-       //  sideBar.classList.remove('sideBar-ferme');
+        } else {
 
-      }
+          icon.classList.add('hidden')
+          //  sideBar.classList.remove('sideBar-ferme');
+
+        }
+        // // click en dehors du menu le fermera
+    // document.addEventListener('click', (e) => {
+
+    //   if (!e.target.matches('#admin_menuToggle1')) {
+
+    //     if (!sideBar.classList.contains('sideBar-ferme')) {
+    //       sideBar.classList.add('sideBar-ferme');
+    //       // if (icon.classList.contains('hidden')) {
+    //       //   icon.classList.remove('hidden')
+    //       icon.classList.add('hidden')
+
+    //       // } else {
+    //       //   icon.classList.add('hidden')
+    //       // }
+    //     } else {
+    //       if (icon.classList.contains('hidden')) {
+    //         icon.classList.remove('hidden')
+
+    //       } else {
+    //         icon.classList.add('hidden')
+    //       }
+    //     }
+    //   }
+
+    // })
 
       })
 
@@ -190,16 +116,10 @@ document.querySelectorAll(".table_triable th.trier").forEach(headerCell => {
   sideBar = document.querySelector('.admin-menu');
 
   document.querySelectorAll('.menu_icon').forEach(icon => {
-
-
-
-
+    
     menuToggle.addEventListener("click", function (evt) {
 
-      //
 
-
-console.log(icon);
       if (icon.classList.contains('hidden')) {
         icon.classList.remove('hidden')
 
@@ -208,38 +128,19 @@ console.log(icon);
 
         }
 
-
-
-
       } else {
-
-
-
 
         icon.classList.add('hidden')
         sideBar.classList.add('sideBar-ferme');
-
-
       }
 
-
-
     })
-
-
-
-
 
   })
 
 
 
-//appele de la fonction Recherche Catalogue Bouteilles 
-//rechercheCatalogue(table, rechercheInput, searchColumn)
 
-if(document.querySelector('.recherche_bouteille')!=""){
-  rechercheCatalogue(document.querySelector('.table_bouteilles'), document.querySelector(".recherche_bouteille"), document.querySelector(".nom_bouteille"));
-}
 
 
 
@@ -253,7 +154,7 @@ if(document.querySelector('.recherche_bouteille')!=""){
     //  console.log(element.parentElement.parentElement);
     element.addEventListener("click", function (evt) {
       console.log('click', evt.target);
-    
+
       let modal = document.querySelector(".desactivation__modal__wrapper");
       let id = element.dataset.id;
 
@@ -305,7 +206,7 @@ if(document.querySelector('.recherche_bouteille')!=""){
                 document.querySelector(".txt_msg-supprime").innerText = " ";
 
 
-            }, 3000);
+              }, 3000);
 
               return response.json();
 
@@ -331,6 +232,7 @@ if(document.querySelector('.recherche_bouteille')!=""){
 
 
 
+
   ///////////////////////////////////////////////////////
   //Fonction modifier  Bouteille dans le Catalogue     // 
   ///////////////////////////////////////////////////////
@@ -339,71 +241,72 @@ if(document.querySelector('.recherche_bouteille')!=""){
 
   // console.log(document.querySelector(".btnModifierBouteilleCatalogue"));
 
-  
+  function ModifierBouteilleAdmin() {
 
-  let modifBouteilleCatalogue = {
-    nom: document.querySelector("[name='nom']"),
-    format: document.querySelector("[name='format']"),
-    image: document.querySelector("[name='image']"),
-    code_saq: document.querySelector("[name='code_saq']"),
-    pays: document.querySelector("[name='pays']"),
-    prix_saq: document.querySelector("[name='prix_saq']"),
-    url_saq: document.querySelector("[name='url_saq']"),
-  };
-
-  document.querySelector(".btnAnnul").addEventListener("click", function (evt) {
-    window.location.assign("index.php?requete=admin")
-  })
-  console.log(document.querySelector(".btnModifierBouteilleCatalogue"));
-  document.querySelector(".btnModifierBouteilleCatalogue").addEventListener("click", function (evt) {
-    console.log(document.querySelector(".btnModifierBouteilleCatalogue"));
-
-    let id = document.querySelector("[name='id']").value;
-
-    var param = {
-      "id": id,
-      "nom": modifBouteilleCatalogue.nom.value,
-      "format": modifBouteilleCatalogue.format.value,
-      "image": modifBouteilleCatalogue.image.value,
-      "code_saq": modifBouteilleCatalogue.code_saq.value,
-      "pays": modifBouteilleCatalogue.pays.value,
-      "prix_saq": modifBouteilleCatalogue.prix_saq.value,
-      "url_saq": modifBouteilleCatalogue.url_saq.value,
+    let modifBouteilleCatalogue = {
+      nom: document.querySelector("[name='nom']"),
+      format: document.querySelector("[name='format']"),
+      image: document.querySelector("[name='image']"),
+      code_saq: document.querySelector("[name='code_saq']"),
+      pays: document.querySelector("[name='pays']"),
+      prix_saq: document.querySelector("[name='prix_saq']"),
+      url_saq: document.querySelector("[name='url_saq']"),
     };
 
-    console.log(param);
-    console.log('prix', modifBouteilleCatalogue.prix_saq.value)
-    let requete = new Request("index.php?requete=modifierBouteilleCatalogue", { method: 'PUT', body: JSON.stringify(param) });
-    console.log(requete);
-    fetch(requete)
-      .then(response => {
-        if (response.status === 200) {
-          //re-afficher le catalogue
-          console.log(response);
-          let modal = document.querySelector('.confirm__modal__wrapper');
-          modal.classList.add('show');
-          modal.querySelector('.txt_msg-modif').innerText = 'La bouteille «' + modifBouteilleCatalogue.nom.value + '» modifiée avec succes !';
+    document.querySelector('.admin_form__modif').querySelector(".btnAnnul").addEventListener("click", function (evt) {
+      window.location.assign("index.php?requete=admin")
+    })
 
-          setTimeout(function () {
-            window.location.href = 'index.php?requete=admin';
-          }, 2000);
+    document.querySelector('.admin_form__modif').querySelector('.btnModifierBouteilleCatalogue').addEventListener("click", function (evt) {
 
-          return response.json();
-        } else {
-          throw new Error('Erreur');
-        }
-      })
+      let id = document.querySelector("[name='id']").value;
 
-      .catch(error => {
-        console.error(error);
-      });
+      var param = {
+        "id": id,
+        "nom": modifBouteilleCatalogue.nom.value,
+        "format": modifBouteilleCatalogue.format.value,
+        "image": modifBouteilleCatalogue.image.value,
+        "code_saq": modifBouteilleCatalogue.code_saq.value,
+        "pays": modifBouteilleCatalogue.pays.value,
+        "prix_saq": modifBouteilleCatalogue.prix_saq.value,
+        "url_saq": modifBouteilleCatalogue.url_saq.value,
+      };
 
-  });
+      console.log(param);
+      console.log('prix', modifBouteilleCatalogue.prix_saq.value)
+      let requete = new Request("index.php?requete=modifierBouteilleCatalogue", { method: 'PUT', body: JSON.stringify(param) });
+      console.log(requete);
+      fetch(requete)
+        .then(response => {
+          if (response.status === 200) {
+            //re-afficher le catalogue
+            console.log(response);
+            let modal = document.querySelector('.confirm__modal__wrapper');
+            modal.classList.add('show');
+            modal.querySelector('.txt_msg-modif').innerText = 'La bouteille «' + modifBouteilleCatalogue.nom.value + '» modifiée avec succes !';
 
+            setTimeout(function () {
+              window.location.href = 'index.php?requete=admin';
+            }, 2000);
 
+            return response.json();
+          } else {
+            throw new Error('Erreur');
+          }
+        })
 
-    
-   
+        .catch(error => {
+          console.error(error);
+        });
+
+    });
+
+  }
+
+  if (document.querySelector('.admin_form__modif').querySelector('.btnModifierBouteilleCatalogue')) {
+    ModifierBouteilleAdmin();
+  }
+
 
 
 

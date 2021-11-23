@@ -10,13 +10,15 @@
     <h2>Catalogue</h2>
 
     <a href="?requete=ajouterBouteilleNonListeeCatalogue" class="btn btn-primaire solid admin ajoute-bouteille">Ajouter Une bouteill non listee</a>
-    <p class="txt_msg-supprime"></p>
+ 
     <div class="form__recherche form__recherche--clair">
         <span class="fas fa-search iconne "></span>
         <!-- <input type="text" class="search-input" placeholder="Cherchez par nom"> -->
 
         <input type="text" id="cell_rech" class="form__recherche--clair recherche_bouteille" placeholder="Recherche par nom..." title="Nom de cellier">
-    </div>
+    </div> 
+  <p class="txt_msg-supprime"></p>
+  
     <div class="mt-1">
 
         <!-- <span> <?php echo (count($listeBouteilles)); ?> Bouteilles </span> -->

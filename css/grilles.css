@@ -39,7 +39,7 @@
     gap: 10px;
 }
 
-.carte.horizontale {
+.horizontale {
     flex-direction: row;
     justify-content: unset;
     flex-basis: 95vw;
@@ -386,6 +386,7 @@ details[open] summary {
 
 }
 
+
 @media all and (max-width:460px) {
     .carte__tag-top {
         font-size: .8rem;
@@ -438,4 +439,19 @@ details[open] summary {
     .tab-content {
         margin-top: 7px;
     }
+}
+
+
+@media all   
+  and (min-width: 768px) 
+  and (max-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+    .carte.horizontale {
+        flex-direction: column; 
+        justify-content: unset;
+        flex-basis: unset;
+        min-width: unset;
+        align-items: center;
+    }
+    
 }
