@@ -85,6 +85,12 @@ class Controler
 			case 'getCellier':
 				$this->getCellier();
 				break;
+			case 'getCellierTrie':
+				$this->getCellierTrie();
+				break;
+			case 'getListeBouteilles':
+				$this->getListeBouteilles();
+				break;
 			case 'getCatalogue':
 				$this->getCatalogue();
 				break;
@@ -136,13 +142,19 @@ class Controler
 				break;
 				
 		}
+		
 	}
 
+	
+	
 	private function accueil()
 	{
 		$User = new Usager();
 		$cel = new Cellier();
 		$msg = '';
+
+		
+
 		if (isset($_SESSION['usager_id'])) {
 			$dataC = $cel->getCellierInfo();
 
@@ -150,7 +162,7 @@ class Controler
 				$msg = "";
 	
 				$bte = new Bouteille();
-
+                
 				$dataB = $bte->getListeBouteilleCellier();
 				
 			
@@ -320,6 +332,48 @@ class Controler
 		$celNom = $cel->getCellierNom($_SESSION['cellier_id']);
 		$_SESSION['cellier_nom'] = $celNom['nom_cellier'];
 
+		
+	}
+	/**
+	 * getCellierTrie retourne l'information sur un cellier donné
+	 *
+	 * @return void
+	 */
+	private function getCellierTrie($idCell=null,$tri=null,$col=null)
+	{
+		
+		$cel = new Cellier();
+		$bte = new Bouteille();
+        if(!empty($body)) {
+
+			$body = json_decode(file_get_contents('php://input'));
+			$ordre = $body->ordre;
+			$champs = $body->col;
+			$_SESSION['cellier_id'] = $body->id;
+		}else {
+			$ordre=$tri;
+			$champs = $col;
+			$_SESSION['cellier_id'] = $idCell;
+		}
+		// echo $body->id;
+		// echo $ordre;
+        
+		//  echo $_SESSION['cellier_id'];
+
+		$dataB = $bte->getListeBouteilleCellierTrie($ordre,$champs);
+		$dataC = $cel->getCellierInfo();
+		$celNom = $cel->getCellierNom($_SESSION['cellier_id']);
+		$_SESSION['cellier_nom'] = $celNom['nom_cellier'];
+        
+	   
+		if(empty($body)) {
+			include("vues/entete.php");
+			include("vues/cellier.php");
+			include("vues/pied.php");
+		
+		}
+
+		
 		
 	}
 
@@ -882,5 +936,11 @@ class Controler
 	return $finalImg;
 
 	}
-
+	
+	function getListeBouteilles() {
+		if  (isset($_GET['id']) &&  isset($_GET['ordre']) && isset($_GET['col'])) {
+			$this->getCellierTrie($_GET['id'], $_GET['ordre'] ,$_GET['col']);
+		}
+	}
+	
 }

@@ -85,6 +85,62 @@ class Bouteille extends Modele {
 		
 		return $rows;
 	}
+	public function getListeBouteilleCellierTrie($ordre,$champs)
+	{
+		
+		$idCellier = $_SESSION['cellier_id'];
+
+		$rows = Array();
+		$requete ='SELECT 
+						c.nom_cellier,
+						c.id as cellier_id,
+						vino__cellier_has_vino__bouteille.date_achat,
+						vino__cellier_has_vino__bouteille.garde_jusqua,
+						vino__cellier_has_vino__bouteille.notes,
+						vino__cellier_has_vino__bouteille.prix,
+						vino__cellier_has_vino__bouteille.quantite,
+						vino__cellier_has_vino__bouteille.vino__bouteille_id,
+						vino__cellier_has_vino__bouteille.vino__cellier_id,
+						vino__cellier_has_vino__bouteille.millesime,
+						b.id,
+						b.nom,
+						b.vino__type_id,
+						b.image,
+						b.code_saq,
+						b.url_saq,
+						b.pays,
+						b.description,
+						b.format
+/*						t.type */
+						from vino__cellier c 
+						INNER JOIN vino__cellier_has_vino__bouteille ON c.id = vino__cellier_has_vino__bouteille.vino__cellier_id
+						INNER JOIN vino__bouteille b ON vino__cellier_has_vino__bouteille.vino__bouteille_id = b.id
+						/*INNER JOIN vino__type t ON vino__bouteille.vino__type_id = t.id*/
+						WHERE vino__cellier_id = '.$idCellier.'
+						 ORDER BY b.'.$champs .' '.$ordre; 
+						 
+		if(($res = $this->_db->query($requete)) ==	 true)
+		{
+
+			if($res->num_rows)
+			{
+				while($row = $res->fetch_assoc())
+				{
+					$row['nom'] = trim(htmlspecialchars($row['nom']));
+					$rows[] = $row;
+				}
+			 }
+		}
+		else 
+		{
+			throw new Exception("Erreur de requête sur la base de donnée", 1);
+			 //$this->_db->error;
+		}
+		
+		
+		
+		return $rows;
+	}
 	
 	/**
 	 * Cette méthode permet de retourner les résultats de recherche pour la fonction d'autocomplete de l'ajout des bouteilles dans le cellier

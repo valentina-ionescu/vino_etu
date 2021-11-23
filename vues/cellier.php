@@ -34,16 +34,23 @@
             <!-- <hr class="separe"> -->
            
                 <div class="filtres">
-                    <a href="" class="tag-droite txt-blanc capit petit">Filtres<i class="fas fa-angle-down"></i></i></a>
+                    <button class="tag-droite txt-blanc capit petit">Filtres<i class="fas fa-angle-down"></i></i></button>
+                </div>
+                    <!-- Modal de filtres -->
+                    
                     <div class="filtres__modal__wrapper">
                     <div class="modal__overlay clair">
                             <div class="modal__filtre ">
+                            <!-- <span class="fermer"><i class="fas fa-times"></i></span> -->
+                            <button class="btn-filtre btn-filtre-fermer tag-droite">Fermer</button>
+                            <hr class="separe">
                                     <div class="sort_by">
                                         <h5>Trier par</h5>
-                                        <a class="btn-filtre" href="">Nom <i class="fa fa-caret-up caret"></i></a>
-                                        <a class="btn-filtre" href="">Nom<i class="fa fa-caret-down caret"></i></a>
-                                        <a class="btn-filtre" href="">Prix<i class="fa fa-caret-up caret"></i></a>
-                                        <a class="btn-filtre" href="">Prix<i class="fa fa-caret-down caret"></i></a>
+                                        <button class="btn-filtre nomASC" href="">Nom <i class="fas fa-arrow-up caret"></i></button>
+                                        <!-- <a class="btn-filtre nomASC" href="">Nom <i class="fa fa-caret-up caret"></i></a> -->
+                                        <button class="btn-filtre nomDESC" href="">Nom<i class="fas fa-arrow-down caret"></i></button>
+                                        <button class="btn-filtre prixASC" href="">Prix<i class="fas fa-arrow-up caret"></i></button>
+                                        <button class="btn-filtre prixDESC" href="">Prix<i class="fas fa-arrow-down caret"></i></button>
                                        
                                        
                                    </div>
@@ -69,20 +76,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
-           <!-- Modal de filtres -->
-           <!-- <div class="filtres__modal__wrapper">
-            <div class="modal__overlay clair">
-                    <div class="modal__filtre ">
-                            <div class="sort_by"><h5>Sort by</h5></div>
-                            <div class="millesime"><h5>Millesime</h5></div>
-                            <div class="garde"><h5>Garde</h5></div>
-                            <div class="type"><h5>Type</h5></div>
-                    </div>
-                </div>
-            </div> -->
-            <input id="dataB" type="hidden" name="bouteillesData" value="<?php  echo json_encode($dataB);?>">
-            <script>var dataB = <?php echo json_encode($dataB); ?></script>
+                <!-- </div> -->
+         
+          
+            <!-- <script>var dataB = <?php echo json_encode($dataB); ?></script> -->
         <?php
 
         if (isset($_SESSION['cellier_id'])) {
@@ -90,7 +87,7 @@
             foreach ($dataB as $cle => $bouteille) {
 
         ?>
-
+        <script>var id=<?php echo json_encode($_SESSION['cellier_id']); ?></script>
                 <div class="modal__wrapper">
                     <div class="modal__overlay">
                         <div class="modal__contenu flex col">
