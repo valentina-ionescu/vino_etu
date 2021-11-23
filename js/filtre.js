@@ -49,6 +49,17 @@ window.addEventListener("load", function () {
             // Récuperer les bouteilles dans l'ordre demandé
             fetchBouteilles(id,'ASC','prix');
           });
+
+
+          // Prix DESC
+        let sortPrixDown = document.querySelector('.prixDESC');
+       
+          sortPrixDown.addEventListener('click', (e) => {
+            console.log(e.target)
+
+            // Récuperer les bouteilles dans l'ordre demandé
+            fetchBouteilles(id,'DESC','prix');
+          });
           // Fermeture du modale de filtres
           document.querySelector('.btn-filtre').addEventListener('click', (e) => {
             modal.classList.remove('show');
