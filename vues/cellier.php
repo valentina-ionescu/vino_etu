@@ -11,9 +11,9 @@
                                             } ?></h3>
             </div>
         </div>
-        <div class="cellier__information__wrapper">
+        <!-- <div class="cellier__information__wrapper">
             
-            </div>
+        </div> -->
     </div>
         
     <!-- Modal de messages -->
@@ -30,10 +30,62 @@
             <a href="?requete=profile" ><i class="fas fa-angle-double-left fa-plus-reverse gauche"></i></a>
             <a href="?requete=ajouterNouvelleBouteilleCellier"><i class="fas fa-plus fa-plus-reverse"></i></a>
 
+            <!-- Filtres sur les bouteilles -->
+            <!-- <hr class="separe"> -->
+           
+                <div class="filtres">
+                    <a href="" class="tag-droite txt-blanc capit petit">Filtres<i class="fas fa-angle-down"></i></i></a>
+                    <div class="filtres__modal__wrapper">
+                    <div class="modal__overlay clair">
+                            <div class="modal__filtre ">
+                                    <div class="sort_by">
+                                        <h5>Trier par</h5>
+                                        <a class="btn-filtre" href="">Nom <i class="fa fa-caret-up caret"></i></a>
+                                        <a class="btn-filtre" href="">Nom<i class="fa fa-caret-down caret"></i></a>
+                                        <a class="btn-filtre" href="">Prix<i class="fa fa-caret-up caret"></i></a>
+                                        <a class="btn-filtre" href="">Prix<i class="fa fa-caret-down caret"></i></a>
+                                       
+                                       
+                                   </div>
+                                    <div class="millesime">
+                                        <h5>Millesime</h5>
+                                        <a class="btn-filtre" href="">2016</a>
+                                        <a class="btn-filtre" href="">2017</a>
+                                        <a class="btn-filtre" href="">2018</a>
+                                        <a class="btn-filtre" href="">Autre</a>
+                                    </div>
+                                    <div class="pays">
+                                        <h5>Pays</h5>
+                                        <a class="btn-filtre" href="">Allemagne</a>
+                                        <a class="btn-filtre" href="">Chili</a>
+                                        <a class="btn-filtre" href="">États-Unis</a>
+                                        <a class="btn-filtre" href="">Autre</a>
+                                    </div>
+                                    <div class="type">
+                                        <h5>Type</h5>
+                                        <a class="btn-filtre" href="">Vin rouge</a>
+                                        <a class="btn-filtre" href="">Vin blanc</a>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           <!-- Modal de filtres -->
+           <!-- <div class="filtres__modal__wrapper">
+            <div class="modal__overlay clair">
+                    <div class="modal__filtre ">
+                            <div class="sort_by"><h5>Sort by</h5></div>
+                            <div class="millesime"><h5>Millesime</h5></div>
+                            <div class="garde"><h5>Garde</h5></div>
+                            <div class="type"><h5>Type</h5></div>
+                    </div>
+                </div>
+            </div> -->
+            <input id="dataB" type="hidden" name="bouteillesData" value="<?php  echo json_encode($dataB);?>">
+            <script>var dataB = <?php echo json_encode($dataB); ?></script>
         <?php
 
         if (isset($_SESSION['cellier_id'])) {
-
 
             foreach ($dataB as $cle => $bouteille) {
 

@@ -828,15 +828,15 @@ class Controler
 
 	private function ajouterImagePerso()
 	{
-		var_dump($_FILES['file']);
+		// var_dump($_FILES['file']);
 		$imgFileName = $_FILES['file']['name'];
 
 		$location = "assets/img/bouteillePersonnalise/";
 		
 		$finalImg = '';
-		var_dump($imgFileName);
+		// var_dump($imgFileName);
 
-		var_dump($location);
+		// var_dump($location);
 	
 			if (move_uploaded_file($_FILES['file']['tmp_name'], $location.$imgFileName)){
 				$finalImg = $location.$imgFileName;

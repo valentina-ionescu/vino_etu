@@ -87,7 +87,7 @@
             <i class="fas fa-times close menu_icon hidden"></i>
 
             <!-- </span> -->
-            <a href="?requete=accueil" aria-label="logo" class="logo">
+            <a href="?requete=home" aria-label="logo" class="logo">
                 <img src="assets/img/logo/logo_verre.svg" height="40" alt="">
 
             </a>

@@ -316,7 +316,6 @@ select {
     color: #f1f1f1;
     text-align: center;
     margin-top: -.5rem;
-    margin-bottom: .75rem;
     margin-right: 1.5rem;
     width: 50px;
 }
@@ -357,4 +356,9 @@ form.nostyle{
 }
   .form_ajout_nonlistee .form__label__md, .form_ajout_nonlistee .form__nonlistee-check{
       margin: 0.3em 0;
+  }
+
+  .image__image {
+      margin: 0 0 5px 15px;
+      font-size: 16px;
   }

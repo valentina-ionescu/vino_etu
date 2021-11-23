@@ -7,7 +7,12 @@
  * @param  {} function(
  */
 window.addEventListener("load", function () {
+  
   // Fonctions de tri, inspiration.: https://betterprogramming.pub/sort-and-filter-dynamic-data-in-table-with-javascript-e7a1d2025e3c
+
+
+
+
 
   let triUp = "fa fa-caret-down",
     triDown = "fa fa-caret-up",
@@ -40,12 +45,19 @@ window.addEventListener("load", function () {
   let colonnes = document.querySelectorAll(".table-column");
   colonnes.forEach((col) => {
     col.addEventListener("click", (e) => {
+      console.log('colonne click')
       toggleFleche(e);
     });
   });
   cellRech.addEventListener("keyup", (e) => {
     filterTable();
   });
+
+ 
+   //////////////////////////////////////////////
+  //              Fonctions                   //
+  //////////////////////////////////////////////
+
 
   //  Fonction de tri
 
@@ -141,22 +153,16 @@ window.addEventListener("load", function () {
 
       
       let nomCellier = row.insertCell(0);
+      nomCellier.classList.add('cell__col-nom');
       // nomCellier.innerHTML = `<td class="cell__col-nom"><a href="" class="selectCellier" data-cellid="${data.cellId}">${data.nom}</a></td>`;
-      nomCellier.innerHTML = `<a href="" class="selectCellier" data-cellid="${data.cellId}">${data.nom}</a>`;
+      nomCellier.insertAdjacentHTML('beforeend', `<a href="" class="selectCellier" data-cellid="${data.cellId}">${data.nom}</a>`)
+      // nomCellier.innerHTML = `<a href="" class="selectCellier" data-cellid="${data.cellId}">${data.nom}</a>`;
      
       let qte = row.insertCell(1);
       // qte.innerHTML = `<td class="cell__col-qte b__compte">${data.qte}</td>`;
       qte.innerHTML = data.qte;
       
       let actions = row.insertCell(2);
-      // actions.innerHTML = `<td class="cell__actions">
-      //                       <form method="POST" action="index.php?requete=editCellier">
-      //                         <button class="c__modif" name="id" value="${data.cellId}">
-      //                             <i class="far fa-edit c__edit" data-cellid="${data.cellId}"></i>
-      //                         </button>
-      //                       </form>
-      //                         <i class="far fa-trash-alt c__supp" data-cellid="${data.cellId}"></i>
-      //                     </td>`
       actions.innerHTML = ` <div class="actions">
                             <form method="POST" action="index.php?requete=editCellier">
                               <button class="c__modif" name="id" value="${data.cellId}">
@@ -170,4 +176,7 @@ window.addEventListener("load", function () {
 
     filterTable();
   }
+
+
+
 });

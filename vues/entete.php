@@ -43,6 +43,7 @@
 		<script src="./js/main.js"></script>
 		<script src="./js/async.js"></script>
 		<script src="./js/util.js"></script>
+		<script src="./js/filtre.js"></script>
 	</head>
 	<body class="relative" >
 
@@ -98,7 +99,7 @@
 					
 					</div>
 			
-				<span class="petit"><?php echo $_SESSION['initiales'];?></span>
+				<span class="petit"><?php //echo $_SESSION['initiales'];?></span>
 
 				<div class="u__profile-toggle  col">
 					<div class="u__user">Bienvenue, <?php echo ucfirst($_SESSION['prenom']);?> <?php echo ucfirst($_SESSION['nom']);?></div>
