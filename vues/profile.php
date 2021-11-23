@@ -21,7 +21,7 @@
                 }
             ?>
             <a href="index.php?requete=creationUsager">Se créer un compte</a>
-                <button class='btnModifier' name="status" value="connexion">Connexion</button>
+                <button class='btnModifier btn' name="status" value="connexion">Connexion</button>
         </form>
     </div>
 </div>

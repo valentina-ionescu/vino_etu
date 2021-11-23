@@ -31,7 +31,7 @@
                     </div>
                     <div class="form__label__aj">
                         <input type="texte" name="pays" required>
-                        <label>Pays de fabrication</label>
+                        <label>Pays d'origine</label>
                     </div>
                     <div class="form__label__aj">
                         <input type="texte" name="prix_perso" required>

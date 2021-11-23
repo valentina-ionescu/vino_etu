@@ -1,4 +1,4 @@
-<div class="form__contenant flex col" vertical layout>
+<div class="form__contenant mg-top flex col" vertical layout>
     <div class="form__carte">
     <div class="form__image flex">
             <h1>Mon profile</h1>
@@ -30,7 +30,7 @@
                 </label>
             </div>
             <p data-js-msgError class="message__erreur__inscription display__none">Champ(s) incorrect(s)</p>
-            <button class="btnModifierUser">Modifier les informations</button>
+            <button class="btnModifierUser btn">Modifier les informations</button>
             <form method="POST" action="index.php?requete=paramUsager">
                 <button class="btn btn-primaire btnAnnul" >Annuler</button>
             </form>
