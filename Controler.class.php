@@ -341,11 +341,9 @@ class Controler
 	 */
 	private function getCellierTrie($idCell=null,$tri=null,$col=null)
 	{
-		
 		$cel = new Cellier();
 		$bte = new Bouteille();
         if(!empty($body)) {
-
 			$body = json_decode(file_get_contents('php://input'));
 			$ordre = $body->ordre;
 			$champs = $body->col;
@@ -356,7 +354,7 @@ class Controler
 			$_SESSION['cellier_id'] = $idCell;
 		}
 		// echo $body->id;
-		// echo $ordre;
+		//echo $ordre;
         
 		//  echo $_SESSION['cellier_id'];
 

@@ -23,7 +23,7 @@ window.addEventListener("load", function () {
 
       // Nom ASC
       let sortNomUp = document.querySelector('.nomASC');
-      // e.preventDefault();
+      
           sortNomUp.addEventListener('click', (e) => {
             console.log(e.target)
 
@@ -32,14 +32,23 @@ window.addEventListener("load", function () {
           });
       // Nom DESC
       let sortNomDown = document.querySelector('.nomDESC');
-      // e.preventDefault();
+      
           sortNomDown.addEventListener('click', (e) => {
             console.log(e.target)
 
             // Récuperer les bouteilles dans l'ordre demandé
             fetchBouteilles(id,'DESC','nom');
           });
+      
+          // Prix ASC
+        let sortPrixUp = document.querySelector('.prixASC');
+       
+          sortPrixUp.addEventListener('click', (e) => {
+            console.log(e.target)
 
+            // Récuperer les bouteilles dans l'ordre demandé
+            fetchBouteilles(id,'ASC','prix');
+          });
           // Fermeture du modale de filtres
           document.querySelector('.btn-filtre').addEventListener('click', (e) => {
             modal.classList.remove('show');
@@ -62,12 +71,12 @@ window.addEventListener("load", function () {
     });
     console.log(requete);
     fetch(requete)
-      .then((response) => response.text())
+      .then((response) => {
+        response.json()
+       console.log(response)
+      })
       .then((res) => {
-        // document.body.innerHTML = res;
-        // // Convert the HTML string into a document object
-        // var parser = new DOMParser();
-        // var doc = parser.parseFromString(res, 'text/html');
+       
         var url_string = "index.php?requete=getListeBouteilles&id="+id+"&ordre="+ordre+"&col="+champs; 
         window.location.href=url_string;
 

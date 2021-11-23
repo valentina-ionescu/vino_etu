@@ -97,13 +97,13 @@ class Bouteille extends Modele {
 						vino__cellier_has_vino__bouteille.date_achat,
 						vino__cellier_has_vino__bouteille.garde_jusqua,
 						vino__cellier_has_vino__bouteille.notes,
-						vino__cellier_has_vino__bouteille.prix,
+						vino__cellier_has_vino__bouteille.prix as prix,
 						vino__cellier_has_vino__bouteille.quantite,
 						vino__cellier_has_vino__bouteille.vino__bouteille_id,
 						vino__cellier_has_vino__bouteille.vino__cellier_id,
 						vino__cellier_has_vino__bouteille.millesime,
 						b.id,
-						b.nom,
+						b.nom as nom,
 						b.vino__type_id,
 						b.image,
 						b.code_saq,
@@ -117,8 +117,8 @@ class Bouteille extends Modele {
 						INNER JOIN vino__bouteille b ON vino__cellier_has_vino__bouteille.vino__bouteille_id = b.id
 						/*INNER JOIN vino__type t ON vino__bouteille.vino__type_id = t.id*/
 						WHERE vino__cellier_id = '.$idCellier.'
-						 ORDER BY b.'.$champs .' '.$ordre; 
-						 
+						 ORDER BY '.$champs .' '.$ordre; 
+						
 		if(($res = $this->_db->query($requete)) ==	 true)
 		{
 
