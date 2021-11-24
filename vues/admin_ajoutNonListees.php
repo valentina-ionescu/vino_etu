@@ -14,7 +14,7 @@
 
                 <div class="form__label__md">
                     <label for="nom">Nom Bouteille </label>
-                    <input type="text" id="nom" name="nom" required data-id="" class="nouvelle_bouteille" value="">
+                    <input type="text" id="nom" name="nom" required data-id="" class="nouvelle_bouteille" value="" placeholder="(min 3 caractère)">
                     
                 </div>
 
@@ -22,7 +22,7 @@
                 <div class="form__nonlistee-check flex row gap-3 justify-start">
                     <div class="flex column align-item-center">
                        
-                        <input type="radio" name="vino__type_id" value="1"> 
+                        <input type="radio" checked name="vino__type_id" value="1"> 
                         <label>Rouge</label>
                     </div>
                     <div class="flex column align-item-center">
@@ -67,6 +67,10 @@
                     <input type="text" name="description" placeholder="Format: Vin rouge | 750 ml | France">
                     <label>Description </label>
                 </div> -->
+
+                <span class="hidden message__erreur__inscription" data-js-erreur-nonListee>
+                    <p>Veuillez insérer un nom valide</p>
+                </span>
 
                 <button class="btn btn-accent solid ajoutNonlisteeBtn" type="submit">Ajouter la bouteille</button> 
                 <!-- <a href="?requete=ajouterBouteilleNonListeeCatalogue" class="btn btn-accent solid" type="submit">Ajouter la bouteille</a> -->

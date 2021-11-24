@@ -2,13 +2,16 @@
     <div class="cellier__information">
         <div class="cellier__information-wrapper">
             <div class="nomCellier">
+
                 <?php if (isset($msg)&& $msg) { ?>
+
+
                     <!-- <h3 class="ml txt-blanc"> -->
                         <?php echo $msg; ?>
                     <!-- </h3> -->
                 <?php  } else { ?>
                     <h3 class="tag-gauche txt-blanc capit"><?php echo  $_SESSION['cellier_nom'];
-                                            } ?></h3>
+                         }  ?></h3>
             </div>
         </div>
         <!-- <div class="cellier__information__wrapper">
@@ -36,7 +39,7 @@
                 <div class="filtres">
                     <?php if(isset($effacer)&&$effacer == 1) { ?>
                     <a href="" class="tag-gauche txt-blanc capit petit effacer">Effacer</a>
-                    <?php } ?>    
+                    <?php }?>    
                     <a href="" class="tag-droite txt-blanc capit petit">Filtres<i class="fas fa-angle-down"></i></i></a>
                 </div> 
                     <!-- Modal de filtres -->

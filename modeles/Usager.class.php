@@ -203,7 +203,7 @@ class Usager extends Modele {
 
         if($requete)
         {
-            mysqli_stmt_bind_param($requete, 'sssssi', $data->nom, $data->email, $data->prenom, $hashPassword, $id);
+            mysqli_stmt_bind_param($requete, 'ssssi', $data->nom, $data->email, $data->prenom, $hashPassword, $id);
 
             mysqli_stmt_execute($requete);
 
