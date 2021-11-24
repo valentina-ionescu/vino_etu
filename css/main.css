@@ -255,10 +255,14 @@ a.btn {
 .confirm__modal__wrapper, 
 .usager__supprimer__modal__wrapper,
 .modal__ajout-wrapper,
-.modal__wrapper_ajout-bouteille {
+.modal__wrapper_ajout-bouteille,
+.filtres__modal__wrapper {
     display: none; 
     position: fixed; 
     z-index: 1; 
+}
+.filtres__modal__wrapper {
+    position: absolute;
 }
 .desactivation__modal__wrapper{
     display: none; 
