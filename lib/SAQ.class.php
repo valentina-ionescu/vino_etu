@@ -254,4 +254,59 @@ class SAQ extends Modele
 
 		return $retour;
 	}
+
+	public function NombrePagesSaq(){
+        $s = curl_init();
+
+        $url = "https://www.saq.com/fr/produits/vin";
+
+
+        // Se prendre pour un navigateur pour berner le serveur de la saq...
+        curl_setopt_array($s, array(
+            CURLOPT_URL => $url,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_USERAGENT => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0',
+            CURLOPT_ENCODING => 'gzip, deflate',
+            CURLOPT_HTTPHEADER => array(
+                'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,/;q=0.8',
+                'Accept-Language: en-US,en;q=0.5',
+                'Accept-Encoding: gzip, deflate',
+                'Connection: keep-alive',
+                'Upgrade-Insecure-Requests: 1',
+            ),
+        ));
+        self::$_webpage = curl_exec($s);
+            self::$_status = curl_getinfo($s, CURLINFO_HTTP_CODE);
+            curl_close($s);
+
+            $doc = new DOMDocument();
+            $doc->recover = true;
+            $doc->strictErrorChecking = false;
+            @$doc->loadHTML(self::$_webpage);
+
+
+			$arrayBtl = [];
+
+        	$ttlpagesElements = $doc->getElementsByTagName("span");
+
+             foreach ($ttlpagesElements as $key => $spanNeud) {
+
+                //$nbrB= $spanNeud->childNodes->item(2);var_dump($nbrB) ;
+
+                 if (strpos($spanNeud->getAttribute('class'), "toolbar-number") !== false)  {
+
+					$nbrB = $spanNeud->textContent;
+
+					array_push($arrayBtl, $nbrB);
+
+					
+				}
+				
+			}
+			#var_dump($arrayBtl);
+			
+			$nbrBT = $arrayBtl[2];
+
+			return $nbrBT;
+    }
 }

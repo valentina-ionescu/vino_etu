@@ -2,7 +2,10 @@
     <div class="cellier__information">
         <div class="cellier__information-wrapper">
             <div class="nomCellier">
-                <?php if (isset($msg) && $msg) { ?>
+
+                <?php if (isset($msg)&& $msg) { ?>
+
+
                     <!-- <h3 class="ml txt-blanc"> -->
                         <?php echo $msg; ?>
                     <!-- </h3> -->
