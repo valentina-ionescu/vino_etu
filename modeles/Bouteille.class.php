@@ -705,7 +705,16 @@ return $resultImg;*/
 		return $rows;
 	}
 	
-	
+/**
+ * statsBouteilles
+ *
+ * @return void
+ */
+
+//  provisoire
+public function statsBouteilles() {
+	$query = "SELECT distinct(SUBSTRING(nom, -4)) AS y FROM vino__bouteille where SUBSTRING(nom, -4) like '20%' or SUBSTRING(nom, -4) like '19%' order by 1";
+}	
 }
 ?>
 

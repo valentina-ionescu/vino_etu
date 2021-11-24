@@ -50,7 +50,6 @@
                             <!-- <span class="fermer"><i class="fas fa-times"></i></span> -->
                            
                                 <div class="btn-ctrl">
-                                    <button class="btn-filtre btn-filtre-effacer tag-gauche">Effacer</button>
                                     <button class="btn-filtre btn-filtre-fermer tag-droite">Fermer</button>
                                 </div>
                           
@@ -71,8 +70,14 @@
                                         <button class="btn-filtre mill">2016</button>
                                         <button class="btn-filtre mill">2017</button>
                                         <button class="btn-filtre mill">2018</button>
-                                        <!-- <button class="btn-filtre mill">Autre</button> -->
-                                        <input type="text" class="btn-filtre mill" name="-input-millesime" placeholder="Autres">
+                                       
+                                        <select class="btn-filtre sel-mill" name="autres-mill" id="">
+                                            <option value="">Autres</option>
+                                            <?php for ($i=1990; $i <= 2021; $i++) { ?>
+                                                <option value="<?php echo $i;?>"><?php echo $i;?></option>    
+                                           <?php  }?>
+                                           
+                                        </select>
                                         
                                     </div>
                                     <div class="pays">

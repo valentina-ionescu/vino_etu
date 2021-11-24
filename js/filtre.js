@@ -71,13 +71,22 @@ window.addEventListener("load", function () {
           choix.addEventListener('click', (e) => {
             //delegation d'evenements sur les elements enfants
             let enfantEl = e.target;
-           
+           console.log(enfantEl)
             
          
             //Millesime
             let millesime = getChoix(enfantEl,'mill');
             if(millesime)
             fetchBouteillesTri(id,'millesime',millesime)
+
+           //Le select du millesime
+           if (enfantEl.classList.contains('sel-mill')) {
+             enfantEl.addEventListener('change', (e) => {
+              fetchBouteillesTri(id,'millesime',e.target.value)
+             })
+           }
+           
+
             
             //Pays
             let pays = getChoix(enfantEl,'pa');
