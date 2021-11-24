@@ -330,91 +330,7 @@ class Controler
 		$celNom = $cel->getCellierNom($_SESSION['cellier_id']);
 		$_SESSION['cellier_nom'] = $celNom['nom_cellier'];
 	}
-	/**
-	 * getCellierTrie retourne l'information sur un cellier donné
-	 *
-	 * @return void
-	 */
-	private function getCellierTrie($idCell=null,$tri=null,$col=null)
-	{
-		$cel = new Cellier();
-		$bte = new Bouteille();
-        if(!empty($body)) {
-			$body = json_decode(file_get_contents('php://input'));
-			$ordre = $body->ordre;
-			$champs = $body->col;
-			$_SESSION['cellier_id'] = $body->id;
-		}else {
-			$ordre=$tri;
-			$champs = $col;
-			$_SESSION['cellier_id'] = $idCell;
-		}
-		// echo $body->id;
-		//echo $ordre;
-        
-		//  echo $_SESSION['cellier_id'];
-
-		$dataB = $bte->getListeBouteilleCellierTrie($ordre,$champs);
-		$dataC = $cel->getCellierInfo();
-		$celNom = $cel->getCellierNom($_SESSION['cellier_id']);
-		$_SESSION['cellier_nom'] = $celNom['nom_cellier'];
-        
-	   
-		if(empty($body)) {
-			include("vues/entete.php");
-			include("vues/cellier.php");
-			include("vues/pied.php");
-		
-		}
-
-		
-		
-	}
-	/**
-	 * getCellierFiltre retourne l'information filtree par Millesime, Pays ou Type pour un cellier donné
-	 *
-	 * @return void
-	 */
-	private function getCellierFiltre($idCell=null,$colonne=null,$val=null)
-	{
-		
-		$cel = new Cellier();
-		$bte = new Bouteille();
-        if(!empty($body)) {
-			$body = json_decode(file_get_contents('php://input'));
-			$col = $body->col;
-			$valeur = $body->valeur;
-			// $champs = $body->col;
-			$_SESSION['cellier_id'] = $body->id;
-		}else {
-			$col=$colonne;
-			$valeur = $val;
-			$_SESSION['cellier_id'] = $idCell;
-		}
-		// echo $body->id;
-		//echo $ordre;
-        
-		//  echo $_SESSION['cellier_id'];
-        $effacer = '';
-		$id = 0;
-		
-		$dataB = $bte->getListeBouteilleCellierFiltre($col,$valeur);
-		$dataC = $cel->getCellierInfo();
-		$celNom = $cel->getCellierNom($_SESSION['cellier_id']);
-		$_SESSION['cellier_nom'] = $celNom['nom_cellier'];
-        $id = $_SESSION['cellier_id'];
-		$effacer = 1;
-	   
-		if(empty($body)) {
-			include("vues/entete.php");
-			include("vues/cellier.php");
-			include("vues/pied.php");
-		
-		}
-
-		
-		
-	}
+	
 
 
 	/**
@@ -1012,6 +928,12 @@ class Controler
 		}
 	}
 	
+	
+	/**
+	 * getListeBouteilles
+	 *
+	 * @return void
+	 */
 	function getListeBouteilles() {
 		if  (isset($_GET['id']) &&  isset($_GET['ordre']) && isset($_GET['col'])) {
 			$this->getCellierTrie($_GET['id'], $_GET['ordre'] ,$_GET['col']);
@@ -1021,6 +943,92 @@ class Controler
 			$this->getCellierFiltre($_GET['id'], $_GET['col'], $_GET['valeur']);
 		}
 
+	}
+
+	/**
+	 * getCellierTrie retourne l'information sur un cellier donné
+	 *
+	 * @return void
+	 */
+	private function getCellierTrie($idCell=null,$tri=null,$col=null)
+	{
+		$cel = new Cellier();
+		$bte = new Bouteille();
+        if(!empty($body)) {
+			$body = json_decode(file_get_contents('php://input'));
+			$ordre = $body->ordre;
+			$champs = $body->col;
+			$_SESSION['cellier_id'] = $body->id;
+		}else {
+			$ordre=$tri;
+			$champs = $col;
+			$_SESSION['cellier_id'] = $idCell;
+		}
+		// echo $body->id;
+		//echo $ordre;
+        
+		//  echo $_SESSION['cellier_id'];
+
+		$dataB = $bte->getListeBouteilleCellierTrie($ordre,$champs);
+		$dataC = $cel->getCellierInfo();
+		$celNom = $cel->getCellierNom($_SESSION['cellier_id']);
+		$_SESSION['cellier_nom'] = $celNom['nom_cellier'];
+        
+	   
+		if(empty($body)) {
+			include("vues/entete.php");
+			include("vues/cellier.php");
+			include("vues/pied.php");
+		
+		}
+
+		
+		
+	}
+	/**
+	 * getCellierFiltre retourne l'information filtree par Millesime, Pays ou Type pour un cellier donné
+	 *
+	 * @return void
+	 */
+	private function getCellierFiltre($idCell=null,$colonne=null,$val=null)
+	{
+		
+		$cel = new Cellier();
+		$bte = new Bouteille();
+        if(!empty($body)) {
+			$body = json_decode(file_get_contents('php://input'));
+			$col = $body->col;
+			$valeur = $body->valeur;
+			// $champs = $body->col;
+			$_SESSION['cellier_id'] = $body->id;
+		}else {
+			$col=$colonne;
+			$valeur = $val;
+			$_SESSION['cellier_id'] = $idCell;
+		}
+		// echo $body->id;
+		//echo $ordre;
+        
+		//  echo $_SESSION['cellier_id'];
+        $effacer = '';
+		$id = 0;
+		
+		$dataB = $bte->getListeBouteilleCellierFiltre($col,$valeur);
+		$dataC = $cel->getCellierInfo();
+		$celNom = $cel->getCellierNom($_SESSION['cellier_id']);
+		$_SESSION['cellier_nom'] = $celNom['nom_cellier'];
+        $id = $_SESSION['cellier_id'];
+		$effacer = 1;
+	   
+		if(empty($body)) {
+			include("vues/entete.php");
+			include("vues/cellier.php");
+			include("vues/pied.php");
+		
+		}
+
+		
+		
 	}
 	
 }

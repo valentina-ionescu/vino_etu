@@ -107,7 +107,7 @@ window.addEventListener("load", function () {
       }
     }
 
-    // Fonction de récuperation des bouteilles dans l'ordre
+    //// Fonction des récuperation des bouteilles dans l'ordre ////
 
   function fetchBouteilles(id,ordre,champs) {
     var param = {
