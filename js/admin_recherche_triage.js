@@ -143,8 +143,6 @@ window.addEventListener('load', function () {
     });
 
 
-
-
     //appele de la fonction Recherche Catalogue Bouteilles  et Recherche Usagers
     //rechercheCatalogue(table, rechercheInput, searchColumn)
 
@@ -152,19 +150,12 @@ window.addEventListener('load', function () {
         if (document.querySelector('.recherche_usager') != "") {
             rechercheCatalogue(document.querySelector('.table_usagers'), document.querySelector(".recherche_usager"), document.querySelector(".nom_usager"));
         }
-
     }
+
 
     if (document.querySelector('.recherche_bouteille') != "") {
         rechercheCatalogue(document.querySelector('.table_bouteilles'), document.querySelector(".recherche_bouteille"), document.querySelector(".nom_bouteille"));
     }
-
-
-
-
-
-
-
 
 
 

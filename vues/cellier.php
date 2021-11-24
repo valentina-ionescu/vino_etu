@@ -2,7 +2,7 @@
     <div class="cellier__information">
         <div class="cellier__information-wrapper">
             <div class="nomCellier">
-                <?php if ($msg) { ?>
+                <?php if (isset($msg)) { ?>
                     <!-- <h3 class="ml txt-blanc"> -->
                         <?php echo $msg; ?>
                     <!-- </h3> -->
@@ -34,7 +34,7 @@
             <!-- <hr class="separe"> -->
            
                 <div class="filtres">
-                    <?php if($effacer == 1) { ?>
+                    <?php if(isset($effacer)&&$effacer == 1) { ?>
                     <a href="" class="tag-gauche txt-blanc capit petit effacer">Effacer</a>
                     <?php } ?>    
                     <a href="" class="tag-droite txt-blanc capit petit">Filtres<i class="fas fa-angle-down"></i></i></a>
