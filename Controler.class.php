@@ -563,7 +563,7 @@ class Controler
 
 	private function afficherAdmin()
 	{
-		if ($_SESSION['admin'] == 1) {
+		if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1) {
 			$msg = '';
 			$saq = new SAQ();
 			$bte = new Bouteille();
@@ -586,6 +586,7 @@ class Controler
 		} else {
 			$ctrl = new Controler;
 			$ctrl->accueil();
+
 		}
 	}
 

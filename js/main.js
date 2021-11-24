@@ -808,8 +808,18 @@ window.addEventListener("load", function () {
             })
             .then((json) => {
               console.log(json);
+              document.querySelector(".loader").classList.remove('hidden');
+
+
+            
               let formulaireRegistration = document.querySelector('.form__ajout_bouteille');
               let modalConfirmRegistration = formulaireRegistration.querySelector('.confirm__modal__wrapper')
+
+              //loader
+              setTimeout(function () {
+                  document.querySelector(".loader").classList.add('hidden');
+              }, 1500);
+
               modalConfirmRegistration.classList.add('show');
               modalConfirmRegistration.querySelector('.txt_msg-modif').innerText = 'La bouteille a été ajoutée avec succès!';
       
@@ -921,43 +931,79 @@ document.addEventListener('click',(e) => {
 
   let btnAjoutBouteillePerso = document.querySelector("[name='ajouterBouteillePersonnalisé']");
   let msgErreur = document.querySelector('[data-js-erreur-inserer]');
+  imageValide = false;
+let formAjoutBouteillePerso  = document.querySelector('[data-js-form-personel]')
 
-  // document.querySelector('.btn_ajout_image').addEventListener('click', () => {
-  //   document.querySelector('#imagePerso').click();
-  // });
+ console.log(formAjoutBouteillePerso);
+  
+ 
+  console.log( document.getElementById("imagePerso"));
+  console.log( document.getElementById("nom_imagePerso"));
+  
+
+
+  
+  let bouteillePerso = {
+    nom: document.querySelector("[name='nom']"),
+    image: formAjoutBouteillePerso.querySelector("[type=file]").files,
+    pays: document.querySelector("[name='pays']"),
+    prix: document.querySelector("[name='prix_perso']"),
+    format: document.querySelector("[name='format']"),
+    type: document.querySelector("[name='type']"),
+  };
+
+console.log(bouteillePerso);
+  let formData = new FormData();
+  let imageContenue = "./assets/img/bouteillePersonnalise/image_holder.png";//image par defaut
+  imageValide = false;
+
+
+
   document.getElementById("imagePerso").addEventListener("change", function(){
-    let fullPath = this.value; // fetched value = C:\fakepath\fileName.extension
-    let fileName = fullPath.split(/(\\|\/)/g).pop();  // fetch the file name
-    document.getElementById("nom_imagePerso").innerHTML = fileName;  // display the file name
+    let fullPath = this.value; // fetched value = C:\fakepath\nomImage.extension
+
+    let fileName = fullPath.split(/(\\|\/)/g).pop();  // fetch le nom de l'image
+   console.log(formData);
+    console.log(imagePerso.files);
+
+      // afficher le nom de l'image
+    if (imagePerso.files[0].type == "image/jpeg" || imagePerso.files[0].type == 'image/png' || imagePerso.files[0].type == 'image/gif') {
+
+      document.getElementById("nom_imagePerso").innerHTML = fileName;  // afficher le nom de l'image dans le dom 
+
+      imageValide = true;
+
+  } else {
+     
+    imageContenue = "./assets/img/bouteillePersonnalise/image_holder.png";
+      document.getElementById("nom_imagePerso").innerHTML = '<p style="color:red; font-size:13px; line-height:unset;margin: 0 0;">L\'image doit être de format *.jpeg, *.jpg, *.png ou *.gif!</p>';  // afficher msg d'erreur si le format de l'image n'est pas conforme
+      imageValide = false;
+
+
+  }
+
   }, false);
 
+ 
+
+  //ajout de la bouteille personnalisee
 
   btnAjoutBouteillePerso.addEventListener('click', (e) => {
 
-    let bouteillePerso = {
-      nom: document.querySelector("[name='nom']"),
-      image: document.querySelector("[type=file]").files,
-      pays: document.querySelector("[name='pays']"),
-      prix: document.querySelector("[name='prix_perso']"),
-      format: document.querySelector("[name='format']"),
-      type: document.querySelector("[name='type']"),
-    };
     
-    let formData = new FormData();
+   
 
 
-    formData.append('file', image.files[0]);
-    console.log(image.files[0]);
+    formData.append('file', imagePerso.files[0]);
+    // console.log(imagePerso.files[0]);
 
-    if (image.files[0]) {
-      imageContenue = image.files[0].name;
-    }else {
-      imageContenue = 'image_holder.png';
+    if (imageValide && imageContenue != "") {
+      imageContenue = "./assets/img/bouteillePersonnalise/" + Math.round(new Date().getTime() / 1000) + '-' + imagePerso.files[0].name.replace(/\s+/g, "");//enlever les espaces dans le nom des images, et ajouter un timestamp;
     }
 
     var param = {
       nom: bouteillePerso.nom.value,
-      image: "./assets/img/bouteillePersonnalise/" + imageContenue,
+      image:  imageContenue,
       pays: bouteillePerso.pays.value,
       prix: bouteillePerso.prix.value,
       format: bouteillePerso.format.value,
@@ -988,8 +1034,17 @@ document.addEventListener('click',(e) => {
         });
         fetch(requete)
         .then((response) => {
-          //window.location.href = "index.php?requete=ajouterNouvelleBouteilleCellier";
+          
+          document.querySelector(".loader").classList.remove('hidden');
+
+
+          setTimeout(function () {
+              document.querySelector(".loader").classList.add('hidden');
+              window.location.href = "index.php?requete=ajouterNouvelleBouteilleCellier";
           response.json();
+          }, 2000);
+
+        
         });
         })
       }else {

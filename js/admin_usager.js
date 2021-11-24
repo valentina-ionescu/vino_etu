@@ -332,12 +332,6 @@ window.addEventListener('load', function () {
 
     let btnAjoutNonListeeCatalogue = formNonListee.querySelector(".ajoutNonlisteeBtn");
 
-    console.log(typeVin)
-
-    //  $info->prix = preg_replace("/[^0-9\,]/", " ", $info->prix);
-    console.log(formNonListee.querySelector('[type=file]').files);
-
-
 
 
     let formData = new FormData();
@@ -346,9 +340,8 @@ window.addEventListener('load', function () {
     // console.log(document.getElementById("nom_image"));
 
     document.getElementById("image").addEventListener("change", function () {
-        console.log(document.getElementById("image"))
 
-        let fullPath = this.value; // fetched value = C:\fakepath\fileName.extension
+        let fullPath = this.value; // fetched value = C:\fakepath\nomImage.extension
         let fileName = fullPath.split(/(\\|\/)/g).pop();  // fetch le nom de l'image
 
         if (image.files[0].type == "image/jpeg" || image.files[0].type == 'image/png' || image.files[0].type == 'image/gif') {

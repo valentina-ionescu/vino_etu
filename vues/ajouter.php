@@ -17,7 +17,7 @@
             <span><input class="checkAjout" name="checkbox" type="checkbox" id="switch" /><label class="checkLabel" for="switch">Toggle</label></span>
         </span>
     </div>
-    <div class="form__carte form__ajout">
+    <div class="form__carte form__ajout ">
         <div class="form__carte">
             <div class="form__conteneur">
                 <div data-js-form-personel class="form hidden">
