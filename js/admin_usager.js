@@ -1,5 +1,5 @@
 /**
- * @file Script contenant les fonctions necessaires pour le panneau admin
+ * @file Script contenant les fonctions necessaires pour le panneau admin_usager
  * @author DFV - "les Devs en Pyjamas"
  * @version 0.1
  *
@@ -20,6 +20,30 @@ window.addEventListener('scroll', function () {
 window.addEventListener('load', function () {
 
 
+
+
+
+    ///////////////////////////////////////////////////////
+    //Fonction affichage modal Deconnexion Admin         // 
+    ///////////////////////////////////////////////////////
+
+    // let uimage = document.querySelector('.u__img');
+    let aimage = document.querySelector(".u__profile_img_admin");
+    let amenu = document.querySelector(".u__profile-toggle_admin");
+    console.log(amenu);
+    console.log(aimage);
+    aimage.addEventListener("click", (e) => {
+        // umenu.style.display = umenu.style.display === "none" ? "flex" : "none";
+        console.log(amenu);
+        amenu.classList.toggle('show');
+    });
+
+    // click en dehors du menu le fermera
+    document.addEventListener('click', (e) => {
+        if (!e.target.matches('.u__profile_img_admin i'))
+            if (amenu.classList.contains('show'))
+                amenu.classList.remove('show');
+    })
 
 
     ////////////////////////////////////////////////////
@@ -271,7 +295,13 @@ window.addEventListener('load', function () {
     //////////////////////////////////////////////////////////////////////
 
     let formNonListee = document.querySelector('.form_ajout_nonlistee');
+
     console.log(formNonListee)
+    //bouton annuler
+    formNonListee.querySelector('.btnAnnul').addEventListener('click',()=>{
+        window.location.assign("index.php?requete=getCatalogue");
+    })
+
 
     let bouteilleNonlistee = {
         vino__type_id: formNonListee.querySelector("input[name='vino__type_id']:checked"),
@@ -307,23 +337,59 @@ window.addEventListener('load', function () {
 
     //  $info->prix = preg_replace("/[^0-9\,]/", " ", $info->prix);
     console.log(formNonListee.querySelector('[type=file]').files);
- 
-    //ajouterImageLocal
+
+
+
+
+    let formData = new FormData();
+    let imageNonListee = "./assets/img/bouteillesNonlistees/bouteilleParDefaut.jpg";//image par defaut
+    imageValide = false;
+    // console.log(document.getElementById("nom_image"));
+
+    document.getElementById("image").addEventListener("change", function () {
+        console.log(document.getElementById("image"))
+
+        let fullPath = this.value; // fetched value = C:\fakepath\fileName.extension
+        let fileName = fullPath.split(/(\\|\/)/g).pop();  // fetch le nom de l'image
+
+        if (image.files[0].type == "image/jpeg" || image.files[0].type == 'image/png' || image.files[0].type == 'image/gif') {
+
+            document.getElementById("nom_image").innerHTML = fileName;  // afficher le nom de l'image dans le dom 
+
+            imageValide = true;
+
+        } else {
+           
+            imageNonListee = "./assets/img/bouteillesNonlistees/bouteilleParDefaut.jpg";
+            document.getElementById("nom_image").innerHTML = '<p style="color:red;">L\'image doit etre de format *.jpeg, *.jpg, *.png ou *.gif!</p>';  // afficher msg d'erreur si le format de l'image n'est pas conforme
+            imageValide = false;
+
+
+        }
+        
+
+    }, false);
+
 
     if (btnAjoutNonListeeCatalogue) {
         btnAjoutNonListeeCatalogue.addEventListener("click", function (evt) {
             //  bouteilleNonlistee.image.value = bouteilleNonlistee.image.value.replace(/C:\\fakepath\\/i, "./assets/img/bouteillesNonlistees/");
 
-            let formData = new FormData();
 
-            formData.append('file', image.files[0])
-            console.log(image.files[0]);
+            formData.append('file', image.files[0])// ajouter l'objet image dans l'info de form data pour envoyer vers php. 
+
+            // console.log(image.files[0].type);
+
+            if (imageValide && imageNonListee != "") {
+                imageNonListee = "./assets/img/bouteillesNonlistees/" + Math.round(new Date().getTime() / 1000) + '-' + image.files[0].name.replace(/\s+/g, "");//enlever les espaces dans le nom des images, et ajouter un timestamp
+            }
 
             var param = {
                 nom: bouteilleNonlistee.nom.value,
                 format: bouteilleNonlistee.format.value,
                 // image: bouteilleNonlistee.image.value.replace(/C:\\fakepath\\/i, "./assets/img/bouteillesNonlistees/"),//remplacer la path de l'image avec celle en local. 
-                image: "./assets/img/bouteillesNonlistees/" + image.files[0].name,
+                // image: "./assets/img/bouteillesNonlistees/"+Math.round(new Date().getTime()/1000) + '-'+image.files[0].name.replace(/\s+/g, ""), //remplacer la path de l'image  avec celle en local. 
+                image: imageNonListee,
                 vino__type_id: bouteilleNonlistee.vino__type_id,
                 pays: bouteilleNonlistee.pays.value,
                 prix_saq: bouteilleNonlistee.prix.value,
@@ -331,81 +397,73 @@ window.addEventListener('load', function () {
                 url_saq: 'Non Listée',
                 code_saq: 'Non Listée',
             };
+            let msgErreur = document.querySelector('[data-js-erreur-nonListee]');
 
-                ////////////////////Ajouter Image dans le dossier local /////////////////////
-                
-            // let formData = new FormData();
+            if (param.nom !== '' && param.nom.length > 3) {
 
-            // formData.append('file', image.files[0])
-            // console.log(image.files[0]);
-    
-            let requete = new Request("index.php?requete=ajouterImageLocal", {
+            let requete = new Request("index.php?requete=ajouterBouteilleNonListeeCatalogue", {
                 method: "POST",
-                body: formData,
+                body: JSON.stringify(param),
+                headers: { "Content-Type": "application/json" },
             });
-    
+
+
             fetch(requete)
                 .then(function (response) {
+                    ////////////////////Ajouter Image dans le dossier local /////////////////////
 
-                    let requete = new Request("index.php?requete=ajouterBouteilleNonListeeCatalogue", {
-                        method: "POST",
-                        body: JSON.stringify(param),
-                        headers: { "Content-Type": "application/json" },
-                    });
-        
-                    fetch(requete)
-                        .then(response => {
-                            if (response.status === 200) {
-                                console.log(response);
-        
-        
-        
-                            }
-        
-                        })
-                        .then((response) => {
-                            console.log(response);
-                        })
-                        .catch((error) => {
-                            console.error(error);
+                    if (param.image != "") {
+                        let requete = new Request("index.php?requete=ajouterImageLocal", {
+                            method: "POST",
+                            body: formData,
                         });
-                    console.log(response.text());
+
+                        fetch(requete)
+                            .then(response => {
+
+                            })
+                            .catch((error) => {
+                                console.error(error);
+                            });
+                    }
+
+                    if (response.status === 200) {
+
+                        document.querySelector(".loader").classList.remove('hidden');
+
+
+                        setTimeout(function () {
+                            document.querySelector(".loader").classList.add('hidden');
+                            window.location.href = "index.php?requete=getCatalogue";
+                        }, 1500);
+
+
+                    }
                 });
-
-                ////////////////////Fin ajouter Image dans le dossier local /////////////////////
-
-
-            console.log(param.image)
-            console.log(param)
-            // let requete = new Request("index.php?requete=ajouterBouteilleNonListeeCatalogue", {
-            //     method: "POST",
-            //     body: JSON.stringify(param),
-            //     headers: { "Content-Type": "application/json" },
-            // });
-
-            // fetch(requete)
-            //     .then(response => {
-            //         if (response.status === 200) {
-            //             console.log(response);
+            }else {
+                msgErreur.classList.remove('hidden');
+              }
 
 
 
-            //         }
 
-            //     })
-            //     .then((response) => {
-            //         console.log(response);
-            //     })
-            //     .catch((error) => {
-            //         console.error(error);
-            //     });
 
+
+            ////////////////////Fin ajouter Image dans le dossier local ////////////////////
 
 
 
         }) // fin de btnAjoutNonListeeCatalogue.addEventListener('click'{})
 
     }//end If(btnAjoutNonListeeCatalogue)
+
+
+
+
+
+
+
+
 
 
 
