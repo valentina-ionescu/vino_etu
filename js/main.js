@@ -335,7 +335,6 @@ window.addEventListener("load", function () {
       fetch(requete)
         .then(response => {
           if (response.status === 200) {
-            //re-afficher le cellier
             window.location.href = "index.php?requete=paramUsager"
             return response.json();
           } else {

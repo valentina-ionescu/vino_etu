@@ -27,8 +27,8 @@
                     <?php } ?>
                 </div>
                 <div class="profile__content__wrapper">
-                    <a href="index.php?requete=modifUsager"><button class="profile__btn">Modifier mes informations</button></a>
-                    <button class="profile__btn btnSupprimerProfile">Supprimer mon compte</button>
+                    <a href="index.php?requete=modifUsager"><button class="profile__btn btn">Modifier mes informations</button></a>
+                    <button class="profile__btn btnSupprimerProfile btn">Supprimer mon compte</button>
                 </div>
             </div>
         </div>

@@ -8,7 +8,7 @@
                     <!-- </h3> -->
                 <?php  } else { ?>
                     <h3 class="tag-gauche txt-blanc capit"><?php echo  $_SESSION['cellier_nom'];
-                                            } ?></h3>
+                         }  ?></h3>
             </div>
         </div>
         <!-- <div class="cellier__information__wrapper">
@@ -36,7 +36,7 @@
                 <div class="filtres">
                     <?php if(isset($effacer)&&$effacer == 1) { ?>
                     <a href="" class="tag-gauche txt-blanc capit petit effacer">Effacer</a>
-                    <?php } ?>    
+                    <?php }?>    
                     <a href="" class="tag-droite txt-blanc capit petit">Filtres<i class="fas fa-angle-down"></i></i></a>
                 </div> 
                     <!-- Modal de filtres -->
