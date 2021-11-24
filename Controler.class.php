@@ -377,6 +377,7 @@ class Controler
 	 */
 	private function getCellierFiltre($idCell=null,$colonne=null,$val=null)
 	{
+		
 		$cel = new Cellier();
 		$bte = new Bouteille();
         if(!empty($body)) {
@@ -392,14 +393,17 @@ class Controler
 		}
 		// echo $body->id;
 		//echo $ordre;
-        echo $col;
+        
 		//  echo $_SESSION['cellier_id'];
-
+        $effacer = '';
+		$id = 0;
+		
 		$dataB = $bte->getListeBouteilleCellierFiltre($col,$valeur);
 		$dataC = $cel->getCellierInfo();
 		$celNom = $cel->getCellierNom($_SESSION['cellier_id']);
 		$_SESSION['cellier_nom'] = $celNom['nom_cellier'];
         $id = $_SESSION['cellier_id'];
+		$effacer = 1;
 	   
 		if(empty($body)) {
 			include("vues/entete.php");

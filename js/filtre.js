@@ -13,6 +13,7 @@ window.addEventListener("load", function () {
    //////////////////////////////////////////////
     //Fonction filtres bouteilles               //
     //////////////////////////////////////////////
+    
   
     let filtres = document.querySelector('.filtres');
     filtres.addEventListener('click', (e) => {
@@ -61,7 +62,7 @@ window.addEventListener("load", function () {
             fetchBouteilles(id,'DESC','prix');
           });
           // Fermeture du modale de filtres
-          document.querySelector('.btn-filtre').addEventListener('click', (e) => {
+          document.querySelector('.btn-filtre-fermer').addEventListener('click', (e) => {
             modal.classList.remove('show');
           })
           //
@@ -126,7 +127,6 @@ window.addEventListener("load", function () {
        console.log(response)
       })
       .then((res) => {
-       
         var url_string = "index.php?requete=getListeBouteilles&id="+id+"&ordre="+ordre+"&col="+champs; 
         window.location.href=url_string;
 
@@ -153,7 +153,10 @@ window.addEventListener("load", function () {
        console.log(response)
       })
       .then((res) => {
-       
+        let el = document.querySelector('.filtres');
+        console.log(el);
+        el.innerHTML +='<a href="" class="tag-gauche txt-blanc capit petit">Effacer<i class="fas fa-angle-down"></i></i></a>'
+        console.log(el.innerHTML)
         var url_string = "index.php?requete=getListeBouteilles&id="+id+"&col="+col+"&valeur="+valeur; 
         console.log(url_string)
         window.location.href=url_string;
@@ -162,4 +165,8 @@ window.addEventListener("load", function () {
       .catch(error => console.log(error));
     
   } 
+  document.querySelector('.effacer').addEventListener('click', (e) => {
+    e.preventDefault();
+    window.location.href = "index.php?requete=accueil";
+  })
 })

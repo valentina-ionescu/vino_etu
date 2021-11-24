@@ -34,15 +34,23 @@
             <!-- <hr class="separe"> -->
            
                 <div class="filtres">
+                    <?php if($effacer == 1) { ?>
+                    <a href="" class="tag-gauche txt-blanc capit petit effacer">Effacer</a>
+                    <?php } ?>    
                     <a href="" class="tag-droite txt-blanc capit petit">Filtres<i class="fas fa-angle-down"></i></i></a>
-                </div>
+                </div> 
                     <!-- Modal de filtres -->
                     
                     <div class="filtres__modal__wrapper">
                     <div class="modal__overlay clair">
                             <div class="modal__filtre ">
                             <!-- <span class="fermer"><i class="fas fa-times"></i></span> -->
-                            <button class="btn-filtre btn-filtre-fermer tag-droite">Fermer</button>
+                           
+                                <div class="btn-ctrl">
+                                    <button class="btn-filtre btn-filtre-effacer tag-gauche">Effacer</button>
+                                    <button class="btn-filtre btn-filtre-fermer tag-droite">Fermer</button>
+                                </div>
+                          
                             <hr class="separe">
                                     <div class="sort_by">
                                         <h5>Trier par</h5>
@@ -60,7 +68,9 @@
                                         <button class="btn-filtre mill">2016</button>
                                         <button class="btn-filtre mill">2017</button>
                                         <button class="btn-filtre mill">2018</button>
-                                        <button class="btn-filtre mill">Autre</button>
+                                        <!-- <button class="btn-filtre mill">Autre</button> -->
+                                        <input type="text" class="btn-filtre mill" name="-input-millesime" placeholder="Autres">
+                                        
                                     </div>
                                     <div class="pays">
                                         <h5>Pays</h5>

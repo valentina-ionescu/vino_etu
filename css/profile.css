@@ -340,9 +340,16 @@ form.btn__ajouter_cellier {
     width: 100vw;
 }
 .filtres {
-    margin-left: 75vw;
+    /* margin-left: 75vw;
     margin-top: 10%;
-    position: relative;
+    position: relative; */
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+    padding-top: 2em;
+}
+.filtres>.tag-droite {
+    margin-left: auto;
 }
 hr.separe {
     height: 1px;
@@ -353,6 +360,10 @@ hr.separe {
 }
 .filtres>a {
     padding: .5em 1em;
+    display: block;
+    width: fit-content;
+    margin-right: 0;
+    font-size: clamp(.85rem, -0.875rem + 8.333333vw, 1rem);
 }
 .filtres .fa-angle-down {
     margin-left: .5rem;
@@ -383,10 +394,30 @@ hr.separe {
     font-size: inherit;
 }
 .btn-filtre-fermer {
-    margin-left: 70vw;
-    margin-top: 10%;
     position: relative;
     background: transparent;
+}
+.btn-filtre-effacer {
+    background: transparent;
+}
+.btn-filtre-fermer,
+.btn-filtre-effacer {
+    display: inline-block;
+}
+.btn-ctrl {
+    margin-top: 10%;
+    display: flex;
+    justify-content: space-between;
+}
+    
+input.mill {
+    display: inline-block;
+    max-width: 10ch;
+    margin-left: .25rem;
+
+}
+.cache {
+    display: none;
 }
 /* ==========----------Media queries---------=========== */
 @media (min-width: 540px)  {
