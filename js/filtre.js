@@ -76,17 +76,20 @@ window.addEventListener("load", function () {
             //Millesime
             let millesime = getChoix(enfantEl,'mill');
             if(millesime)
-            fetchBouteillesTri(id,' millesime='+millesime)
+            fetchBouteillesTri(id,'millesime',millesime)
             
             //Pays
             let pays = getChoix(enfantEl,'pa');
             if(pays)
-            fetchBouteillesTri(id,' pays='+ "'"+ pays+"'")
+            fetchBouteillesTri(id,'pays', "'"+pays+"'")
             
             //Type
             let type = getChoix(enfantEl,'ty');
-            // if(type)
-            // fetchBouteillesTri(id,'where millesime='+millesime)
+            console.log(type);
+            if(type == 'Vin rouge')
+            fetchBouteillesTri(id,'b.vino__type_id', 1)
+            if(type == 'Vin blanc')
+            fetchBouteillesTri(id,'b.vino__type_id', 2)
 
           
           
@@ -132,10 +135,11 @@ window.addEventListener("load", function () {
     
   } 
 
-  function fetchBouteillesTri(id,condition) {
+  function fetchBouteillesTri(id,col,valeur) {
     var param = {
       id: id,
-      condition: condition
+      col: col,
+      valeur: valeur
     };
     console.log(param);
     let requete = new Request("index.php?requete=getCellierFiltre", {
@@ -150,7 +154,8 @@ window.addEventListener("load", function () {
       })
       .then((res) => {
        
-        var url_string = "index.php?requete=getListeBouteilles&id="+id+"&condition="+condition; 
+        var url_string = "index.php?requete=getListeBouteilles&id="+id+"&col="+col+"&valeur="+valeur; 
+        console.log(url_string)
         window.location.href=url_string;
 
       })

@@ -375,26 +375,27 @@ class Controler
 	 *
 	 * @return void
 	 */
-	private function getCellierFiltre($idCell=null,$filtre=null)
+	private function getCellierFiltre($idCell=null,$colonne=null,$val=null)
 	{
 		$cel = new Cellier();
 		$bte = new Bouteille();
         if(!empty($body)) {
 			$body = json_decode(file_get_contents('php://input'));
-			$condition = $body->condition;
+			$col = $body->col;
+			$valeur = $body->valeur;
 			// $champs = $body->col;
 			$_SESSION['cellier_id'] = $body->id;
 		}else {
-			$condition=$filtre;
-			// $champs = $col;
+			$col=$colonne;
+			$valeur = $val;
 			$_SESSION['cellier_id'] = $idCell;
 		}
 		// echo $body->id;
 		//echo $ordre;
-        
+        echo $col;
 		//  echo $_SESSION['cellier_id'];
 
-		$dataB = $bte->getListeBouteilleCellierFiltre($condition);
+		$dataB = $bte->getListeBouteilleCellierFiltre($col,$valeur);
 		$dataC = $cel->getCellierInfo();
 		$celNom = $cel->getCellierNom($_SESSION['cellier_id']);
 		$_SESSION['cellier_nom'] = $celNom['nom_cellier'];
@@ -1011,9 +1012,9 @@ class Controler
 		if  (isset($_GET['id']) &&  isset($_GET['ordre']) && isset($_GET['col'])) {
 			$this->getCellierTrie($_GET['id'], $_GET['ordre'] ,$_GET['col']);
 		}
-		if  (isset($_GET['id']) &&  isset($_GET['condition'])) {
+		if  (isset($_GET['id']) &&  isset($_GET['col']) &&  isset($_GET['valeur'])) {
 			// var_dump($_GET);
-			$this->getCellierFiltre($_GET['id'], $_GET['condition']);
+			$this->getCellierFiltre($_GET['id'], $_GET['col'], $_GET['valeur']);
 		}
 
 	}

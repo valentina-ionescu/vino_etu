@@ -141,7 +141,7 @@ class Bouteille extends Modele {
 		
 		return $rows;
 	}
-	public function getListeBouteilleCellierFiltre($condition)
+	public function getListeBouteilleCellierFiltre($col,$valeur)
 	{
 		
 		$idCellier = $_SESSION['cellier_id'];
@@ -172,8 +172,7 @@ class Bouteille extends Modele {
 						INNER JOIN vino__cellier_has_vino__bouteille ON c.id = vino__cellier_has_vino__bouteille.vino__cellier_id
 						INNER JOIN vino__bouteille b ON vino__cellier_has_vino__bouteille.vino__bouteille_id = b.id
 						/*INNER JOIN vino__type t ON vino__bouteille.vino__type_id = t.id*/
-						WHERE vino__cellier_id = '.$idCellier.' AND '.$condition; 
-						var_dump($requete);
+						WHERE vino__cellier_id = '.$idCellier.' AND '.$col ."=". $valeur; 
 		if(($res = $this->_db->query($requete)) ==	 true)
 		{
 
