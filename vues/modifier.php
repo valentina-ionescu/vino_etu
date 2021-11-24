@@ -25,7 +25,7 @@
                 <label>Notes </label>
                 <textarea rows="5" name="notes"><?php echo $row['notes']; ?></textarea>
             </div>
-            <button class="btnModifier">Modifier la bouteille</button>
+            <button class="btn btnModifier">Modifier la bouteille</button>
             <form method="POST" action="index.php?requete=accueil">
                 <button class="btn btn-primaire btnAnnul" >Annuler</button>
             </form>

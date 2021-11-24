@@ -10,7 +10,7 @@
             <!-- <h3 data-id="<?php echo $_POST['id'] ?>"><?php echo $row['nom']; ?></h3> -->
             <input type="hidden" name="id" value="<?php echo $_POST['id']; ?>">
             <div class="form__label__md">
-                <label>Nom </label>
+                <label>Nom <small>(min 3 caractère)</small></label>
                 <input type="text" name="nom" value="<?php echo $row['nom']; ?>">
 
             </div>
@@ -56,10 +56,12 @@
                     </div>
                 </div>
 
-           
+                <span class="hidden message__erreur__inscription" data-js-erreur-modif-nonListee>
+                    <p>Veuillez insérer un nom valide</p>
+                </span>
 
 
-            <button class="btnModifierBouteilleCatalogue" type = "submit" >Modifier la bouteille</button>
+            <button class="btn btnModifierBouteilleCatalogue" type = "submit" >Modifier la bouteille</button>
 
             <button class="btn btn-primaire btnAnnul" type="reset">Annuler</button>
         </div>

@@ -272,6 +272,10 @@ window.addEventListener('load', function () {
         "url_saq": modifBouteilleCatalogue.url_saq.value,
       };
 
+    let msgErreur = document.querySelector('[data-js-erreur-modif-nonListee]');
+
+    if (param.nom !== '' && param.nom.length > 3) {
+
       console.log(param);
       console.log('prix', modifBouteilleCatalogue.prix_saq.value)
       let requete = new Request("index.php?requete=modifierBouteilleCatalogue", { method: 'PUT', body: JSON.stringify(param) });
@@ -299,6 +303,9 @@ window.addEventListener('load', function () {
           console.error(error);
         });
 
+      }else {
+        msgErreur.classList.remove('hidden');
+      }
     });
 
   }
