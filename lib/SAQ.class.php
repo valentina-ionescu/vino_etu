@@ -124,7 +124,8 @@ class SAQ extends Modele
 	}
 
 
-	public function NombrePagesSaq(){
+	public function NombrePagesSaq()
+	{
 		$s = curl_init();
 
 		$url = "https://www.saq.com/fr/produits/vin";
@@ -145,38 +146,29 @@ class SAQ extends Modele
 			),
 		));
 		self::$_webpage = curl_exec($s);
-			self::$_status = curl_getinfo($s, CURLINFO_HTTP_CODE);
-			curl_close($s);
+		self::$_status = curl_getinfo($s, CURLINFO_HTTP_CODE);
+		curl_close($s);
 
-			$doc = new DOMDocument();
-			$doc->recover = true;
-			$doc->strictErrorChecking = false;
-			@$doc->loadHTML(self::$_webpage);
+		$doc = new DOMDocument();
+		$doc->recover = true;
+		$doc->strictErrorChecking = false;
+		@$doc->loadHTML(self::$_webpage);
 
-// $xml = new SimpleXMLElement($doc);
 
-		// $doc->xpath('root/child[last()]');
 		$ttlpagesElements = $doc->getElementsByTagName("span");
-		// $elements[$file_count]
-		//  var_dump($ttlpagesElements);
-		// $xml->xpath('root/child[last()]');
-			 foreach ($ttlpagesElements as $key => $spanNeud) {
-				  
-			 	if (strpos($spanNeud->getAttribute('class'), "toolbar-number") !== false)  {
-					// var_dump( $ttlpagesElements->length);
-					
-			 		//   var_dump($spanNeud->lastChild);
-					   $nbrB= $spanNeud->childNodes->item(2);
-					    // $nbrB=$spanNeud->textContent;
-					    var_dump($nbrB) ;
-			 		// $ttlpages =
-					// 
-					// $bOut = self::recupereInfo($spanNeud);
-					// var_dump($bOut);
-			 	}
 
-			 }
+		$spansBtl = [];
+		foreach ($ttlpagesElements as $key => $spanNeud) {
 
+			if (strpos($spanNeud->getAttribute('class'), "toolbar-number") !== false) {
+
+				array_push($spansBtl, $spanNeud->textContent);
+			}
+		}
+
+		$nbrB = $spansBtl[2];
+
+		return $nbrB;
 	}
 
 
@@ -321,7 +313,4 @@ class SAQ extends Modele
 
 		return $retour;
 	}
-
-
-
 }
