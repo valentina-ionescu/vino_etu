@@ -447,7 +447,7 @@ class Bouteille extends Modele {
 
             $resultat = mysqli_stmt_get_result($requete);
 
-			var_dump($resultat);
+			// var_dump($resultat);
 		}
 	}
 	
