@@ -82,10 +82,17 @@
                                     </div>
                                     <div class="pays">
                                         <h5>Pays</h5>
-                                        <button class="btn-filtre pa">Allemagne</button>
-                                        <button class="btn-filtre pa">Chili</button>
-                                        <button class="btn-filtre pa">États-Unis</button>
-                                        <button class="btn-filtre pa">Autre</button>
+                                        <button class="btn-filtre pa">Espagne</button>
+                                        <button class="btn-filtre pa">Canada</button>
+                                        <button class="btn-filtre pa">Portugal</button>
+                                       
+                                        <select class="btn-filtre sel-pa" name="autres-mill" id="">
+                                            <option value="">Autres</option>
+                                            <?php foreach(PAYSARRAY as $key => $value) { ?>
+                                                <option value="<?php echo $value;?>"><?php echo $value;?></option>    
+                                           <?php  }?>
+                                           
+                                        </select>
                                     </div>
                                     <div class="type">
                                         <h5>Type</h5>

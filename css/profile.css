@@ -419,6 +419,13 @@ input.mill {
 .cache {
     display: none;
 }
+.sel-pa {
+    max-width: 72%;
+    margin-block-start: .25rem;
+}
+.sel-pa, .se-mill {
+
+}
 /* ==========----------Media queries---------=========== */
 @media (min-width: 540px)  {
     .u__profile__wrapper {
