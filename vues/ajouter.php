@@ -10,21 +10,22 @@
             </div>
         </div>
     </div>
-
+            
     <div class="form__carte">
-        <span class="checkbox__wrapper">
-            <p>Bouteille personnalisé</p>
-            <span><input class="checkAjout" name="checkbox" type="checkbox" id="switch" /><label class="checkLabel" for="switch">Toggle</label></span>
-        </span>
-    </div>
-    <div class="form__carte form__ajout ">
+            <span class="checkbox__wrapper">
+                <p>Bouteille personnalisée</p>
+                <span><input class="checkAjout" name="checkbox" type="checkbox" id="switch" /><label class="checkLabel" for="switch">Toggle</label></span>
+            </span>
+        </div>        
+   
+    <div class="form__carte form__ajout">
         <div class="form__carte">
             <div class="form__conteneur">
                 <div data-js-form-personel class="form hidden">
 
                     <div class="form__label__aj">
                         <input type="texte" name="nom" required>
-                        <label>Nom <small>(min 3 caractère)</small></label>
+                        <label>Nom <small>(min 3 caractères)</small></label>
                     </div>
 
                     <div class="form__label__aj flex row align-item-center justify-start input_file mt-2">
@@ -48,7 +49,7 @@
 
                     <div class="form__label__aj">
                         <input type="texte" name="pays" required>
-                        <label>Pays de fabrication</label>
+                        <label>Pays d'origine</label>
                     </div>
                     <div class="form__label__aj">
                         <input type="texte" name="prix_perso" required>
@@ -112,7 +113,7 @@
                     </div>
                     <p data-js-erreur_ajout class="message__erreur__inscription hidden">Veuillez saisir une bouteille valide</p>
                     <button class="mt-1 btn btn-accent solid" name="ajouterBouteilleCellier">Ajouter la bouteille</button>
-                    <form method="POST" action="index.php?requete=accueil">
+                    <form method="POST" action="index.php?requete=home">
                         <button class="btn btn-primaire btnAnnul mt-10px">Annuler</button>
                     </form>
 

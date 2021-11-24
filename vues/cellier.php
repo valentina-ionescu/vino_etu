@@ -2,7 +2,7 @@
     <div class="cellier__information">
         <div class="cellier__information-wrapper">
             <div class="nomCellier">
-                <?php if ($msg) { ?>
+                <?php if (isset($msg)) { ?>
                     <!-- <h3 class="ml txt-blanc"> -->
                         <?php echo $msg; ?>
                     <!-- </h3> -->
@@ -11,9 +11,9 @@
                                             } ?></h3>
             </div>
         </div>
-        <div class="cellier__information__wrapper">
+        <!-- <div class="cellier__information__wrapper">
             
-            </div>
+        </div> -->
     </div>
         
     <!-- Modal de messages -->
@@ -30,15 +30,76 @@
             <a href="?requete=profile" ><i class="fas fa-angle-double-left fa-plus-reverse gauche"></i></a>
             <a href="?requete=ajouterNouvelleBouteilleCellier"><i class="fas fa-plus fa-plus-reverse"></i></a>
 
+            <!-- Filtres sur les bouteilles -->
+            <!-- <hr class="separe"> -->
+           
+                <div class="filtres">
+                    <?php if(isset($effacer)&&$effacer == 1) { ?>
+                    <a href="" class="tag-gauche txt-blanc capit petit effacer">Effacer</a>
+                    <?php } ?>    
+                    <a href="" class="tag-droite txt-blanc capit petit">Filtres<i class="fas fa-angle-down"></i></i></a>
+                </div> 
+                    <!-- Modal de filtres -->
+                    
+                    <div class="filtres__modal__wrapper">
+                    <div class="modal__overlay clair">
+                            <div class="modal__filtre ">
+                            <!-- <span class="fermer"><i class="fas fa-times"></i></span> -->
+                           
+                                <div class="btn-ctrl">
+                                    <button class="btn-filtre btn-filtre-effacer tag-gauche">Effacer</button>
+                                    <button class="btn-filtre btn-filtre-fermer tag-droite">Fermer</button>
+                                </div>
+                          
+                            <hr class="separe">
+                                    <div class="sort_by">
+                                        <h5>Trier par</h5>
+                                        <button class="btn-filtre nomASC" >Nom <i class="fas fa-arrow-up caret"></i></button>
+                                        <!-- <a class="btn-filtre nomASC" >Nom <i class="fa fa-caret-up caret"></i></a> -->
+                                        <button class="btn-filtre nomDESC" >Nom<i class="fas fa-arrow-down caret"></i></button>
+                                        <button class="btn-filtre prixASC" >Prix<i class="fas fa-arrow-up caret"></i></button>
+                                        <button class="btn-filtre prixDESC" >Prix<i class="fas fa-arrow-down caret"></i></button>
+                                       
+                                       
+                                   </div>
+                                   <div class="choix">
+                                    <div class="millesime">
+                                        <h5>Millesime</h5>
+                                        <button class="btn-filtre mill">2016</button>
+                                        <button class="btn-filtre mill">2017</button>
+                                        <button class="btn-filtre mill">2018</button>
+                                        <!-- <button class="btn-filtre mill">Autre</button> -->
+                                        <input type="text" class="btn-filtre mill" name="-input-millesime" placeholder="Autres">
+                                        
+                                    </div>
+                                    <div class="pays">
+                                        <h5>Pays</h5>
+                                        <button class="btn-filtre pa">Allemagne</button>
+                                        <button class="btn-filtre pa">Chili</button>
+                                        <button class="btn-filtre pa">États-Unis</button>
+                                        <button class="btn-filtre pa">Autre</button>
+                                    </div>
+                                    <div class="type">
+                                        <h5>Type</h5>
+                                        <button class="btn-filtre ty">Vin rouge</button>
+                                        <button class="btn-filtre ty">Vin blanc</button>
+                                    </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                <!-- </div> -->
+         
+          
+            <!-- <script>var dataB = <?php echo json_encode($dataB); ?></script> -->
         <?php
 
         if (isset($_SESSION['cellier_id'])) {
 
-
             foreach ($dataB as $cle => $bouteille) {
 
         ?>
-
+        <script>var id=<?php echo json_encode($_SESSION['cellier_id']); ?></script>
                 <div class="modal__wrapper">
                     <div class="modal__overlay">
                         <div class="modal__contenu flex col">
