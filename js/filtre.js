@@ -64,8 +64,44 @@ window.addEventListener("load", function () {
           document.querySelector('.btn-filtre').addEventListener('click', (e) => {
             modal.classList.remove('show');
           })
-          // 
+          //
+          // Filtres
+          let choix = document.querySelector('.choix');
+          choix.addEventListener('click', (e) => {
+            //delegation d'evenements sur les elements enfants
+            let enfantEl = e.target;
+           
+            
+         
+            //Millesime
+            let millesime = getChoix(enfantEl,'mill');
+            if(millesime)
+            fetchBouteillesTri(id,' millesime='+millesime)
+            
+            //Pays
+            let pays = getChoix(enfantEl,'pa');
+            if(pays)
+            fetchBouteillesTri(id,' pays='+ "'"+ pays+"'")
+            
+            //Type
+            let type = getChoix(enfantEl,'ty');
+            // if(type)
+            // fetchBouteillesTri(id,'where millesime='+millesime)
+
+          
+          
+          })
+            
     })
+
+    function getChoix(el, val) {
+      console.log(el)
+      if(el.classList.contains(val)) { 
+        choix = el.textContent;
+        console.log(choix)
+        return choix;
+      }
+    }
 
     // Fonction de récuperation des bouteilles dans l'ordre
 
@@ -89,6 +125,32 @@ window.addEventListener("load", function () {
       .then((res) => {
        
         var url_string = "index.php?requete=getListeBouteilles&id="+id+"&ordre="+ordre+"&col="+champs; 
+        window.location.href=url_string;
+
+      })
+      .catch(error => console.log(error));
+    
+  } 
+
+  function fetchBouteillesTri(id,condition) {
+    var param = {
+      id: id,
+      condition: condition
+    };
+    console.log(param);
+    let requete = new Request("index.php?requete=getCellierFiltre", {
+      method: "POST",
+      body: JSON.stringify(param),
+    });
+    console.log(requete);
+    fetch(requete)
+      .then((response) => {
+        response.json()
+       console.log(response)
+      })
+      .then((res) => {
+       
+        var url_string = "index.php?requete=getListeBouteilles&id="+id+"&condition="+condition; 
         window.location.href=url_string;
 
       })

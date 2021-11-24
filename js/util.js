@@ -12,8 +12,6 @@ window.addEventListener("load", function () {
 
 
 
-
-
   let triUp = "fa fa-caret-down",
     triDown = "fa fa-caret-up",
     tableData = Array();

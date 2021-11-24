@@ -48,56 +48,67 @@
 	<body class="relative" >
 
 	<div class="loader hidden">
-        <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
-        <div>
-            <div class="wineglass left">
-                <div class="top"></div>
-            </div>
-            <div class="wineglass right">
-                <div class="top"></div>
-            </div>
-        </div>
-    </div>
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<div>
+			<div class="wineglass left">
+				<div class="top"></div>
+			</div>
+			<div class="wineglass right">
+				<div class="top"></div>
+			</div>
+		</div>
+	</div>
 
 
-		<header class="header__wrapper">
-			<nav class="nav__wrapper flex" role="navigation">
-				<div id="menuToggle">
-					<input type="checkbox" />
-					<span></span>
-					<span></span>
-					<span></span>
-					<ul class="header__menu__links" id="menu">
-							<?php if (isset($_SESSION['nom'])) { ?>
-							<li><a href="?requete=home">Accueil</a></li>
-							<li><a href="?requete=profile">Gérer mes celliers</a></li>
-							
-							<?php
-								if(isset($_SESSION['admin']) && $_SESSION['admin'] == 1){
-							?>
-						
+	<header class="header__wrapper">
+		<nav class="nav__wrapper flex" role="navigation">
+			<div id="menuToggle">
+				<input type="checkbox" />
+				<span></span>
+				<span></span>
+				<span></span>
+				<ul class="header__menu__links" id="menu">
+					<?php if (isset($_SESSION['nom'])) { ?>
+						<li><a href="?requete=home">Accueil</a></li>
+						<li><a href="?requete=profile">Gérer mes celliers</a></li>
+
+						<?php
+						if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1) {
+						?>
+
 							<li><a href="?requete=admin">Admin - tableau de bord </a></li>
-							<?php
-								}
-							?>
-					<?php }else { ?>
+						<?php
+						}
+						?>
+					<?php } else { ?>
 						<li><a href="?requete=profile">Se connecter</a></li>
 					<?php } ?>
-						</ul>
-				</div>
-				<a href="?requete=home" class="flex"><img class="header__logo" src="assets/img/logo/logo.svg" alt=""></a>
-				<?php if (isset($_SESSION['nom'])) { ?>
+				</ul>
+			</div>
+			<a href="?requete=home" class="flex"><img class="header__logo" src="assets/img/logo/logo.svg" alt=""></a>
+			<?php if (isset($_SESSION['nom'])) { ?>
 				<div class="u__profile_img flex col">
-					
+
 					<div class="u__img">
-						<img src="img/abstract-user.svg" style="color:var(--bg-primaire);"
-						alt="">
-					
+						<img src="img/abstract-user.svg" style="color:var(--bg-primaire);" alt="">
+
 					</div>
+
+					<!-- <span class="petit"><?php echo $_SESSION['initiales']; ?></span> -->
+
+					<div class="u__profile-toggle  col">
+						<div class="u__user">Bienvenue, <?php echo ucfirst($_SESSION['prenom']); ?> <?php echo ucfirst($_SESSION['nom']); ?></div>
+						<a class="u__user-p" href="?requete=paramUsager"><i class="far fa-user-circle"></i>Mon profile</a>
+						<form method="POST" action="index.php?requete=profileConnexion">
+							<button name="status" value="deconnexion">Déconnexion</button>
+						</form>
+					</div>
+				<?php
+			} ?>
 			
 				<span class="petit"><?php //echo $_SESSION['initiales'];?></span>
 
@@ -108,9 +119,6 @@
 					<button  name="status" value="deconnexion">Déconnexion</button>
                     </form>
 				</div>
-				<?php 
-				}?>
-			    </div>
-			</nav>
-		</header>
-		<main >	
+		</nav>
+	</header>
+	<main>

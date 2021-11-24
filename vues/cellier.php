@@ -34,7 +34,7 @@
             <!-- <hr class="separe"> -->
            
                 <div class="filtres">
-                    <button class="tag-droite txt-blanc capit petit">Filtres<i class="fas fa-angle-down"></i></i></button>
+                    <a href="" class="tag-droite txt-blanc capit petit">Filtres<i class="fas fa-angle-down"></i></i></a>
                 </div>
                     <!-- Modal de filtres -->
                     
@@ -46,32 +46,34 @@
                             <hr class="separe">
                                     <div class="sort_by">
                                         <h5>Trier par</h5>
-                                        <button class="btn-filtre nomASC" href="">Nom <i class="fas fa-arrow-up caret"></i></button>
-                                        <!-- <a class="btn-filtre nomASC" href="">Nom <i class="fa fa-caret-up caret"></i></a> -->
-                                        <button class="btn-filtre nomDESC" href="">Nom<i class="fas fa-arrow-down caret"></i></button>
-                                        <button class="btn-filtre prixASC" href="">Prix<i class="fas fa-arrow-up caret"></i></button>
-                                        <button class="btn-filtre prixDESC" href="">Prix<i class="fas fa-arrow-down caret"></i></button>
+                                        <button class="btn-filtre nomASC" >Nom <i class="fas fa-arrow-up caret"></i></button>
+                                        <!-- <a class="btn-filtre nomASC" >Nom <i class="fa fa-caret-up caret"></i></a> -->
+                                        <button class="btn-filtre nomDESC" >Nom<i class="fas fa-arrow-down caret"></i></button>
+                                        <button class="btn-filtre prixASC" >Prix<i class="fas fa-arrow-up caret"></i></button>
+                                        <button class="btn-filtre prixDESC" >Prix<i class="fas fa-arrow-down caret"></i></button>
                                        
                                        
                                    </div>
+                                   <div class="choix">
                                     <div class="millesime">
                                         <h5>Millesime</h5>
-                                        <a class="btn-filtre" href="">2016</a>
-                                        <a class="btn-filtre" href="">2017</a>
-                                        <a class="btn-filtre" href="">2018</a>
-                                        <a class="btn-filtre" href="">Autre</a>
+                                        <button class="btn-filtre mill">2016</button>
+                                        <button class="btn-filtre mill">2017</button>
+                                        <button class="btn-filtre mill">2018</button>
+                                        <button class="btn-filtre mill">Autre</button>
                                     </div>
                                     <div class="pays">
                                         <h5>Pays</h5>
-                                        <a class="btn-filtre" href="">Allemagne</a>
-                                        <a class="btn-filtre" href="">Chili</a>
-                                        <a class="btn-filtre" href="">États-Unis</a>
-                                        <a class="btn-filtre" href="">Autre</a>
+                                        <button class="btn-filtre pa">Allemagne</button>
+                                        <button class="btn-filtre pa">Chili</button>
+                                        <button class="btn-filtre pa">États-Unis</button>
+                                        <button class="btn-filtre pa">Autre</button>
                                     </div>
                                     <div class="type">
                                         <h5>Type</h5>
-                                        <a class="btn-filtre" href="">Vin rouge</a>
-                                        <a class="btn-filtre" href="">Vin blanc</a>
+                                        <button class="btn-filtre ty">Vin rouge</button>
+                                        <button class="btn-filtre ty">Vin blanc</button>
+                                    </div>
                                     </div>
                             </div>
                         </div>

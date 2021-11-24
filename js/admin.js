@@ -9,7 +9,7 @@
 
 
 
- //const BaseURL = document.baseURI;
+//const BaseURL = document.baseURI;
 
 console.log(BaseURL);
 
@@ -25,56 +25,80 @@ window.addEventListener('load', function () {
 
 
 
-
-
   ////////////////////////////////////////////////////////////////////////
   //Fonction afficher le contenu en fonction de bouton/tab selectionnee //
   ////////////////////////////////////////////////////////////////////////
 
-  document.querySelectorAll(".tabs__button").forEach(function (element) {
-    console.log(element);
+  document.querySelectorAll(".tabs__button").forEach((element)=> {
+    console.log(element)
     let sideBar = element.parentElement;
     //    if ( sideBar.style=("transform: translate(-100%, 0)")){
     //     sideBar.style= (" ");
     //    }
     element.addEventListener("click", function (evt) {
-      console.log(element);
+      document.querySelectorAll(".tabs__button").forEach(tab=>tab.classList.remove('tabs__button--active'))
 
-      let mainContenant = document.querySelector('.admin_contenu_page');
-      console.log(sideBar)
-      let tabNumber = element.dataset.forTab;
-      let contentActivate = mainContenant.querySelector(`.admin__tabs__content[data-tab="${tabNumber}"]`);
-      console.log(contentActivate);
-      sessionStorage.setItem("activeLocation", tabNumber);
+       
+        element.classList.add('tabs__button--active');
+     
+     
+      // let mainContenant = document.querySelector('.admin_contenu_page');
+      // let tabNumber = element.dataset.forTab;
+      // let contentActivate = mainContenant.querySelector(`.admin__tabs__content[data-tab="${tabNumber}"]`);
 
-      sideBar.querySelectorAll('.tabs__button').forEach(button => {
-        button.classList.remove('tabs__button--active');
-      })
-      mainContenant.querySelectorAll('.admin__tabs__content').forEach(tab => {
-        tab.classList.remove('admin__tabs__content--active');
-      })
-      console.log(sessionStorage.getItem("activeLocation"))
+      // sideBar.querySelectorAll('.tabs__button').forEach(button => {
+      //   button.classList.remove('tabs__button--active');
+      // })
+      // mainContenant.querySelectorAll('.admin__tabs__content').forEach(tab => {
+      //   tab.classList.remove('admin__tabs__content--active');
+      // })
+      // console.log(sessionStorage.getItem("activeLocation"))
 
       //cacher le "x" et re-afficher le menu burger
       // document.getElementById("admin_menuToggle").nextElementSibling.classList.add('hidden')
       //  document.getElementById("admin_menuToggle").lastElementChild.previousElementSibling.classList.remove('hidden');
 
-      element.classList.add('tabs__button--active');
-      contentActivate.classList.add('admin__tabs__content--active');
+      // element.classList.add('tabs__button--active');
+      // contentActivate.classList.add('admin__tabs__content--active');
       //retracter la side-bare
-       sideBar.classList.toggle('sideBar-ferme');
+      sideBar.classList.toggle('sideBar-ferme');
 
       document.querySelectorAll('.menu_icon').forEach(icon => {
 
         if (icon.classList.contains('hidden')) {
           icon.classList.remove('hidden')
-          
-      } else {
 
-        icon.classList.add('hidden')
-       //  sideBar.classList.remove('sideBar-ferme');
+        } else {
 
-      }
+          icon.classList.add('hidden')
+          //  sideBar.classList.remove('sideBar-ferme');
+
+        }
+        // // click en dehors du menu le fermera
+    // document.addEventListener('click', (e) => {
+
+    //   if (!e.target.matches('#admin_menuToggle1')) {
+
+    //     if (!sideBar.classList.contains('sideBar-ferme')) {
+    //       sideBar.classList.add('sideBar-ferme');
+    //       // if (icon.classList.contains('hidden')) {
+    //       //   icon.classList.remove('hidden')
+    //       icon.classList.add('hidden')
+
+    //       // } else {
+    //       //   icon.classList.add('hidden')
+    //       // }
+    //     } else {
+    //       if (icon.classList.contains('hidden')) {
+    //         icon.classList.remove('hidden')
+
+    //       } else {
+    //         icon.classList.add('hidden')
+    //       }
+    //     }
+    //   }
+
+    // })
 
       })
 
@@ -90,19 +114,10 @@ window.addEventListener('load', function () {
   let menuToggle = document.getElementById("admin_menuToggle1");
 
   sideBar = document.querySelector('.admin-menu');
-  console.log(menuToggle)
 
   document.querySelectorAll('.menu_icon').forEach(icon => {
-
-    console.log(menuToggle)
-
-
-    console.log(icon)
-
+    
     menuToggle.addEventListener("click", function (evt) {
-
-      //
-
 
 
       if (icon.classList.contains('hidden')) {
@@ -113,28 +128,13 @@ window.addEventListener('load', function () {
 
         }
 
-        console.log(document.querySelector('.admin-menu'))
-
-
-
       } else {
-
-
-
 
         icon.classList.add('hidden')
         sideBar.classList.add('sideBar-ferme');
-
-
       }
 
-
-
     })
-
-
-
-
 
   })
 
@@ -151,10 +151,10 @@ window.addEventListener('load', function () {
 
   document.querySelectorAll(".btnSuppr").forEach(function (element) {
 
-    console.log(element.parentElement.parentElement);
+    //  console.log(element.parentElement.parentElement);
     element.addEventListener("click", function (evt) {
       console.log('click', evt.target);
-    
+
       let modal = document.querySelector(".desactivation__modal__wrapper");
       let id = element.dataset.id;
 
@@ -182,9 +182,9 @@ window.addEventListener('load', function () {
 
       let btnDanger = modal.querySelector('.btn__danger');
       btnDanger.addEventListener('click', (e) => {
-        console.log(id);
+
         let requete = new Request("index.php?requete=desactiverBouteilleCatalogue", { method: 'PUT', body: '{"id": ' + id + ', "statut_desactive": "1"}' });
-        console.log(requete);
+
         fetch(requete)
           .then(response => {
             if (response.status === 200) {
@@ -195,8 +195,9 @@ window.addEventListener('load', function () {
               //fermer le modal
               modal.classList.remove('show');
               //supprimer le dom de l'element 
-              element.parentElement.parentElement.remove();
+              element.parentElement.parentElement.parentElement.remove();
               // afficher message de confirmation de la suppression de l'element du catalogue
+
 
               document.querySelector(".txt_msg-supprime").innerText = "La bouteille No" + id + " supprimée avec succes !"
 
@@ -205,7 +206,7 @@ window.addEventListener('load', function () {
                 document.querySelector(".txt_msg-supprime").innerText = " ";
 
 
-            }, 3000);
+              }, 3000);
 
               return response.json();
 
@@ -231,6 +232,7 @@ window.addEventListener('load', function () {
 
 
 
+
   ///////////////////////////////////////////////////////
   //Fonction modifier  Bouteille dans le Catalogue     // 
   ///////////////////////////////////////////////////////
@@ -239,73 +241,72 @@ window.addEventListener('load', function () {
 
   // console.log(document.querySelector(".btnModifierBouteilleCatalogue"));
 
-  
+  function ModifierBouteilleAdmin() {
 
-  let modifBouteilleCatalogue = {
-    nom: document.querySelector("[name='nom']"),
-    format: document.querySelector("[name='format']"),
-    image: document.querySelector("[name='image']"),
-    code_saq: document.querySelector("[name='code_saq']"),
-    pays: document.querySelector("[name='pays']"),
-    prix_saq: document.querySelector("[name='prix_saq']"),
-    url_saq: document.querySelector("[name='url_saq']"),
-  };
-
-  document.querySelector(".btnAnnul").addEventListener("click", function (evt) {
-    window.location.assign("index.php?requete=admin")
-  })
-  console.log(document.querySelector(".btnModifierBouteilleCatalogue"));
-  document.querySelector(".btnModifierBouteilleCatalogue").addEventListener("click", function (evt) {
-    console.log(document.querySelector(".btnModifierBouteilleCatalogue"));
-
-    let id = document.querySelector("[name='id']").value;
-
-    var param = {
-      "id": id,
-      "nom": modifBouteilleCatalogue.nom.value,
-      "format": modifBouteilleCatalogue.format.value,
-      "image": modifBouteilleCatalogue.image.value,
-      "code_saq": modifBouteilleCatalogue.code_saq.value,
-      "pays": modifBouteilleCatalogue.pays.value,
-      "prix_saq": modifBouteilleCatalogue.prix_saq.value,
-      "url_saq": modifBouteilleCatalogue.url_saq.value,
+    let modifBouteilleCatalogue = {
+      nom: document.querySelector("[name='nom']"),
+      format: document.querySelector("[name='format']"),
+      image: document.querySelector("[name='image']"),
+      code_saq: document.querySelector("[name='code_saq']"),
+      pays: document.querySelector("[name='pays']"),
+      prix_saq: document.querySelector("[name='prix_saq']"),
+      url_saq: document.querySelector("[name='url_saq']"),
     };
 
-    console.log(param);
-    console.log('prix', modifBouteilleCatalogue.prix_saq.value)
-    let requete = new Request("index.php?requete=modifierBouteilleCatalogue", { method: 'PUT', body: JSON.stringify(param) });
-    console.log(requete);
-    fetch(requete)
-      .then(response => {
-        if (response.status === 200) {
-          //re-afficher le catalogue
-          console.log(response);
-          let modal = document.querySelector('.confirm__modal__wrapper');
-          modal.classList.add('show');
-          modal.querySelector('.txt_msg-modif').innerText = 'La bouteille «' + modifBouteilleCatalogue.nom.value + '» modifiée avec succes !';
+    document.querySelector('.admin_form__modif').querySelector(".btnAnnul").addEventListener("click", function (evt) {
+      window.location.assign("index.php?requete=admin")
+    })
 
-          setTimeout(function () {
-            window.location.href = 'index.php?requete=admin';
-          }, 2000);
+    document.querySelector('.admin_form__modif').querySelector('.btnModifierBouteilleCatalogue').addEventListener("click", function (evt) {
 
-          return response.json();
-        } else {
-          throw new Error('Erreur');
-        }
-      })
+      let id = document.querySelector("[name='id']").value;
 
-      .catch(error => {
-        console.error(error);
-      });
+      var param = {
+        "id": id,
+        "nom": modifBouteilleCatalogue.nom.value,
+        "format": modifBouteilleCatalogue.format.value,
+        "image": modifBouteilleCatalogue.image.value,
+        "code_saq": modifBouteilleCatalogue.code_saq.value,
+        "pays": modifBouteilleCatalogue.pays.value,
+        "prix_saq": modifBouteilleCatalogue.prix_saq.value,
+        "url_saq": modifBouteilleCatalogue.url_saq.value,
+      };
 
-  });
+      console.log(param);
+      console.log('prix', modifBouteilleCatalogue.prix_saq.value)
+      let requete = new Request("index.php?requete=modifierBouteilleCatalogue", { method: 'PUT', body: JSON.stringify(param) });
+      console.log(requete);
+      fetch(requete)
+        .then(response => {
+          if (response.status === 200) {
+            //re-afficher le catalogue
+            console.log(response);
+            let modal = document.querySelector('.confirm__modal__wrapper');
+            modal.classList.add('show');
+            modal.querySelector('.txt_msg-modif').innerText = 'La bouteille «' + modifBouteilleCatalogue.nom.value + '» modifiée avec succes !';
 
+            setTimeout(function () {
+              window.location.href = 'index.php?requete=admin';
+            }, 2000);
 
+            return response.json();
+          } else {
+            throw new Error('Erreur');
+          }
+        })
 
+        .catch(error => {
+          console.error(error);
+        });
 
-  
- 
-  
+    });
+
+  }
+
+  if (document.querySelector('.admin_form__modif').querySelector('.btnModifierBouteilleCatalogue')) {
+    ModifierBouteilleAdmin();
+  }
+
 
 
 

@@ -34,7 +34,7 @@ class Controler
 			case 'ajouterNouvelleBouteilleCellier':
 				$this->ajouterNouvelleBouteilleCellier();
 				break;
-			/*case 'ajouterBouteilleNonListee':
+				/*case 'ajouterBouteilleNonListee':
 				$this->ajouterBouteilleNonListee();
 				break;*/
 			case 'ajouterBouteilleCellier':
@@ -88,6 +88,9 @@ class Controler
 			case 'getCellierTrie':
 				$this->getCellierTrie();
 				break;
+			case 'getCellierFiltre':
+				$this->getCellierFiltre();
+				break;
 			case 'getListeBouteilles':
 				$this->getListeBouteilles();
 				break;
@@ -140,7 +143,6 @@ class Controler
 			default:
 				$this->accueil();
 				break;
-				
 		}
 		
 	}
@@ -160,34 +162,33 @@ class Controler
 
 			if (isset($_SESSION['cellier_id'])) {
 				$msg = "";
-	
+
 				$bte = new Bouteille();
                 
 				$dataB = $bte->getListeBouteilleCellier();
-				
-			
-				if(empty($dataB)) //pas de bouteilles dans le cellier
-				$msg = "<h3 class='ml txt-blanc'>Votre cellier est vide.</h3>" . "<p class='txt-blanc'>Ajoutez des bouteilles</p>";
+
+
+				if (empty($dataB)) //pas de bouteilles dans le cellier
+					$msg = "<h3 class='ml txt-blanc'>Votre cellier est vide.</h3>" . "<p class='txt-blanc'>Ajoutez des bouteilles</p>";
 
 				include("vues/entete.php");
 				include("vues/cellier.php");
 				include("vues/pied.php");
-			}else {
-				
+			} else {
+
 				include("vues/entete.php");
 				include("vues/upanneau.php");
 				include("vues/pied.php");
-			}	
+			}
 		} else {
 			include("vues/entete.php");
 			include("vues/profile.php");
 			include("vues/pied.php");
 		}
-		
-
 	}
 
-	private function home() {
+	private function home()
+	{
 		$User = new Usager();
 		$cel = new Cellier();
 		$msg = '';
@@ -196,11 +197,11 @@ class Controler
 			include("vues/entete.php");
 			include("vues/upanneau.php");
 			include("vues/pied.php");
-		}else {
+		} else {
 			include("vues/entete.php");
 			include("vues/profile.php");
 			include("vues/pied.php");
-		}	
+		}
 	}
 
 	private function afficherProfile()
@@ -230,8 +231,6 @@ class Controler
 
 			$hashPass = $user->hashPassword($body->password);
 			$user->inscription($body, $hashPass);
-
-			
 		} else {
 			include("vues/entete.php");
 			include("vues/inscription.php");
@@ -242,7 +241,7 @@ class Controler
 	private function addCellier()
 	{
 		$body = json_decode(file_get_contents('php://input'));
-        $err_msg = "";
+		$err_msg = "";
 
 		if (!empty($body)) {
 
@@ -256,13 +255,13 @@ class Controler
 			if (empty($NouveauNomCel)) {
 				$err_msg = "Le nom de cellier ne doit pas être vide.";
 				echo json_encode($err_msg);
-			}else {
+			} else {
 				$resultat = $cel->ajouterCellier($NouveauNomCel);
 				echo json_encode("");
 			}
 
 			// echo $NouveauNomCel;
-			
+
 		}
 		// } else {
 		// 	include("vues/entete.php");
@@ -274,13 +273,13 @@ class Controler
 	{
 
 		$id = $_SESSION['usager_id'];
-		
+
 		$user = new Usager();
-		
+
 		$user->supprimerUsager($id);
 
 		echo $_SESSION['usager_id'];
-		
+
 		session_destroy();
 
 		header('Location: index.php?');
@@ -290,13 +289,12 @@ class Controler
 	{
 		$body = json_decode(file_get_contents('php://input'));
 
-		if(!empty($body)){
+		if (!empty($body)) {
 
 			$User = new Usager();
 			$id = $_SESSION['usager_id'];
 			$resultat = $User->modifierUsager($body, $id);
-		}
-		else{
+		} else {
 			include("vues/entete.php");
 			include("vues/modifierUsager.php");
 			include("vues/pied.php");
@@ -309,7 +307,7 @@ class Controler
 		include("vues/param_usager.php");
 		include("vues/pied.php");
 	}
-	
+
 	/**
 	 * getCellier retourne l'information sur un cellier donné
 	 *
@@ -325,14 +323,12 @@ class Controler
 
 		$_SESSION['cellier_id'] = $body->id;
 
-		 echo $_SESSION['cellier_id'];
+		echo $_SESSION['cellier_id'];
 
 		$dataB = $bte->getListeBouteilleCellier();
 		$dataC = $cel->getCellierInfo();
 		$celNom = $cel->getCellierNom($_SESSION['cellier_id']);
 		$_SESSION['cellier_nom'] = $celNom['nom_cellier'];
-
-		
 	}
 	/**
 	 * getCellierTrie retourne l'information sur un cellier donné
@@ -363,6 +359,46 @@ class Controler
 		$celNom = $cel->getCellierNom($_SESSION['cellier_id']);
 		$_SESSION['cellier_nom'] = $celNom['nom_cellier'];
         
+	   
+		if(empty($body)) {
+			include("vues/entete.php");
+			include("vues/cellier.php");
+			include("vues/pied.php");
+		
+		}
+
+		
+		
+	}
+	/**
+	 * getCellierFiltre retourne l'information filtree par Millesime, Pays ou Type pour un cellier donné
+	 *
+	 * @return void
+	 */
+	private function getCellierFiltre($idCell=null,$filtre=null)
+	{
+		$cel = new Cellier();
+		$bte = new Bouteille();
+        if(!empty($body)) {
+			$body = json_decode(file_get_contents('php://input'));
+			$condition = $body->condition;
+			// $champs = $body->col;
+			$_SESSION['cellier_id'] = $body->id;
+		}else {
+			$condition=$filtre;
+			// $champs = $col;
+			$_SESSION['cellier_id'] = $idCell;
+		}
+		// echo $body->id;
+		//echo $ordre;
+        
+		//  echo $_SESSION['cellier_id'];
+
+		$dataB = $bte->getListeBouteilleCellierFiltre($condition);
+		$dataC = $cel->getCellierInfo();
+		$celNom = $cel->getCellierNom($_SESSION['cellier_id']);
+		$_SESSION['cellier_nom'] = $celNom['nom_cellier'];
+        $id = $_SESSION['cellier_id'];
 	   
 		if(empty($body)) {
 			include("vues/entete.php");
@@ -418,13 +454,13 @@ class Controler
 		include("vues/modifierCellier.php");
 		include("vues/pied.php");
 	}
-	
+
 
 
 	private function gestionConnexion()
 	{
 		$User = new Usager();
-    //  if(isset($_POST['status'])) {
+		//  if(isset($_POST['status'])) {
 		if ($_POST['status'] == 'deconnexion') {
 
 			$User->deconnexion();
@@ -445,7 +481,7 @@ class Controler
 
 				$connect = $User->connexion();
 				$dataC = $cel->getCellierInfo();
-				if($_SESSION['admin']==1){
+				if ($_SESSION['admin'] == 1) {
 					header('Location: index.php?requete=admin');
 				}
 				include("vues/entete.php");
@@ -460,7 +496,7 @@ class Controler
 				include("vues/pied.php");
 			}
 		}
-	// }
+		// }
 	}
 
 
@@ -493,7 +529,6 @@ class Controler
 		include("vues/admin_entetePrincipale.php");
 		include("vues/admin_listeUsagers.php");
 		include("vues/admin_pied.php");
-
 	}
 
 	private function listeBouteille()
@@ -516,7 +551,7 @@ class Controler
 		echo json_encode($listeBouteille);
 	}
 
-	
+
 	private function ajouterNouvelleBouteilleCellier()
 	{
 		$body = json_decode(file_get_contents('php://input'));
@@ -623,31 +658,30 @@ class Controler
 
 	private function afficherAdmin()
 	{
-		if($_SESSION['admin']==1){
-		$msg = '';
-		$saq = new SAQ();
-		$bte = new Bouteille();
-		$listeBouteilles = $bte->getListeBouteille();
+		if ($_SESSION['admin'] == 1) {
+			$msg = '';
+			$saq = new SAQ();
+			$bte = new Bouteille();
+			$listeBouteilles = $bte->getListeBouteille();
 
 
-		$user = new Usager();
-		$listeUsager = $user->getListeUsager();
-		//  var_dump($listeUsager);
-		$_SESSION['listeUsagers'] = $listeUsager;
-		$_SESSION['listeBouteilles'] = $listeBouteilles;
+			$user = new Usager();
+			$listeUsager = $user->getListeUsager();
+			//  var_dump($listeUsager);
+			$_SESSION['listeUsagers'] = $listeUsager;
+			$_SESSION['listeBouteilles'] = $listeBouteilles;
 
 
 
-		// echo json_encode($listeBouteilles);
-		// include("vues/admin_controls.php");
-		include("vues/admin_entetePrincipale.php");
-		include("vues/admin_listeBouteilles.php");
-		include("vues/admin_pied.php");
-	}else{
-		$ctrl = new Controler;
-		$ctrl->accueil();
-
-	}
+			// echo json_encode($listeBouteilles);
+			// include("vues/admin_controls.php");
+			include("vues/admin_entetePrincipale.php");
+			include("vues/admin_listeBouteilles.php");
+			include("vues/admin_pied.php");
+		} else {
+			$ctrl = new Controler;
+			$ctrl->accueil();
+		}
 	}
 
 
@@ -667,12 +701,9 @@ class Controler
 		$user = new Usager();
 		$listeUsager = $user->getListeUsager();
 		$msg = "La bouteille no." . $idBouteille . " a été supprimée avec succès!";
-		
+
 		$bte->supprimerBouteilleCatalogue($idBouteille);
 		$controller = new Controler;
-	
-
-
 	}
 
 
@@ -688,7 +719,7 @@ class Controler
 
 
 		$idBouteille = $_POST['id'];
-	
+
 
 		if (!empty($body)) {
 
@@ -705,9 +736,10 @@ class Controler
 			$bte = new Bouteille();
 			$resultat = $bte->getBouteilleById($idBouteille);
 			$row = $resultat->fetch_assoc();
-			include("vues/entete_admin.php");
-
+			include("vues/admin_entetePrincipale.php");
 			include("vues/admin_modifierBouteille.php");
+			include("vues/admin_pied.php");
+
 		}
 	}
 
@@ -717,10 +749,10 @@ class Controler
 	 *
 	 * @return void
 	 */
-	
+
 
 	private function supprimerUsagerCatalogue()
-	{	
+	{
 
 		$body = json_decode(file_get_contents('php://input'));
 		$id = $body->id;
@@ -730,19 +762,17 @@ class Controler
 		$user = new Usager();
 
 		$user->supprimerUsager($id);
-
-
 	}
 
-/**
+	/**
 	 * changerUsagerStatutAdmin
 	 *
 	 * @return void
 	 */
-	
+
 
 	private function changerUsagerStatutAdmin()
-	{	
+	{
 
 		// var_dump($_POST);
 		$body = json_decode(file_get_contents('php://input'));
@@ -754,9 +784,7 @@ class Controler
 
 		$user = new Usager();
 
-		$user->statutAdminUsager($body,$id);
-
-
+		$user->statutAdminUsager($body, $id);
 	}
 
 
@@ -772,7 +800,7 @@ class Controler
 
 
 		$idUsg = $_POST['id'];
-	
+
 
 		if (!empty($body)) {
 
@@ -791,9 +819,10 @@ class Controler
 			$resultat = $usg->getUsagerById($idUsg);
 			$row = $resultat->fetch_assoc();
 
-			include("vues/entete_admin.php");
-
+			include("vues/admin_entetePrincipale.php");
 			include("vues/admin_modifierUsager.php");
+			include("vues/admin_pied.php");
+
 		}
 	}
 
@@ -815,7 +844,7 @@ class Controler
 	private function formAjouterBouteilleNonListee()
 	{
 		include("vues/entete.php");
-		include("vues/ajouter_nonListees.php");
+		include("vues/admin_ajoutNonListees.php");
 	}
 
 
@@ -833,8 +862,8 @@ class Controler
 		// var_dump($body);
 		// var_dump($_POST);
 		if (!empty($body)) {
-			var_dump($_FILES['files']['name']);
-			echo($body->image);
+			// var_dump($_FILES['files']['name']);
+			echo ($body->image);
 
 			$bte = new Bouteille();
 
@@ -847,20 +876,19 @@ class Controler
 			echo json_encode($resultat);
 		} else {
 
-			 include("vues/admin_entetePrincipale.php");
-			include("vues/ajouter_nonListees.php");
-
+			include("vues/admin_entetePrincipale.php");
+			include("vues/admin_ajoutNonListees.php");
+			include("vues/admin_pied.php");
 		}
-
-
 	}
-	
+
 	/**
 	 * listeCelliers
 	 *
 	 * @return $dataC
 	 */
-	private function listeCelliers() {
+	private function listeCelliers()
+	{
 		// $order = json_decode(file_get_contents('php://input'));
 		$order = $_GET['order'];
 		// $User = new Usager();
@@ -868,15 +896,22 @@ class Controler
 		$msg = '';
 		if (isset($_SESSION['usager_id'])) {
 			$dataC = $cel->getListeCellier($order);
-		
+
 			echo json_encode($dataC);
-		}else {
+		} else {
 			include("vues/entete.php");
 			include("vues/profile.php");
 			include("vues/pied.php");
 		}
-		
 	}
+
+	
+	/**
+	 * ajouter image dans le cellier personnel
+	 *
+	 * par usager
+	 *  @return void
+	 */
 
 	private function ajouterImagePerso()
 	{
@@ -884,61 +919,103 @@ class Controler
 		$imgFileName = $_FILES['file']['name'];
 
 		$location = "assets/img/bouteillePersonnalise/";
-		
-		$finalImg = '';
-		// var_dump($imgFileName);
 
-		// var_dump($location);
+		$extension = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
+
+
+		if ($extension == 'jpg') {
+			$ext = 1;
+		} else if ($extension == 'gif') {
+			$ext = 2;
+		} else if ($extension == 'png') {
+			$ext = 3;
+		} else {
+			$ext = 0;
+		}
+
 	
-			if (move_uploaded_file($_FILES['file']['tmp_name'], $location.$imgFileName)){
-				$finalImg = $location.$imgFileName;
-			echo "Reussi!";
-			}else{
-			echo "Pas Reussi!!";
+		$target = $location . time() . "-" . $imgFileName; // attribuer a l'image un nom unique (ajouter le timeStamp en secondes avant le nom de l'image)
+
+		if ($ext != 0) { // si l'image a une extenssion acceptee
+
+			if (move_uploaded_file($_FILES['file']['tmp_name'], $target)) {
+
+				$bte = new Bouteille();
+
+				//redimmensionner l'image 
+				$redimensionImg = $bte->redimmensionImage($target, $ext, $lageur=367, $hauteur=550); // appele de la fonction qui redimmensionne l'image
+				
+				echo "Reussi!";
+			} else {
+				echo "Pas Reussi!!";
 			}
-	return $finalImg;
+
+		} else {
+			echo 'Le format de l\'image n\'est pas conforme!';
+		}
 	}
 
 
+/**
+	 * ajouter image dans le Catalogue general
+	 * Admin
+	 * @return void
+	 * 
+	 */
+
 	private function ajouterImageLocal() // en developpement!!!
 	{
-		var_dump($_FILES['file']);
-		$imgFileName = $_FILES['file']['name'];
+		$imgFileName = str_replace(' ', '', $_FILES['file']['name']); //enlever les espaces dans les noms
 
 		$location = "assets/img/bouteillesNonlistees/";
 
-		
-		$finalImg = '';
-		var_dump($imgFileName);
+		$extension = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
 
-		var_dump($location);
+
+		if ($extension == 'jpg') {
+			$ext = 1;
+		} else if ($extension == 'gif') {
+			$ext = 2;
+		} else if ($extension == 'png') {
+			$ext = 3;
+		} else {
+			$ext = 0;
+		}
+
 	
-		//if (!file_exists($location . $imgFileName)) {
-			if (move_uploaded_file($_FILES['file']['tmp_name'], $location.$imgFileName)){
-				$finalImg = $location.$imgFileName;
-			// var_dump($finalImg, "No");
-			echo "Reussi!";
+		
+	
 
-			}else{
-			echo "Pas Reussi!!";
+		$target = $location . time() . "-" . $imgFileName; // attribuer a l'image un nom unique (ajouter le timeStamp en secondes avant le nom de l'image)
+
+		if ($ext != 0) { // si l'image a une extenssion acceptee
+
+			if (move_uploaded_file($_FILES['file']['tmp_name'], $target)) {
+
+				$bte = new Bouteille();
+
+				//redimmensionner l'image 
+				$redimensionImg = $bte->redimmensionImage($target, $ext, $lageur=367, $hauteur=550); // appele de la fonction qui redimmensionne l'image
 				
+				echo "Reussi!";
+			} else {
+				echo "Pas Reussi!!";
 			}
-			
-		//} else {
-			// $newFileName = time().'-'. $imgFileName;
-			// move_uploaded_file($_FILES['file']['tmp_name'],  $location.$newFileName);
-			// $finalImg = $newFileName;
 
-		//}
-	//	var_dump($finalImg);
-	return $finalImg;
-
+		} else {
+			echo 'Le format de l\'image n\'est pas conforme!';
+		}
 	}
 	
 	function getListeBouteilles() {
 		if  (isset($_GET['id']) &&  isset($_GET['ordre']) && isset($_GET['col'])) {
 			$this->getCellierTrie($_GET['id'], $_GET['ordre'] ,$_GET['col']);
 		}
+		if  (isset($_GET['id']) &&  isset($_GET['condition'])) {
+			// var_dump($_GET);
+			$this->getCellierFiltre($_GET['id'], $_GET['condition']);
+		}
+
 	}
 	
 }
