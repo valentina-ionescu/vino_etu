@@ -1,8 +1,5 @@
 <div class="form__contenant flex col " vertical layout>
-    <!-- <div class="form__recherche form__recherche--clair">
-        <input class="form__recherche--clair" type="text" placeholder="Entrer le nom de la bouteille..." name="nom_bouteille">
-
-    </div> -->
+    
 
     <div class="form_ajout_nonlistee form__carte ">
         <div class="admin_form__carte">

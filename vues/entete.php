@@ -27,6 +27,7 @@
 		<link rel="stylesheet" href="css/profile.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="css/admin.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="css/infoUser.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="css/pageLoader.css" type="text/css" media="screen">
 
 
 		<link rel="shortcut icon" type="image/png" href="./assets/img/logo/logo-verre-white-circle.png">
