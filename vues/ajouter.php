@@ -62,6 +62,7 @@
                     <div class="form__label__aj">
                         <select required name="type" id="">
                             <option value="" disabled selected>Type</option>
+                            <option value="3">Rosé</option>
                             <option value="2">Blanc</option>
                             <option value="1">Rouge</option>
                         </select>
@@ -113,7 +114,7 @@
                     </div>
                     <p data-js-erreur_ajout class="message__erreur__inscription hidden">Veuillez saisir une bouteille valide</p>
                     <button class="mt-1 btn btn-accent solid" name="ajouterBouteilleCellier">Ajouter la bouteille</button>
-                    <form method="POST" action="index.php?requete=home">
+                    <form method="POST" action="index.php?requete=accueil">
                         <button class="btn btn-primaire btnAnnul mt-10px">Annuler</button>
                     </form>
 
