@@ -100,6 +100,7 @@
                                         <h5>Type</h5>
                                         <button class="btn-filtre ty">Vin rouge</button>
                                         <button class="btn-filtre ty">Vin blanc</button>
+                                        <button class="btn-filtre ty">Vin rosé</button>
                                     </div>
                                     </div>
                             </div>

@@ -44,6 +44,7 @@
 		<script src="./js/ripple.js"></script>
 		<script src="./js/tricelliers.js"></script>
 		<script src="./js/filtre.js"></script>
+		
 	</head>
 	<body class="relative" >
 
