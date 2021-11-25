@@ -117,10 +117,15 @@
                 if(pays) {
                   
                     if (card.querySelector('.carte__description-pays').textContent != pays)
-                    card.style.display="none";
-                    
-                   
-                }
+                    card.style.display="none";                       
+                }else  //Le select du pays
+                if (enfantEl.classList.contains('sel-pa')) {
+                    enfantEl.addEventListener('change', (e) => {
+                     pays = e.target.value;
+                    if (card.querySelector('.carte__description-pays').textContent != pays)
+                    card.style.display="none";    
+                 })
+               }
 
                 // type
                 if(type) {
@@ -141,22 +146,9 @@
             
            
 
-            //Le select du pays
-           if (enfantEl.classList.contains('sel-pa')) {
-            enfantEl.addEventListener('change', (e) => {
-            //  fetchBouteillesTri(id,'pays',"'"+e.target.value+"'")
-            })
-          }
+           
             
-            //Type
-            // let type = getChoix(enfantEl,'ty');
-            // console.log(type);
-            // if(type == 'Vin rouge')
-            // // fetchBouteillesTri(id,'b.vino__type_id', 1)
-            // if(type == 'Vin blanc')
-            // // fetchBouteillesTri(id,'b.vino__type_id', 2)
-            // if(type == 'Vin rosé')
-            // // fetchBouteillesTri(id,'b.vino__type_id', 3)
+         
 
           
           
@@ -164,7 +156,7 @@
          
  
             
-    }) //filtres
+    }) // fin filtres
 
     function getChoix(el, val) {
       console.log(el)
