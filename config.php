@@ -36,8 +36,6 @@
 
 // Liste des pays
 
-
-
 $paysArray= array(
     "AF" => "L'Afghanistan",
     "AX" => "Iles Aland",
