@@ -212,6 +212,61 @@ class Bouteille extends Modele {
 		return $res;
 	}
 	
+
+	public function ajouterBouteilleCellierPerso($body, $id)
+	{
+		$connexion = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
+
+		$Cid = $_SESSION['cellier_id'];
+		$Dachat = date('Y-m-d');
+
+
+		$requete = mysqli_prepare($connexion, "INSERT INTO vino__cellier_has_vino__bouteille (vino__cellier_id, vino__bouteille_id, date_achat, prix) VALUES (?,?,?,?)");	
+
+        if($requete)
+        {
+            //mysqli_stmt_bind_param($requete, 'iiss', $_SESSION['cellier_id'], $id, $body->date_achat,$body->prix);
+            mysqli_stmt_bind_param($requete, 'iiss', $Cid, $id, $Dachat,$body->prix);
+
+            mysqli_stmt_execute($requete);
+
+            $resultat = mysqli_stmt_get_result($requete);
+
+            if(!$resultat){
+				var_dump($resultat);
+			}
+        }
+	}
+	
+
+	public function getIdBouteille($nomBoutPerso)
+	{
+		$connexion = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
+
+		$requete = mysqli_prepare($connexion, "SELECT id FROM vino__bouteille WHERE nom = ?");	
+
+		if($requete)
+        {
+            //mysqli_stmt_bind_param($requete, 'iiss', $_SESSION['cellier_id'], $id, $body->date_achat,$body->prix);
+            mysqli_stmt_bind_param($requete, 's', $nomBoutPerso);
+
+            mysqli_stmt_execute($requete);
+
+            $resultat = mysqli_stmt_get_result($requete);
+
+			$row = $resultat->fetch_assoc();
+        
+			return $row;
+            if(!$resultat){
+				var_dump($resultat);
+			}
+        }
+		//$res = $this->_db->query($requete);
+
+        //$row = $res->fetch_assoc();
+        
+		//return $row;
+	}
 	
 	/**
 	 * Cette méthode change la quantité d'une bouteille en particulier dans le cellier
@@ -448,6 +503,8 @@ class Bouteille extends Modele {
             $resultat = mysqli_stmt_get_result($requete);
 
 			var_dump($resultat);
+
+			return TRUE;
 		}
 	}
 	
