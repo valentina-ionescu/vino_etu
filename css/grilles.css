@@ -52,6 +52,7 @@
 }
 
 .carte__tag-top {
+    top: 0;
     display: block;
     height: 30px;
     text-align: right;
@@ -81,6 +82,11 @@
 .carte__tag-top .blanc {
     background-color: var(--bg-doree);
     color: var(--bg-sombre);
+}
+
+.carte__tag-top .rose {
+    background-color: var(--bg-rose);
+    color: #ffffff;
 }
 
 .carte__top {
@@ -262,7 +268,7 @@ details[open] summary {
 .cellier__information {
     width: 95vw;
     border-radius: 3px;
-    padding-bottom: 3em;
+    padding-bottom: 1.5em;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -447,7 +453,6 @@ details[open] summary {
   and (max-width: 1024px) 
   and (-webkit-min-device-pixel-ratio: 1) {
     .carte.horizontale {
-        flex-direction: column; 
         justify-content: unset;
         flex-basis: unset;
         min-width: unset;
