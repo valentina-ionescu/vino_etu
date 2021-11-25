@@ -1,6 +1,7 @@
 .footer__wrapper {
     width: 100%;
     bottom: 0;
+    position: absolute;
      /* margin-top: 20px;  */
    }
 
