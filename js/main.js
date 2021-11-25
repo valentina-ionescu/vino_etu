@@ -1054,4 +1054,6 @@ console.log(bouteillePerso);
       }
   })
 
+  
+
 }); //fin window load

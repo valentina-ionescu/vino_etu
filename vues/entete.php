@@ -42,8 +42,7 @@
 		<base href="<?php echo BASEURL; ?>">
 		<script src="./js/main.js"></script>
 		<script src="./js/ripple.js"></script>
-		<script src="./js/async.js"></script>
-		<script src="./js/util.js"></script>
+		<script src="./js/tricelliers.js"></script>
 		<script src="./js/filtre.js"></script>
 	</head>
 	<body class="relative" >

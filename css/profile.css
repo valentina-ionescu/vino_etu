@@ -1,3 +1,5 @@
+@import url("https://use.fontawesome.com/releases/v5.13.0/css/all.css");
+
 .light__wrapper {
     background-color: var(--bg-clair);
     min-height: 100vh;
@@ -296,16 +298,33 @@ form.btn__ajouter_cellier {
 
 /* ==========----------Tables---------=========== */
 
-.cell__col {
+.cell__col,
+.cell__col.th-tri-asc,
+.cell__col.th-tri-desc {
     text-align: left;
     background-color: var(--bg-primaire);
     padding: .25em .7em;
-    padding: 5px;
-   
+    padding: 5px;  
 }
-/* .cell__col-nom {
-    padding: 1em;
-} */
+
+.cell__col.th-tri-desc::after {
+    content: "\f0d7";
+    font-family: "Font Awesome 5 Free"; 
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.25rem;
+    font-weight: 900;
+}
+
+.cell__col.th-tri-asc::after{
+    content: "\f0d8";
+    font-family: "Font Awesome 5 Free"; 
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.25rem;
+    font-weight: 900;
+}
+
 .caret {
     margin-left: .25em;
 }
@@ -339,7 +358,8 @@ form.btn__ajouter_cellier {
     position: relative;
     width: 100vw;
 }
-.filtres {
+.filtres,
+.entete__filtres {
     /* margin-left: 75vw;
     margin-top: 10%;
     position: relative; */
@@ -358,7 +378,8 @@ hr.separe {
     margin: 0;
     padding: 0;
 }
-.filtres>a {
+ .filtres>a,
+ .entete__filtres>a {
     padding: .5em 1em;
     display: block;
     width: fit-content;
@@ -407,7 +428,7 @@ hr.separe {
 .btn-ctrl {
     margin-top: 10%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
     
 input.mill {
@@ -418,6 +439,19 @@ input.mill {
 }
 .cache {
     display: none;
+}
+.sel-pa {
+    max-width: 72%;
+    margin-block-start: .25rem;
+}
+.clr {
+ align-self: flex-end;
+}
+
+.pays {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .25rem;
 }
 /* ==========----------Media queries---------=========== */
 @media (min-width: 540px)  {

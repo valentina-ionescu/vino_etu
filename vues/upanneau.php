@@ -80,12 +80,12 @@
             </div>
 
             <!-- Table de celliers -->
-            <table>
+            <table class="table_triable">
                 <thead>
                     <tr>
-                        <th class="cell__col"><span id="nom" class="w3-button table-column">Nom cellier<i class="fa fa-caret-up caret"></span></th>
+                        <th class="cell__col  nom trier ">Nom cellier</th>
                         <!-- <th class="cell__col"><span id="qte" class="w3-button table-column"><i class="fas fa-wine-bottle"></i><i class="caret"></span></th> -->
-                        <th class="cell__col"><span id="qte" class="w3-button table-column">Bouteilles</i><i class="fa fa-caret-up caret"></span></th>
+                        <th class="cell__col  bouteilles trier">Bouteilles</th>
                         <th class="cell__col"></th>
 
                     </tr>
@@ -96,7 +96,7 @@
 
 
                         <tr class="cell__ligne" data-cellid="<?php echo $cel['id'] ?>">
-                            <td class="cell__col-nom"><a href="" class="selectCellier" data-cellid="<?php echo $cel['id'] ?>"><?php echo ucfirst($cel['nom_cellier']) ?></a>
+                            <td><a href="" class="selectCellier" data-cellid="<?php echo $cel['id'] ?>"><?php echo ucfirst($cel['nom_cellier']) ?></a>
                             </td>
                             <td class="cell__col-qte b__compte"><?php if (empty($cel['bqte'])) echo 0;
                                                                 else echo $cel['bqte']; ?></td>
