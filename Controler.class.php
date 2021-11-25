@@ -500,7 +500,15 @@ class Controler
 
 			$resultat = $bte->ajouterBouteillePerso($body);
 
-			echo json_encode($resultat);
+			if ($resultat) {
+
+				$idBouteilleCell = $bte->getIdBouteille($body->nom);
+				
+				if (!empty($idBouteilleCell)) {
+
+					$bte->ajouterBouteilleCellierPerso($body, $idBouteilleCell['id']);
+				}
+			}
 		}
 	}
 
