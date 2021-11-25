@@ -1014,7 +1014,7 @@ console.log(bouteillePerso);
 
     console.log(param.image);
 
-    if (param.nom !== '' && param.nom.length > 3) {
+    if (param.nom !== '' && param.nom.length > 2) {
 
       let requete = new Request(
         "index.php?requete=ajouterBouteillePerso",

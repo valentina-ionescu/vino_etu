@@ -505,6 +505,7 @@ class Controler
 				$idBouteilleCell = $bte->getIdBouteille($body->nom);
 				
 				if (!empty($idBouteilleCell)) {
+					echo $idBouteilleCell['id'];
 
 					$bte->ajouterBouteilleCellierPerso($body, $idBouteilleCell['id']);
 				}
