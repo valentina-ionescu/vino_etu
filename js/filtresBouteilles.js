@@ -1,4 +1,3 @@
-
 /**
  * @file Script contenant les fonctions filres pour la page bouteilles
  * @author DFV - "les Devs en Pyjamas"
@@ -8,12 +7,7 @@
  * @param  {} function(
  */
 
-window.addEventListener("load", function () {
- 
-   //////////////////////////////////////////////
-    //Fonction filtres bouteilles               //
-    //////////////////////////////////////////////
-   
+ window.addEventListener("load", function () {
 
     let id = document.querySelector('[data-cellid]').dataset.cellid;
     console.log(id);
@@ -93,40 +87,76 @@ window.addEventListener("load", function () {
             
          
             //Millesime
-            let millesime = getChoix(enfantEl,'mill');
-            if(millesime)
-            fetchBouteillesTri(id,'millesime',millesime)
+            let millesime = getChoix(enfantEl,'mill'),
+                pays = getChoix(enfantEl,'pa'),
+                type = getChoix(enfantEl,'ty');
+                
+                
 
-           //Le select du millesime
-           if (enfantEl.classList.contains('sel-mill')) {
-             enfantEl.addEventListener('change', (e) => {
-              fetchBouteillesTri(id,'millesime',e.target.value)
-             })
-           }
+            
+            let cartes = document.querySelectorAll('.carte');
+            cartes.forEach((card) => {
+
+                // millesime
+                if(millesime) {
+                    console.log(millesime);
+                    if (card.querySelector('.carte__description-millesime').textContent != `Millesime: ${millesime}`)
+                    card.style.display="none";
+                    
+                //Le select du millesime
+                } else if (enfantEl.classList.contains('sel-mill')) {
+                    enfantEl.addEventListener('change', (e) => {
+                    millesime =  e.target.value;   
+                    console.log(escape(millesime))
+                    if (card.querySelector('.carte__description-millesime').textContent != `Millesime: ${millesime}`)
+                    card.style.display="none";
+                    })
+                    }
+
+                    // pays
+                if(pays) {
+                  
+                    if (card.querySelector('.carte__description-pays').textContent != pays)
+                    card.style.display="none";
+                    
+                   
+                }
+
+                // type
+                if(type) {
+                  
+                   let typeS = JSON.stringify(card.querySelector('.carte__tag-top span').textContent.trim());
+                    if (typeS != JSON.stringify(type))
+                    card.style.display="none";     
+                  
+                }
+
+              
+            })
+
+           
+           
            
 
             
-            //Pays
-            let pays = getChoix(enfantEl,'pa');
-            if(pays)
-            fetchBouteillesTri(id,'pays', "'"+pays+"'")
+           
 
             //Le select du pays
            if (enfantEl.classList.contains('sel-pa')) {
             enfantEl.addEventListener('change', (e) => {
-             fetchBouteillesTri(id,'pays',"'"+e.target.value+"'")
+            //  fetchBouteillesTri(id,'pays',"'"+e.target.value+"'")
             })
           }
             
             //Type
-            let type = getChoix(enfantEl,'ty');
-            console.log(type);
-            if(type == 'Vin rouge')
-            fetchBouteillesTri(id,'b.vino__type_id', 1)
-            if(type == 'Vin blanc')
-            fetchBouteillesTri(id,'b.vino__type_id', 2)
-            if(type == 'Vin rosé')
-            fetchBouteillesTri(id,'b.vino__type_id', 3)
+            // let type = getChoix(enfantEl,'ty');
+            // console.log(type);
+            // if(type == 'Vin rouge')
+            // // fetchBouteillesTri(id,'b.vino__type_id', 1)
+            // if(type == 'Vin blanc')
+            // // fetchBouteillesTri(id,'b.vino__type_id', 2)
+            // if(type == 'Vin rosé')
+            // // fetchBouteillesTri(id,'b.vino__type_id', 3)
 
           
           
@@ -207,7 +237,5 @@ window.addEventListener("load", function () {
  
 
 
-
- })
-
- 
+    
+ }); /** */   

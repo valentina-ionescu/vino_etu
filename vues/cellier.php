@@ -10,7 +10,7 @@
                         <?php echo $msg; ?>
                     <!-- </h3> -->
                 <?php  } else { ?>
-                    <h3 class="tag-gauche txt-blanc capit"><?php echo  $_SESSION['cellier_nom'];
+                    <h3 class="tag-gauche txt-blanc capit" data-cellid="<?php echo $_SESSION['cellier_id'];?>"><?php echo  $_SESSION['cellier_nom'];
                          }  ?></h3>
             </div>
         </div>
@@ -140,7 +140,7 @@
                         if ($bouteille['vino__type_id'] == 1) { ?>
                             <span class="rouge">Vin rouge</span>
                         <?php } else { ?>
-                            <span class="blanc ">Vin blanc </span>
+                            <span class="blanc">Vin blanc </span>
                         <?php  } ?>
 
                     </div>

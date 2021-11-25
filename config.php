@@ -37,6 +37,8 @@
 // Liste des pays
 
 $paysArray= array(
+    "CA" => "Canada",
+    "US" => "États-Unis",
     "AF" => "L'Afghanistan",
     "AX" => "Iles Aland",
     "AL" => "Albanie",
@@ -76,7 +78,6 @@ $paysArray= array(
     "BI" => "Burundi",
     "KH" => "Cambodge",
     "CM" => "Cameroun",
-    "CA" => "Canada",
     "CV" => "Cap-Vert",
     "KY" => "Îles Caïmans",
     "CF" => "République centrafricaine",
@@ -275,7 +276,7 @@ $paysArray= array(
     "UA" => "Ukraine",
     "AE" => "Emirats Arabes Unis",
     "GB" => "Royaume-Uni",
-    "US" => "États-Unis",
+   
     "UM" => "Îles mineures éloignées des États-Unis",
     "UY" => "Uruguay",
     "UZ" => "Ouzbékistan",
