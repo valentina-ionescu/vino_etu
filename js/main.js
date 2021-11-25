@@ -25,7 +25,10 @@
 const BaseURL = document.baseURI;
 console.log(BaseURL);
 window.addEventListener("load", function () {
-  console.log("load");
+  console.log("load - main.js");
+  document.querySelector(".loader").classList.add('hidden');
+ 
+
 
   document.querySelectorAll(".btnBoire").forEach(function (element) {
     element.addEventListener("click", function (evt) {
@@ -335,7 +338,6 @@ window.addEventListener("load", function () {
       fetch(requete)
         .then(response => {
           if (response.status === 200) {
-            //re-afficher le cellier
             window.location.href = "index.php?requete=paramUsager"
             return response.json();
           } else {
@@ -954,6 +956,7 @@ let formAjoutBouteillePerso  = document.querySelector('[data-js-form-personel]')
     prix: document.querySelector("[name='prix_perso']"),
     format: document.querySelector("[name='format']"),
     type: document.querySelector("[name='type']"),
+
   };
 
 console.log(bouteillePerso);
@@ -1012,6 +1015,7 @@ console.log(bouteillePerso);
       prix: bouteillePerso.prix.value,
       format: bouteillePerso.format.value,
       type: bouteillePerso.type.options[bouteillePerso.type.selectedIndex].value,
+
     };
 
     console.log(param.image);

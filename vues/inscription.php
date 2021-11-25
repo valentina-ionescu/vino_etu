@@ -36,7 +36,7 @@
             </div>
 
             <p data-js-msgError class="message__erreur__inscription display__none">Champ incorrect</p>
-            <button class='btnModifier' name="ajouterUser" value="inscription">S'inscrire</button>
+            <button class='btnModifier btn' name="ajouterUser" value="inscription">S'inscrire</button>
 
 
         </div>

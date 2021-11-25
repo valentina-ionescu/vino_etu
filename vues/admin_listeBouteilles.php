@@ -10,18 +10,50 @@
     <h2>Catalogue</h2>
 
     <a href="?requete=ajouterBouteilleNonListeeCatalogue" class="btn btn-primaire solid admin ajoute-bouteille">Ajouter Une bouteill non listee</a>
- 
+
     <div class="form__recherche form__recherche--clair">
-        <span class="fas fa-search iconne "></span>
+       <a href="" class="btnRechercheBouteille"> <span class="fas fa-search iconne "></span></a>
         <!-- <input type="text" class="search-input" placeholder="Cherchez par nom"> -->
 
-        <input type="text" id="cell_rech" class="form__recherche--clair recherche_bouteille" placeholder="Recherche par nom..." title="Nom de cellier">
-    </div> 
-  <p class="txt_msg-supprime"></p>
-  
+        <input type="text" id="cell_rech" name="recherche" class="form__recherche--clair recherche_bouteille" placeholder="Recherche par nom..." title="Nom de cellier">
+    </div>
+    <p class="txt_msg-supprime"><?php
+    if (isset($_GET['Recherche'])) { 
+        // echo $resultatsRecherche;
+       if(isset($recherche)){
+             echo $recherche; 
+        }
+        
+    } ?></p>
+
+
+
     <div class="mt-1">
 
-        <!-- <span> <?php echo (count($listeBouteilles)); ?> Bouteilles </span> -->
+        <!-- <ul class="pagination">
+            <li><a href="index.php?requete=getCatalogue&page=1">1</a></li>
+            <li class="<?php if ($page <= 1) {
+                            echo 'disabled';
+                        } ?>">
+                <a href="<?php if ($page <= 1) {
+                                echo '#';
+                            } else {
+                                echo "index.php?requete=getCatalogue&page=" . ($page - 1);
+                            } ?>">Précédent</a>
+            </li>
+            <li><span>Page <?php echo $page; ?> de <?php echo $number_of_page; ?></span></li>
+
+            <li class="<?php if ($page >= $number_of_page) {
+                            echo 'disabled';
+                        } ?>">
+                <a href="<?php if ($page >= $number_of_page) {
+                                echo '#';
+                            } else {
+                                echo "index.php?requete=getCatalogue&page=" . ($page + 1);
+                            } ?>">Suivant</a>
+            </li>
+            <li><a href="index.php?requete=getCatalogue&page=<?php echo $number_of_page; ?>">...<?php echo $number_of_page; ?></a></li>
+        </ul> -->
 
 
 
@@ -40,7 +72,7 @@
             <tbody>
                 <?php
 
-                foreach ($listeBouteilles as $row) {
+                foreach ($resultatPage as $row) {
                     if (!$row['statut_desactive'] == 1) {
 
                 ?>

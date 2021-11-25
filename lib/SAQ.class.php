@@ -32,15 +32,18 @@ class SAQ extends Modele
 
 	/**
 	 * getProduits
-	 * @param int $nombre
+	 * @param int $nombre	
 	 * @param int $debut
 	 */
 	public function getProduits($nombre, $page)
 	{
 		$s = curl_init();
 		// $url = "https://www.saq.com/fr/produits/vin/vin-blanc?p=2&product_list_limit=24&product_list_order=name_asc";
+		//$url = "https://www.saq.com/fr/produits/vin?p=2&product_list_limit=24&product_list_order=name_asc";
 
-		$url = "https://www.saq.com/fr/produits/vin?p=" . $page . "&product_list_limit=" . $nombre . "&product_list_order=name_asc";
+
+		$url = "https://www.saq.com/fr/produits/vin?p=".$page."&product_list_limit=".$nombre."&product_list_order=name_asc";
+
 
 		//curl_setopt($s, CURLOPT_URL, "http://www.saq.com/webapp/wcs/stores/servlet/SearchDisplay?searchType=&orderBy=&categoryIdentifier=06&showOnly=product&langId=-2&beginIndex=".$debut."&tri=&metaData=YWRpX2YxOjA8TVRAU1A%2BYWRpX2Y5OjE%3D&pageSize=". $nombre ."&catalogId=50000&searchTerm=*&sensTri=&pageView=&facet=&categoryId=39919&storeId=20002");
 		//curl_setopt($s, CURLOPT_URL, "https://www.saq.com/webapp/wcs/stores/servlet/SearchDisplay?categoryIdentifier=06&showOnly=product&langId=-2&beginIndex=" . $debut . "&pageSize=" . $nombre . "&catalogId=50000&searchTerm=*&categoryId=39919&storeId=20002");
@@ -73,10 +76,6 @@ class SAQ extends Modele
 		$doc->recover = true;
 		$doc->strictErrorChecking = false;
 		@$doc->loadHTML(self::$_webpage);
-
-
-
-
 		$elements = $doc->getElementsByTagName("li");
 		$i = 0;
 
@@ -114,7 +113,7 @@ class SAQ extends Modele
 				}
 				// echo "</p>";
 
-				array_push($data, ['info' => $info, "retour" => $retour, "msg" => $msg, 'i' => $i++]); // creer un array de donnees pour afficher sur la page.
+				array_push($data, ['info' => $info, "retour" => $retour, "msg" => $msg, 'i' => $i++]); // creer un array de donnees pour afficher sur la page. 
 			}
 		}
 
@@ -122,60 +121,6 @@ class SAQ extends Modele
 
 		return $i;
 	}
-
-
-	public function NombrePagesSaq()
-	{
-		$s = curl_init();
-
-		$url = "https://www.saq.com/fr/produits/vin";
-
-
-		// Se prendre pour un navigateur pour berner le serveur de la saq...
-		curl_setopt_array($s, array(
-			CURLOPT_URL => $url,
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_USERAGENT => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0',
-			CURLOPT_ENCODING => 'gzip, deflate',
-			CURLOPT_HTTPHEADER => array(
-				'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-				'Accept-Language: en-US,en;q=0.5',
-				'Accept-Encoding: gzip, deflate',
-				'Connection: keep-alive',
-				'Upgrade-Insecure-Requests: 1',
-			),
-		));
-		self::$_webpage = curl_exec($s);
-		self::$_status = curl_getinfo($s, CURLINFO_HTTP_CODE);
-		curl_close($s);
-
-		$doc = new DOMDocument();
-		$doc->recover = true;
-		$doc->strictErrorChecking = false;
-		@$doc->loadHTML(self::$_webpage);
-
-
-		$ttlpagesElements = $doc->getElementsByTagName("span");
-
-		$spansBtl = [];
-		foreach ($ttlpagesElements as $key => $spanNeud) {
-
-			if (strpos($spanNeud->getAttribute('class'), "toolbar-number") !== false) {
-
-				array_push($spansBtl, $spanNeud->textContent);
-			}
-		}
-
-		$nbrB = $spansBtl[2];
-
-		return $nbrB;
-	}
-
-
-
-
-
-
 
 	private function get_inner_html($node)
 	{
@@ -264,7 +209,7 @@ class SAQ extends Modele
 				// enlever tout exceptee les chifres et le ","
 				$info->prix = preg_replace("/[^0-9\,]/", "", $info->prix); //valeur "1.23"
 
-				//transformer la chaine de caracteres en float pour envoyer a la DB
+				//transformer la chaine de caracteres en float pour envoyer a la DB 
 				//$info -> prix = floatval($info -> prix); //valeur 1.23
 
 
@@ -290,6 +235,7 @@ class SAQ extends Modele
 			//var_dump($type);
 			$type = $type['id'];
 
+			
 			$rows = $this->_db->query("select id from vino__bouteille where code_saq = '" . $bte->desc->code_SAQ . "'");
 			// echo $bte->desc->code_SAQ;
 			if ($rows->num_rows < 1) {
@@ -313,4 +259,58 @@ class SAQ extends Modele
 
 		return $retour;
 	}
+
+	public function NombrePagesSaq(){
+        $s = curl_init();
+
+        $url = "https://www.saq.com/fr/produits/vin";
+
+
+        // Se prendre pour un navigateur pour berner le serveur de la saq...
+        curl_setopt_array($s, array(
+            CURLOPT_URL => $url,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_USERAGENT => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0',
+            CURLOPT_ENCODING => 'gzip, deflate',
+            CURLOPT_HTTPHEADER => array(
+                'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,/;q=0.8',
+                'Accept-Language: en-US,en;q=0.5',
+                'Accept-Encoding: gzip, deflate',
+                'Connection: keep-alive',
+                'Upgrade-Insecure-Requests: 1',
+            ),
+        ));
+        self::$_webpage = curl_exec($s);
+            self::$_status = curl_getinfo($s, CURLINFO_HTTP_CODE);
+            curl_close($s);
+
+            $doc = new DOMDocument();
+            $doc->recover = true;
+            $doc->strictErrorChecking = false;
+            @$doc->loadHTML(self::$_webpage);
+
+
+			$arrayBtl = [];
+
+        	$ttlpagesElements = $doc->getElementsByTagName("span");
+
+             foreach ($ttlpagesElements as $key => $spanNeud) {
+
+                //$nbrB= $spanNeud->childNodes->item(2);var_dump($nbrB) ;
+
+                 if (strpos($spanNeud->getAttribute('class'), "toolbar-number") !== false)  {
+
+					$nbrB = $spanNeud->textContent;
+
+					array_push($arrayBtl, $nbrB);
+
+					
+				}
+			}
+			#var_dump($arrayBtl);
+			
+			$nbrBT = $arrayBtl[2];
+
+			return $nbrBT;
+    }
 }

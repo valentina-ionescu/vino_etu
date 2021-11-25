@@ -19,6 +19,7 @@ window.addEventListener('scroll', function () {
 
 window.addEventListener('load', function () {
 
+    document.querySelector(".loader").classList.add('hidden');
 
 
 
@@ -295,6 +296,7 @@ window.addEventListener('load', function () {
     //////////////////////////////////////////////////////////////////////
 
     let formNonListee = document.querySelector('.form_ajout_nonlistee');
+
     console.log(formNonListee)
     //bouton annuler
     formNonListee.querySelector('.btnAnnul').addEventListener('click',()=>{
@@ -389,7 +391,9 @@ window.addEventListener('load', function () {
                 url_saq: 'Non Listée',
                 code_saq: 'Non Listée',
             };
+            let msgErreur = document.querySelector('[data-js-erreur-nonListee]');
 
+            if (param.nom !== '' && param.nom.length > 3) {
 
             let requete = new Request("index.php?requete=ajouterBouteilleNonListeeCatalogue", {
                 method: "POST",
@@ -429,8 +433,10 @@ window.addEventListener('load', function () {
 
 
                     }
-
                 });
+            }else {
+                msgErreur.classList.remove('hidden');
+              }
 
 
 
