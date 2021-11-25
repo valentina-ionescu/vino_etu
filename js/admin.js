@@ -275,7 +275,7 @@ window.addEventListener('load', function () {
 
     let msgErreur = document.querySelector('[data-js-erreur-modif-nonListee]');
 
-    if (param.nom !== '' && param.nom.length > 3) {
+    if (param.nom !== '' && param.nom.length > 2) {
 
       console.log(param);
       console.log('prix', modifBouteilleCatalogue.prix_saq.value)

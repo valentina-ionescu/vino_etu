@@ -16,13 +16,17 @@
 
 	$nbrBTF = ceil($nbrBT/$nbBtPages);
 
-echo "<section class='center w-70' >
+	echo "<section class='center w-70' >
 		<h2 class=''>Importation Finie  !</h2>";
 
-	for($i=0; $i<=$nbrBTF;$i++)	//permet d'importer séquentiellement plusieurs pages.
+	for($i=0; $i<$nbrBTF;)	//permet d'importer séquentiellement plusieurs pages.
 	{
 		
-	 	 $nombre = $saq->getProduits($nombreProduit, $page+$i);
+
+
+		$nombre = $saq->getProduits($nombreProduit, $page+$i);
+
+		$i = $i+1;
 
 		 
 	}
