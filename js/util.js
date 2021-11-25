@@ -22,6 +22,10 @@ window.addEventListener("load", function () {
     cellLigne = table.querySelectorAll(".cell__ligne"),
     input = document.querySelector("#cell_rech");
 
+    ///////
+  
+    ///////
+
   cellLigne.forEach((element) => {
     (cellNom = element.querySelector(".cell__col-nom")),
       (cellQte = element.querySelector(".cell__col-qte"));
@@ -175,6 +179,7 @@ window.addEventListener("load", function () {
     filterTable();
   }
 
+  
 
 
 });

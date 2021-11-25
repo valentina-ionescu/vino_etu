@@ -35,13 +35,15 @@
 
             <!-- Filtres sur les bouteilles -->
             <!-- <hr class="separe"> -->
-           
-                <div class="filtres">
-                    <?php if(isset($effacer)&&$effacer == 1) { ?>
-                    <a href="" class="tag-gauche txt-blanc capit petit effacer">Effacer</a>
-                    <?php }?>    
-                    <a href="" class="tag-droite txt-blanc capit petit">Filtres<i class="fas fa-angle-down"></i></i></a>
-                </div> 
+           <div class="entete__filtres">
+               <?php if(isset($effacer)&&$effacer == 1) { ?>
+                   <a href="?requete=accueil" class="tag-gauche txt-blanc capit petit clr">Effacer</a>
+                   <?php }?>    
+                   <div class="filtres">
+                       <a href="" class="tag-droite txt-blanc capit petit">Filtres<i class="fas fa-angle-down"></i></i></a>
+                   </div> 
+
+           </div>
                     <!-- Modal de filtres -->
                     
                     <div class="filtres__modal__wrapper">
@@ -80,8 +82,8 @@
                                         </select>
                                         
                                     </div>
+                                    <h5>Pays</h5>
                                     <div class="pays">
-                                        <h5>Pays</h5>
                                         <button class="btn-filtre pa">Espagne</button>
                                         <button class="btn-filtre pa">Canada</button>
                                         <button class="btn-filtre pa">Portugal</button>
