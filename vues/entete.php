@@ -42,8 +42,7 @@
 		<base href="<?php echo BASEURL; ?>">
 		<script src="./js/main.js"></script>
 		<script src="./js/ripple.js"></script>
-		<script src="./js/async.js"></script>
-		<script src="./js/util.js"></script>
+		<script src="./js/tricelliers.js"></script>
 		<script src="./js/filtre.js"></script>
 	</head>
 	<body class="relative" >
@@ -81,7 +80,7 @@
 						if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1) {
 						?>
 
-							<li><a href="?requete=admin">Admin - tableau de bord </a></li>
+							<li><a href="?requete=getCatalogue">Admin - tableau de bord </a></li>
 						<?php
 						}
 						?>

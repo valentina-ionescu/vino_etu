@@ -13,24 +13,34 @@ window.addEventListener("load", function () {
    //////////////////////////////////////////////
     //Fonction filtres bouteilles               //
     //////////////////////////////////////////////
-    
+   
+
   
     let filtres = document.querySelector('.filtres');
     filtres.addEventListener('click', (e) => {
-      e.preventDefault();
-      console.log('filtres');
-      let modal = document.querySelector(".filtres__modal__wrapper");
-      modal.classList.toggle("show");
+        e.preventDefault();
+        console.log('filtres');
+        let modal = document.querySelector(".filtres__modal__wrapper");
+        modal.classList.add("show");
 
-      // Nom ASC
-      let sortNomUp = document.querySelector('.nomASC');
+        //empecher le scroll de l'arriere plan ref: https://css-tricks.com/prevent-page-scrolling-when-a-modal-is-open/
+        const scrollY = document.documentElement.style.getPropertyValue('--scroll-y');
+        const body = document.body;
+        body.style.position = 'fixed';
+        body.style.top = `-${scrollY}`;
       
-          sortNomUp.addEventListener('click', (e) => {
-            console.log(e.target)
+       
+
+        // Nom ASC
+            let sortNomUp = document.querySelector('.nomASC');
+        
+            sortNomUp.addEventListener('click', (e) => {
+              console.log(e.target)
 
             // Récuperer les bouteilles dans l'ordre demandé
             fetchBouteilles(id,'ASC','nom');
           });
+
       // Nom DESC
       let sortNomDown = document.querySelector('.nomDESC');
       
@@ -63,6 +73,13 @@ window.addEventListener("load", function () {
           });
           // Fermeture du modale de filtres
           document.querySelector('.btn-filtre-fermer').addEventListener('click', (e) => {
+          
+              const body = document.body;
+              const scrollY = body.style.top;
+              body.style.position = '';
+              body.style.top = '';
+              window.scrollTo(0, parseInt(scrollY || '0') * -1);
+           
             modal.classList.remove('show');
           })
           //
@@ -71,18 +88,34 @@ window.addEventListener("load", function () {
           choix.addEventListener('click', (e) => {
             //delegation d'evenements sur les elements enfants
             let enfantEl = e.target;
-           
+           console.log(enfantEl)
             
          
             //Millesime
             let millesime = getChoix(enfantEl,'mill');
             if(millesime)
             fetchBouteillesTri(id,'millesime',millesime)
+
+           //Le select du millesime
+           if (enfantEl.classList.contains('sel-mill')) {
+             enfantEl.addEventListener('change', (e) => {
+              fetchBouteillesTri(id,'millesime',e.target.value)
+             })
+           }
+           
+
             
             //Pays
             let pays = getChoix(enfantEl,'pa');
             if(pays)
             fetchBouteillesTri(id,'pays', "'"+pays+"'")
+
+            //Le select du pays
+           if (enfantEl.classList.contains('sel-pa')) {
+            enfantEl.addEventListener('change', (e) => {
+             fetchBouteillesTri(id,'pays',"'"+e.target.value+"'")
+            })
+          }
             
             //Type
             let type = getChoix(enfantEl,'ty');
@@ -94,9 +127,11 @@ window.addEventListener("load", function () {
 
           
           
-          })
+        })
+         
+ 
             
-    })
+    }) //filtres
 
     function getChoix(el, val) {
       console.log(el)
@@ -164,9 +199,12 @@ window.addEventListener("load", function () {
       })
       .catch(error => console.log(error));
     
-  } 
-  document.querySelector('.effacer').addEventListener('click', (e) => {
-    e.preventDefault();
-    window.location.href = "index.php?requete=accueil";
-  })
-})
+     } 
+
+ 
+
+
+
+ })
+
+ 

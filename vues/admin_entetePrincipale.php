@@ -99,9 +99,9 @@
 
 
             <ul class="admin-menu admin__tabs__sidebar sideBar-ferme " id="admin_menu1">
-                <li class="menu-heading">
+                <!-- <li class="menu-heading">
                     <h3>Admin</h3>
-                </li>
+                </li> -->
 
                 <li class="tabs__button  admin_carte" data-for-tab="1">
                     <!-- <a href="#Catalogue"> -->
@@ -164,7 +164,7 @@
     </header>
 
 
-    <section class="mt-5">
+    <section class=" section_principale mt-5">
 
         <section class="search-and-user">
 

@@ -35,13 +35,15 @@
 
             <!-- Filtres sur les bouteilles -->
             <!-- <hr class="separe"> -->
-           
-                <div class="filtres">
-                    <?php if(isset($effacer)&&$effacer == 1) { ?>
-                    <a href="" class="tag-gauche txt-blanc capit petit effacer">Effacer</a>
-                    <?php }?>    
-                    <a href="" class="tag-droite txt-blanc capit petit">Filtres<i class="fas fa-angle-down"></i></i></a>
-                </div> 
+           <div class="entete__filtres">
+               <?php if(isset($effacer)&&$effacer == 1) { ?>
+                   <a href="?requete=accueil" class="tag-gauche txt-blanc capit petit clr">Effacer</a>
+                   <?php }?>    
+                   <div class="filtres">
+                       <a href="" class="tag-droite txt-blanc capit petit">Filtres<i class="fas fa-angle-down"></i></i></a>
+                   </div> 
+
+           </div>
                     <!-- Modal de filtres -->
                     
                     <div class="filtres__modal__wrapper">
@@ -50,7 +52,6 @@
                             <!-- <span class="fermer"><i class="fas fa-times"></i></span> -->
                            
                                 <div class="btn-ctrl">
-                                    <button class="btn-filtre btn-filtre-effacer tag-gauche">Effacer</button>
                                     <button class="btn-filtre btn-filtre-fermer tag-droite">Fermer</button>
                                 </div>
                           
@@ -71,16 +72,29 @@
                                         <button class="btn-filtre mill">2016</button>
                                         <button class="btn-filtre mill">2017</button>
                                         <button class="btn-filtre mill">2018</button>
-                                        <!-- <button class="btn-filtre mill">Autre</button> -->
-                                        <input type="text" class="btn-filtre mill" name="-input-millesime" placeholder="Autres">
+                                       
+                                        <select class="btn-filtre sel-mill" name="autres-mill" id="">
+                                            <option value="">Autres</option>
+                                            <?php for ($i=1990; $i <= 2021; $i++) { ?>
+                                                <option value="<?php echo $i;?>"><?php echo $i;?></option>    
+                                           <?php  }?>
+                                           
+                                        </select>
                                         
                                     </div>
+                                    <h5>Pays</h5>
                                     <div class="pays">
-                                        <h5>Pays</h5>
-                                        <button class="btn-filtre pa">Allemagne</button>
-                                        <button class="btn-filtre pa">Chili</button>
-                                        <button class="btn-filtre pa">États-Unis</button>
-                                        <button class="btn-filtre pa">Autre</button>
+                                        <button class="btn-filtre pa">Espagne</button>
+                                        <button class="btn-filtre pa">Canada</button>
+                                        <button class="btn-filtre pa">Portugal</button>
+                                       
+                                        <select class="btn-filtre sel-pa" name="autres-mill" id="">
+                                            <option value="">Autres</option>
+                                            <?php foreach(PAYSARRAY as $key => $value) { ?>
+                                                <option value="<?php echo $value;?>"><?php echo $value;?></option>    
+                                           <?php  }?>
+                                           
+                                        </select>
                                     </div>
                                     <div class="type">
                                         <h5>Type</h5>

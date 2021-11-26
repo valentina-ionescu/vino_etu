@@ -951,12 +951,8 @@ let formAjoutBouteillePerso  = document.querySelector('[data-js-form-personel]')
     prix: document.querySelector("[name='prix_perso']"),
     format: document.querySelector("[name='format']"),
     type: document.querySelector("[name='type']"),
-<<<<<<< HEAD
-
-=======
     quantite: 1,
     date_achat: document.querySelector("[name='date_achat']"),
->>>>>>> e08f79cec4e32dbbd5791719be5cf2b2f4a45175
   };
 
 console.log(bouteillePerso);
@@ -1015,12 +1011,8 @@ console.log(bouteillePerso);
       prix: bouteillePerso.prix.value,
       format: bouteillePerso.format.value,
       type: bouteillePerso.type.options[bouteillePerso.type.selectedIndex].value,
-<<<<<<< HEAD
-
-=======
       quantite: 1,
       date_achat: bouteillePerso.date_achat.value,
->>>>>>> e08f79cec4e32dbbd5791719be5cf2b2f4a45175
     };
 
     console.log(param.image);
@@ -1035,6 +1027,7 @@ console.log(bouteillePerso);
           headers: { "Content-Type": "application/json" },
         }
       );
+      
       console.log(requete);
 
       fetch(requete)
@@ -1057,12 +1050,13 @@ console.log(bouteillePerso);
           response.json();
           }, 2000);
 
-        
         });
         })
       }else {
         msgErreur.classList.remove('hidden');
       }
   })
+
+  
 
 }); //fin window load

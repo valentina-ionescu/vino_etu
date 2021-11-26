@@ -17,31 +17,25 @@
 
         <input type="text" id="cell_rech" name="recherche" class="form__recherche--clair recherche_bouteille" placeholder="Recherche par nom..." title="Nom de cellier">
     </div>
-    <p class="txt_msg-supprime"><?php
-    if (isset($_GET['Recherche'])) { 
-        // echo $resultatsRecherche;
-       if(isset($recherche)){
-             echo $recherche; 
-        }
-        
-    } ?></p>
+    <p class="txt_msg-supprime"></p>
 
 
 
     <div class="mt-1">
 
-        <!-- <ul class="pagination">
-            <li><a href="index.php?requete=getCatalogue&page=1">1</a></li>
+        <ul class="pagination">
+            
+            <li><a href="<?php echo$urlPage ?>1"><i class="fas fa-angle-double-left"></i></a></li>
             <li class="<?php if ($page <= 1) {
                             echo 'disabled';
                         } ?>">
                 <a href="<?php if ($page <= 1) {
                                 echo '#';
                             } else {
-                                echo "index.php?requete=getCatalogue&page=" . ($page - 1);
+                                echo $urlPage . ($page - 1);
                             } ?>">Précédent</a>
             </li>
-            <li><span>Page <?php echo $page; ?> de <?php echo $number_of_page; ?></span></li>
+            <li class="disabled"><span>Page <?php echo $page; ?> de <?php echo $number_of_page; ?></span></li>
 
             <li class="<?php if ($page >= $number_of_page) {
                             echo 'disabled';
@@ -49,13 +43,21 @@
                 <a href="<?php if ($page >= $number_of_page) {
                                 echo '#';
                             } else {
-                                echo "index.php?requete=getCatalogue&page=" . ($page + 1);
+                                echo "$urlPage " . ($page + 1);
                             } ?>">Suivant</a>
             </li>
-            <li><a href="index.php?requete=getCatalogue&page=<?php echo $number_of_page; ?>">...<?php echo $number_of_page; ?></a></li>
-        </ul> -->
+            <li><a href="<?php echo$urlPage . $number_of_page; ?>"><i class="fas fa-angle-double-right"></i></a></li>
 
+            <?php
+    if (isset($_GET['rech'])) {   ?>
+        <a class="admin btn-primaire solid p-1" href="index.php?requete=getCatalogue" style="    align-self: self-start;    position: absolute; 
+        margin-left: 20px;    right: 10px;    border-radius: 5px;    padding: 0.3em;"><i class="fas fa-window-close"></i></a>
+        
+        <?php } ?>
+           
+        </ul>
 
+        <?php if (count($resultatPage)>0){?>
 
         <table class="table_triable table_admin table_bouteilles">
             <thead>
@@ -127,6 +129,11 @@
                 ?>
             </tbody>
         </table>
+
+        <?php }else{?>
+
+            <p>Aucun résultat :(</p> 
+        <?php }?>
     </div>
 
     <!-- Modal Desactivation bouteille -> supprimer -->

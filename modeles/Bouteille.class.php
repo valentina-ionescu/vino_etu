@@ -502,6 +502,7 @@ class Bouteille extends Modele {
 
             $resultat = mysqli_stmt_get_result($requete);
 
+			
 			var_dump($resultat);
 
 			return TRUE;
@@ -786,7 +787,6 @@ class Bouteille extends Modele {
         {
             $laRecherche = "%".$recherche."%";
 
-			var_dump($laRecherche);
             // mysqli_stmt_bind_param($reqPrep, 'sss', $laRecherche, $laRecherche, $laRecherche);
             mysqli_stmt_bind_param($reqPrep, 's', $laRecherche);
             
@@ -821,4 +821,14 @@ class Bouteille extends Modele {
 //SELECT * FROM `vino__bouteille` WHERE LOWER(`nom`) LIKE LOWER("%m%")  OR `code_saq` LIKE "%1%" OR LOWER(`description`) LIKE LOWER("%États%")
 	}
 	
+/**
+ * statsBouteilles
+ *
+ * @return void
+ */
+
+//  provisoire
+public function statsBouteilles() {
+	$query = "SELECT distinct(SUBSTRING(nom, -4)) AS y FROM vino__bouteille where SUBSTRING(nom, -4) like '20%' or SUBSTRING(nom, -4) like '19%' order by 1";
+}	
 }

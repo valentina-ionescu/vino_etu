@@ -163,24 +163,30 @@ window.addEventListener('load', function () {
         
         let btnRechercheBouteille = document.querySelector('.btnRechercheBouteille');
     
+        let rechercheInput =  document.querySelector('.recherche_bouteille')
 
 
-
-        btnRechercheBouteille.addEventListener("click", (e) => {
+        rechercheInput.addEventListener("change", (e) => {
            e.preventDefault();   
-           let rechercheInput = document.querySelector('.recherche_bouteille').value.toLowerCase() ;
-           console.log(rechercheInput);
+           let rechercheInputValue = document.querySelector('.recherche_bouteille').value.toLowerCase() ;
+           console.log(rechercheInputValue);
 
-            let requete = new Request("index.php?requete=getCatalogue", {
+           
+            
+                location.replace("index.php?requete=getCatalogue&rech="+ rechercheInputValue)
+              
+
+            let requete = new Request( "index.php?requete=getCatalogue&rech="+ rechercheInputValue +"&page=1", {
                 method: "POST",
-                body: '{"recherche": "' + rechercheInput + '"}',
+                body: '{"recherche": "' + rechercheInputValue + '"}',
             });
             console.log(requete);
             fetch(requete)
                 .then((response) => {
                     if (response.status === 200) {
                         console.log(response);
-
+                        // location.replace("index.php?requete=getCatalogue&rech="+ rechercheInput)
+                        document.querySelector('.recherche_bouteille').setAttribute('value',rechercheInputValue) ;
                         return response.json();
                     } else {
                         throw new Error("Erreur");

@@ -121,8 +121,11 @@ class Controler
 			case 'formAjouterBouteilleNonListee':
 				$this->formAjouterBouteilleNonListee();
 				break;
-			case 'rechercheBouteillesCatalogue':
-				$this->rechercheBouteillesCatalogue();
+			case 'rechercheBouteilles':
+				$this->rechercheBouteilles();
+				break;
+			case 'getCatalogResultRech':
+				$this->getCatalogResultRech();
 				break;
 			case 'rechercheUsagersCatalogue':
 				$this->rechercheUsagersCatalogue();
@@ -408,7 +411,7 @@ class Controler
 				$connect = $User->connexion();
 				$dataC = $cel->getCellierInfo();
 				if ($_SESSION['admin'] == 1) {
-					header('Location: index.php?requete=admin');
+					header('Location: index.php?requete=getCatalogue');
 				}
 				include("vues/entete.php");
 				include("vues/upanneau.php");
@@ -428,80 +431,69 @@ class Controler
 
 	private function getCatalogue()
 	{
-		$bte = new Bouteille();
-		$user = new Usager();
-		$listeUsager = $user->getListeUsager();
+		if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1) {
+			$bte = new Bouteille();
+			$user = new Usager();
+			$listeUsager = $user->getListeUsager();
 
-		$listeBouteilles = $bte->getListeBouteille();
-		// var_dump($listeBouteilles);
-		$_SESSION['listeBouteilles'] = $listeBouteilles;
+			$listeBouteilles = $bte->getListeBouteille();
+			// var_dump($listeBouteilles);
+			$_SESSION['listeBouteilles'] = $listeBouteilles;
 
-		$body = json_decode(file_get_contents('php://input'));
+			$body = json_decode(file_get_contents('php://input'));
 
-		// Pagination
-		//determine the total number of pages available  
-		$requeteTout = "Select * From vino__bouteille";
-	
-		
-		$number_of_result = $bte->getNumRowsBouteilles($requeteTout);
-
-		$resultats_par_page = 30;
-		$number_of_page = ceil($number_of_result / $resultats_par_page);
-		
+			// Pagination
+			//determine the total number of pages available  
 
 
 
-	
-		$bdR = json_decode(file_get_contents('php://input'));
+
+			if (!isset($_GET['page'])) {
+				$page = 1;
+			} else {
+				$page = $_GET['page'];
+			}
+
+			$bdR = json_decode(file_get_contents('php://input'));
 
 
-		//  var_dump ($body);
-		//  if (isset($_GET['Recherche'])) {
+			//  var_dump ($body);
+			//  if (isset($_GET['Recherche'])) {
+			if (isset($_GET['rech'])) {
+				// var_dump($_GET['rech']);
 
-			if (!empty($body)) {
-				$requeteRecherche = 'SELECT * FROM vino__bouteille WHERE nom LIKE "%'. $body->recherche.'%"  AND statut_desactive !=1 OR statut_desactive is NULL';
-				// if (!isset($_GET['page'])) {
-				// 	$page = 1;
-				// } else {
-				// 	$page = $_GET['page'];
-				// }
-				// $recherche = $body;
 
-				// $resultatRecherche = $bte->rechercheBouteillesCatalogue($body->recherche);
-				$resultatPage = $bte->rechercheBouteillesCatalogue($body->recherche);
 
-				// print_r(count($resultatRecherche));
+				$requete  = 'SELECT * FROM vino__bouteille WHERE nom LIKE "%' . $_GET['rech'] . '%"  AND statut_desactive !=1 OR statut_desactive is NULL';
 
-				// $resultatPage = $bte->pagination($resultats_par_page, $page,  count($resultatRecherche), $requeteRecherche);
-			
+
+				$resultatRecherche = $bte->rechercheBouteillesCatalogue($_GET['rech']);
+
+				$number_of_result = count($resultatRecherche);
+				$resultats_par_page = 30;
+				$urlPage = 'index.php?requete=getCatalogue&rech=' . $_GET['rech'] . '&page=';
+			} else {
+				$requete  = "Select * From vino__bouteille";
+
+				$number_of_result = $bte->getNumRowsBouteilles($requete);
+				$resultats_par_page = 30;
+				$urlPage= 'index.php?requete=getCatalogue&page=';
+			}
+
+			$urlPage = $urlPage;
+			$number_of_page = ceil($number_of_result / $resultats_par_page);
+
+			$resultatPage = $bte->pagination($resultats_par_page, $page,  $number_of_result, $requete);
+
+
+
+			include("vues/admin_entetePrincipale.php");
+			include("vues/admin_listeBouteilles.php");
+			include("vues/admin_pied.php");
 		} else {
-			// $resultatPage=[];
-		// if (!isset($_GET['page'])) {
-		// 	$page = 1;
-		// } else {
-		// 	$page = $_GET['page'];
-		// }
-
-			//$resultatPage = $bte->pagination($resultats_par_page, $page,  $number_of_result, $requeteTout);
-			 $resultatPage = $bte->getListeBouteille();
-			// var_dump($resultatPage);
-			print_r(count($resultatPage));
-
-
+			$ctrl = new Controler;
+			$ctrl->accueil();
 		}
-
-
-
-
-
-
-
-
-		// echo json_encode($listeBouteilles);
-		// include("vues/admin_controls.php");
-		include("vues/admin_entetePrincipale.php");
-		include("vues/admin_listeBouteilles.php");
-		include("vues/admin_pied.php");
 	}
 
 
@@ -540,32 +532,47 @@ class Controler
 		echo json_encode($listeBouteille);
 	}
 
-	private function rechercheBouteillesCatalogue()
+	private function rechercheBouteilles()
 	{
 
+		if (isset($_GET['rech'])) {
+			$this->getCatalogResultRech($_GET['rech']);
+		}
+		// if (isset($_GET['id']) &&  isset($_GET['col']) &&  isset($_GET['valeur'])) {
+		// 	// var_dump($_GET);
+		// 	$this->getCellierFiltre($_GET['id'], $_GET['col'], $_GET['valeur']);
+		// }
 
+
+
+
+	}
+	private function getCatalogResultRech($rech = null)
+	{
 		$bte = new Bouteille();
 		$user = new Usager();
 		$listeUsager = $user->getListeUsager();
-		$bdR = json_decode(file_get_contents('php://input'));
+		$listeBouteilles = $bte->getListeBouteille();
 
-		var_dump($bdR);
-
-
-		//   if (!empty($body)) {
-		var_dump($bdR->recherche);
-		$resultatPage = $bte->rechercheBouteillesCatalogue($bdR->recherche);
-		var_dump($resultatPage);
-
-		//   }
-
+		if (!empty($body)) {
+			$body = json_decode(file_get_contents('php://input'));
+			$ordre = $body->ordre;
+			$champs = $body->col;
+			$_SESSION['cellier_id'] = $body->id;
+		} else {
+			$termeRecherche = $rech;
+		}
 
 
-		//var_dump(file_get_contents('php://input'));
-		// $body = json_decode(file_get_contents('php://input'));
-		//var_dump($body);
-		// $listeBouteille = $bte->autocomplete($body->nom);
+		if (empty($body)) {
+
+			include("vues/admin_entetePrincipale.php");
+			include("vues/admin_listeBouteilles.php");
+			include("vues/admin_pied.php");
+		}
 	}
+
+
 	private function rechercheUsagersCatalogue()
 	{
 		$usager = new Usager();
@@ -603,16 +610,7 @@ class Controler
 
 			$resultat = $bte->ajouterBouteillePerso($body);
 
-			if ($resultat) {
-
-				$idBouteilleCell = $bte->getIdBouteille($body->nom);
-				
-				if (!empty($idBouteilleCell)) {
-					echo $idBouteilleCell['id'];
-
-					$bte->ajouterBouteilleCellierPerso($body, $idBouteilleCell['id']);
-				}
-			}
+			echo json_encode($resultat);
 		}
 	}
 
@@ -706,7 +704,9 @@ class Controler
 
 			// Pagination
 			//determine the total number of pages available  
-			$number_of_result = $bte->getNumRowsBouteilles();
+			$requeteTout = "Select * From vino__bouteille";
+
+			$number_of_result = $bte->getNumRowsBouteilles($requeteTout);
 			$resultats_par_page = 30;
 			$number_of_page = ceil($number_of_result / $resultats_par_page);
 
@@ -716,7 +716,7 @@ class Controler
 			} else {
 				$page = $_GET['page'];
 			}
-			$resultatPage = $bte->pagination($resultats_par_page, $page,  $number_of_result);
+			$resultatPage = $bte->pagination($resultats_par_page, $page,  $number_of_result, $requeteTout);
 
 			// echo json_encode($listeBouteilles);
 			// include("vues/admin_controls.php");
