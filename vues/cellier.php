@@ -136,12 +136,13 @@
                     <!-- HAUT DE LA CARTE LE TAG "TYPE DU VIN"-->
 
                     <div class="carte__tag-top  absolute">
-                        <?php
-                        if ($bouteille['vino__type_id'] == 1) { ?>
+                        <?php if ($bouteille['vino__type_id'] == 1) { ?>
                             <span class="rouge">Vin rouge</span>
-                        <?php } else { ?>
-                            <span class="blanc">Vin blanc </span>
-                        <?php  } ?>
+                        <?php }elseif ($bouteille['vino__type_id'] == 2) { ?>
+                            <span class="blanc ">Vin blanc </span>
+                        <?php }elseif ($bouteille['vino__type_id'] == 3) { ?>
+                            <span class="rose ">Vin rosé </span>
+                        <?php }  ?>
 
                     </div>
 
@@ -216,8 +217,11 @@
                                             </div>
                                         </div>
                                 </div>
-
-                                <a class="carte__lien" href="<?php echo $bouteille['url_saq'] ?>">Voir SAQ</a>
+                                <?php   if (!empty($bouteille['url_saq'])) {?>
+                                    <a class="carte__lien" href="<?php echo $bouteille['url_saq'] ?>">Voir SAQ</a>
+                                <?php   }else { ?>
+                                    <p>Non-listée</p>
+                                <?php }   ?>
                             </div>
                         </div>
 

@@ -849,7 +849,7 @@ class Controler
 		// var_dump($_FILES['file']);
 		$imgFileName = $_FILES['file']['name'];
 
-		$location = "assets/img/bouteillePersonnalise/";
+		$location = "./assets/img/bouteillePersonnalise/";
 
 		$extension = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
 
@@ -898,7 +898,7 @@ class Controler
 	{
 		$imgFileName = str_replace(' ', '', $_FILES['file']['name']); //enlever les espaces dans les noms
 
-		$location = "assets/img/bouteillesNonlistees/";
+		$location = "./assets/img/bouteillesNonlistees/";
 
 		$extension = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
 
