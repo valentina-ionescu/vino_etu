@@ -106,11 +106,28 @@ class Usager extends Modele {
      */
     public function inscription($data, $hashPass){
 
-        $requete = "INSERT INTO vino__usager (nom, prenom, email, password,admin ) VALUE ('".$data->nom."', '".$data->prenom."', '".$data->email."', '".$hashPass."', '0')";
-   
-        $res = $this->_db->query($requete);
+        $connexion = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
 
-		return $res;
+		$requete =  mysqli_prepare($connexion,"INSERT INTO vino__usager(nom, prenom, email, password) VALUE (?, ?, ?, ?)");
+   
+		if($requete)
+        {
+            mysqli_stmt_bind_param($requete, 'ssss', $data->nom, $data->prenom, $data->email, $hashPass);
+
+            mysqli_stmt_execute($requete);
+
+            $resultat = mysqli_stmt_get_result($requete);
+
+            if(!$resultat){
+				var_dump($resultat);
+			}
+			else{
+
+			}
+        }
+		var_dump($resultat);
+
+		return $resultat;
     }
 
 
