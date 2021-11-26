@@ -86,7 +86,7 @@
 						</ul>
 				</div> -->
                 <a href="?requete=accueil" class="flex logo"><img class="header__logo" src="assets/img/logo/logo.svg" alt=""></a>
-				<a href="?requete=admin" class="btn solid">Retournez a l'admin! </a>
+				<a href="?requete=getCatalogue" class="btn solid">Retournez a l'admin! </a>
                 <div class="admin_content-title ">
                 <h2><i class="fas fa-tachometer-alt"></i> Panneau Administration</h2>
             </div>

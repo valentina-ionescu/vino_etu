@@ -515,47 +515,10 @@ class Bouteille extends Modele {
 	public function redimmensionImage($image, $ext, $maxDimL, $maxDimH)
 	{
 
-	/*	$imageCadreH = 550;
-		$imageCadreL = 367;
-		$qualite =100;
-		
-	list($largeur, $hauteur, $type, $attr) = getimagesize( $image );
-	  //set dimensions
-	  if($largeur> $hauteur) {
-	$ratio = $imageCadreH/$hauteur;
-		$nouvL = $imageCadreH;
-		//respecter la ratio
-		$nouvH = round($hauteur/$largeur*$imageCadreH);
-		 //set the offset
-		//  $off_y=ceil(($nouvL-$nouvH)/2);
-		//  $off_x=0;
-		} else if($hauteur> $largeur) {
-			$nouvH=$imageCadreH;
-			$nouvL=round($largeur/$hauteur*$imageCadreH);
-			// $off_x=ceil(($nouvH-$nouvL)/2);
-			// $off_y=0;
-	}
-	else {
-			$nouvL=$nouvH=$imageCadreH;
-			// $off_x=$off_y=0;
-	}
-	$src = imagecreatefromstring(file_get_contents($image));
-	$imageRedim = imagecreatetruecolor( $imageCadreL, $imageCadreH );
-	$target_filename =$image;
-//default background is black
-$bg_imageRedim = imagecolorallocate ( $imageRedim, 255, 255, 255 );
-// imagefill ( $imageRedim, 0, 0, $bg_imageRedim );
-imagecopyresampled($imageRedim, $src, 0, 0, 0, 0, $nouvL, $nouvH, $largeur, $hauteur);
-
-$resultImg = imagejpeg($imageRedim, $target_filename,$qualite); // adjust format as needed
-return $resultImg;*/
-
+	
 
 		chmod($image, 0777);
 		list($largeur, $hauteur, $type, $attr) = getimagesize( $image );
-
-		// $maxDimL = 367;
-		// $maxDimH = 550;
 		$redimImg = '';
 		$origHauteur = $hauteur;
 		$origLargeur = $largeur;
@@ -608,44 +571,7 @@ return $resultImg;*/
 
 
 
-/*
 
-		if ( $largeur > $maxDimL || $hauteur > $maxDimH ) {
-			$target_filename =  $image;
-			$fn =  $image;
-			$size = getimagesize( $fn );
-			$ratio = $size[0]/$size[1];// largeur/hauteur
-			if( $largeur > $hauteur) {
-				$nouvL = $maxDimL;
-				// $nouvH = $maxDimH/$ratio;
-				$nouvH = round($hauteur/$largeur*$maxDimH);
-
-				$off_y=ceil($nouvL-$nouvH/2);
-				$off_x=ceil($nouvL-$nouvH/2);
-			} else{
-				// $nouvL = $maxDimL*$ratio;
-				$nouvL = round($largeur/$hauteur*$maxDimH);
-				$nouvH = $maxDimH;
-				$off_x=ceil(($nouvH-$nouvL)/2);
-				$off_y=0;
-			}
-
-			$src = imagecreatefromstring(file_get_contents($fn));
-			$dst = imagecreatetruecolor( $maxDimL, $maxDimH );
-			$bg_imageRedim = imagecolorallocate ( $dst, 255, 255, 255 );
-		 imagefill ( $dst, 0, 0, $bg_imageRedim );
-
-			imagecopyresampled($dst, $src, $off_x, $off_y, 0, 0, $nouvL, $nouvH, $largeur, $hauteur );
-		
-			$redimImg = imagejpeg($dst, $target_filename,100); // adjust format as needed
-		
-		
-		}
-
-		echo($redimImg);
-		return $redimImg;
-	*/
-   // }
   
   //////////////////////////////////////////////
     //  Fonctions tris & filtres bouteilles      //
@@ -708,6 +634,8 @@ return $resultImg;*/
 		
 		return $rows;
 	}
+
+
 	public function getListeBouteilleCellierFiltre($col,$valeur)
 	{
 		
@@ -762,6 +690,136 @@ return $resultImg;*/
 		
 		return $rows;
 	}
+
+
+	public function getNumRowsBouteilles($requete)
+	{
+		$connexion = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
+		// $requete = "Select * From vino__bouteille";  
+		$result = mysqli_query($connexion, $requete);  
+		$number_of_result = mysqli_num_rows($result);  
+		return $number_of_result;
+
+	}
+
+	/**
+	 * Cette méthode ajoute une ou des bouteilles au cellier
+	 * 
+	 * @param int $number_of_result quantite totale des bouteilles dans la page retournee par la fonction getNumRowsBouteilles().
+	 * @param int $page le numero de la page sur laquelle on clique.
+	 * @param int $resultats_par_page - quantitee de resultats dans une page
+	 * @return Array $rows  tableau de resultats 
+	 */
+
+	public function pagination( $resultats_par_page, $page, $number_of_result, $requette)
+	{
+		$rows = Array();
+        $connexion = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
+	 
+	   //Calculer le nombre des pages disponibles  
+	   $number_of_page = ceil ($number_of_result / $resultats_par_page);  
+	 	  
+	 
+	   //determiner la limite de items a afficher sur une page 
+	   $page_first_result = ($page-1) * $resultats_par_page;  
+	 
+	   //chercher les resultats selectionnees dans la DB 
+	   $maRequette = $requette.' LIMIT ' . $page_first_result . ',' . $resultats_par_page;  
+	   $result = mysqli_query($connexion, $maRequette);  
+		 
+	   //preparer un tableau Array de resultyats pour afficher dans la page web
+	   if($result->num_rows)
+		{
+			while($row = $result->fetch_assoc())
+			{
+				$rows[] = $row;
+			}
+		}
+		
+	
+		return $rows;
+	}  
+
+
+
+
+
+
+	
+	/**
+	 * Cette méthode permet de retourner les résultats de recherche pour la fonction d'autocomplete de l'ajout des bouteilles dans le cellier
+	 * 
+	 * @param string $nom La chaine de caractère à rechercher
+	 * @param integer $nb_resultat Le nombre de résultat maximal à retourner.
+	 * 
+	 * @throws Exception Erreur de requête sur la base de données 
+	 * 
+	 * @return array id et nom de la bouteille trouvée dans le catalogue
+	 */
+       
+	public function rechercheBouteillesCatalogue($recherche)
+	{
+		$rows = Array();
+		$nom = $this->_db->real_escape_string($recherche);
+		$nom = preg_replace("/\*/","%" , $recherche);
+		 
+
+		//echo $nom;
+		$connexion = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
+
+		 //Calculer le nombre des pages disponibles  
+		//  $number_of_page = ceil ($number_of_result / $resultats_par_page);  
+	 	  
+	 
+		 //determiner la limite de items a afficher sur une page 
+		//  $page_first_result = ($page-1) * $resultats_par_page;  
+	   
+		 //chercher les resultats selectionnees dans la DB 
+		//  $query = "SELECT *FROM vino__bouteille ;  
+		//  $result = mysqli_query($connexion, $query);  
+
+		// $reqPrep =mysqli_prepare($connexion,'SELECT * FROM vino__bouteille WHERE nom LIKE ?  OR code_saq LIKE ? OR description LIKE ? AND statut_desactive !=1 OR statut_desactive is NULL'); 
+		$reqPrep =mysqli_prepare($connexion,'SELECT * FROM vino__bouteille WHERE nom LIKE ?  AND statut_desactive !=1 OR statut_desactive is NULL'); 
+
+
+		if($reqPrep)
+
+        {
+            $laRecherche = "%".$recherche."%";
+
+            // mysqli_stmt_bind_param($reqPrep, 'sss', $laRecherche, $laRecherche, $laRecherche);
+            mysqli_stmt_bind_param($reqPrep, 's', $laRecherche);
+            
+            mysqli_stmt_execute($reqPrep);
+            $resultats = mysqli_stmt_get_result($reqPrep);
+            // return $resultats;
+
+
+			
+				while($row = $resultats->fetch_assoc())
+				{
+				
+					$rows[] = $row;
+					
+				}
+			
+        }
+        else
+
+        {
+             echo "SQL Erreur !!! La recherche n'a pas fonctionne! ";
+			 throw new Exception("Erreur de requête sur la base de données", 1);
+        }
+
+		return $rows;
+//SELECT * FROM `vino__bouteille` WHERE CONCAT(`nom`, `code_saq`, `pays`, `description`, `format`) LIKE "% ma %"
+	
+//SELECT * FROM `vino__bouteille` WHERE LOWER(CONCAT(`nom`, `code_saq`, `pays`, `description`, `format`)) LIKE LOWER("% États %")
+//SELECT * FROM `vino__bouteille` WHERE LOWER(CONCAT(`nom`, `code_saq`, `description`)) LIKE LOWER("% États %")
+
+//SELECT * FROM `vino__bouteille` WHERE LOWER(`nom`) LIKE LOWER("% m %")  OR LOWER(`code_saq`) LIKE LOWER("% 1 %") OR LOWER(`description`) LIKE LOWER("% États %")
+//SELECT * FROM `vino__bouteille` WHERE LOWER(`nom`) LIKE LOWER("%m%")  OR `code_saq` LIKE "%1%" OR LOWER(`description`) LIKE LOWER("%États%")
+	}
 	
 /**
  * statsBouteilles
@@ -774,5 +832,3 @@ public function statsBouteilles() {
 	$query = "SELECT distinct(SUBSTRING(nom, -4)) AS y FROM vino__bouteille where SUBSTRING(nom, -4) like '20%' or SUBSTRING(nom, -4) like '19%' order by 1";
 }	
 }
-?>
-
