@@ -177,7 +177,7 @@ class Controler
 
 
 				if (empty($dataB)) //pas de bouteilles dans le cellier
-					$msg = "<h3 class='ml txt-blanc'>Votre cellier est vide.</h3>" . "<p class='txt-blanc'>Ajoutez des bouteilles</p>";
+					$msg = "<h3 class='ml txt-blanc'>Votre cellier est vide.</h3>" . "<a class='btn-filtre' href='index.php?requete=ajouterNouvelleBouteilleCellier' class='txt-blanc'>Ajoutez des bouteilles</a>";
 
 				include("vues/entete.php");
 				include("vues/cellier.php");
