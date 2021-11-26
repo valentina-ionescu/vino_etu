@@ -158,6 +158,13 @@ textarea {
     width: 100%;
 }
 
+.b__recherche {
+    max-width: 85%;
+    color: whitesmoke;
+    border: 1px solid whitesmoke;
+    border-radius: 3px;;
+}
+
 .form__recherche input {
     /* width: 90vw; */
     background: var(--bg-clair);

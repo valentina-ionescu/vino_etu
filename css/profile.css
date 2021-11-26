@@ -393,11 +393,17 @@ form.btn__ajouter_cellier {
     background: #fff;
 }
 
+
 .form__recherche .cell__icon {
     margin-left: unset;
     top: 30%;
     z-index: unset;
 }
+.form__recherche--b input {
+ color: whitesmoke;
+}
+
+
 
 .actions {
     display: flex;
