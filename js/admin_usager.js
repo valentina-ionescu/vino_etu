@@ -349,7 +349,7 @@ window.addEventListener('load', function () {
         let fullPath = this.value; // fetched value = C:\fakepath\nomImage.extension
         let fileName = fullPath.split(/(\\|\/)/g).pop();  // fetch le nom de l'image
 
-        if (image.files[0].type == "image/jpeg" || image.files[0].type == 'image/png' || image.files[0].type == 'image/gif') {
+        if (image.files[0].type == "image/jpg" || image.files[0].type == "image/jpeg" || image.files[0].type == 'image/png' || image.files[0].type == 'image/gif') {
 
             document.getElementById("nom_image").innerHTML = fileName;  // afficher le nom de l'image dans le dom 
 
@@ -377,11 +377,20 @@ window.addEventListener('load', function () {
 
             // console.log(image.files[0].type);
 
-            if (imageValide && imageNonListee != "") {
-                imageNonListee = "./assets/img/bouteillesNonlistees/" + Math.round(new Date().getTime() / 1000) + '-' + image.files[0].name.replace(/\s+/g, "");//enlever les espaces dans le nom des images, et ajouter un timestamp
+            let imageNom = '';
+            let customTime = Math.round(new Date().getTime() / 1000);
+
+            formData.append('file', image.files[0]);
+            
+            if (imageValide && image.files[0].name != "") {
+                imageNom = customTime + '-' + image.files[0].name.replace(/\s+/g, "");//enlever les espaces dans le nom des images, et ajouter un timestamp;
+                imageNonListee = "./assets/img/bouteillesNonlistees/" + imageNom;
             }
+console.log(imageNom);
 
             var param = {
+                formData: formData,
+                time: customTime,
                 nom: bouteilleNonlistee.nom.value,
                 format: bouteilleNonlistee.format.value,
                 // image: bouteilleNonlistee.image.value.replace(/C:\\fakepath\\/i, "./assets/img/bouteillesNonlistees/"),//remplacer la path de l'image avec celle en local. 
@@ -409,11 +418,11 @@ window.addEventListener('load', function () {
                     .then(function (response) {
                         ////////////////////Ajouter Image dans le dossier local /////////////////////
 
-                        if (param.image != "") {
-                            let requete = new Request("index.php?requete=ajouterImageLocal", {
-                                method: "POST",
-                                body: formData,
-                            });
+                    if (param.image != "") {
+                        let requete = new Request("index.php?requete=ajouterImageLocal&image="+imageNom, {
+                            method: "POST",
+                            body: formData,
+                        });
 
                             fetch(requete)
                                 .then(response => {

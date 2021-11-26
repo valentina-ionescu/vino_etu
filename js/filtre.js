@@ -15,7 +15,8 @@ window.addEventListener("load", function () {
     //////////////////////////////////////////////
    
 
-  
+    let id = document.querySelector('[data-cellid]').dataset.cellid;
+    console.log(id);
     let filtres = document.querySelector('.filtres');
     filtres.addEventListener('click', (e) => {
         e.preventDefault();
@@ -124,6 +125,8 @@ window.addEventListener("load", function () {
             fetchBouteillesTri(id,'b.vino__type_id', 1)
             if(type == 'Vin blanc')
             fetchBouteillesTri(id,'b.vino__type_id', 2)
+            if(type == 'Vin rosé')
+            fetchBouteillesTri(id,'b.vino__type_id', 3)
 
           
           

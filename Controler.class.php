@@ -1021,6 +1021,9 @@ class Controler
 
 	private function ajouterImageLocal() // en developpement!!!
 	{
+
+		var_dump($_GET['image']);
+
 		$imgFileName = str_replace(' ', '', $_FILES['file']['name']); //enlever les espaces dans les noms
 
 		$location = "./assets/img/bouteillesNonlistees/";
@@ -1038,11 +1041,7 @@ class Controler
 			$ext = 0;
 		}
 
-
-
-
-
-		$target = $location . time() . "-" . $imgFileName; // attribuer a l'image un nom unique (ajouter le timeStamp en secondes avant le nom de l'image)
+		$target = $location . $_GET['image']; // attribuer a l'image un nom unique (ajouter le timeStamp en secondes avant le nom de l'image)
 
 		if ($ext != 0) { // si l'image a une extenssion acceptee
 

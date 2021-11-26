@@ -22,7 +22,7 @@
     --bg-sombre: #1E1221;
     --bg-medium: #897584;
     --bg-doree: #98813D;
-    --bg-rose: #d13590;
+    --bg-rose: #ca86ae;
     --txt-primary:#7B033D;
     --txt-medium: #7a476e;
     --bg-input: rgba(30, 18, 33, 0.435);
@@ -59,6 +59,7 @@ main {
 .admin_main{
     max-width: 95vw;
     background-color: #ffffff;
+    padding-top: 0;
 }
 
 h1, h2, h3, h4, h5, h6 {

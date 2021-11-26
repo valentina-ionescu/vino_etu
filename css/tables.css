@@ -171,7 +171,7 @@
     }
     
     @media screen and (min-width: 426px) {
-      table {
+      .admin table {
           width: 100%;
           padding-top: 30px;
           border-collapse: collapse;
@@ -180,7 +180,7 @@
       }
 
       @media screen and (min-width: 768px) {
-        table {
+        .admin table {
           width: 600px;
         } 
         .nom_bouteille {

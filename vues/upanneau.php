@@ -83,7 +83,7 @@
             <table class="table_triable">
                 <thead>
                     <tr>
-                        <th class="cell__col  nom trier ">Nom cellier</th>
+                        <th class="cell__col  nom trier th-tri-asc">Nom cellier</th>
                         <!-- <th class="cell__col"><span id="qte" class="w3-button table-column"><i class="fas fa-wine-bottle"></i><i class="caret"></span></th> -->
                         <th class="cell__col  bouteilles trier">Bouteilles</th>
                         <th class="cell__col"></th>

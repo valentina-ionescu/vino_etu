@@ -959,7 +959,7 @@ let formAjoutBouteillePerso  = document.querySelector('[data-js-form-personel]')
 
 console.log(bouteillePerso);
   let formData = new FormData();
-  let imageContenue = "./assets/img/bouteillePersonnalise/image_holder.png";//image par defaut
+  let imageContenue = "./assets/img/bouteillesNonlistees/bouteilleParDefaut.jpg";//image par defaut
   imageValide = false;
 
 
@@ -968,8 +968,7 @@ console.log(bouteillePerso);
     let fullPath = this.value; // fetched value = C:\fakepath\nomImage.extension
 
     let fileName = fullPath.split(/(\\|\/)/g).pop();  // fetch le nom de l'image
-   console.log(formData);
-    console.log(imagePerso.files);
+  
 
       // afficher le nom de l'image
     if (imagePerso.files[0].type == "image/jpeg" || imagePerso.files[0].type == 'image/png' || imagePerso.files[0].type == 'image/gif') {
@@ -980,7 +979,7 @@ console.log(bouteillePerso);
 
   } else {
      
-    imageContenue = "./assets/img/bouteillePersonnalise/image_holder.png";
+    imageContenue = "./assets/img/bouteillesNonlistees/bouteilleParDefaut.jpg";
       document.getElementById("nom_imagePerso").innerHTML = '<p style="color:red; font-size:13px; line-height:unset;margin: 0 0;">L\'image doit être de format *.jpeg, *.jpg, *.png ou *.gif!</p>';  // afficher msg d'erreur si le format de l'image n'est pas conforme
       imageValide = false;
 
@@ -1009,7 +1008,8 @@ console.log(bouteillePerso);
       imageContenue = "./assets/img/bouteillePersonnalise/" + imageNom;//enlever les espaces dans le nom des images, et ajouter un timestamp;
       //imageContenue = "/ProjetWeb2/vino_etu/assets/img/bouteillePersonnalise/" + Math.round(new Date().getTime() / 1000) + '-' + imagePerso.files[0].name.replace(/\s+/g, "");//enlever les espaces dans le nom des images, et ajouter un timestamp;
     }
-
+    
+   
     var param = {
       formData: formData,
       time: customTime,
