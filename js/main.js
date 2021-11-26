@@ -959,7 +959,7 @@ let formAjoutBouteillePerso  = document.querySelector('[data-js-form-personel]')
 
 console.log(bouteillePerso);
   let formData = new FormData();
-  let imageContenue = "./assets/img/bouteillePersonnalise/image_holder.png";//image par defaut
+  let imageContenue = "./assets/img/bouteillePersonnalise/bouteilleParDefaut.jpg";//image par defaut
   imageValide = false;
 
 
@@ -1009,7 +1009,6 @@ console.log(bouteillePerso);
       //imageContenue = "/ProjetWeb2/vino_etu/assets/img/bouteillePersonnalise/" + Math.round(new Date().getTime() / 1000) + '-' + imagePerso.files[0].name.replace(/\s+/g, "");//enlever les espaces dans le nom des images, et ajouter un timestamp;
     }
     
-    imageContenue = "./assets/img/bouteillePersonnalise/" + Math.round(new Date().getTime() / 1000) + '-' + imagePerso.files[0].name.replace(/\s+/g, "");//enlever les espaces dans le nom des images, et ajouter un timestamp;
     var param = {
       formData: formData,
       time: customTime,
