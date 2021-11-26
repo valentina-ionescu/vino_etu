@@ -32,8 +32,11 @@
     <link rel="stylesheet" href="css/profile.css" type="text/css" media="screen">
     <link rel="stylesheet" href="css/admin.css" type="text/css" media="screen">
     <link rel="stylesheet" href="css/pageLoader.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="css/pagination.css" type="text/css" media="screen">
 
-
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 
 
     <link rel="stylesheet" href="./css/grilles.css" type="text/css" media="screen">
@@ -96,9 +99,9 @@
 
 
             <ul class="admin-menu admin__tabs__sidebar sideBar-ferme " id="admin_menu1">
-                <li class="menu-heading">
+                <!-- <li class="menu-heading">
                     <h3>Admin</h3>
-                </li>
+                </li> -->
 
                 <li class="tabs__button  admin_carte" data-for-tab="1">
                     <!-- <a href="#Catalogue"> -->
@@ -161,7 +164,7 @@
     </header>
 
 
-    <section class="mt-5">
+    <section class=" section_principale mt-5">
 
         <section class="search-and-user">
 

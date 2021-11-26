@@ -10,20 +10,54 @@
     <h2>Catalogue</h2>
 
     <a href="?requete=ajouterBouteilleNonListeeCatalogue" class="btn btn-primaire solid admin ajoute-bouteille">Ajouter Une bouteill non listee</a>
- 
+
     <div class="form__recherche form__recherche--clair">
-        <span class="fas fa-search iconne "></span>
+       <a href="" class="btnRechercheBouteille"> <span class="fas fa-search iconne "></span></a>
         <!-- <input type="text" class="search-input" placeholder="Cherchez par nom"> -->
 
-        <input type="text" id="cell_rech" class="form__recherche--clair recherche_bouteille" placeholder="Recherche par nom..." title="Nom de cellier">
-    </div> 
-  <p class="txt_msg-supprime"></p>
-  
+        <input type="text" id="cell_rech" name="recherche" class="form__recherche--clair recherche_bouteille" placeholder="Recherche par nom..." title="Nom de cellier">
+    </div>
+    <p class="txt_msg-supprime"></p>
+
+
+
     <div class="mt-1">
 
-        <!-- <span> <?php echo (count($listeBouteilles)); ?> Bouteilles </span> -->
+        <ul class="pagination">
+            
+            <li><a href="<?php echo$urlPage ?>1"><i class="fas fa-angle-double-left"></i></a></li>
+            <li class="<?php if ($page <= 1) {
+                            echo 'disabled';
+                        } ?>">
+                <a href="<?php if ($page <= 1) {
+                                echo '#';
+                            } else {
+                                echo $urlPage . ($page - 1);
+                            } ?>">Précédent</a>
+            </li>
+            <li class="disabled"><span>Page <?php echo $page; ?> de <?php echo $number_of_page; ?></span></li>
 
+            <li class="<?php if ($page >= $number_of_page) {
+                            echo 'disabled';
+                        } ?>">
+                <a href="<?php if ($page >= $number_of_page) {
+                                echo '#';
+                            } else {
+                                echo "$urlPage " . ($page + 1);
+                            } ?>">Suivant</a>
+            </li>
+            <li><a href="<?php echo$urlPage . $number_of_page; ?>"><i class="fas fa-angle-double-right"></i></a></li>
 
+            <?php
+    if (isset($_GET['rech'])) {   ?>
+        <a class="admin btn-primaire solid p-1" href="index.php?requete=getCatalogue" style="    align-self: self-start;    position: absolute; 
+        margin-left: 20px;    right: 10px;    border-radius: 5px;    padding: 0.3em;"><i class="fas fa-window-close"></i></a>
+        
+        <?php } ?>
+           
+        </ul>
+
+        <?php if (count($resultatPage)>0){?>
 
         <table class="table_triable table_admin table_bouteilles">
             <thead>
@@ -40,7 +74,7 @@
             <tbody>
                 <?php
 
-                foreach ($listeBouteilles as $row) {
+                foreach ($resultatPage as $row) {
                     if (!$row['statut_desactive'] == 1) {
 
                 ?>
@@ -95,6 +129,11 @@
                 ?>
             </tbody>
         </table>
+
+        <?php }else{?>
+
+            <p>Aucun résultat :(</p> 
+        <?php }?>
     </div>
 
     <!-- Modal Desactivation bouteille -> supprimer -->
