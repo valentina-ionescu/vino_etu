@@ -40,7 +40,11 @@ class SAQ extends Modele
 		$s = curl_init();
 		// $url = "https://www.saq.com/fr/produits/vin/vin-blanc?p=2&product_list_limit=24&product_list_order=name_asc";
 		//$url = "https://www.saq.com/fr/produits/vin?p=2&product_list_limit=24&product_list_order=name_asc";
+
+
 		$url = "https://www.saq.com/fr/produits/vin?p=".$page."&product_list_limit=".$nombre."&product_list_order=name_asc";
+
+
 		//curl_setopt($s, CURLOPT_URL, "http://www.saq.com/webapp/wcs/stores/servlet/SearchDisplay?searchType=&orderBy=&categoryIdentifier=06&showOnly=product&langId=-2&beginIndex=".$debut."&tri=&metaData=YWRpX2YxOjA8TVRAU1A%2BYWRpX2Y5OjE%3D&pageSize=". $nombre ."&catalogId=50000&searchTerm=*&sensTri=&pageView=&facet=&categoryId=39919&storeId=20002");
 		//curl_setopt($s, CURLOPT_URL, "https://www.saq.com/webapp/wcs/stores/servlet/SearchDisplay?categoryIdentifier=06&showOnly=product&langId=-2&beginIndex=" . $debut . "&pageSize=" . $nombre . "&catalogId=50000&searchTerm=*&categoryId=39919&storeId=20002");
 		//curl_setopt($s, CURLOPT_URL, $url);
@@ -231,6 +235,7 @@ class SAQ extends Modele
 			//var_dump($type);
 			$type = $type['id'];
 
+			
 			$rows = $this->_db->query("select id from vino__bouteille where code_saq = '" . $bte->desc->code_SAQ . "'");
 			// echo $bte->desc->code_SAQ;
 			if ($rows->num_rows < 1) {
@@ -301,7 +306,6 @@ class SAQ extends Modele
 
 					
 				}
-				
 			}
 			#var_dump($arrayBtl);
 			

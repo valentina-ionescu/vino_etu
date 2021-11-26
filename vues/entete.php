@@ -47,7 +47,7 @@
 	</head>
 	<body class="relative" >
 
-	<div class="loader hidden">
+	<div class="loader ">
 		<ul>
 			<li></li>
 			<li></li>
@@ -80,7 +80,7 @@
 						if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1) {
 						?>
 
-							<li><a href="?requete=admin">Admin - tableau de bord </a></li>
+							<li><a href="?requete=getCatalogue">Admin - tableau de bord </a></li>
 						<?php
 						}
 						?>

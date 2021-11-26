@@ -1,3 +1,7 @@
+.section_principale.mt-5{
+    margin-top: unset;
+}
+
 .admin_container {
     padding: 3em;
 }
@@ -236,8 +240,8 @@ hr {
     right: 0;
     bottom: 0;
     overflow: auto;
-    padding-top: 20px;
-    width: 220px;
+    /* padding-top: 20px; */
+    width: 150px;
     color: #ffffff;
     background: var(--bg-sombre-admin);
 }
@@ -476,6 +480,14 @@ hr {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 @media screen and (min-width: 426px) {
+    
+    .page-header .admin-menu {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        margin-top: 38px;
+        transform: none;
+    }
     #admin_menuToggle {
         display: none;
     }
@@ -511,6 +523,11 @@ hr {
     .page-header, .page-content {
         position: static;
         width: 100%;
+    }
+    .sideBar-ferme {
+        /* transform: none; */
+        transform: translate(-100%, 0) !important;
+        z-index: -1;
     }
     .page-header {
         padding: 10px;
@@ -589,12 +606,29 @@ hr {
         display: none;
      }
 }
+@media screen and (min-width: 768px) {
+.page-header .admin-menu {
+    
+    margin-top: 97px;
+    transform: none;
+}
+ .menu_icon, .toggle__input{
+     visibility: hidden;
 
+ }
 .sideBar-ferme {
     /* transform: none; */
-    transform: translate(-100%, 0) !important;
-    z-index: -1;
+    transform: translate(0, 0) !important;
 }
+.page-header .logo {
+    
+    TEXT-ALIGN: center;
+}
+}
+
+
+
+
 .desactive{
     background-color: rgb(167, 142, 142);
     

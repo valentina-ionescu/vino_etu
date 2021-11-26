@@ -87,7 +87,7 @@ window.addEventListener('load', function () {
     */
     function triageColonneTable(table, colonne, asc = true) {
         let directionTriage = asc ? 1 : -1; // if (asc= true){ directionTriange=1}else { directionTriage = -1}
-        
+
         let tBody = table.tBodies[0];
         let rangees = Array.from(tBody.querySelectorAll("tr"));
         console.log(tBody)
@@ -99,15 +99,15 @@ window.addEventListener('load', function () {
 
             let resultTriage = 0;
 
-            if (aColText > bColText){
+            if (aColText > bColText) {
 
-                resultTriage= 1 * directionTriage;
-            }else{
-                resultTriage= -1 * directionTriage;
+                resultTriage = 1 * directionTriage;
+            } else {
+                resultTriage = -1 * directionTriage;
 
             }
 
-            return  resultTriage;
+            return resultTriage;
 
         });
 
@@ -122,8 +122,8 @@ window.addEventListener('load', function () {
         // mettre en memoire l'ordre des rangees initiales 
 
         table.querySelectorAll("th.trier").forEach(th => th.classList.remove("th-tri-asc", "th-tri-desc"));
-         table.querySelector(`th:nth-child(${colonne + 1})`).classList.toggle("th-tri-asc", asc);
-         table.querySelector(`th:nth-child(${colonne + 1})`).classList.toggle("th-tri-desc", !asc);
+        table.querySelector(`th:nth-child(${colonne + 1})`).classList.toggle("th-tri-asc", asc);
+        table.querySelector(`th:nth-child(${colonne + 1})`).classList.toggle("th-tri-desc", !asc);
     }
 
     //appelle de la fonction de triage
@@ -153,9 +153,63 @@ window.addEventListener('load', function () {
     }
 
 
-    if (document.querySelector('.recherche_bouteille') != "") {
-        rechercheCatalogue(document.querySelector('.table_bouteilles'), document.querySelector(".recherche_bouteille"), document.querySelector(".nom_bouteille"));
+    // if (document.querySelector('.recherche_bouteille') != "") {
+    //     rechercheCatalogue(document.querySelector('.table_bouteilles'), document.querySelector(".recherche_bouteille"), document.querySelector(".nom_bouteille"));
+    // }
+
+
+
+    function recherchePHPCatalogue() {
+        
+        let btnRechercheBouteille = document.querySelector('.btnRechercheBouteille');
+    
+        let rechercheInput =  document.querySelector('.recherche_bouteille')
+
+
+        rechercheInput.addEventListener("change", (e) => {
+           e.preventDefault();   
+           let rechercheInputValue = document.querySelector('.recherche_bouteille').value.toLowerCase() ;
+           console.log(rechercheInputValue);
+
+           
+            
+                location.replace("index.php?requete=getCatalogue&rech="+ rechercheInputValue)
+              
+
+            let requete = new Request( "index.php?requete=getCatalogue&rech="+ rechercheInputValue +"&page=1", {
+                method: "POST",
+                body: '{"recherche": "' + rechercheInputValue + '"}',
+            });
+            console.log(requete);
+            fetch(requete)
+                .then((response) => {
+                    if (response.status === 200) {
+                        console.log(response);
+                        // location.replace("index.php?requete=getCatalogue&rech="+ rechercheInput)
+                        document.querySelector('.recherche_bouteille').setAttribute('value',rechercheInputValue) ;
+                        return response.json();
+                    } else {
+                        throw new Error("Erreur");
+                    }
+                })
+
+        })
     }
+
+    recherchePHPCatalogue();
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

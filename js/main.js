@@ -25,7 +25,10 @@
 const BaseURL = document.baseURI;
 console.log(BaseURL);
 window.addEventListener("load", function () {
-  console.log("load");
+  console.log("load - main.js");
+  document.querySelector(".loader").classList.add('hidden');
+ 
+
 
   document.querySelectorAll(".btnBoire").forEach(function (element) {
     element.addEventListener("click", function (evt) {
@@ -1032,6 +1035,7 @@ console.log(bouteillePerso);
           headers: { "Content-Type": "application/json" },
         }
       );
+      
       console.log(requete);
 
       fetch(requete)
@@ -1054,7 +1058,6 @@ console.log(bouteillePerso);
           response.json();
           }, 2000);
 
-        
         });
         })
       }else {
