@@ -10,7 +10,7 @@
     
         <h2>Catalogue</h2>
     
-        <a href="?requete=ajouterBouteilleNonListeeCatalogue" class="btn btn-primaire solid admin ajoute-bouteille">Ajouter Une bouteill non listee</a>
+        <a href="?requete=ajouterBouteilleNonListeeCatalogue" class="btn btn-primaire solid admin ajoute-bouteille">Ajouter une bouteille non listée</a>
 </div>
 
     <div class="form__recherche form__recherche--clair">

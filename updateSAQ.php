@@ -1,5 +1,6 @@
 
 <?php
+set_time_limit ( 300 );
 	require_once("dataconf.php");
 	require_once("config.php");
 	 include("vues/entete_admin.php");
@@ -19,7 +20,7 @@
 	echo "<section class='center w-70' >
 		<h2 class=''>Importation Finie  !</h2>";
 
-	for($i=0; $i<10;)	//permet d'importer séquentiellement plusieurs pages.
+	for($i=0; $i<$nbrBTF;)	//permet d'importer séquentiellement plusieurs pages.
 	{
 		
 
