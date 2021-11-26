@@ -59,6 +59,7 @@
     }
   
 
+    
 
 
     document.querySelectorAll(".table_triable th.trier").forEach(headerCell => {
@@ -76,4 +77,43 @@
     });
     
    
- })
+    
+    //  Recherche cellier
+    
+    
+    
+    function rechercheCellier(table, rechercheInput, searchColumn) {
+        
+        
+        let tablerangees = table.querySelectorAll("tbody > tr")
+        console.log(tablerangees);
+        //;
+        let headerCell = searchColumn;
+        let otherHeaderCells = headerCell.closest("tr").children;
+        let columnIndex = Array.from(otherHeaderCells).indexOf(headerCell);
+        let searchableCells = Array.from(tablerangees).map(
+            (row) => row.querySelectorAll("td")[columnIndex]
+            );
+            
+            rechercheInput.addEventListener("input", () => {
+                let searchQuery = rechercheInput.value.toLowerCase();
+                
+                for (let tableCell of searchableCells) {
+                    let row = tableCell.closest("tr");
+                    let value = tableCell.textContent.toLowerCase().replace(",", "");
+                    
+                    row.style.visibility = null;
+                    
+                    if (value.search(searchQuery) === -1) {
+                        row.style.visibility = "collapse";
+                    }
+                }
+                
+            });
+            
+        }
+
+        if (document.querySelector('.form__recherche') != "") {
+            rechercheCellier(document.querySelector('.table_triable'), document.querySelector("#cell_rech"), document.querySelector(".nom"));
+        }
+    })

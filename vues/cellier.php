@@ -10,7 +10,7 @@
                         <?php echo $msg; ?>
                     <!-- </h3> -->
                 <?php  } else { ?>
-                    <h3 class="tag-gauche txt-blanc capit"><?php echo  $_SESSION['cellier_nom'];
+                    <h3 class="tag-gauche txt-blanc capit" data-cellid="<?php echo $_SESSION['cellier_id'];?>"><?php echo  $_SESSION['cellier_nom'];
                          }  ?></h3>
             </div>
         </div>
@@ -100,6 +100,7 @@
                                         <h5>Type</h5>
                                         <button class="btn-filtre ty">Vin rouge</button>
                                         <button class="btn-filtre ty">Vin blanc</button>
+                                        <button class="btn-filtre ty">Vin rosé</button>
                                     </div>
                                     </div>
                             </div>

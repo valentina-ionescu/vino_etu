@@ -1,4 +1,3 @@
-
 /**
  * @file Script contenant les fonctions filres pour la page bouteilles
  * @author DFV - "les Devs en Pyjamas"
@@ -8,12 +7,7 @@
  * @param  {} function(
  */
 
-window.addEventListener("load", function () {
- 
-   //////////////////////////////////////////////
-    //Fonction filtres bouteilles               //
-    //////////////////////////////////////////////
-   
+ window.addEventListener("load", function () {
 
     let id = document.querySelector('[data-cellid]').dataset.cellid;
     console.log(id);
@@ -23,6 +17,10 @@ window.addEventListener("load", function () {
         console.log('filtres');
         let modal = document.querySelector(".filtres__modal__wrapper");
         modal.classList.add("show");
+        
+        let el = document.querySelector('.filtres');
+        console.log(el);
+        el.parentElement.innerHTML ='<a href="index.php?requete=accueil" class="tag-gauche txt-blanc capit petit">Effacer</a>'
 
         //empecher le scroll de l'arriere plan ref: https://css-tricks.com/prevent-page-scrolling-when-a-modal-is-open/
         const scrollY = document.documentElement.style.getPropertyValue('--scroll-y');
@@ -93,48 +91,70 @@ window.addEventListener("load", function () {
             
          
             //Millesime
-            let millesime = getChoix(enfantEl,'mill');
-            if(millesime)
-            fetchBouteillesTri(id,'millesime',millesime)
-
-           //Le select du millesime
-           if (enfantEl.classList.contains('sel-mill')) {
-             enfantEl.addEventListener('change', (e) => {
-              fetchBouteillesTri(id,'millesime',e.target.value)
-             })
-           }
-           
+            let millesime = getChoix(enfantEl,'mill'),
+                pays = getChoix(enfantEl,'pa'),
+                type = getChoix(enfantEl,'ty');
+                
+                
 
             
-            //Pays
-            let pays = getChoix(enfantEl,'pa');
-            if(pays)
-            fetchBouteillesTri(id,'pays', "'"+pays+"'")
+            let cartes = document.querySelectorAll('.carte');
+            cartes.forEach((card) => {
 
-            //Le select du pays
-           if (enfantEl.classList.contains('sel-pa')) {
-            enfantEl.addEventListener('change', (e) => {
-             fetchBouteillesTri(id,'pays',"'"+e.target.value+"'")
+                // millesime
+                if(millesime) {
+                    console.log(millesime);
+                    if (card.querySelector('.carte__description-millesime').textContent != `Millesime: ${millesime}`)
+                    card.style.display="none";
+                    fermerModal(modal);
+                    
+                    
+                //Le select du millesime
+                } else if (enfantEl.classList.contains('sel-mill')) {
+                    enfantEl.addEventListener('change', (e) => {
+                    millesime =  e.target.value;   
+                    console.log(escape(millesime))
+                    if (card.querySelector('.carte__description-millesime').textContent != `Millesime: ${millesime}`)
+                    card.style.display="none";
+                    fermerModal(modal);
+                    })
+                    }
+
+                    // pays
+                if(pays) {
+                  
+                    if (card.querySelector('.carte__description-pays').textContent != pays)
+                    card.style.display="none"; 
+                    fermerModal(modal);                      
+                }else  //Le select du pays
+                if (enfantEl.classList.contains('sel-pa')) {
+                    enfantEl.addEventListener('change', (e) => {
+                     pays = e.target.value;
+                    if (card.querySelector('.carte__description-pays').textContent != pays)
+                    card.style.display="none"; 
+                    fermerModal(modal);   
+                 })
+               }
+
+                // type
+                if(type) {
+                  
+                   let typeS = JSON.stringify(card.querySelector('.carte__tag-top span').textContent.trim());
+                    if (typeS != JSON.stringify(type))
+                    card.style.display="none"; 
+                    fermerModal(modal);    
+                  
+                }
+
+              
             })
-          }
-            
-            //Type
-            let type = getChoix(enfantEl,'ty');
-            console.log(type);
-            if(type == 'Vin rouge')
-            fetchBouteillesTri(id,'b.vino__type_id', 1)
-            if(type == 'Vin blanc')
-            fetchBouteillesTri(id,'b.vino__type_id', 2)
-            if(type == 'Vin rosé')
-            fetchBouteillesTri(id,'b.vino__type_id', 3)
 
-          
-          
+
         })
          
  
             
-    }) //filtres
+    }) // fin filtres
 
     function getChoix(el, val) {
       console.log(el)
@@ -145,9 +165,20 @@ window.addEventListener("load", function () {
       }
     }
 
-    //// Fonction des récuperation des bouteilles dans l'ordre ////
+    
+   function fermerModal(modal) {
+    const body = document.body;
+    const scrollY = body.style.top;
+    body.style.position = '';
+    body.style.top = '';
+    window.scrollTo(0, parseInt(scrollY || '0') * -1);
+ 
+  modal.classList.remove('show');
+   } 
+     
+// Fetch des bouteilles dans l'ordre choisi
 
-  function fetchBouteilles(id,ordre,champs) {
+function fetchBouteilles(id,ordre,champs) {
     var param = {
       id: id,
       ordre: ordre,
@@ -172,42 +203,8 @@ window.addEventListener("load", function () {
       .catch(error => console.log(error));
     
   } 
+ 
 
-  function fetchBouteillesTri(id,col,valeur) {
-    var param = {
-      id: id,
-      col: col,
-      valeur: valeur
-    };
-    console.log(param);
-    let requete = new Request("index.php?requete=getCellierFiltre", {
-      method: "POST",
-      body: JSON.stringify(param),
-    });
-    console.log(requete);
-    fetch(requete)
-      .then((response) => {
-        response.json()
-       console.log(response)
-      })
-      .then((res) => {
-        let el = document.querySelector('.filtres');
-        console.log(el);
-        el.innerHTML +='<a href="" class="tag-gauche txt-blanc capit petit">Effacer<i class="fas fa-angle-down"></i></i></a>'
-        console.log(el.innerHTML)
-        var url_string = "index.php?requete=getListeBouteilles&id="+id+"&col="+col+"&valeur="+valeur; 
-        console.log(url_string)
-        window.location.href=url_string;
 
-      })
-      .catch(error => console.log(error));
     
-     } 
-
- 
-
-
-
- })
-
- 
+ }); /** */   

@@ -968,8 +968,7 @@ console.log(bouteillePerso);
     let fullPath = this.value; // fetched value = C:\fakepath\nomImage.extension
 
     let fileName = fullPath.split(/(\\|\/)/g).pop();  // fetch le nom de l'image
-   console.log(formData);
-    console.log(imagePerso.files);
+  
 
       // afficher le nom de l'image
     if (imagePerso.files[0].type == "image/jpeg" || imagePerso.files[0].type == 'image/png' || imagePerso.files[0].type == 'image/gif') {
@@ -1009,7 +1008,8 @@ console.log(bouteillePerso);
       imageContenue = "./assets/img/bouteillePersonnalise/" + imageNom;//enlever les espaces dans le nom des images, et ajouter un timestamp;
       //imageContenue = "/ProjetWeb2/vino_etu/assets/img/bouteillePersonnalise/" + Math.round(new Date().getTime() / 1000) + '-' + imagePerso.files[0].name.replace(/\s+/g, "");//enlever les espaces dans le nom des images, et ajouter un timestamp;
     }
-
+    
+    imageContenue = "./assets/img/bouteillePersonnalise/" + Math.round(new Date().getTime() / 1000) + '-' + imagePerso.files[0].name.replace(/\s+/g, "");//enlever les espaces dans le nom des images, et ajouter un timestamp;
     var param = {
       formData: formData,
       time: customTime,
