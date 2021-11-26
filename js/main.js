@@ -980,7 +980,7 @@ console.log(bouteillePerso);
 
   } else {
      
-    imageContenue = "./assets/img/bouteillePersonnalise/image_holder.png";
+    imageContenue = "./assets/img/bouteillesNonlistees/bouteilleParDefaut.jpg";
       document.getElementById("nom_imagePerso").innerHTML = '<p style="color:red; font-size:13px; line-height:unset;margin: 0 0;">L\'image doit être de format *.jpeg, *.jpg, *.png ou *.gif!</p>';  // afficher msg d'erreur si le format de l'image n'est pas conforme
       imageValide = false;
 
