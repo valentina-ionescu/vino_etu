@@ -911,15 +911,14 @@ class Controler
 	{
 
 		$body = json_decode(file_get_contents('php://input'));
-		// var_dump($body);
-		// var_dump($_POST);
+	
 		if (!empty($body)) {
-			// var_dump($_FILES['files']['name']);
+	
 			echo ($body->image);
 
 			$bte = new Bouteille();
 
-
+			
 			$id = $body->id;
 
 			$resultat = $bte->ajouterBouteilleNonListee($body);

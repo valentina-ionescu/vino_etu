@@ -1,6 +1,8 @@
 .cellier {
-    width: 100%;
+    width: 95vw;
     background: var(--bg-sombre);
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .gallerie {
@@ -328,7 +330,7 @@ details[open] summary {
     width: 1em;
     height: 1em;
     text-align: center;
-    transition: all .35s;
+    transition: all .35s ease-in-out;
 }
 
 .tab-content {
@@ -450,13 +452,53 @@ details[open] summary {
 
 @media all   
   and (min-width: 768px) 
-  and (max-width: 1024px) 
-  and (-webkit-min-device-pixel-ratio: 1) {
+ {
+    .carte__supp {
+        top: 15px;
+        position: absolute;
+        right: 15px;
+       
+    }
+
     .carte.horizontale {
         justify-content: unset;
-        flex-basis: unset;
+        flex-basis:calc(100% / 4 - 20px);
         min-width: unset;
         align-items: center;
+        flex-direction: column;
+        min-width: 300px;
+        
     }
+    .carte.horizontale .carte__quantite {
+      
+        flex-direction: row;
+        justify-content: space-between;
+        width: 70%;
+        font-size: 18px;
+        height: 15%;
+    }
+    .carte.horizontale .btnAjouter, .carte.horizontale .btnBoire {
+        
+        font-size: 16px;
+    }
+    .carte.horizontale .carte__tag-top{
+        left: 0;
+    }
+    .carte.horizontale .carte__image {
+        height: 24ch;
+    }
+    .carte__top {
+      
+        padding: 15px 10px;
+        padding-bottom: 0;
+    }
+    .carte.horizontale .carte__contenu{    width: 100%;}
+      
     
+}
+@media (min-width: 1424px) {
+    .carte.horizontale {
+        justify-content: unset;
+        flex-basis:calc(100% / 5 - 20px);
+    }
 }
