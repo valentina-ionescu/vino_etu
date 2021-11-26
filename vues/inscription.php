@@ -1,4 +1,4 @@
-<div class="form__contenant mt-9 flex col" vertical layout>
+<div class="form__contenant mt-3 flex col" vertical layout>
     <div class="form__carte">
         <div class="form__image flex">
             <h1>Inscription</h1>

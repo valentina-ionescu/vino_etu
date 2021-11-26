@@ -255,7 +255,7 @@ window.addEventListener('load', function () {
     };
 
     document.querySelector('.admin_form__modif').querySelector(".btnAnnul").addEventListener("click", function (evt) {
-      window.location.assign("index.php?requete=admin")
+      window.location.assign("index.php?requete=getCatalogue")
     })
 
     document.querySelector('.admin_form__modif').querySelector('.btnModifierBouteilleCatalogue').addEventListener("click", function (evt) {
@@ -291,7 +291,7 @@ window.addEventListener('load', function () {
             modal.querySelector('.txt_msg-modif').innerText = 'La bouteille «' + modifBouteilleCatalogue.nom.value + '» modifiée avec succes !';
 
             setTimeout(function () {
-              window.location.href = 'index.php?requete=admin';
+              window.location.href = 'index.php?requete=getCatalogue';
             }, 2000);
 
             return response.json();
