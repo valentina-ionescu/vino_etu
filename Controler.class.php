@@ -602,17 +602,26 @@ class Controler
 	}
 
 	private function ajouterBouteillePerso()
-	{
-		$body = json_decode(file_get_contents('php://input'));
+    {
+        $body = json_decode(file_get_contents('php://input'));
 
-		if (!empty($body)) {
-			$bte = new Bouteille();
+        if (!empty($body)) {
+            $bte = new Bouteille();
 
-			$resultat = $bte->ajouterBouteillePerso($body);
+            $resultat = $bte->ajouterBouteillePerso($body);
 
-			echo json_encode($resultat);
-		}
-	}
+            if ($resultat) {
+
+                $idBouteilleCell = $bte->getIdBouteille($body->nom);
+
+                if (!empty($idBouteilleCell)) {
+                    echo $idBouteilleCell['id'];
+
+                    $bte->ajouterBouteilleCellierPerso($body, $idBouteilleCell['id']);
+                }
+            }
+        }
+    }
 
 	private function modifierBouteilleCellier()
 	{
@@ -958,10 +967,14 @@ class Controler
 
 	private function ajouterImagePerso()
 	{
+	
 		// var_dump($_FILES['file']);
-		$imgFileName = $_FILES['file']['name'];
 
+		var_dump($_GET['image']);
+
+		//$location = "/assets/img/bouteillePersonnalise/";
 		$location = "assets/img/bouteillePersonnalise/";
+
 
 		$extension = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
 
@@ -976,8 +989,8 @@ class Controler
 			$ext = 0;
 		}
 
-
-		$target = $location . time() . "-" . $imgFileName; // attribuer a l'image un nom unique (ajouter le timeStamp en secondes avant le nom de l'image)
+	
+		$target = $location . $_GET['image']; // attribuer a l'image un nom unique (ajouter le timeStamp en secondes avant le nom de l'image)
 
 		if ($ext != 0) { // si l'image a une extenssion acceptee
 
@@ -986,7 +999,9 @@ class Controler
 				$bte = new Bouteille();
 
 				//redimmensionner l'image 
-				$redimensionImg = $bte->redimmensionImage($target, $ext, $lageur = 367, $hauteur = 550); // appele de la fonction qui redimmensionne l'image
+				$redimensionImg = $bte->redimmensionImage($target, $ext, $lageur=367, $hauteur=550); // appele de la fonction qui redimmensionne l'image
+				
+				echo json_encode($redimensionImg);
 
 				echo "Reussi!";
 			} else {
@@ -1009,7 +1024,7 @@ class Controler
 	{
 		$imgFileName = str_replace(' ', '', $_FILES['file']['name']); //enlever les espaces dans les noms
 
-		$location = "assets/img/bouteillesNonlistees/";
+		$location = "./assets/img/bouteillesNonlistees/";
 
 		$extension = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
 

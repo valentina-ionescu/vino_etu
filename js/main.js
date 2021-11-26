@@ -919,15 +919,17 @@ document.addEventListener('click',(e) => {
   let formPerso = document.querySelector("[data-js-form-personel]");
   let formPublic = document.querySelector("[data-js-form-public]");
 
-  checkbox.addEventListener('change', function(e) {
-    if (this.checked) {
-      formPerso.classList.remove('hidden');
-      formPublic.classList.add('hidden');
-    } else {
-      formPerso.classList.add('hidden');
-      formPublic.classList.remove('hidden');
-    }
-  });
+    
+    checkbox.addEventListener('change', function(e) {
+      if (this.checked) {
+        formPerso.classList.remove('hidden');
+        formPublic.classList.add('hidden');
+      } else {
+        formPerso.classList.add('hidden');
+        formPublic.classList.remove('hidden');
+      }
+    });
+  
 
   //////////////////////////////////////////////
   //Fonction Nouvelle Bouteille Personnalisé  //
@@ -995,16 +997,22 @@ console.log(bouteillePerso);
 
     
    
-
+    let imageNom = '';
+    let customTime = Math.round(new Date().getTime() / 1000);
 
     formData.append('file', imagePerso.files[0]);
+    formData.append('time', customTime);
     // console.log(imagePerso.files[0]);
-
+    
     if (imageValide && imageContenue != "") {
-      imageContenue = "./assets/img/bouteillePersonnalise/" + Math.round(new Date().getTime() / 1000) + '-' + imagePerso.files[0].name.replace(/\s+/g, "");//enlever les espaces dans le nom des images, et ajouter un timestamp;
+      imageNom = customTime + '-' + imagePerso.files[0].name.replace(/\s+/g, "");
+      imageContenue = "./assets/img/bouteillePersonnalise/" + imageNom;//enlever les espaces dans le nom des images, et ajouter un timestamp;
+      //imageContenue = "/ProjetWeb2/vino_etu/assets/img/bouteillePersonnalise/" + Math.round(new Date().getTime() / 1000) + '-' + imagePerso.files[0].name.replace(/\s+/g, "");//enlever les espaces dans le nom des images, et ajouter un timestamp;
     }
 
     var param = {
+      formData: formData,
+      time: customTime,
       nom: bouteillePerso.nom.value,
       image:  imageContenue,
       pays: bouteillePerso.pays.value,
@@ -1034,10 +1042,10 @@ console.log(bouteillePerso);
         .then((response) => {
     
 
-          let requete = new Request("index.php?requete=ajouterImagePerso", {
+          let requete = new Request("index.php?requete=ajouterImagePerso&image="+imageNom, {
             method: "POST",
             body: formData,
-        });
+          });
         fetch(requete)
         .then((response) => {
           

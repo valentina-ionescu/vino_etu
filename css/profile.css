@@ -2,7 +2,7 @@
 
 .light__wrapper {
     background-color: var(--bg-clair);
-    min-height: 100vh;
+    min-height: 88vh;
     padding-top: 2.50rem;
 }
 
@@ -366,7 +366,6 @@ form.btn__ajouter_cellier {
     display: flex;
     justify-content: space-between;
     width: 95%;
-    padding-top: 2em;
 }
 .filtres>.tag-droite {
     margin-left: auto;

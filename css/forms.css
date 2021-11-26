@@ -30,6 +30,7 @@
 .form__contenant {
     width: 100%;
     min-height: 58%;
+    margin-bottom: 3em;
 }
 
 .form__contenant h3 {
