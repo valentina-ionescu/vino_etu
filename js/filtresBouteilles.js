@@ -11,16 +11,18 @@
 
     let id = document.querySelector('[data-cellid]').dataset.cellid;
     console.log(id);
-    let filtres = document.querySelector('.filtres');
+    let el = document.querySelector('.filtres>.effacer');
+    console.log(el);
+    el.classList.remove('show_button');
+    let filtres = document.querySelector('.filtres>.open');
     filtres.addEventListener('click', (e) => {
         e.preventDefault();
         console.log('filtres');
         let modal = document.querySelector(".filtres__modal__wrapper");
         modal.classList.add("show");
         
-        let el = document.querySelector('.filtres');
-        console.log(el);
-        el.parentElement.innerHTML ='<a href="index.php?requete=accueil" class="tag-gauche txt-blanc capit petit">Effacer</a>'
+       
+        // el.parentElement.innerHTML ='<a href="index.php?requete=accueil" class="tag-gauche txt-blanc capit petit">Effacer</a>'
 
         //empecher le scroll de l'arriere plan ref: https://css-tricks.com/prevent-page-scrolling-when-a-modal-is-open/
         const scrollY = document.documentElement.style.getPropertyValue('--scroll-y');
@@ -174,6 +176,9 @@
     window.scrollTo(0, parseInt(scrollY || '0') * -1);
  
   modal.classList.remove('show');
+  let el = document.querySelector('.filtres>.effacer');
+  console.log(el);
+  el.classList.add('show_button');
    } 
      
 // Fetch des bouteilles dans l'ordre choisi
