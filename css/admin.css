@@ -558,9 +558,7 @@ hr {
     .u__profile-toggle_admin {
         left: 79vw;
     }
-    .small-txt{
-        font-size: 12px;
-    }
+    
 }
 
 
@@ -576,7 +574,9 @@ hr {
         transform: translate(-100%, 0) !important;
         z-index: -1;
     }
-
+    .small-txt{
+        font-size: 12px;
+    }
     .page-header {
         padding: 10px;
         padding: 1.5em;
@@ -584,7 +584,7 @@ hr {
         height: 70px;
         z-index: 1;
     }
-
+    
     .page-header nav {
         flex-direction: row;
         position: absolute;
@@ -704,7 +704,9 @@ hr {
         width: 100%;
         margin-left: 3%;
     }
-
+    .small-txt{
+        font-size: 12px;
+    }
     .page-header .admin-menu {
 
         margin-top: 97px;
