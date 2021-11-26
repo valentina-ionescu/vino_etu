@@ -358,7 +358,7 @@ window.addEventListener('load', function () {
         } else {
 
             imageNonListee = "./assets/img/bouteillesNonlistees/bouteilleParDefaut.jpg";
-            document.getElementById("nom_image").innerHTML = '<p style="color:red;">L\'image doit etre de format *.jpeg, *.jpg, *.png ou *.gif!</p>';  // afficher msg d'erreur si le format de l'image n'est pas conforme
+            document.getElementById("nom_image").innerHTML = '<p style="color:red;">L\'image doit etre de format *.jpeg, *.jpg, *.png </p>';  // afficher msg d'erreur si le format de l'image n'est pas conforme
             imageValide = false;
 
 
