@@ -1,5 +1,8 @@
 <?php
 
+set_time_limit ( 700 );
+
+
 /**
  * Class MonSQL
  * Classe qui génère ma connection à MySQL à travers un singleton
