@@ -299,7 +299,7 @@ window.addEventListener('load', function () {
 
     console.log(formNonListee)
     //bouton annuler
-    formNonListee.querySelector('.btnAnnul').addEventListener('click',()=>{
+    formNonListee.querySelector('.btnAnnul').addEventListener('click', () => {
         window.location.assign("index.php?requete=getCatalogue");
     })
 
@@ -326,8 +326,11 @@ window.addEventListener('load', function () {
             }
             if (element.value == 1) {
                 typeVin = "Vin rouge"
-            } else {
+            } else if (element.value == 2) {
                 typeVin = "Vin blanc"
+
+            } else {
+                typeVin = "Vin rosé"
             }
         })
     })
@@ -353,14 +356,14 @@ window.addEventListener('load', function () {
             imageValide = true;
 
         } else {
-           
+
             imageNonListee = "./assets/img/bouteillesNonlistees/bouteilleParDefaut.jpg";
             document.getElementById("nom_image").innerHTML = '<p style="color:red;">L\'image doit etre de format *.jpeg, *.jpg, *.png ou *.gif!</p>';  // afficher msg d'erreur si le format de l'image n'est pas conforme
             imageValide = false;
 
 
         }
-        
+
 
     }, false);
 
@@ -393,50 +396,50 @@ window.addEventListener('load', function () {
             };
             let msgErreur = document.querySelector('[data-js-erreur-nonListee]');
 
-            if (param.nom !== '' && param.nom.length > 3) {
+            if (param.nom !== '' && param.nom.length > 2) {
 
-            let requete = new Request("index.php?requete=ajouterBouteilleNonListeeCatalogue", {
-                method: "POST",
-                body: JSON.stringify(param),
-                headers: { "Content-Type": "application/json" },
-            });
-
-
-            fetch(requete)
-                .then(function (response) {
-                    ////////////////////Ajouter Image dans le dossier local /////////////////////
-
-                    if (param.image != "") {
-                        let requete = new Request("index.php?requete=ajouterImageLocal", {
-                            method: "POST",
-                            body: formData,
-                        });
-
-                        fetch(requete)
-                            .then(response => {
-
-                            })
-                            .catch((error) => {
-                                console.error(error);
-                            });
-                    }
-
-                    if (response.status === 200) {
-
-                        document.querySelector(".loader").classList.remove('hidden');
-
-
-                        setTimeout(function () {
-                            document.querySelector(".loader").classList.add('hidden');
-                            window.location.href = "index.php?requete=getCatalogue";
-                        }, 1500);
-
-
-                    }
+                let requete = new Request("index.php?requete=ajouterBouteilleNonListeeCatalogue", {
+                    method: "POST",
+                    body: JSON.stringify(param),
+                    headers: { "Content-Type": "application/json" },
                 });
-            }else {
+
+
+                fetch(requete)
+                    .then(function (response) {
+                        ////////////////////Ajouter Image dans le dossier local /////////////////////
+
+                        if (param.image != "") {
+                            let requete = new Request("index.php?requete=ajouterImageLocal", {
+                                method: "POST",
+                                body: formData,
+                            });
+
+                            fetch(requete)
+                                .then(response => {
+
+                                })
+                                .catch((error) => {
+                                    console.error(error);
+                                });
+                        }
+
+                        if (response.status === 200) {
+
+                            document.querySelector(".loader").classList.remove('hidden');
+
+
+                            setTimeout(function () {
+                                document.querySelector(".loader").classList.add('hidden');
+                                window.location.href = "index.php?requete=getCatalogue";
+                            }, 1500);
+
+
+                        }
+                    });
+            } else {
                 msgErreur.classList.remove('hidden');
-              }
+            }
 
 
 

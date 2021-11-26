@@ -81,7 +81,7 @@
                         <tr data-row-id="<?php echo $row['id'] ?>" class="item ">
                             <!-- <td><i class="fas fa-wine-glass fa-2x" style="color:var(<?php if ($row['vino__type_id'] == 1) { ?>--txt-medium <?php } else { ?>--bg-doree <?php } ?>); font-size:18px; "></i></td> -->
 
-                            <td><?php if ($row['vino__type_id'] == 1) { ?><i class="fas fa-wine-glass fa-2x" style="color:var(--txt-medium); font-size:18px;"><span class="hidden">Rouge</span></i><?php } else { ?><i class="fas fa-wine-glass fa-2x" style="color:var(--bg-doree ); font-size:18px;"><span class="hidden">Blanc</span></i><?php } ?></td>
+                            <td><?php if ($row['vino__type_id'] == 3) { ?><i class="fas fa-wine-glass fa-2x" style="color:var(--txt-medium); font-size:18px;"><span class="hidden">Rouge</span></i><?php } else if  ($row['vino__type_id'] == 2) { ?><i class="fas fa-wine-glass fa-2x" style="color:var(--bg-doree ); font-size:18px;"><span class="hidden">Blanc</span></i><?php } else { ?><i class="fas fa-wine-glass fa-2x" style="color:var(--bg-primaire ); font-size:18px;"><span class="hidden">Blanc</span></i><?php } ?></td>
 
 
                             <td><?php echo $row['nom'] ?></td>

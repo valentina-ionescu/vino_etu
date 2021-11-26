@@ -1,11 +1,4 @@
 
-table {
-    width: 100%;
-    padding-top: 30px;
-    border-collapse: collapse;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  
     table td {
       border-bottom: 1px solid #9faeb9;
       padding: 5px 6px;
@@ -177,3 +170,23 @@ table {
      background-color: var(--bg-primaire-foncee-admin);
     }
     
+    @media screen and (min-width: 426px) {
+      table {
+          width: 100%;
+          padding-top: 30px;
+          border-collapse: collapse;
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+      }
+
+      @media screen and (min-width: 768px) {
+        table {
+          width: 600px;
+        } 
+        .nom_bouteille {
+          width: 70%;
+        }
+
+      
+        }
+        
