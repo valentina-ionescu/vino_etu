@@ -22,13 +22,19 @@
                 <div class="form__nonlistee-check flex row gap-3 justify-start">
                     <div class="flex column align-item-center">
                        
-                        <input type="radio" checked name="vino__type_id" value="1"> 
+                        <input type="radio" name="vino__type_id" value="1"> 
                         <label>Rouge</label>
                     </div>
                     <div class="flex column align-item-center">
                         
                         <input type="radio" name="vino__type_id" value="2">
                         <label>Blanc</label>
+
+                    </div>
+                    <div class="flex column align-item-center">
+                        
+                        <input type="radio" name="vino__type_id" value="3">
+                        <label>Rosé</label>
 
                     </div>
                 </div>

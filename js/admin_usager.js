@@ -326,8 +326,10 @@ window.addEventListener('load', function () {
             }
             if (element.value == 1) {
                 typeVin = "Vin rouge"
-            } else {
+            } else if(element.value == 2) {
                 typeVin = "Vin blanc"
+            } else if(element.value == 3) {
+                typeVin = "Vin rosé"
             }
         })
     })
@@ -393,7 +395,7 @@ window.addEventListener('load', function () {
             };
             let msgErreur = document.querySelector('[data-js-erreur-nonListee]');
 
-            if (param.nom !== '' && param.nom.length > 3) {
+            if (param.nom !== '' && param.nom.length > 2) {
 
             let requete = new Request("index.php?requete=ajouterBouteilleNonListeeCatalogue", {
                 method: "POST",
