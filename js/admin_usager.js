@@ -374,11 +374,19 @@ window.addEventListener('load', function () {
 
             // console.log(image.files[0].type);
 
+            let imageNom = '';
+            let customTime = Math.round(new Date().getTime() / 1000);
+
+            formData.append('file', image.files[0]);
+            
             if (imageValide && imageNonListee != "") {
-                imageNonListee = "./assets/img/bouteillesNonlistees/" + Math.round(new Date().getTime() / 1000) + '-' + image.files[0].name.replace(/\s+/g, "");//enlever les espaces dans le nom des images, et ajouter un timestamp
+                imageNom = customTime + '-' + image.files[0].name.replace(/\s+/g, "");
+                imageNonListee = "./assets/img/bouteillesNonlistees/" + imageNom;//enlever les espaces dans le nom des images, et ajouter un timestamp;
             }
 
             var param = {
+                formData: formData,
+                time: customTime,
                 nom: bouteilleNonlistee.nom.value,
                 format: bouteilleNonlistee.format.value,
                 // image: bouteilleNonlistee.image.value.replace(/C:\\fakepath\\/i, "./assets/img/bouteillesNonlistees/"),//remplacer la path de l'image avec celle en local. 
@@ -407,7 +415,7 @@ window.addEventListener('load', function () {
                     ////////////////////Ajouter Image dans le dossier local /////////////////////
 
                     if (param.image != "") {
-                        let requete = new Request("index.php?requete=ajouterImageLocal", {
+                        let requete = new Request("index.php?requete=ajouterImageLocal&image="+imageNom, {
                             method: "POST",
                             body: formData,
                         });
