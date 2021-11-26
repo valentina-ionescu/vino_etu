@@ -846,10 +846,14 @@ class Controler
 
 	private function ajouterImagePerso()
 	{
+	
 		// var_dump($_FILES['file']);
-		$imgFileName = $_FILES['file']['name'];
 
-		$location = "./assets/img/bouteillePersonnalise/";
+		var_dump($_GET['image']);
+
+		//$location = "/assets/img/bouteillePersonnalise/";
+		$location = "assets/img/bouteillePersonnalise/";
+
 
 		$extension = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
 
@@ -865,7 +869,7 @@ class Controler
 		}
 
 	
-		$target = $location . time() . "-" . $imgFileName; // attribuer a l'image un nom unique (ajouter le timeStamp en secondes avant le nom de l'image)
+		$target = $location . $_GET['image']; // attribuer a l'image un nom unique (ajouter le timeStamp en secondes avant le nom de l'image)
 
 		if ($ext != 0) { // si l'image a une extenssion acceptee
 
@@ -876,6 +880,8 @@ class Controler
 				//redimmensionner l'image 
 				$redimensionImg = $bte->redimmensionImage($target, $ext, $lageur=367, $hauteur=550); // appele de la fonction qui redimmensionne l'image
 				
+				echo json_encode($redimensionImg);
+
 				echo "Reussi!";
 			} else {
 				echo "Pas Reussi!!";
