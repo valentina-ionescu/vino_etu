@@ -5,13 +5,12 @@
 
                 <?php if (isset($msg)&& $msg) { ?>
 
-
-                    <!-- <h3 class="ml txt-blanc"> -->
                         <?php echo $msg; ?>
-                    <!-- </h3> -->
+               
                 <?php  } else { ?>
                     <h3 class="tag-gauche txt-blanc capit" data-cellid="<?php echo $_SESSION['cellier_id'];?>"><?php echo  $_SESSION['cellier_nom'];
-                         }  ?></h3>
+                        //  }  ?>
+                         </h3>
             </div>
         </div>
         <!-- <div class="cellier__information__wrapper">
@@ -48,6 +47,12 @@
                    </div>  -->
 
            </div>
+           <div class="form__recherche form__recherche--b">
+                <span class="fas fa-search iconne b__icon"></span>
+                <input type="text" id="b_rech" class="form__recherche--clair" placeholder="Recherche..." title="Nom de cellier">
+            </div>
+
+       <?php  }  ?>
                     <!-- Modal de filtres -->
                     
                     <div class="filtres__modal__wrapper">
