@@ -47,8 +47,8 @@
                    </div>  -->
 
            </div>
-           <div class="form__recherche form__recherche--b">
-                <span class="fas fa-search iconne b__icon"></span>
+           <div class="b__recherche form__recherche--b">
+                <!-- <span class="fas fa-search iconne b__icon"></span> -->
                 <input type="text" id="b_rech" class="form__recherche--clair" placeholder="Recherche..." title="Nom de cellier">
             </div>
 

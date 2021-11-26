@@ -1014,7 +1014,11 @@ console.log(bouteillePerso);
     }
     
 <<<<<<< HEAD
+<<<<<<< HEAD
     // imageContenue = "./assets/img/bouteillePersonnalise/" + Math.round(new Date().getTime() / 1000) + '-' + imagePerso.files[0].name.replace(/\s+/g, "");//enlever les espaces dans le nom des images, et ajouter un timestamp;
+=======
+   
+>>>>>>> 5eedce1e385d5b929edbf70e625c4e7a1f0e808a
 =======
 >>>>>>> 1f0446db3488e60c460524290b79034e01d94133
     var param = {

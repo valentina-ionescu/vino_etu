@@ -163,7 +163,7 @@
         </nav>
     </header>
 
-
+    <main class="admin_main">	
     <section class=" section_principale mt-5">
 
         <section class="search-and-user">
