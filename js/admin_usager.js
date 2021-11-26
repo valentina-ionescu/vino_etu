@@ -326,10 +326,8 @@ window.addEventListener('load', function () {
             }
             if (element.value == 1) {
                 typeVin = "Vin rouge"
-            } else if(element.value == 2) {
+            } else {
                 typeVin = "Vin blanc"
-            } else if(element.value == 3) {
-                typeVin = "Vin rosé"
             }
         })
     })

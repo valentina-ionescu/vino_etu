@@ -40,8 +40,12 @@
                    <a href="?requete=accueil" class="tag-gauche txt-blanc capit petit clr">Effacer</a>
                    <?php }?>    
                    <div class="filtres">
-                       <a href="" class="tag-droite txt-blanc capit petit">Filtres<i class="fas fa-angle-down"></i></i></a>
+                       <a href="" class="tag-droite txt-blanc capit petit open">Filtres<i class="fas fa-angle-down"></i></i></a>
+                       <a href="index.php?requete=accueil" class="tag-gauche txt-blanc capit petit effacer">Effacer</a>
                    </div> 
+                   <!-- <div class="effacer_filtres">
+                    <a href="index.php?requete=accueil" class="tag-gauche txt-blanc capit petit">Effacer</a>
+                   </div>  -->
 
            </div>
                     <!-- Modal de filtres -->

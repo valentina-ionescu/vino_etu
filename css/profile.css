@@ -452,6 +452,12 @@ input.mill {
     flex-wrap: wrap;
     gap: .25rem;
 }
+.effacer {
+    display: none;
+}
+.show_button {
+    display: block;
+}
 /* ==========----------Media queries---------=========== */
 @media (min-width: 540px)  {
     .u__profile__wrapper {
