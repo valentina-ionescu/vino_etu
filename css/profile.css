@@ -377,7 +377,7 @@ hr.separe {
     margin: 0;
     padding: 0;
 }
- .filtres>a,
+ .open,
  .entete__filtres>a {
     padding: .5em 1em;
     display: block;
@@ -457,6 +457,10 @@ input.mill {
 }
 .show_button {
     display: block;
+    padding: .5em 1em;
+    width: fit-content;
+    margin-right: 0;
+    font-size: clamp(.85rem, -0.875rem + 8.333333vw, 1rem);
 }
 /* ==========----------Media queries---------=========== */
 @media (min-width: 540px)  {
