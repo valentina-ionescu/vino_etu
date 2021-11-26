@@ -393,7 +393,7 @@ window.addEventListener('load', function () {
             };
             let msgErreur = document.querySelector('[data-js-erreur-nonListee]');
 
-            if (param.nom !== '' && param.nom.length > 3) {
+            if (param.nom !== '' && param.nom.length > 2) {
 
             let requete = new Request("index.php?requete=ajouterBouteilleNonListeeCatalogue", {
                 method: "POST",
