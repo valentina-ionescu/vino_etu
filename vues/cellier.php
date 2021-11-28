@@ -5,13 +5,12 @@
 
                 <?php if (isset($msg) && $msg) { ?>
 
-                    <?php echo $msg; ?>
-
+                        <?php echo $msg; ?>
+               
                 <?php  } else { ?>
-                    <h3 class=" txt-blanc capit" data-cellid="<?php echo $_SESSION['cellier_id']; ?>"><?php echo  $_SESSION['cellier_nom'];
-                                                                                                                //  }  
-                                                                                                                ?>
-                    </h3>
+                    <h3 class="txt-blanc capit" data-cellid="<?php echo $_SESSION['cellier_id'];?>"><?php echo  $_SESSION['cellier_nom'];
+                        //  }  ?>
+                         </h3>
             </div>
         </div>
         <!-- <div class="cellier__information__wrapper">

@@ -572,7 +572,10 @@ input.mill {
     margin-right: 0;
     font-size: clamp(.85rem, -0.875rem + 8.333333vw, 1rem);
 }
-
+.clicked {
+    background: var(--bg-primaire-autre);
+    color: #f1f1f1;
+}
 /* ==========----------Media queries---------=========== */
 @media (max-width: 540px) {
     
