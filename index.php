@@ -15,6 +15,7 @@
  */
 
 
+
  
 	 /***************************************************/
     /** Fichier de configuration, contient les define et l'autoloader **/

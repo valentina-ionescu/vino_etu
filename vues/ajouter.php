@@ -39,11 +39,7 @@
 
 
 
-                    <!-- <div class="form__label__aj">
-                        <p class="image__image"> Image </p>
-                            <input id="image" type="file" name="image" class="form-control">
-                        
-                    </div> -->
+                   
 
 
 
@@ -87,10 +83,7 @@
 
                     </div>
 
-                    <!-- <button class="mt-1 btn btn-accent solid" name="ajouterBouteilleCellier">Ajouter la bouteille</button>
-                <form method="POST" action="index.php?requete=home">
-                    <button class="btn btn-primaire btnAnnul mt-10px">Annuler</button>
-                </form> -->
+                  
 
                     <div class="form__label__aj">
                         <input type="number" name="millesime" required>

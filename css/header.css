@@ -71,6 +71,11 @@
             display: none;
             width: 0;
         }
+        .link_logo2{
+            visibility: hidden;
+            display: none;
+            width: 0;
+        }
     }
 
     @media screen and (max-width: 770px) and (min-width: 427px) {
@@ -186,10 +191,8 @@
 
     #menu {
         position: absolute;
-        /* width: 32em; */
         width: 110vw;
         height: 110vh;
-        /* height: 1000px; */
         margin: -100px 0 0 -50px;
         padding: 50px;
         padding-top: 125px;

@@ -37,6 +37,11 @@
 .cellier__information-wrapper {
     display: flex;
     justify-self: left;
+    /* margin: 1em 0; */
+    margin-top: 0;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
 }
 
 .u__profile__wrapper {
@@ -117,6 +122,7 @@
     padding: 1.5em 1em 0.6em 1em;
     background: #1a202e;
     z-index: 100;
+    border-radius: 3px;
 }
 
 .u__profile-toggle_admin button {
@@ -158,6 +164,7 @@
 .u__img {
     width: 40px;
     height: 40px;
+    margin: 0 auto;
 }
 
 .u__img img {
@@ -236,12 +243,19 @@
     margin-left: 58vw;
     background: var(--bg-sombre);
 }
+.cellier__page-top .fa-plus-reverse{
+    margin-left: unset;
+}
+
 .fa-plus-reverse:hover{
     color: var(--bg-primaire-autre);
     background: var(--bg-clair);
     border: 1px solid var(--bg-primaire-autre);
 }
+.fa-plus-reverse.gauche{
+    border-radius: 3px;
 
+}
 .gauche {
     margin-left: 0;
     font-size: clamp(2rem, -0.875rem + 8.333333vw, 2.75rem);
@@ -256,16 +270,24 @@
     font-size: 1.5rem;
     background: var(--bg-clair);
     color: var(--bg-primaire-autre);
-    padding: 0.25em .5em;
+    padding: 0.25em .2em;
+    border-radius: 3px;
+    font-size: 1rem;
 }
 
 .tag-droite {
     font-size: 1rem;
     margin-right: 1rem;
 }
+.nomCellier>h3{
+    margin: unset;
+}
+.nomCellier .ml{
+    margin-left: unset;
 
+}
 .nomCellier {
-    padding-top: .75em;
+    padding-top: 1.5em;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -401,8 +423,10 @@ form.btn__ajouter_cellier {
 }
 .form__recherche--b input {
  color: whitesmoke;
+ border: none;
+ font-family: var(--ff-sans-serif);
+ height: 100%;
 }
-
 
 
 .actions {
@@ -419,17 +443,24 @@ form.btn__ajouter_cellier {
 
 .filtres,
 .entete__filtres {
-    /* margin-left: 75vw;
-    margin-top: 10%;
-    position: relative; */
+  
     display: flex;
-    justify-content: space-between;
-    width: 95%;
+    justify-content: flex-end;
+    gap: 15px;
+    
+}
+.filtres a{
+    padding: .3em;
+    width: 70px;
 }
 
-.filtres>.tag-droite {
-    margin-left: auto;
+.entete__filtres {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 20px;
 }
+
 
 hr.separe {
     height: 1px;
@@ -444,6 +475,7 @@ hr.separe {
     padding: .5em 1em;
     display: block;
     width: fit-content;
+    width: -moz-fit-content;
     margin-right: 0;
     font-size: clamp(.85rem, -0.875rem + 8.333333vw, 1rem);
 }
@@ -474,6 +506,7 @@ hr.separe {
 .btn-filtre {
     display: inline-block;
     width: fit-content;
+    width: -moz-fit-content;
     padding: .5em 1em;
     background: #ccc;
     color: var(--bg-primaire-autre);
@@ -535,18 +568,23 @@ input.mill {
     display: block;
     padding: .5em 1em;
     width: fit-content;
+    width: -moz-fit-content;
     margin-right: 0;
     font-size: clamp(.85rem, -0.875rem + 8.333333vw, 1rem);
 }
 
 /* ==========----------Media queries---------=========== */
+@media (max-width: 540px) {
+    
+
+}
 @media (min-width: 540px) {
     .u__profile__wrapper {
         max-width: 50vw;
         margin-left: auto;
         margin-right: auto;
     }
-
+   
     .u__celliers_liste {
         margin-top: -13%;
     }
@@ -555,9 +593,7 @@ input.mill {
         width: 17%;
     }
 
-    .u__profile-toggle, .u__profile-toggle_admin {
-        left: 65vw;
-    }
+   
     .modal__filtre {
         background: #f1f1f1;
         width: unset;
@@ -565,6 +601,9 @@ input.mill {
         right: 6em;
         top: 18%;
 
+    }
+    .nomCellier>h3 {
+        font-size: 2rem;
     }
 }
 
@@ -592,6 +631,9 @@ input.mill {
         margin-top: unset;
 
     }
+    .nomCellier>h3 {
+        font-size: 2.5rem;
+    }
 }
 
 @media (min-width: 900px) {
@@ -610,6 +652,16 @@ input.mill {
     .u__profile-toggle, .u__profile-toggle_admin {
         left: 80vw;
     }
+    .tag-gauche{
+        margin-top: 0.5em; 
+         margin-left: unset;
+        font-size: 3.5rem;
+        background: transparent;
+        color: #ffffff;
+        padding: 0.25em 1.5em;
+        text-align: center;
+    
+        }
 }
 
 @media (min-width: 1024px) {
@@ -628,16 +680,7 @@ input.mill {
     .u__titre {
         letter-spacing: .15em;
     }
-    .tag-gauche{
-    margin-top: 0.5em; 
-     margin-left: unset;
-    font-size: 3.5rem;
-    background: transparent;
-    color: #ffffff;
-    padding: 0.25em 1.5em;
-    text-align: center;
-
-    }
+   
     .cellier__information-wrapper {
         
         justify-content: center;

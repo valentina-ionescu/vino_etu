@@ -83,7 +83,7 @@
                             <tr data-row-id="<?php echo $row['id'] ?>" class="item ">
                                 <!-- <td><i class="fas fa-wine-glass fa-2x" style="color:var(<?php if ($row['vino__type_id'] == 1) { ?>--txt-medium <?php } else { ?>--bg-doree <?php } ?>); font-size:18px; "></i></td> -->
 
-                                <td><?php if ($row['vino__type_id'] == 3) { ?><i class="fas fa-wine-glass fa-2x" style="color:var(--bg-rose); font-size:18px;"><span class="hidden">Rose</span></i><?php } else if ($row['vino__type_id'] == 2) { ?><i class="fas fa-wine-glass fa-2x" style="color:var(--bg-doree ); font-size:18px;"><span class="hidden">Blanc</span></i><?php } else { ?><i class="fas fa-wine-glass fa-2x" style="color:var(--bg-primaire-autre ); font-size:18px;"><span class="hidden">Blanc</span></i><?php } ?></td>
+                                <td><?php if ($row['vino__type_id'] == 3) { ?><i class="fas fa-wine-glass fa-2x" style="color:var(--bg-rose); font-size:18px;"><span class="hidden">Rose</span></i><?php } else if ($row['vino__type_id'] == 2) { ?><i class="fas fa-wine-glass fa-2x" style="color:var(--bg-doree ); font-size:18px;"><span class="hidden">Blanc</span></i><?php } else { ?><i class="fas fa-wine-glass fa-2x" style="color:var(--bg-accent-admin ); font-size:18px;"><span class="hidden">Rouge</span></i><?php } ?></td>
 
 
                                 <td><?php echo $row['nom'] ?></td>
@@ -140,7 +140,7 @@
 
     <!-- Modal Desactivation bouteille -> supprimer -->
     <div class="desactivation__modal__wrapper" id="desactivation__modal__wrapper">
-        <div class="modal__overlay">
+        <div class="modal__overlay no-bg">
             <div class="modal__contenu flex col">
                 <span class="fermer"><i class="fas fa-times"></i></span>
                 <p class="modal__texte">Supprimer la bouteille?</p>

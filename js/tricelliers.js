@@ -17,12 +17,6 @@
         let rangees = Array.from(tBody.querySelectorAll("tr"));
         console.log(tBody)
 
-         //colonne quantité est convertie en Int
-        // if(colonne == 1) 
-        // {
-        //     colonne = parseInt(colonne);
-        //     console.log(colonne)
-        // }
 
         // Trier chaque rangee
         let rangeesTriees = rangees.sort((a, b) => {

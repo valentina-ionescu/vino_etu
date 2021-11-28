@@ -153,16 +153,6 @@ class Cellier extends Modele {
 	{
         $idUser = $_SESSION['usager_id'];
         
-		// $rows = Array();
-
-        // $requete = "SELECT * FROM vino__cellier WHERE id = ".$id."";
-
-		// if(($res = $this->_db->query($requete)) ==	 true)
-        // {
-
-		// return $res;
-        // }
-
        
         $requete = "SELECT nom_cellier FROM vino__cellier WHERE id = ".$id."";
 
@@ -221,13 +211,7 @@ class Cellier extends Modele {
         }
     }   
 
-    // public function bouteillesCellier($id) {
-    //     // Nombre de bouteilles pour ce cellier
-    //     $requete = "SELECT count(*) FROM vino__cellier_has_vino__bouteille WHERE vino__cellier_id = ".$id." group by vino__cellier_id";
-    //     $res =  $this->_db->query($requete);
-    //     $count = $res->fetch_assoc();
-    //     return $count;
-    // }
+
 
 
 /**

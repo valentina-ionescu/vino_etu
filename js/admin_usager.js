@@ -34,7 +34,6 @@ window.addEventListener('load', function () {
     console.log(amenu);
     console.log(aimage);
     aimage.addEventListener("click", (e) => {
-        // umenu.style.display = umenu.style.display === "none" ? "flex" : "none";
         console.log(amenu);
         amenu.classList.toggle('show');
     });
@@ -308,11 +307,9 @@ window.addEventListener('load', function () {
         vino__type_id: formNonListee.querySelector("input[name='vino__type_id']:checked"),
         nom: formNonListee.querySelector("[name='nom']"),
         format: formNonListee.querySelector("[name='format']"),
-        //  image: formNonListee.querySelector("[name='image']"),formNonListee.querySelector('[type=file]').files
         image: formNonListee.querySelector('[type=file]').files,
         pays: formNonListee.querySelector("[name='pays']"),
         prix: formNonListee.querySelector("[name='prix']"),
-        //  url_saq: formNonListee.querySelector("[name='url_saq']"),
     };
 
     let typeVin = '';
@@ -342,14 +339,13 @@ window.addEventListener('load', function () {
     let formData = new FormData();
     let imageNonListee = "./assets/img/bouteillesNonlistees/bouteilleParDefaut.jpg";//image par defaut
     imageValide = false;
-    // console.log(document.getElementById("nom_image"));
 
     document.getElementById("image").addEventListener("change", function () {
 
         let fullPath = this.value; // fetched value = C:\fakepath\nomImage.extension
         let fileName = fullPath.split(/(\\|\/)/g).pop();  // fetch le nom de l'image
 
-        if (image.files[0].type == "image/jpg" || image.files[0].type == "image/jpeg" || image.files[0].type == 'image/png' || image.files[0].type == 'image/gif') {
+        if (image.files[0].type == "image/jpg" || image.files[0].type == "image/jpeg" || image.files[0].type == 'image/png' ) {
 
             document.getElementById("nom_image").innerHTML = fileName;  // afficher le nom de l'image dans le dom 
 
@@ -358,7 +354,7 @@ window.addEventListener('load', function () {
         } else {
 
             imageNonListee = "./assets/img/bouteillesNonlistees/bouteilleParDefaut.jpg";
-            document.getElementById("nom_image").innerHTML = '<p style="color:red;">L\'image doit etre de format *.jpeg, *.jpg, *.png </p>';  // afficher msg d'erreur si le format de l'image n'est pas conforme
+            document.getElementById("nom_image").innerHTML = '<p style="color:red;">L\'image doit etre de format *.jpeg, *.jpg ou *.png </p>';  // afficher msg d'erreur si le format de l'image n'est pas conforme
             imageValide = false;
 
 
@@ -381,12 +377,12 @@ window.addEventListener('load', function () {
             let customTime = Math.round(new Date().getTime() / 1000);
 
             formData.append('file', image.files[0]);
-            
+
             if (imageValide && image.files[0].name != "") {
                 imageNom = customTime + '-' + image.files[0].name.replace(/\s+/g, "");//enlever les espaces dans le nom des images, et ajouter un timestamp;
                 imageNonListee = "./assets/img/bouteillesNonlistees/" + imageNom;
             }
-console.log(imageNom);
+            console.log(imageNom);
 
             var param = {
                 formData: formData,
@@ -418,11 +414,11 @@ console.log(imageNom);
                     .then(function (response) {
                         ////////////////////Ajouter Image dans le dossier local /////////////////////
 
-                    if (param.image != "") {
-                        let requete = new Request("index.php?requete=ajouterImageLocal&image="+imageNom, {
-                            method: "POST",
-                            body: formData,
-                        });
+                        if (param.image != "") {
+                            let requete = new Request("index.php?requete=ajouterImageLocal&image=" + imageNom, {
+                                method: "POST",
+                                body: formData,
+                            });
 
                             fetch(requete)
                                 .then(response => {
