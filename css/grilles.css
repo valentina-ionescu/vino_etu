@@ -1,9 +1,11 @@
 .cellier {
-    width: 100%;
+    width: 95vw;
     background: var(--bg-sombre);
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.gallerie {
+.gallerie, .cellier__page-top {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -11,15 +13,30 @@
     flex-wrap: wrap;
     gap: 20px;
     padding-top: 0;
-    padding-bottom: 2em;   
-    border-block-start: .75px solid #f1f1f1;
-    margin-top: 1.5vh
+    padding-bottom: 1.5em;   
 }
 
 .gallerie.portail {
     align-content: baseline;
 }
-    
+.cellier__page-top{
+    display: flex;
+    border-block-start: 0.75px solid #f1f1f1;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1.5em;
+
+}
+.boutons__figures-cellier{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* margin-top: -5px; */
+    width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+
+}
 
 .carte {
     width: 100%;
@@ -58,6 +75,8 @@
     text-align: right;
     font-weight: 600;
     position: absolute;
+    width: 22%;
+    text-align: center;
 }
 
 .carte.horizontale .carte__tag-top span {
@@ -65,6 +84,8 @@
     display: inline-block;
     border-radius: 4px 0 4px 0;
     padding: 5px;
+    width: 100%;
+
 }
 
 .carte__tag-top span {
@@ -92,7 +113,6 @@
 .carte__top {
     display: flex;
     flex-wrap: wrap;
-    /* flex-basis: 40%; */
     padding: 0 15px;
     gap: 10px;
     justify-content: space-between;
@@ -126,6 +146,7 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
+    overflow: hidden;
 }
 
 .carte__format.absolute {
@@ -144,6 +165,13 @@
 .carte__description__wrapper {
     justify-content: space-between;
 }
+.carte__description{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+
+}
 
 .btnAjouter, .btnBoire {
     padding: 2px 3px;
@@ -155,27 +183,18 @@
     transition-duration: 0.3s;
 }
 
-/* .btnBoire {
-    background: var(--bg-primaire);
-    color: white;
-} */
 
 .btnAjouter, .btnBoire {
     color: var(--bg-primaire);
 }
 
 .btnAjouter:hover, .btnBoire:hover {
-    /* background: var(--bg-primaire-autre); */
     border-color: var(--bg-primaire-autre);
     border: 2px solid var(--bg-primaire);
-    /* color: white; */
     color: var(--bg-primaire-autre);
 }
 
-.btnBoire:active {
-    /* background: var(--bg-sombre); */
-    /* color: white; */
-}
+
 
 .carte__quantite {
     text-align: center;
@@ -204,7 +223,7 @@
 }
 .carte__details-row{
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: space-between;
     align-content: center;
     gap: 20px;
@@ -225,16 +244,13 @@
 }
 
 .carte__prix {
-    /* font-size: 20px; */
     color: #293451;
 }
 
-.carte__description-prix {
-    /* font-size: 16px; */
-}
 
 .carte__lien {
     color: var(--bg-primaire);
+    margin-bottom: 5px;
 }
 
 details {
@@ -299,7 +315,6 @@ details[open] summary {
 .tabs {
     border-radius: 2px;
     overflow: hidden;
-    /* box-shadow: 0 4px 4px -2px rgba(0,0,0,0.5); */
 }
 
 .tab {
@@ -311,9 +326,7 @@ details[open] summary {
 .tab-label {
     padding: 5px 3px;
     display: flex;
-    /* justify-content: space-between; */
     gap: 10px;
-    /* background: var(--bg-doree); */
     font-weight: bold;
     cursor: pointer;
     font-size: 1em;
@@ -328,7 +341,7 @@ details[open] summary {
     width: 1em;
     height: 1em;
     text-align: center;
-    transition: all .35s;
+    transition: all .35s ease-in-out;
 }
 
 .tab-content {
@@ -409,6 +422,9 @@ details[open] summary {
     .carte {
         min-width: 95vw;
     }
+    .carte:last-of-type{
+        margin-bottom: 1.5em;
+    }
     h3{
         letter-spacing: .03em;
     }
@@ -422,7 +438,6 @@ details[open] summary {
         font-weight: 500;
     }
     .btnAjouter, .btnBoire {
-        /* border-radius: 50%; */
         padding: 3px 5px;
         font-size: 18px;
     }
@@ -431,32 +446,87 @@ details[open] summary {
     }
     .carte__contenu {
         padding: 10px 10px 10px 0;
+        height: 100%;
     }
     .carte__image {
-        width: 80px;
+        width: 10ch;
         margin-top: 10px;
-      
+        margin-left: 10px;
+        overflow: hidden;
+        align-items: center;
     }
     .carte.horizontale .carte__quantite {
       
         margin-left: -10px;
         justify-content: center;
+        justify-content: space-between;
     }
     .tab-content {
         margin-top: 7px;
+    }
+    .boutons__figures-cellier {
+      
+        width: 85vw;
+    }
+    .carte__image img {
+        width: 12ch;
+        height: 100%;
+        object-fit: contain;
+        overflow: hidden;
     }
 }
 
 
 @media all   
   and (min-width: 768px) 
-  and (max-width: 1024px) 
-  and (-webkit-min-device-pixel-ratio: 1) {
+ {
+    .carte__supp {
+        top: 15px;
+        position: absolute;
+        right: 15px;
+       
+    }
+
     .carte.horizontale {
         justify-content: unset;
-        flex-basis: unset;
+        flex-basis:calc(100% / 4 - 20px);
         min-width: unset;
         align-items: center;
+        flex-direction: column;
+        min-width: 266px;
+        
     }
+    .carte.horizontale .carte__quantite {
+      
+        flex-direction: row;
+        justify-content: space-between;
+        width: 70%;
+        font-size: 18px;
+        height: 5%;
+    }
+    .carte.horizontale .btnAjouter, .carte.horizontale .btnBoire {
+        
+        font-size: 16px;
+    }
+    .carte.horizontale .carte__tag-top{
+        left: 0;
+        width: 30%;
+    }
+    .carte.horizontale .carte__image {
+        height: 24ch;
+    }
+    .carte__top {
+      
+        padding: 15px 10px;
+        padding-bottom: 0;
+    }
+    .carte.horizontale .carte__contenu{    width: 100%;}
+      
     
+}
+@media (min-width: 1424px) {
+    .carte.horizontale {
+        justify-content: unset;
+        flex-basis:calc(100% / 5 - 20px);
+    }
 }

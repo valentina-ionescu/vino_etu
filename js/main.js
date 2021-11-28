@@ -18,9 +18,7 @@
 
 
 
-//////////////////////////////////////////////
-//Fonction boire bouteille                  //
-//////////////////////////////////////////////
+
 
 const BaseURL = document.baseURI;
 console.log(BaseURL);
@@ -28,7 +26,9 @@ window.addEventListener("load", function () {
   console.log("load - main.js");
   document.querySelector(".loader").classList.add('hidden');
  
-
+//////////////////////////////////////////////
+//Fonction boire bouteille                  //
+//////////////////////////////////////////////
 
   document.querySelectorAll(".btnBoire").forEach(function (element) {
     element.addEventListener("click", function (evt) {
@@ -971,7 +971,7 @@ console.log(bouteillePerso);
   
 
       // afficher le nom de l'image
-    if (imagePerso.files[0].type == "image/jpeg" || imagePerso.files[0].type == 'image/png' || imagePerso.files[0].type == 'image/gif') {
+    if (imagePerso.files[0].type == "image/jpg" || imagePerso.files[0].type == "image/jpeg" || imagePerso.files[0].type == 'image/png' ) {
 
       document.getElementById("nom_imagePerso").innerHTML = fileName;  // afficher le nom de l'image dans le dom 
 
@@ -980,7 +980,7 @@ console.log(bouteillePerso);
   } else {
      
     imageContenue = "./assets/img/bouteillesNonlistees/bouteilleParDefaut.jpg";
-      document.getElementById("nom_imagePerso").innerHTML = '<p style="color:red; font-size:13px; line-height:unset;margin: 0 0;">L\'image doit être de format *.jpeg, *.jpg, *.png ou *.gif!</p>';  // afficher msg d'erreur si le format de l'image n'est pas conforme
+      document.getElementById("nom_imagePerso").innerHTML = '<p style="color:red; font-size:13px; line-height:unset;margin: 0 0;">L\'image doit être de format *.jpeg, *.jpg, ou *.png !</p>';  // afficher msg d'erreur si le format de l'image n'est pas conforme
       imageValide = false;
 
 
@@ -1009,7 +1009,6 @@ console.log(bouteillePerso);
       //imageContenue = "/ProjetWeb2/vino_etu/assets/img/bouteillePersonnalise/" + Math.round(new Date().getTime() / 1000) + '-' + imagePerso.files[0].name.replace(/\s+/g, "");//enlever les espaces dans le nom des images, et ajouter un timestamp;
     }
     
-    // imageContenue = "./assets/img/bouteillePersonnalise/" + Math.round(new Date().getTime() / 1000) + '-' + imagePerso.files[0].name.replace(/\s+/g, "");//enlever les espaces dans le nom des images, et ajouter un timestamp;
     var param = {
       formData: formData,
       time: customTime,
@@ -1056,7 +1055,7 @@ console.log(bouteillePerso);
               document.querySelector(".loader").classList.add('hidden');
               window.location.href = "index.php?requete=accueil";
           response.json();
-          }, 2000);
+          }, 1500);
 
         });
         })
@@ -1067,4 +1066,7 @@ console.log(bouteillePerso);
 
   
 
-}); //fin window load
+
+  if (localStorage.getItem('scrollPosition') !== null)
+    window.scrollTo(0, localStorage.getItem('scrollPosition'));
+}, false); //fin window load

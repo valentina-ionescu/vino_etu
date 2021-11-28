@@ -88,11 +88,28 @@ class Cellier extends Modele {
 	{
         $idUser = $_SESSION['usager_id'];
 
-        $requete = "INSERT INTO vino__cellier (nom_cellier, usager_id) VALUE ('".$nomCellier."', '".$idUser."')";
+        $connexion = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
 
-        $res = $this->_db->query($requete);
+		$requete =  mysqli_prepare($connexion, "INSERT INTO vino__cellier(nom_cellier, usager_id) VALUE (?, ?)");
 
-		return $res;
+        if($requete)
+        {
+            mysqli_stmt_bind_param($requete, 'si', $nomCellier, $idUser);
+
+            mysqli_stmt_execute($requete);
+
+            $resultat = mysqli_stmt_get_result($requete);
+
+            if(!$resultat){
+				var_dump($resultat);
+			}
+			else{
+
+			}
+        }
+		var_dump($resultat);
+
+		return $resultat;
     }   
 
     /**
@@ -136,16 +153,6 @@ class Cellier extends Modele {
 	{
         $idUser = $_SESSION['usager_id'];
         
-		// $rows = Array();
-
-        // $requete = "SELECT * FROM vino__cellier WHERE id = ".$id."";
-
-		// if(($res = $this->_db->query($requete)) ==	 true)
-        // {
-
-		// return $res;
-        // }
-
        
         $requete = "SELECT nom_cellier FROM vino__cellier WHERE id = ".$id."";
 
@@ -204,13 +211,7 @@ class Cellier extends Modele {
         }
     }   
 
-    // public function bouteillesCellier($id) {
-    //     // Nombre de bouteilles pour ce cellier
-    //     $requete = "SELECT count(*) FROM vino__cellier_has_vino__bouteille WHERE vino__cellier_id = ".$id." group by vino__cellier_id";
-    //     $res =  $this->_db->query($requete);
-    //     $count = $res->fetch_assoc();
-    //     return $count;
-    // }
+
 
 
 /**

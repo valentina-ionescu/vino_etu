@@ -1,10 +1,12 @@
 /* Ajouté par Félix - Entête*/
 
-    .header__logo {
+    .header__logo, .header__logo2{
         width: 3em;
         margin-left: 20px;
     }
-
+.link_logo2{
+    visibility: hidden;
+}
     body {
         margin: 0;
         padding: 0;
@@ -59,11 +61,47 @@
         .admin_content-title{
             display: none;
         }
+        .header__logo2{
+            visibility: hidden;
+            display: none;
+            width: 0;
+        }
+        .link_logo2{
+            visibility: hidden;
+            display: none;
+            width: 0;
+        }
+        .link_logo2{
+            visibility: hidden;
+            display: none;
+            width: 0;
+        }
     }
 
     @media screen and (max-width: 770px) and (min-width: 427px) {
         .header__menu__links>li>a {
             font-size: 4vw;
+        }
+        .link_logo1{
+            visibility: hidden;
+            display: none;
+            width: 0;
+        }
+        .header__logo2{
+            visibility: visible;
+            width: 6rem;
+        }
+    }
+
+    @media screen and (min-width: 770px)  {
+        .link_logo1{
+            visibility: hidden;
+            display: none;
+            width: 0;
+        }
+        .header__logo2{
+            visibility: visible;
+            width: 7rem;
         }
     }
 
@@ -133,6 +171,9 @@
         transform-origin: 0% 100%;
     }
 
+    #menuToggle span:first-child:hover {
+        width: 20px;
+    }
     #menuToggle input:checked ~ span {
         opacity: 1;
         transform: rotate(45deg) translate(-2px, -1px);
@@ -150,10 +191,8 @@
 
     #menu {
         position: absolute;
-        /* width: 32em; */
         width: 110vw;
         height: 110vh;
-        /* height: 1000px; */
         margin: -100px 0 0 -50px;
         padding: 50px;
         padding-top: 125px;
@@ -185,3 +224,4 @@
        display: none;
        transition: all .2ms ease-in-out;
    }
+  

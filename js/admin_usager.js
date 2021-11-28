@@ -34,7 +34,6 @@ window.addEventListener('load', function () {
     console.log(amenu);
     console.log(aimage);
     aimage.addEventListener("click", (e) => {
-        // umenu.style.display = umenu.style.display === "none" ? "flex" : "none";
         console.log(amenu);
         amenu.classList.toggle('show');
     });
@@ -299,7 +298,7 @@ window.addEventListener('load', function () {
 
     console.log(formNonListee)
     //bouton annuler
-    formNonListee.querySelector('.btnAnnul').addEventListener('click',()=>{
+    formNonListee.querySelector('.btnAnnul').addEventListener('click', () => {
         window.location.assign("index.php?requete=getCatalogue");
     })
 
@@ -308,11 +307,9 @@ window.addEventListener('load', function () {
         vino__type_id: formNonListee.querySelector("input[name='vino__type_id']:checked"),
         nom: formNonListee.querySelector("[name='nom']"),
         format: formNonListee.querySelector("[name='format']"),
-        //  image: formNonListee.querySelector("[name='image']"),formNonListee.querySelector('[type=file]').files
         image: formNonListee.querySelector('[type=file]').files,
         pays: formNonListee.querySelector("[name='pays']"),
         prix: formNonListee.querySelector("[name='prix']"),
-        //  url_saq: formNonListee.querySelector("[name='url_saq']"),
     };
 
     let typeVin = '';
@@ -326,8 +323,11 @@ window.addEventListener('load', function () {
             }
             if (element.value == 1) {
                 typeVin = "Vin rouge"
-            } else {
+            } else if (element.value == 2) {
                 typeVin = "Vin blanc"
+
+            } else {
+                typeVin = "Vin rosé"
             }
         })
     })
@@ -339,28 +339,27 @@ window.addEventListener('load', function () {
     let formData = new FormData();
     let imageNonListee = "./assets/img/bouteillesNonlistees/bouteilleParDefaut.jpg";//image par defaut
     imageValide = false;
-    // console.log(document.getElementById("nom_image"));
 
     document.getElementById("image").addEventListener("change", function () {
 
         let fullPath = this.value; // fetched value = C:\fakepath\nomImage.extension
         let fileName = fullPath.split(/(\\|\/)/g).pop();  // fetch le nom de l'image
 
-        if (image.files[0].type == "image/jpeg" || image.files[0].type == 'image/png' || image.files[0].type == 'image/gif') {
+        if (image.files[0].type == "image/jpg" || image.files[0].type == "image/jpeg" || image.files[0].type == 'image/png' ) {
 
             document.getElementById("nom_image").innerHTML = fileName;  // afficher le nom de l'image dans le dom 
 
             imageValide = true;
 
         } else {
-           
+
             imageNonListee = "./assets/img/bouteillesNonlistees/bouteilleParDefaut.jpg";
-            document.getElementById("nom_image").innerHTML = '<p style="color:red;">L\'image doit etre de format *.jpeg, *.jpg, *.png ou *.gif!</p>';  // afficher msg d'erreur si le format de l'image n'est pas conforme
+            document.getElementById("nom_image").innerHTML = '<p style="color:red;">L\'image doit etre de format *.jpeg, *.jpg ou *.png </p>';  // afficher msg d'erreur si le format de l'image n'est pas conforme
             imageValide = false;
 
 
         }
-        
+
 
     }, false);
 
@@ -378,11 +377,12 @@ window.addEventListener('load', function () {
             let customTime = Math.round(new Date().getTime() / 1000);
 
             formData.append('file', image.files[0]);
-            
-            if (imageValide && imageNonListee != "") {
-                imageNom = customTime + '-' + image.files[0].name.replace(/\s+/g, "");
-                imageNonListee = "./assets/img/bouteillesNonlistees/" + imageNom;//enlever les espaces dans le nom des images, et ajouter un timestamp;
+
+            if (imageValide && image.files[0].name != "") {
+                imageNom = customTime + '-' + image.files[0].name.replace(/\s+/g, "");//enlever les espaces dans le nom des images, et ajouter un timestamp;
+                imageNonListee = "./assets/img/bouteillesNonlistees/" + imageNom;
             }
+            console.log(imageNom);
 
             var param = {
                 formData: formData,
@@ -403,48 +403,48 @@ window.addEventListener('load', function () {
 
             if (param.nom !== '' && param.nom.length > 2) {
 
-            let requete = new Request("index.php?requete=ajouterBouteilleNonListeeCatalogue", {
-                method: "POST",
-                body: JSON.stringify(param),
-                headers: { "Content-Type": "application/json" },
-            });
-
-
-            fetch(requete)
-                .then(function (response) {
-                    ////////////////////Ajouter Image dans le dossier local /////////////////////
-
-                    if (param.image != "") {
-                        let requete = new Request("index.php?requete=ajouterImageLocal&image="+imageNom, {
-                            method: "POST",
-                            body: formData,
-                        });
-
-                        fetch(requete)
-                            .then(response => {
-
-                            })
-                            .catch((error) => {
-                                console.error(error);
-                            });
-                    }
-
-                    if (response.status === 200) {
-
-                        document.querySelector(".loader").classList.remove('hidden');
-
-
-                        setTimeout(function () {
-                            document.querySelector(".loader").classList.add('hidden');
-                            window.location.href = "index.php?requete=getCatalogue";
-                        }, 1500);
-
-
-                    }
+                let requete = new Request("index.php?requete=ajouterBouteilleNonListeeCatalogue", {
+                    method: "POST",
+                    body: JSON.stringify(param),
+                    headers: { "Content-Type": "application/json" },
                 });
-            }else {
+
+
+                fetch(requete)
+                    .then(function (response) {
+                        ////////////////////Ajouter Image dans le dossier local /////////////////////
+
+                        if (param.image != "") {
+                            let requete = new Request("index.php?requete=ajouterImageLocal&image=" + imageNom, {
+                                method: "POST",
+                                body: formData,
+                            });
+
+                            fetch(requete)
+                                .then(response => {
+
+                                })
+                                .catch((error) => {
+                                    console.error(error);
+                                });
+                        }
+
+                        if (response.status === 200) {
+
+                            document.querySelector(".loader").classList.remove('hidden');
+
+
+                            setTimeout(function () {
+                                document.querySelector(".loader").classList.add('hidden');
+                                window.location.href = "index.php?requete=getCatalogue";
+                            }, 1500);
+
+
+                        }
+                    });
+            } else {
                 msgErreur.classList.remove('hidden');
-              }
+            }
 
 
 

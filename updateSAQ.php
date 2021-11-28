@@ -1,8 +1,11 @@
 
 <?php
+set_time_limit ( 300 );
 	require_once("dataconf.php");
 	require_once("config.php");
-	 include("vues/entete_admin.php");
+	include("vues/entete_admin.php");
+
+	set_time_limit ( 700 );
 
 	$saq = new SAQ();
 	$nombre = 0;

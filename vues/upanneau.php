@@ -64,7 +64,6 @@
 
         <div class="msg-supprime"></div>
 
-        <!-- <form class="flex btn__ajouter_cellier" method="POST" action="index.php?requete=ajouterCellier"> -->
         <div class="flex btn__ajouter_cellier">
             <button class="u__ajout"><i class="fas fa-plus"></i></button>
         </div>
@@ -84,7 +83,6 @@
                 <thead>
                     <tr>
                         <th class="cell__col  nom trier th-tri-asc">Nom cellier</th>
-                        <!-- <th class="cell__col"><span id="qte" class="w3-button table-column"><i class="fas fa-wine-bottle"></i><i class="caret"></span></th> -->
                         <th class="cell__col  bouteilles trier">Bouteilles</th>
                         <th class="cell__col"></th>
 
@@ -110,16 +108,7 @@
                                     <i class="far fa-trash-alt c__supp" data-cellid="<?php echo $cel['id'] ?>"></i>
                                 </div>
                             </td>
-                            <!-- <td class="cell__col-maj"> -->
-                            <!-- Mise à jour de cellier -->
-                            <!-- <form method="POST" action="index.php?requete=editCellier">
-                            <button class="c__modif" name="id" value="<?php echo $cel['id'] ?>">
-                                <i class="far fa-edit c__edit" data-cellid="<?php echo $cel['id'] ?>"></i>
-                            </button>
-                        </form> -->
-                            <!-- Suppression de cellier -->
-                            <!-- <i class="far fa-trash-alt c__supp" data-cellid="<?php echo $cel['id'] ?>"></i>  -->
-                            <!-- </td> -->
+                           
                         </tr>
 
 

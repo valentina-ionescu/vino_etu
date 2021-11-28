@@ -78,6 +78,7 @@
 					<?php if (isset($_SESSION['nom'])) { ?>
 						<li><a href="?requete=home">Accueil</a></li>
 						<li><a href="?requete=profile">Gérer mes celliers</a></li>
+						<li><a href="?requete=paramUsager">Mon profil</a></li>
 
 						<?php
 						if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1) {
@@ -92,7 +93,9 @@
 					<?php } ?>
 				</ul>
 			</div>
-			<a href="?requete=home" class="flex"><img class="header__logo" src="assets/img/logo/logo.svg" alt=""></a>
+			<a href="?requete=home" class="flex link_logo1"><img class="header__logo" src="assets/img/logo/logo.svg" alt=""></a>
+			<a href="?requete=home" class="flex link_logo2"><img class="header__logo2" src="assets/img/logo/logo_blanc.svg" alt=""></a>
+
 			<?php if (isset($_SESSION['nom'])) { ?>
 				<div class="u__profile_img flex col">
 
@@ -105,7 +108,7 @@
 
 					<div class="u__profile-toggle  col">
 						<div class="u__user">Bienvenue, <?php echo ucfirst($_SESSION['prenom']); ?> <?php echo ucfirst($_SESSION['nom']); ?></div>
-						<a class="u__user-p" href="?requete=paramUsager"><i class="far fa-user-circle"></i>Mon profile</a>
+						<a class="u__user-p" href="?requete=paramUsager"><i class="far fa-user-circle"></i>Mon profil</a>
 						<form method="POST" action="index.php?requete=profileConnexion">
 							<button name="status" value="deconnexion">Déconnexion</button>
 						</form>
@@ -117,7 +120,7 @@
 
 				<div class="u__profile-toggle  col">
 					<div class="u__user">Bienvenue, <?php echo ucfirst($_SESSION['prenom']);?> <?php echo ucfirst($_SESSION['nom']);?></div>
-					<a class="u__user-p" href="?requete=paramUsager"><i class="far fa-user-circle"></i>Mon profile</a>
+					<a class="u__user-p" href="?requete=paramUsager"><i class="far fa-user-circle"></i>Mon profil</a>
 					<form  method="POST" action="index.php?requete=profileConnexion">
 					<button  name="status" value="deconnexion">Déconnexion</button>
                     </form>
