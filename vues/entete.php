@@ -43,8 +43,9 @@
 		<script src="./js/main.js"></script>
 		<script src="./js/ripple.js"></script>
 		<script src="./js/tricelliers.js"></script>
-		<!-- <script src="./js/filtre.js"></script> -->
 		<script src="./js/filtresBouteilles.js"></script>
+		<!-- <script src="./js/filtresB.js"></script> -->
+		<script src="./js/recherche.js"></script>
 		
 	</head>
 	<body class="relative" >

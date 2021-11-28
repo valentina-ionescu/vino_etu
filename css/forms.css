@@ -157,6 +157,11 @@ textarea {
     position: relative;
     width: 100%;
 }
+.b__recherche {
+    width: 85%;
+    color:whitesmoke;
+    border: 1px solid whitesmoke;
+}
 
 .form__recherche input {
     /* width: 90vw; */

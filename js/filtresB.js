@@ -9,15 +9,13 @@
 
 window.addEventListener("load", function () {
   let id = document.querySelector("[data-cellid]").dataset.cellid;
-
   let el = document.querySelector(".filtres>.effacer");
-
-  el.classList.remove("show_button");
   let filtres = document.querySelector(".filtres>.open");
   let anneeIndex = 0;
   let anneeSelect;
-  let anneeIndexP = 0;
-  let anneeSelectP;
+  let selectionChoix = Array()
+
+   el.classList.remove("show_button");
 
   filtres.addEventListener("click", (e) => {
     e.preventDefault();
@@ -25,8 +23,7 @@ window.addEventListener("load", function () {
     let modal = document.querySelector(".filtres__modal__wrapper");
     modal.classList.add("show");
 
-    // el.parentElement.innerHTML ='<a href="index.php?requete=accueil" class="tag-gauche txt-blanc capit petit">Effacer</a>'
-
+    
     //empecher le scroll de l'arriere plan ref: https://css-tricks.com/prevent-page-scrolling-when-a-modal-is-open/
     const scrollY =
       document.documentElement.style.getPropertyValue("--scroll-y");
@@ -38,27 +35,22 @@ window.addEventListener("load", function () {
     let sortNomUp = document.querySelector(".nomASC");
 
     sortNomUp.addEventListener("click", (e) => {
-      console.log(e.target);
-
       // Récuperer les bouteilles dans l'ordre demandé
       fetchBouteilles(id, "ASC", "nom");
     });
 
     // Nom DESC
     let sortNomDown = document.querySelector(".nomDESC");
-
     sortNomDown.addEventListener("click", (e) => {
-      console.log(e.target);
-
+      
       // Récuperer les bouteilles dans l'ordre demandé
       fetchBouteilles(id, "DESC", "nom");
     });
 
     // Prix ASC
     let sortPrixUp = document.querySelector(".prixASC");
-
     sortPrixUp.addEventListener("click", (e) => {
-      console.log(e.target);
+    
 
       // Récuperer les bouteilles dans l'ordre demandé
       fetchBouteilles(id, "ASC", "prix");
@@ -68,7 +60,7 @@ window.addEventListener("load", function () {
     let sortPrixDown = document.querySelector(".prixDESC");
 
     sortPrixDown.addEventListener("click", (e) => {
-      console.log(e.target);
+      
 
       // Récuperer les bouteilles dans l'ordre demandé
       fetchBouteilles(id, "DESC", "prix");
@@ -88,81 +80,67 @@ window.addEventListener("load", function () {
     //
     // Filtres
     let choix = document.querySelector(".choix");
+   
     choix.addEventListener("click", (e) => {
       //delegation d'evenements sur les elements enfants
       let enfantEl = e.target;
       console.log(enfantEl);
-
-      //Millesime
-      let millesime = getChoix(enfantEl, "mill"),
-        pays = getChoix(enfantEl, "pa"),
-        type = getChoix(enfantEl, "ty");
-
-      let cartes = document.querySelectorAll(".carte");
-      cartes.forEach((card) => {
-        // millesime
-        if (millesime) {
-          console.log(enfantEl);
-          if (anneeSelect) resetSelectElement(anneeSelect);
-           enfantEl.classList.add('clicked');
-          if (card.querySelector(".carte__description-millesime").textContent !=`Millesime: ${millesime}`)
-            card.style.display = "none";
-          fermerModal(modal);
-
-          //Le select du millesime
-        } else if (enfantEl.classList.contains("sel-mill")) {
+     if((enfantEl.classList.contains('mill')) || (enfantEl.classList.contains('pa')) || (enfantEl.classList.contains('ty'))
+        || (enfantEl.classList.contains("sel-mill"))){
+        console.log(enfantEl)
+        
+        if (enfantEl.classList.contains("sel-mill")) {
           enfantEl.addEventListener("change", (e) => {
-            millesime = e.target.value;
+            var index = e.target.selectedIndex;
+            SelMill = e.target[index].text    
+            console.log(SelMill)
             anneeIndex = enfantEl.selectedIndex;
             anneeSelect = enfantEl;
-
-            if (
-              card.querySelector(".carte__description-millesime").textContent !=
-              `Millesime: ${millesime}`
-            )
-              card.style.display = "none";
-            // resetSelectElement(enfantEl);
-            fermerModal(modal);
-          });
+            selectionChoix.push(SelMill);
+          })
+        }  else {
+          selectionChoix.push(enfantEl.textContent);
+          if (anneeSelect) resetSelectElement(anneeSelect);
         }
+        
+        console.log(selectionChoix)
+        let cartes = document.querySelectorAll(".carte");
+        cartes.forEach((card) => {
+          
+              let cMill = card.querySelector(".carte__description-millesime").textContent.replace("Millesime: ", ""),
+                  cPays = card.querySelector(".carte__description-pays").textContent,
+                  cType = JSON.stringify(card.querySelector(".carte__tag-top span").textContent.trim())
+                  
+                  console.log(cMill)
+                  console.log(cPays)
+                  console.log(cType)
+                  enfantEl.classList.add('clicked');
 
-        // pays
-        if (pays) {
-          if (anneeSelectP) resetSelectElement(anneeSelectP);
-          if (card.querySelector(".carte__description-pays").textContent != pays) {
-            console.log(card.querySelector(".carte__description-pays").textContent)
-          enfantEl.classList.add('clicked');
-          card.style.display = "none";
-          fermerModal(modal);
-        }
-
-        } //Le select du pays
-        else if (enfantEl.classList.contains("sel-pa")) {
-          enfantEl.addEventListener("change", (e) => {
-            pays = e.target.value;
-            anneeIndexP = enfantEl.selectedIndex;
-            anneeSelectP = enfantEl;
-            if (
-              card.querySelector(".carte__description-pays").textContent != pays
-            )
-              card.style.display = "none";
-            fermerModal(modal);
-          });
-        }
-
-        // type
-        if (type) {
-          let typeS = JSON.stringify(
-            card.querySelector(".carte__tag-top span").textContent.trim()
-          );
-          if (typeS != JSON.stringify(type)) card.style.display = "none";
-          enfantEl.classList.add('clicked');
-          fermerModal(modal);
-        }
-      });
-    });
-  }); // fin filtres
-
+                let cardEl = Array() 
+                  if(!isEmpty(cMill)) cardEl.push(cMill)
+                  if(cPays!='') cardEl.push(cPays)
+                  if(cType!='') cardEl.push(cType)
+                  let checker = (arr1, arr2) => {
+                   return arr1.every(v => arr2.includes(v))
+                   
+                  }
+                  console.log(checker(selectionChoix,cardEl))
+                  if (!checker(selectionChoix,cardEl))
+                  card.style.display = "none";
+                
+                
+              
+              if (!checker) {
+                card.style.display = "none";
+                console.log(card.style.display)
+              }
+              // fermerModal(modal)
+           
+        });
+      }
+    
+    }); // fin filtres
+  })
   function getChoix(el, val) {
     console.log(el);
     if (el.classList.contains(val)) {
@@ -171,6 +149,9 @@ window.addEventListener("load", function () {
       return choix;
     }
   }
+  function isEmpty(str) {
+    return (!str || str.length === 0 );
+}
 
   //reinitialiser les selects
   //ref : https://stackoverflow.com/questions/12737528/reset-the-value-of-a-select-box

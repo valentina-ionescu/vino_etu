@@ -343,11 +343,19 @@ form.btn__ajouter_cellier {
     margin: 1.25rem 0 .5rem 0;
     font-size: inherit;
 }
-.form__recherche .cell__icon {
+.form__recherche .cell__icon,
+.form__recherche .b__icon
+ {
     margin-left: unset;
     top: 30%;
     z-index: unset;
 }
+.form__recherche--b input {
+ color: whitesmoke;
+}
+
+
+
 .actions {
     display: flex;
     justify-content: space-around;
@@ -461,6 +469,10 @@ input.mill {
     width: fit-content;
     margin-right: 0;
     font-size: clamp(.85rem, -0.875rem + 8.333333vw, 1rem);
+}
+.clicked {
+    background: var(--bg-primaire);
+    color:#f1f1f1;
 }
 /* ==========----------Media queries---------=========== */
 @media (min-width: 540px)  {
