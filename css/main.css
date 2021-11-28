@@ -4,10 +4,7 @@
 
 
  html, body {
-	/* height: 100%; */
 	margin: 0;
-	/* background-color: #fff; */
-	
 	font-family: 'Roboto', 'RobotoDraft', sans-serif;
 	font-size: 95%;
 	
@@ -33,15 +30,13 @@ body
 }
 
 .admin_body{
-    background-color: var(--bg-clair);
+    background-color: #FFFFFF;
 
 }
 .liste {
     display: block;
     border-top: 1px solid rgb(255, 255, 255);
     border-bottom: none;
-    /*background: #666;*/
-    /*color: #03a9f4;*/
     list-style: none;
     margin: 0;
     padding: 0;
@@ -52,10 +47,8 @@ body
     line-height: 40px;
     padding: 0 20px;
     border-bottom: 1px solid #ccc;
-    /*background: #666;*/
     cursor: pointer;
     transition: color 200ms ease-in-out;
-    /*background-color: #003777;*/
     background-color: #e85e30;
     color: #FFFFFF;
 }
@@ -166,6 +159,10 @@ footer p {
 .mb-1{
     margin-bottom: 1em;
 }
+.ml-7{
+margin-left: 7em;
+}
+
 .relative{
     position: relative;
 }
@@ -191,6 +188,7 @@ footer p {
 .ml {
     margin-left: 3.5rem;
 }
+
 /* -------------ajout par Djaouida ------ */
 
 /* -----------View ajouter Bouteille */
@@ -217,7 +215,6 @@ a.btn {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    /* margin: 4px 2px; */
     transition-duration: 0.3s;
     cursor: pointer;
     border-radius: 3px;
@@ -241,6 +238,7 @@ a.btn {
     color: #ffffff;
     border: 1px solid var(--bg-accent-admin);
     font-size: 12px;
+    box-shadow: none;
   }
 
 .btn-accent.solid{
@@ -307,7 +305,9 @@ a.btn {
     justify-content: center;
     align-items: center
 }
-
+.no-bg{
+    background: transparent ;
+}
 .show {
     display: block;
 }
@@ -324,7 +324,8 @@ a.btn {
 }
 
 .btn__danger,
-.btn__annuler  {
+.btn__annuler, 
+.btn__ajout-bouteille   {
     background: var(--bg-primaire-autre);
     border: 1px solid var(--bg-primaire-autre);
     border-radius: 6px;
@@ -339,23 +340,29 @@ a.btn {
     min-width: 100px;
 }
 
-.btn__annuler {
+.btn__annuler, .btn__ajout-bouteille {
     background-color: #f4f4f4;
     border: 1px solid var(--bg-primaire);
     color: #222;
     transition: all .3ms ease;
 
 }
+.btn__ajout-bouteille {
+    background-color: var(--bg-primaire-autre);
+    border: 1px solid var(--bg-primaire-autre);
+    color: #f1f1f1;
+    transition: all .3ms ease;
+}
 
 .btn__danger:hover,
-.btn__danger:active {
+.btn__danger:active,.btn__ajout-bouteille:hover {
   background-color: var(--txt-medium);
   background-position: 0 0;
   color: #f1f1f1;
 }
 
 .btn__danger:active,
-.btn__annuler:active {
+.btn__annuler:active, .btn__ajout-bouteille:active {
   opacity: .5;
 }
 .btn__annuler:hover,
@@ -401,9 +408,7 @@ color: var(--bg-primaire);
     .btn__annuler  {
         width: 50%;
     }
- /* .modal__contenu {
-    width: 50%; 
- }   */
+ 
 }
 
 @media (min-width: 768px) {

@@ -34,9 +34,6 @@
     <link rel="stylesheet" href="css/pageLoader.css" type="text/css" media="screen">
     <link rel="stylesheet" href="css/pagination.css" type="text/css" media="screen">
 
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 
 
     <link rel="stylesheet" href="./css/grilles.css" type="text/css" media="screen">
@@ -134,17 +131,18 @@
                 </li>
 
 
-                <!-- <li class="tabs__button  admin_carte" data-for-tab="3">
+                <li class="tabs__button  admin_carte" data-for-tab="3">
+                    <a href="index.php?requete=home">
+                        <picture class="admin_carte_img">
+                            <img src="assets/img/site_img/admin_link3.jpg" alt="">
+                        </picture>
+                        <div class="admin_carte-titre">
+                            <h3>Mes Celliers</h3>
+                            <hr />
 
-                    <picture class="admin_carte_img">
-                        <img src="assets/img/site_img/admin_link3.jpg" alt="">
-                    </picture>
-                    <div class="admin_carte-titre">
-                        <h3>Statistiques</h3>
-                        <hr />
-
-                    </div>
-                </li> -->
+                        </div>
+                    </a>
+                </li>
 
                 <li class="tabs__button admin_carte p-1 mt-9 importSAQ " data-for-tab="4">
                     <span class="admin_carte-titre p-1">
@@ -163,25 +161,25 @@
         </nav>
     </header>
 
-    <main class="admin_main">	
-    <section class=" section_principale mt-5">
+    <main class="admin_main">
+        <section class=" section_principale mt-5">
 
-        <section class="search-and-user">
+            <section class="search-and-user">
 
-            <div class="admin__profile">
-                <span class="greeting">Bonjour admin!</span>
-                <div class="notifications u__profile_img_admin">
-                    <i class="fas fa-user-tie "></i>
+                <div class="admin__profile">
+                    <span class="greeting">Bonjour admin!</span>
+                    <div class="notifications u__profile_img_admin">
+                        <i class="fas fa-user-tie "></i>
+                    </div>
+
+                    <div class=" u__profile-toggle_admin  col">
+                        <form method="POST" action="index.php?requete=profileConnexion">
+                            <button name="status" value="deconnexion">Déconnexion</button>
+                        </form>
+                    </div>
                 </div>
 
-                <div class=" u__profile-toggle_admin  col">
-                    <form method="POST" action="index.php?requete=profileConnexion">
-                        <button name="status" value="deconnexion">Déconnexion</button>
-                    </form>
-                </div>
-            </div>
-
-        </section>
+            </section>
 
 
-        <section class="grid admin_contenu_page">
+            <section class="grid admin_contenu_page">

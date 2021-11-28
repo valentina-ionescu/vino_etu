@@ -2,7 +2,6 @@
     table td {
       border-bottom: 1px solid #9faeb9;
       padding: 5px 6px;
-      /* max-width: fit-content; */
       text-align: left;
       font-size: 12px;
     }
@@ -51,7 +50,6 @@
       text-align: center;
       font-size: 16px;
       text-decoration: none;
-      /* color: #FFFFFF; */
       padding: 4px 5px;
       border-radius: 2px;
       border: none;
@@ -59,9 +57,7 @@
       width: auto;
       margin: 2px auto;
     }
-    /* td.actions{
-      display: flex;
-    } */
+   
     td.actions .trash {
       background-color: #FFF;
       border: 1px solid #6d1b1b;
@@ -170,6 +166,22 @@
      background-color: var(--bg-primaire-foncee-admin);
     }
     
+    .table_admin .nom_bouteille{
+      width: 55%;
+    }
+    @media screen and (max-width: 426px) {
+      .admin table {
+          width: 400px;
+          padding-top: 30px;
+          margin: 4em;
+          
+        }
+        .table_admin {
+          min-width: 320px;
+          width: 90vw;
+        }
+      }
+
     @media screen and (min-width: 426px) {
       .admin table {
           width: 100%;
@@ -177,16 +189,18 @@
           border-collapse: collapse;
           font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+        .table_admin {
+          min-width: 320px;
+          width: 90vw;
+        }
       }
 
       @media screen and (min-width: 768px) {
-        .admin table {
-          width: 600px;
-        } 
+        
         .nom_bouteille {
           width: 70%;
         }
-
+      
       
         }
         

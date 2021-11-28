@@ -70,9 +70,9 @@ class Controler
 			case 'profile':
 				$this->afficherProfile();
 				break;
-			case 'admin':
-				$this->afficherAdmin();
-				break;
+			// case 'admin':
+			// 	$this->afficherAdmin();
+			// 	break;
 			case 'desactiverBouteilleCatalogue':
 				$this->supprimerBouteilleCatalogue();
 				break;
@@ -696,47 +696,47 @@ class Controler
 	 */
 
 
-	private function afficherAdmin()
-	{
-		if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1) {
-			$msg = '';
-			$saq = new SAQ();
-			$bte = new Bouteille();
-			$listeBouteilles = $bte->getListeBouteille();
+	// private function afficherAdmin()
+	// {
+	// 	if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1) {
+	// 		$msg = '';
+	// 		$saq = new SAQ();
+	// 		$bte = new Bouteille();
+	// 		$listeBouteilles = $bte->getListeBouteille();
 
 
-			$user = new Usager();
-			$listeUsager = $user->getListeUsager();
-			//  var_dump($listeUsager);
-			$_SESSION['listeUsagers'] = $listeUsager;
-			$_SESSION['listeBouteilles'] = $listeBouteilles;
+	// 		$user = new Usager();
+	// 		$listeUsager = $user->getListeUsager();
+	// 		//  var_dump($listeUsager);
+	// 		$_SESSION['listeUsagers'] = $listeUsager;
+	// 		$_SESSION['listeBouteilles'] = $listeBouteilles;
 
-			// Pagination
-			//determine the total number of pages available  
-			$requeteTout = "Select * From vino__bouteille";
+	// 		// Pagination
+	// 		//determine the total number of pages available  
+	// 		$requeteTout = "Select * From vino__bouteille";
 
-			$number_of_result = $bte->getNumRowsBouteilles($requeteTout);
-			$resultats_par_page = 30;
-			$number_of_page = ceil($number_of_result / $resultats_par_page);
+	// 		$number_of_result = $bte->getNumRowsBouteilles($requeteTout);
+	// 		$resultats_par_page = 30;
+	// 		$number_of_page = ceil($number_of_result / $resultats_par_page);
 
 
-			if (!isset($_GET['page'])) {
-				$page = 1;
-			} else {
-				$page = $_GET['page'];
-			}
-			$resultatPage = $bte->pagination($resultats_par_page, $page,  $number_of_result, $requeteTout);
+	// 		if (!isset($_GET['page'])) {
+	// 			$page = 1;
+	// 		} else {
+	// 			$page = $_GET['page'];
+	// 		}
+	// 		$resultatPage = $bte->pagination($resultats_par_page, $page,  $number_of_result, $requeteTout);
 
-			// echo json_encode($listeBouteilles);
-			// include("vues/admin_controls.php");
-			include("vues/admin_entetePrincipale.php");
-			include("vues/admin_listeBouteilles.php");
-			include("vues/admin_pied.php");
-		} else {
-			$ctrl = new Controler;
-			$ctrl->accueil();
-		}
-	}
+	// 		// echo json_encode($listeBouteilles);
+	// 		// include("vues/admin_controls.php");
+	// 		include("vues/admin_entetePrincipale.php");
+	// 		include("vues/admin_listeBouteilles.php");
+	// 		include("vues/admin_pied.php");
+	// 	} else {
+	// 		$ctrl = new Controler;
+	// 		$ctrl->accueil();
+	// 	}
+	// }
 
 
 	/**
@@ -998,7 +998,7 @@ class Controler
 				$bte = new Bouteille();
 
 				//redimmensionner l'image 
-				$redimensionImg = $bte->redimmensionImage($target, $ext, $lageur=367, $hauteur=550); // appele de la fonction qui redimmensionne l'image
+				$redimensionImg = $bte->redimmensionImage($target, $ext, $lageur=500, $hauteur=550); // appele de la fonction qui redimmensionne l'image
 				
 				echo json_encode($redimensionImg);
 

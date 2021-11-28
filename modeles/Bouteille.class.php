@@ -543,26 +543,34 @@ class Bouteille extends Modele {
 		$resultImg = imagecreatetruecolor($maxDimL, $maxDimH);
 
         $bgcolor = imagecolorallocate($resultImg, 255, 255, 255); // couleur de fond si l'image ne vouvre pas l'entieretee du canevas
-        imagefill($resultImg, 0, 0, $bgcolor);       // resetter la couleur de fond a blanc. 
+         imagefill($resultImg, 0, 0, $bgcolor);       // resetter la couleur de fond a blanc. 
 
+		$ratio_orig = $largeur/$hauteur;
 		if ( $largeur > $maxDimL || $hauteur > $maxDimH ) {
         // Verifier la largeur vs la hauteur de l'image et la centrer
-        if($origHauteur<$origLargeur) // si la largeur d'origine est plus grande que l'hauteur
+       // if($origHauteur<$origLargeur)
+	   if($maxDimL/$maxDimH>$ratio_orig) // si la largeur d'origine est plus grande que l'hauteur
         {
-            $nouvImgHauteur = $maxDimH; 
-            $nouvImgLargeur = ceil(($maxDimH*$origLargeur)/$origHauteur);
+             $nouvImgHauteur = $maxDimH; 
+            // $nouvImgLargeur = ceil(($maxDimH*$origLargeur)/$origHauteur);
+             $nouvImgLargeur = $nouvImgHauteur*$ratio_orig;
+
+            // imagecopyresampled($resultImg,$source,0,0,0,0,$nouvImgLargeur,$nouvImgHauteur,$origLargeur,$origHauteur);
             imagecopyresampled($resultImg,$source,-ceil(($nouvImgLargeur-$maxDimL)/2),0,0,0,$nouvImgLargeur,$nouvImgHauteur,$origLargeur,$origHauteur);
-        }
+        }//-ceil(($nouvImgLargeur-$maxDimL)/2)
         else
         {
-            $nouvImgHauteur = ceil(($maxDimL*$origHauteur)/$origLargeur);
-            $nouvImgLargeur = $maxDimL; 
+             $nouvImgLargeur = $maxDimL; 
+			 // $nouvImgHauteur = ceil(($maxDimL*$origHauteur)/$origLargeur);
+             $nouvImgHauteur = $maxDimL/$ratio_orig;
+           
             imagecopyresampled($resultImg,$source,0,-ceil(($nouvImgHauteur-$maxDimH)/2),0,0,$nouvImgLargeur,$nouvImgHauteur,$origLargeur,$origHauteur);
         }
-
-        //we save the image as jpg resized to 110x110 px and cropped to the center. the old image will be replaced
-        imagejpeg($resultImg,$image,90);
-}
+// -ceil(($nouvImgHauteur-$maxDimH)/2)
+		// sauvegarde l'image comme jpg et redimmensionne aux dimmenssions dans le parametres , couper et centrer. l'ancien image sera remplacee
+    
+} 
+ imagejpeg($resultImg,$image,90);  
         return $image;
 
     
@@ -768,16 +776,7 @@ class Bouteille extends Modele {
 		$connexion = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
 
 		 //Calculer le nombre des pages disponibles  
-		//  $number_of_page = ceil ($number_of_result / $resultats_par_page);  
-	 	  
-	 
-		 //determiner la limite de items a afficher sur une page 
-		//  $page_first_result = ($page-1) * $resultats_par_page;  
-	   
-		 //chercher les resultats selectionnees dans la DB 
-		//  $query = "SELECT *FROM vino__bouteille ;  
-		//  $result = mysqli_query($connexion, $query);  
-
+		
 		// $reqPrep =mysqli_prepare($connexion,'SELECT * FROM vino__bouteille WHERE nom LIKE ?  OR code_saq LIKE ? OR description LIKE ? AND statut_desactive !=1 OR statut_desactive is NULL'); 
 		$reqPrep =mysqli_prepare($connexion,'SELECT * FROM vino__bouteille WHERE nom LIKE ?  AND statut_desactive !=1 OR statut_desactive is NULL'); 
 
@@ -812,13 +811,7 @@ class Bouteille extends Modele {
         }
 
 		return $rows;
-//SELECT * FROM `vino__bouteille` WHERE CONCAT(`nom`, `code_saq`, `pays`, `description`, `format`) LIKE "% ma %"
-	
-//SELECT * FROM `vino__bouteille` WHERE LOWER(CONCAT(`nom`, `code_saq`, `pays`, `description`, `format`)) LIKE LOWER("% États %")
-//SELECT * FROM `vino__bouteille` WHERE LOWER(CONCAT(`nom`, `code_saq`, `description`)) LIKE LOWER("% États %")
 
-//SELECT * FROM `vino__bouteille` WHERE LOWER(`nom`) LIKE LOWER("% m %")  OR LOWER(`code_saq`) LIKE LOWER("% 1 %") OR LOWER(`description`) LIKE LOWER("% États %")
-//SELECT * FROM `vino__bouteille` WHERE LOWER(`nom`) LIKE LOWER("%m%")  OR `code_saq` LIKE "%1%" OR LOWER(`description`) LIKE LOWER("%États%")
 	}
 	
 /**

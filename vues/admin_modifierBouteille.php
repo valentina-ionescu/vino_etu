@@ -1,7 +1,7 @@
 <div class="form__contenant flex col " vertical layout>
     <div class="admin_form__carte">
 
-    <h4 class='m-1 text-center'> Modification de la bouteille No. <?php  echo $_POST['id'] ?>.</h4>
+        <h4 class='m-1 text-center'> Modification de la bouteille No. <?php echo $_POST['id'] ?>.</h4>
         <!-- <?php var_dump($row)  ?> -->
         <!-- <div class="form__image flex">
             <img src="<?php echo $row['image'] ?>" alt="">
@@ -47,23 +47,24 @@
             </div>
             <!-- <?php echo $row["vino__type_id"]; ?> -->
 
-             <!-- Modal confirmation modification bouteille Catalogue-->
-             <div class="confirm__modal__wrapper">
-                    <div class="modal__overlay">
-                        <div class="modal__contenu ">
-                            <h3 class="modal__texte txt_msg-modif"></h3>
-                        </div>
+            <!-- Modal confirmation modification bouteille Catalogue-->
+            <div class="confirm__modal__wrapper">
+                <div class="modal__overlay ">
+                    <div class="modal__contenu ">
+                        <h3 class="modal__texte txt_msg-modif"></h3>
                     </div>
                 </div>
+            </div>
 
-                <span class="hidden message__erreur__inscription" data-js-erreur-modif-nonListee>
-                    <p>Veuillez insérer un nom valide</p>
-                </span>
+            <span class="hidden message__erreur__inscription" data-js-erreur-modif-nonListee>
+                <p>Veuillez insérer un nom valide</p>
+            </span>
 
+            <div class="boutons_wrapper">
+                <button class="btn btnModifierBouteilleCatalogue" type="submit">Modifier la bouteille</button>
 
-            <button class="btn btnModifierBouteilleCatalogue" type = "submit" >Modifier la bouteille</button>
-
-            <button class="btn btn-primaire btnAnnul" type="reset">Annuler</button>
+                <button class="btn btn-primaire btnAnnul" type="reset">Annuler</button>
+            </div>
         </div>
     </div>
 </div>

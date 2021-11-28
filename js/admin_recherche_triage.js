@@ -143,8 +143,7 @@ window.addEventListener('load', function () {
     });
 
 
-    //appele de la fonction Recherche Catalogue Bouteilles  et Recherche Usagers
-    //rechercheCatalogue(table, rechercheInput, searchColumn)
+    
 
     if (document.querySelector('.liste_usagers')) {
         if (document.querySelector('.recherche_usager') != "") {
@@ -153,9 +152,6 @@ window.addEventListener('load', function () {
     }
 
 
-    // if (document.querySelector('.recherche_bouteille') != "") {
-    //     rechercheCatalogue(document.querySelector('.table_bouteilles'), document.querySelector(".recherche_bouteille"), document.querySelector(".nom_bouteille"));
-    // }
 
 
 
@@ -185,7 +181,6 @@ window.addEventListener('load', function () {
                 .then((response) => {
                     if (response.status === 200) {
                         console.log(response);
-                        // location.replace("index.php?requete=getCatalogue&rech="+ rechercheInput)
                         document.querySelector('.recherche_bouteille').setAttribute('value',rechercheInputValue) ;
                         return response.json();
                     } else {

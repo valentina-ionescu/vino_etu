@@ -26,10 +26,10 @@
     --txt-primary:#7B033D;
     --txt-medium: #7a476e;
     --bg-input: rgba(30, 18, 33, 0.435);
-    --bg-primaire-admin: #195B5B;
-    --bg-primaire-foncee-admin: #022e2e;
+    --bg-primaire-admin: #355c7a;
+    --bg-primaire-foncee-admin: #274155;
     --bg-sombre-admin: #181E2D;
-    --bg-accent-admin: #a14a03;
+    --bg-accent-admin: #67081c;
     --bg-secondaire-admin:#E5B25C;
 
 
@@ -49,7 +49,7 @@ body {
 }
 
 main {
-    width: 100%;
+    width: 95vw;
     margin-right: auto;
     margin-left: auto;
     padding-top: 4em;
@@ -113,43 +113,36 @@ table th {
     background-color: var(--bg-sombre);
 }
 .bigtitle, h1 {
-    /* font-size: 5.2917em; */
     word-break: break-word;
 }
 
 .title, h2 {
-    /* font-size: 2.6458em; */
     font-weight: lighter;
     word-break: break-word;
 }
 
 .subheading1, h3 {
-    /* font-size: 1.75em; */
     font-weight: normal;
     text-transform: uppercase;
     letter-spacing: .03em;
 }
 
 blockquote {
-    /* font-size: 1em; */
     font-style: italic;
     line-height: calc(1*var(--vspace));
     margin: var(--vspace-2) var(--vspace-2);
 }
 
 .subheading2, h4 {
-    /* font-size: 1.3333em; */
     text-transform: capitalize;
 }
 
 .subheading3, h5 {
-    /* font-size: 1.1667em; */
     font-weight: lighter;
     text-transform: uppercase;
 }
 
 .subheading4, h6 {
-    /* font-size: 1em; */
     font-weight: normal;
     font-style: italic;
     font-family: 'Playfair Display', serif;

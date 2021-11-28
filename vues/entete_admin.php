@@ -70,28 +70,13 @@
 
     <header class="header__wrapper  admin">
 			<nav class="nav__wrapper flex row align-item-center" role="navigation">
-				<!-- <div id="menuToggle">
-					<input type="checkbox" />
-					<span></span>
-					<span></span>
-					<span></span>
-					<ul class="header__menu__links" id="menu">
-							<?//php if (isset($_SESSION['nom'])) { ?>
-							<li><a href="?requete=accueil">Mon cellier</a></li>
-							<li><a href="?requete=ajouterNouvelleBouteilleCellier">Ajouter une bouteille au cellier</a></li> -->
-						
-					<!-- <?//php }else { ?>
-						<li><a href="?requete=profile">Se connecter</a></li>
-					<?//php } ?> 
-						</ul>
-				</div> -->
+				
                 <a href="?requete=accueil" class="flex logo"><img class="header__logo" src="assets/img/logo/logo.svg" alt=""></a>
 				<a href="?requete=getCatalogue" class="btn solid">Retournez a l'admin! </a>
                 <div class="admin_content-title ">
                 <h2><i class="fas fa-tachometer-alt"></i> Panneau Administration</h2>
             </div>
 				
-				<!-- <a href="?requete=profile"><i class="fa fa-user-circle header__icon__user"></i></a> -->
 			</nav>
 		</header>
 		<main class="admin_main">	
