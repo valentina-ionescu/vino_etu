@@ -106,7 +106,7 @@
     justify-content: flex-start;
     border: 1px solid var(--bg-sombre);
     margin-top: -11%;
-    padding: 1em;
+    padding: 2em 1em;
     min-height: 30vh;
 }
 
@@ -586,11 +586,11 @@ input.mill {
     }
    
     .u__celliers_liste {
-        margin-top: -13%;
+        margin-top: -12%;
     }
 
     .u__ajout {
-        width: 17%;
+        width: 12%;
     }
 
    
@@ -615,7 +615,7 @@ input.mill {
     }
 
     .u__celliers_liste {
-        margin-top: -11%;
+        margin-top: -9%;
     }
 
     .modal__filtre {
@@ -642,11 +642,11 @@ input.mill {
     }
 
     .u__ajout {
-        width: 15%;
+        width: 16%;
     }
 
     .u__celliers_liste {
-        margin-top: -9%;
+        margin-top: -11%;
     }
 
     .u__profile-toggle, .u__profile-toggle_admin {
@@ -670,11 +670,12 @@ input.mill {
     }
 
     .u__ajout {
-        width: 9%;
+        width: 9%;   
+         width: 14%;
     }
 
     .u__celliers_liste {
-        margin-top: -6%;
+        margin-top: -10%;
     }
 
     .u__titre {

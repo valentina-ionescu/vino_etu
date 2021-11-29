@@ -49,7 +49,12 @@
                                 echo "$urlPage " . ($page + 1);
                             } ?>">Suivant</a>
             </li>
-            <li><a href="<?php echo $urlPage . $number_of_page; ?>"><i class="fas fa-angle-double-right"></i></a></li>
+
+            <li><a href=" <?php if ($page >= $number_of_page) {
+                                echo '#';
+                            } else {
+                                echo  $urlPage . $number_of_page;;
+                            } ?> "><i class="fas fa-angle-double-right"></i></a></li>
 
             <?php
             if (isset($_GET['rech'])) {   ?>
