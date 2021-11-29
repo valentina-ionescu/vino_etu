@@ -69,10 +69,8 @@ class Controler
 				break;
 			case 'profile':
 				$this->afficherProfile();
-				break;
-			// case 'admin':
-			// 	$this->afficherAdmin();
-			// 	break;
+				break; 
+			
 			case 'desactiverBouteilleCatalogue':
 				$this->supprimerBouteilleCatalogue();
 				break;
@@ -689,54 +687,6 @@ class Controler
 		require_once('updateSAQ.php');
 	}
 
-	/**
-	 * afficherAdmin
-	 *
-	 * @return void
-	 */
-
-
-	// private function afficherAdmin()
-	// {
-	// 	if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1) {
-	// 		$msg = '';
-	// 		$saq = new SAQ();
-	// 		$bte = new Bouteille();
-	// 		$listeBouteilles = $bte->getListeBouteille();
-
-
-	// 		$user = new Usager();
-	// 		$listeUsager = $user->getListeUsager();
-	// 		//  var_dump($listeUsager);
-	// 		$_SESSION['listeUsagers'] = $listeUsager;
-	// 		$_SESSION['listeBouteilles'] = $listeBouteilles;
-
-	// 		// Pagination
-	// 		//determine the total number of pages available  
-	// 		$requeteTout = "Select * From vino__bouteille";
-
-	// 		$number_of_result = $bte->getNumRowsBouteilles($requeteTout);
-	// 		$resultats_par_page = 30;
-	// 		$number_of_page = ceil($number_of_result / $resultats_par_page);
-
-
-	// 		if (!isset($_GET['page'])) {
-	// 			$page = 1;
-	// 		} else {
-	// 			$page = $_GET['page'];
-	// 		}
-	// 		$resultatPage = $bte->pagination($resultats_par_page, $page,  $number_of_result, $requeteTout);
-
-	// 		// echo json_encode($listeBouteilles);
-	// 		// include("vues/admin_controls.php");
-	// 		include("vues/admin_entetePrincipale.php");
-	// 		include("vues/admin_listeBouteilles.php");
-	// 		include("vues/admin_pied.php");
-	// 	} else {
-	// 		$ctrl = new Controler;
-	// 		$ctrl->accueil();
-	// 	}
-	// }
 
 
 	/**
@@ -1130,6 +1080,7 @@ class Controler
 			$valeur = $body->valeur;
 			// $champs = $body->col;
 			$_SESSION['cellier_id'] = $body->id;
+			
 		} else {
 			$col = $colonne;
 			$valeur = $val;
@@ -1142,6 +1093,7 @@ class Controler
 		$effacer = '';
 		$id = 0;
 
+		$millessimes = $bte->millessimmesParCellier($_SESSION['cellier_id']);
 		$dataB = $bte->getListeBouteilleCellierFiltre($col, $valeur);
 		$dataC = $cel->getCellierInfo();
 		$celNom = $cel->getCellierNom($_SESSION['cellier_id']);

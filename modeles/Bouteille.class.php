@@ -824,4 +824,35 @@ class Bouteille extends Modele {
 public function statsBouteilles() {
 	$query = "SELECT distinct(SUBSTRING(nom, -4)) AS y FROM vino__bouteille where SUBSTRING(nom, -4) like '20%' or SUBSTRING(nom, -4) like '19%' order by 1";
 }	
+
+/**
+ * Retoune les milesimes par cellier id
+ *
+ * @return void
+ */
+public function millessimmesParCellier($idCellier) {
+
+	$rows = Array();
+	$connexion = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
+	
+$requete = "SELECT distinct millesime FROM `vino__cellier_has_vino__bouteille` WHERE vino__cellier_id = ".$idCellier." ORDER BY millesime ASC ";
+ $result = mysqli_query($connexion, $requete);  
+		 
+	   //preparer un tableau Array de resultyats pour afficher dans la page web
+	   if($result->num_rows)
+		{
+			while($row = $result->fetch_assoc())
+			{
+				$rows[] = $row;
+			}
+		}
+		
+	
+		return $rows;
+		var_dump($rows);
+
+}
+
+//
+
 }
