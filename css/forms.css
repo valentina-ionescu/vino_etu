@@ -150,6 +150,11 @@ textarea {
     position: relative;
     width: 100%;
 }
+.b__recherche {
+    width: 85%;
+    color:whitesmoke;
+    border: 1px solid whitesmoke;
+}
 
 .b__recherche {
     max-width: 85%;
